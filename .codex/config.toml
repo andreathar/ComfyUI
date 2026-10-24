@@ -1,0 +1,21 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+developer_instructions = """
+Read AGENTS.md and .codex/README.md before working on this checkout.
+Use .venv/bin/python for project Python commands and uv pip --python .venv/bin/python for dependencies.
+Host static PATH belongs to pathman; do not add the venv to host PATH or source shell startup files to repair tool resolution.
+Consult .codex/SETUP_PLAN.md for setup status, hardware constraints, validation gates, and model-selection work.
+The verified image baseline is user/default/workflows/Balanced SD15 - RTX 3060.json. Check .codex/artifacts/model-manifest.json and generation-benchmark.json before replacing its model or claiming performance improvements.
+Use .venv/bin/python .codex/model_download.py with explicit catalogue profiles for model downloads. models.json maps pinned artifacts to native folders on /mnt/data. The user deferred Z-Image downloads; list/plan/verify are read-only, and downloading a newly selected model set requires its authorization.
+Keep machine-specific operational notes in .codex, not in upstream AGENTS.md or README.md.
+For library/tool setup or API documentation, resolve with npx ctx7@latest library, then fetch with npx ctx7@latest docs; use detailed queries and no more than three requests per question.
+Verify current RAM, VRAM, model files, and port ownership before starting generation or changing launch settings.
+For missing-node reports, distinguish missing weights, disabled native/API nodes, and absent third-party packs using workflow types and live /object_info. Do not disable partner-node registration by default or run paid API workflows as a local generation test.
+Inherit the user's model, permissions, and shared MCP configuration. Do not add duplicate servers or launch agents automatically.
+"""
+
+[shell_environment_policy.set]
+PYTHONNOUSERSITE = "1"
+HF_HUB_DISABLE_TELEMETRY = "1"
+DO_NOT_TRACK = "1"
+COMFYUI_DISABLE_PRODUCT_TIPS = "1"
