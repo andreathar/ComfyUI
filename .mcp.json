@@ -7,6 +7,14 @@
       ],
       "cwd": "/mnt/data/Projects_SSD/ComfyUI",
       "type": "stdio"
+    },
+    "openbio-comfy-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "openbio-comfy-mcp@latest"
+      ],
+      "type": "stdio"
     }
   }
 }

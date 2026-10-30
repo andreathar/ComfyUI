@@ -7,7 +7,6 @@ qwen3-tts
 qwen3-tts-comfyui
 comfyui-arkennemasis
 was-node-suite-comfyui
-anthropic-claude
 promptmodels
 prompt-assistant
 comfyui-higgsfield-direct
