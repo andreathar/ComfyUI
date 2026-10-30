@@ -39,8 +39,12 @@ python studio/worker.py --project /path/to/openreel-project [--once] [--server h
    - every path in `refs`, `source` and `outputs` resolves (following
      symlinks) inside the project folder; `source` exists; no output
      exists yet;
-   - model files for the target exist under `models/`.
-   Any failure writes `failed` with the reason.
+   - model files for the target exist: `unet` in `models/unet/`, `clip` in
+     `models/clip/`, `vae` in `models/vae/`, `checkpoint` in
+     `models/checkpoints/` (reason `missing models/<dir>/<file>`).
+   Any failure writes `failed` with the reason. ComfyUI unreachable
+   (`URLError`/`OSError`, which `shot.post` does not convert) writes
+   `failed: ComfyUI unreachable at <server>`.
 2. **Status** `running`.
 3. **Build the graph** per output, filling the existing templates:
 
@@ -51,11 +55,15 @@ python studio/worker.py --project /path/to/openreel-project [--once] [--server h
    | `comfy-refine` | new `z-image-refine` | source size × 1.5, rounded to 16, long side capped at 2048 |
 
    `presets.json` gains aspect `3x4`: z-image 864×1152, sd15 384×512.
-   `z-image-refine` is `z-image-i2i` with `ImageScaleBy` before encoding
-   and tiled VAE encode/decode, so the larger image fits in 6 GiB.
+   `z-image-refine` is `z-image-i2i` with the `ImageScale` node it already
+   has, sized by the worker (exact `width`/`height` honour the rounding and
+   the cap, which `ImageScaleBy` cannot), and `VAEEncodeTiled` /
+   `VAEDecodeTiled` so the larger image fits in 6 GiB.
    Peak VRAM and time are measured before the size cap is final.
-4. **Inputs**: `source` is symlinked into `input/openreel/<job id>/`
-   (removed after the job) so ComfyUI reads it in place without a copy.
+4. **Inputs**: `source` is copied into `input/openreel/<job id>/`
+   (removed after the job) and loaded as `openreel/<job id>/<name>`.
+   A symlink does not work: `folder_paths.is_within_directory` resolves
+   symlinks with `realpath` and rejects a link that leaves `input/`.
    `refs` are not used by the graph in v1.
 5. **Submit** to `/prompt` with a `client_id` (keeps the upstream
    headless deploy-to-cloud marker off), then poll `/history/<id>`.
@@ -64,7 +72,11 @@ python studio/worker.py --project /path/to/openreel-project [--once] [--server h
    code>/<job id>/` as the backup copy, with the same sidecar record
    format `shot.py` writes. The worker copies each image to
    `<project>/<dir>/.cf-<job id>-<n>.part` and renames it to the exact
-   `outputs[n]` path. Nothing else is written into `shots/` or `refs/`.
+   `outputs[n]` path. The sidecar is the worker's own record (job id,
+   target, model, seed, size, prompt, prompt id, model files from the
+   catalogue); `shot.render` is not reused because it hardcodes
+   `refs/<project>/index.jsonl` and shot-sheet fields (`look`, `scene`).
+   Nothing else is written into `shots/` or `refs/`.
    After each output, the status `outputs` list is updated.
 7. **Status** `done` with `seconds` and `records`.
 
@@ -80,7 +92,9 @@ renamed, so openreel never reads a partial status.
 
 ## 5. Testing
 
-`studio/test_worker.py` (pytest, no GPU, fake ComfyUI server in-process):
+`studio/test_worker.py` (unittest like `test_shot.py`; the venv has no
+pytest; run with `.venv/bin/python -m unittest discover -s studio -p
+test_worker.py`; no GPU, fake ComfyUI server in-process):
 
 - validation: each rejection reason in §3.1, including `../` and symlink
   escapes;
