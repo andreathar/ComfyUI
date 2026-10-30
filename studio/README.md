@@ -54,3 +54,24 @@ Start the server with `.codex/launch.sh`, then:
 The PNG keeps ComfyUI's native `prompt` metadata for Argon; the sidecar adds
 the model files' SHA-256 and license from `.codex/models.json`. Import into
 Argon stays manual.
+
+## Worker (openreel jobs)
+
+`studio/worker.py` runs the job files openreel writes to
+`<project>/jobs/comfy/*.json`. The contract is owned by openreel
+(`docs/superpowers/specs/2026-10-30-comfyui-jobs-design.md`); the worker
+design is `.claude/specs/2026-10-30-comfyui-worker-design.md`.
+
+```bash
+.venv/bin/python studio/worker.py --project /path/to/openreel-project [--once] [--server http://127.0.0.1:8188]
+.venv/bin/python -m unittest discover -s studio -p test_worker.py
+```
+
+- One job at a time, oldest first; a job with a status file is never re-run.
+- Status goes to `jobs/comfy/<id>.status.json`; a `running` status found at
+  start becomes `failed: interrupted`.
+- Refine copies its source to `input/openreel/<id>/` for the run (a symlink
+  would be rejected by ComfyUI) and renders at 1.5x, rounded to 16, long side
+  capped at 2048, with tiled VAE.
+- Backup copies and metadata sidecars go to `output/openreel/<project folder name>/<id>/`.
+- Peak VRAM/RAM for refine: not measured yet.
