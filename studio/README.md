@@ -74,4 +74,4 @@ design is `.claude/specs/2026-10-30-comfyui-worker-design.md`.
   would be rejected by ComfyUI) and renders at 1.5x, rounded to 16, long side
   capped at 2048, with tiled VAE.
 - Backup copies and metadata sidecars go to `output/openreel/<project folder name>/<id>/`.
-- Peak VRAM/RAM for refine: not measured yet.
+- Measured 2026-10-30 on the RTX 3060 6 GiB with the server already warm: keyframe 864x1152 35 s, peak 5.2 GiB VRAM (whole GPU); refine to 1296x1728 76 s, peak 5.1 GiB VRAM, 1.7 GiB system RAM free at the lowest.
