@@ -27,6 +27,10 @@ Argon owns shot approval; importing a PNG never authorizes paid video generation
 - Upstream updates: use the `comfyui-upstream-sync` skill in `.claude/skills/`.
 - Model weights: `comfyui-models` skill (pinned catalogue `.codex/models.json`).
 - Reference stills: `comfyui-shots` skill (`studio/`, outputs in `output/refs/<project>/`).
+- Code navigation: `code-review-graph` MCP server (`.mcp.json`, uv tool in `~/.local/bin`) and its
+  skills `explore-codebase`, `debug-issue`, `refactor-safely`, `review-changes`. The graph in
+  `.code-review-graph/` (ignored via `.git/info/exclude`) covers tracked files only, not `custom_nodes/`;
+  hooks keep it updated. Rebuild with `code-review-graph build` after an upstream merge.
 - Current plan and open items: `.claude/plans/upstream-and-quality.md`.
 
 ## Runtime rules
