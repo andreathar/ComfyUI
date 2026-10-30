@@ -4,6 +4,22 @@ This folder holds Codex configuration and workstation-specific operations. The
 root `AGENTS.md` remains the authority for upstream engineering rules. Start
 with [SETUP_PLAN.md](SETUP_PLAN.md) for decisions, outstanding work, and evidence.
 
+## Argon Studio reference frames
+
+The local Argon checkout now includes a manual reference-frame handoff:
+**OpenReel editor → Vault → Shot reference frames**. Select a server-side
+Argon shot, import a saved PNG, review it, and explicitly approve its start
+frame. The image is catalogued without re-encoding, preserving ComfyUI's
+embedded workflow/prompt metadata when present. Import does not submit video
+generation or approve production frames automatically.
+
+Read `/mnt/data/Projects_SSD/argon-studio/docs/COMFYUI_REFERENCE_FRAMES.md`
+for usage and limitations, and that repository's `AGENTS.md` before working
+there. Argon owns shot association and approval. This is a separate checkout
+from `codex_argon_studio`. Keep local ComfyUI model loading separate from
+Argon export GPU work. No automatic ComfyUI job submission or GPU scheduler
+was added by this handoff.
+
 ## Python and tools
 
 - Run commands from the repository root with `.venv/bin/python` explicitly.
