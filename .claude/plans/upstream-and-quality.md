@@ -52,6 +52,14 @@ Procedure lives in `.claude/skills/comfyui-upstream-sync/SKILL.md`. Summary:
 6. On failure: `git reset --hard local/known-good-<date>`, reinstall from the freeze
    file, and restore the tarball.
 
+### Sync log
+
+- 2026-10-30: merged upstream v0.43.0 (`ee3c27d3`), lock `e83ab602`. All 9
+  custom nodes imported, 1343 nodes in `/object_info`. Baseline seed 44 was
+  pixel-identical to `baseline_00003_.png`: 11.0 s cold, 3.2 s warm (seed 45),
+  peak GPU 3074 MiB. Open: `diffusers 0.42.0` (easy-use) wants
+  `huggingface-hub>=1.32`, but 0.36.2 is installed.
+
 ## Phase 3 — Cinematic quality track (RTX 3060 Laptop, 6 GiB VRAM, ~8 GiB free RAM)
 
 1. **Finish Z-Image Turbo:** add its VAE and confirm a 1024² image with no OOM.
