@@ -2,6 +2,7 @@ import http.server
 import json
 import os
 from pathlib import Path
+import pathlib
 import sys
 import tempfile
 import threading
@@ -18,7 +19,7 @@ PRESETS = json.loads((shot.STUDIO / "presets.json").read_text())
 
 class PresetTests(unittest.TestCase):
     def test_aspect_3x4_present(self):
-        self.assertEqual(PRESETS["aspects"]["3x4"], {"z-image": [864, 1152], "sd15": [384, 512]})
+        self.assertEqual(PRESETS["aspects"]["3x4"], {"z-image": [864, 1152], "sd15": [384, 512], "flux2": [864, 1152]})
 
     def test_refine_template_fills(self):
         model = PRESETS["models"]["z-image-turbo"]
@@ -41,7 +42,8 @@ def make_job(project, **extra):
 
 def make_models(root):
     for folder, name in (("unet", "z_image_turbo_bf16.safetensors"), ("clip", "qwen_3_4b.safetensors"),
-                         ("vae", "ae.safetensors"), ("checkpoints", "v1-5-pruned-emaonly-fp16.safetensors")):
+                         ("vae", "ae.safetensors"), ("diffusion_models", "flux-2-klein-4b-Q4_K_M.gguf"),
+                         ("vae", "flux2-vae.safetensors"), ("checkpoints", "v1-5-pruned-emaonly-fp16.safetensors")):
         (root / folder).mkdir(parents=True, exist_ok=True)
         (root / folder / name).write_bytes(b"x")
 
@@ -142,6 +144,30 @@ class WorkerTests(unittest.TestCase):
         refine = worker.build_graph({**job, "kind": "refine", "target": "comfy-refine", "denoise": 0.35}, 7, 0, "openreel/j/s.png", (1296, 1728), PRESETS)
         self.assertEqual(refine["12"]["inputs"]["width"], 1296)
         self.assertEqual(refine["8"]["inputs"]["denoise"], 0.35)
+
+    def test_klein_build_graph_chains_refs(self):
+        job = {"id": "j", "project_code": "p", "kind": "keyframe", "target": "comfy-klein", "prompt": "hi", "aspect": "3x4"}
+        graph = worker.build_graph(job, 7, 0, None, None, PRESETS, ["openreel/j/ref0_a.png", "openreel/j/ref1_b.png"])
+        self.assertNotIn("{{", json.dumps(graph))
+        guider = graph["60"]["inputs"]
+        self.assertEqual(guider["positive"], ["23", 0])
+        self.assertEqual(guider["negative"], ["24", 0])
+        self.assertEqual(graph["23"]["inputs"]["conditioning"], ["13", 0])
+        self.assertEqual(graph["13"]["inputs"]["conditioning"], ["4", 0])
+        self.assertEqual(graph["10"]["inputs"]["image"], "openreel/j/ref0_a.png")
+
+    def test_klein_rejects_too_many_refs(self):
+        with tempfile.TemporaryDirectory() as d:
+            project, models = pathlib.Path(d) / "p", pathlib.Path(d) / "m"
+            make_models(models)
+            (project / "refs").mkdir(parents=True)
+            for i in range(4):
+                (project / "refs" / f"{i}.png").write_bytes(b"x")
+            job = {"version": 1, "id": "j", "kind": "keyframe", "target": "comfy-klein", "shot": "S", "entity": "E",
+                   "prompt": "p", "refs": [f"refs/{i}.png" for i in range(4)], "source": None, "aspect": "3x4",
+                   "seeds": [1], "denoise": None, "outputs": ["shots/a.png"]}
+            with self.assertRaises(worker.JobError):
+                worker.validate_job(job, project, models, job_id="j")
 
     def test_status_and_discovery(self):
         _, first = make_job(self.project)

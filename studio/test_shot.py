@@ -60,6 +60,8 @@ class ShotTests(unittest.TestCase):
     def test_every_template_fills_from_its_model_preset(self):
         for name, model in PRESETS["models"].items():
             for reference in (None, "refs/x.png"):
+                if model["family"] == "flux2" and reference:
+                    continue  # references are chained in by worker.add_references
                 job = {**model, "prompt": "p", "width": 64, "height": 64, "reference": reference}
                 template = f"{model['family']}-{'i2i' if reference else 't2i'}"
                 with self.subTest(template=template):

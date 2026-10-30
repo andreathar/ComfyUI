@@ -2,6 +2,18 @@
   "prompt_pattern": "{shot_size} shot, {camera}, {subject}, {action}, {location}, {lighting}, {look}, shot on {lens}, cinematic film still",
   "output_pattern": "refs/{project}/{scene}/{shot}/{scene}-{shot}_{model}_{aspect}_s{seed}",
   "models": {
+    "flux2-klein-4b": {
+      "family": "flux2",
+      "catalogue_profile": "flux2-klein-4b",
+      "gguf": "flux-2-klein-4b-Q4_K_M.gguf",
+      "clip": "qwen_3_4b.safetensors",
+      "clip_type": "flux2",
+      "vae": "flux2-vae.safetensors",
+      "steps": 4,
+      "cfg": 1,
+      "sampler": "euler",
+      "ref_megapixels": 0.5
+    },
     "z-image-turbo": {
       "family": "z-image",
       "catalogue_profile": "z-image-turbo",
@@ -29,11 +41,11 @@
     }
   },
   "aspects": {
-    "16x9": {"z-image": [1344, 768], "sd15": [768, 432]},
-    "2.39x1": {"z-image": [1536, 640], "sd15": [768, 320]},
-    "9x16": {"z-image": [768, 1344], "sd15": [432, 768]},
-    "1x1": {"z-image": [1024, 1024], "sd15": [512, 512]},
-    "3x4": {"z-image": [864, 1152], "sd15": [384, 512]}
+    "16x9": {"z-image": [1344, 768], "sd15": [768, 432], "flux2": [1344, 768]},
+    "2.39x1": {"z-image": [1536, 640], "sd15": [768, 320], "flux2": [1536, 640]},
+    "9x16": {"z-image": [768, 1344], "sd15": [432, 768], "flux2": [768, 1344]},
+    "1x1": {"z-image": [1024, 1024], "sd15": [512, 512], "flux2": [1024, 1024]},
+    "3x4": {"z-image": [864, 1152], "sd15": [384, 512], "flux2": [864, 1152]}
   },
   "looks": {
     "natural": "naturalistic color, soft contrast, subtle film grain",

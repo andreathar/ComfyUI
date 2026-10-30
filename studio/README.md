@@ -75,3 +75,16 @@ design is `.claude/specs/2026-10-30-comfyui-worker-design.md`.
   capped at 2048, with tiled VAE.
 - Backup copies and metadata sidecars go to `output/openreel/<project folder name>/<id>/`.
 - Measured 2026-10-30 on the RTX 3060 6 GiB with the server already warm: keyframe 864x1152 35 s, peak 5.2 GiB VRAM (whole GPU); refine to 1296x1728 76 s, peak 5.1 GiB VRAM, 1.7 GiB system RAM free at the lowest.
+
+### Targets and reference conditioning
+
+| Target | Model | Notes |
+|---|---|---|
+| `comfy-zimage` | Z-Image Turbo | text only; refs are recorded, not used |
+| `comfy-sd15` | SD 1.5 | draft quality |
+| `comfy-refine` | Z-Image + tiled VAE | upscale and detail pass on `source` |
+| `comfy-klein` | FLUX.2 klein 4B GGUF Q4_K_M | up to 3 `refs` condition the image (identity follows the refs); 864x1152 in ~40 s, ~3.5 GiB VRAM |
+
+Use one ref for close-ups and three for profile or wide shots. References fix identity, not
+expression or wardrobe, so describe those in the prompt. Models come from catalogue profile
+`flux2-klein-4b` (`.codex/models.json`).

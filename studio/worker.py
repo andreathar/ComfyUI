@@ -20,8 +20,11 @@ TARGETS = {
     "comfy-zimage": ("keyframe variations entity", "z-image-turbo", "z-image-t2i"),
     "comfy-sd15": ("keyframe variations entity", "sd15", "sd15-t2i"),
     "comfy-refine": ("refine", "z-image-turbo", "z-image-refine"),
+    "comfy-klein": ("keyframe variations entity", "flux2-klein-4b", "flux2-t2i"),
 }
-MODEL_DIRS = {"unet": "unet", "clip": "clip", "vae": "vae", "checkpoint": "checkpoints"}
+MODEL_DIRS = {"unet": "unet", "gguf": "diffusion_models", "clip": "clip", "vae": "vae", "checkpoint": "checkpoints"}
+MAX_REFS = 3
+REFERENCE_TARGETS = {"comfy-klein"}
 POLL_SECONDS = 3
 RENDER_TIMEOUT = 1800
 
@@ -69,6 +72,13 @@ def validate_job(job, project, models_root, job_id=None):
             raise JobError(f"path outside the project: {name}")
     if job.get("source") and not (project / job["source"]).is_file():
         raise JobError(f"source not found: {job['source']}")
+    if target in REFERENCE_TARGETS:
+        refs = job.get("refs") or []
+        if len(refs) > MAX_REFS:
+            raise JobError(f"at most {MAX_REFS} refs for {target}")
+        for name in refs:
+            if not (project / name).is_file():
+                raise JobError(f"ref not found: {name}")
     for name in outputs:
         if (project / name).exists():
             raise JobError("output exists")
@@ -83,7 +93,22 @@ def refine_size(width, height):
     return tuple(max(16, round(side * scale / 16) * 16) for side in (width, height))
 
 
-def build_graph(job, seed, n, source_name, size, presets):
+def add_references(graph, names, megapixels):
+    """Chain each staged reference image into the positive and negative conditioning."""
+    guider = graph["60"]["inputs"]
+    for i, name in enumerate(names):
+        base = 10 + i * 10
+        graph[str(base)] = {"class_type": "LoadImage", "inputs": {"image": name}}
+        graph[str(base + 1)] = {"class_type": "ImageScaleToTotalPixels", "inputs": {
+            "image": [str(base), 0], "upscale_method": "lanczos", "megapixels": megapixels, "resolution_steps": 1}}
+        graph[str(base + 2)] = {"class_type": "VAEEncode", "inputs": {"pixels": [str(base + 1), 0], "vae": ["3", 0]}}
+        for offset, side in ((3, "positive"), (4, "negative")):
+            graph[str(base + offset)] = {"class_type": "ReferenceLatent", "inputs": {
+                "conditioning": guider[side], "latent": [str(base + 2), 0]}}
+            guider[side] = [str(base + offset), 0]
+
+
+def build_graph(job, seed, n, source_name, size, presets, ref_names=()):
     _, model_key, template = TARGETS[job["target"]]
     model = presets["models"][model_key]
     values = {**model, "prompt": job["prompt"], "seed": seed,
@@ -92,7 +117,10 @@ def build_graph(job, seed, n, source_name, size, presets):
         values.update(reference=source_name, denoise=job["denoise"], width=size[0], height=size[1])
     else:
         values["width"], values["height"] = presets["aspects"][job["aspect"]][model["family"]]
-    return shot.fill(shot.load_template(template), values)
+    graph = shot.fill(shot.load_template(template), values)
+    if ref_names:
+        add_references(graph, ref_names, model["ref_megapixels"])
+    return graph
 
 
 def now():
@@ -193,11 +221,18 @@ def run_job(job_path, project, server, comfy_root=shot.PROJECT, models_root=None
             with Image.open(staged / source_name) as image:
                 size = refine_size(*image.size)
             source_name = f"openreel/{status['id']}/{source_name}"
+        ref_names = []
+        if job["target"] in REFERENCE_TARGETS:
+            staged.mkdir(parents=True, exist_ok=True)
+            for i, ref in enumerate(job.get("refs") or []):
+                staged_ref = f"ref{i}_{Path(ref).name}"
+                shutil.copyfile(project / ref, staged / staged_ref)
+                ref_names.append(f"openreel/{status['id']}/{staged_ref}")
         for n, (seed, output) in enumerate(zip(job["seeds"], job["outputs"])):
             target = project / output
             if target.exists():
                 raise JobError("output exists")
-            graph = build_graph(job, seed, n, source_name, size, presets)
+            graph = build_graph(job, seed, n, source_name, size, presets, ref_names)
             prompt_id, image = render_one(server, graph, comfy_root)
             with Image.open(image) as picture:
                 width, height = picture.size
