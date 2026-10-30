@@ -1,0 +1,57 @@
+{
+  "prompt_pattern": "{shot_size} shot, {camera}, {subject}, {action}, {location}, {lighting}, {look}, shot on {lens}, cinematic film still",
+  "output_pattern": "refs/{project}/{scene}/{shot}/{scene}-{shot}_{model}_{aspect}_s{seed}",
+  "models": {
+    "z-image-turbo": {
+      "family": "z-image",
+      "catalogue_profile": "z-image-turbo",
+      "unet": "z_image_turbo_bf16.safetensors",
+      "clip": "qwen_3_4b.safetensors",
+      "clip_type": "lumina2",
+      "vae": "ae.safetensors",
+      "shift": 3,
+      "steps": 8,
+      "cfg": 1,
+      "sampler": "res_multistep",
+      "scheduler": "simple",
+      "denoise": 0.6
+    },
+    "sd15": {
+      "family": "sd15",
+      "catalogue_profile": "sd15",
+      "checkpoint": "v1-5-pruned-emaonly-fp16.safetensors",
+      "steps": 20,
+      "cfg": 7,
+      "sampler": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 0.55,
+      "negative": "low quality, blurry, deformed, extra limbs, watermark, text"
+    }
+  },
+  "aspects": {
+    "16x9": {"z-image": [1344, 768], "sd15": [768, 432]},
+    "2.39x1": {"z-image": [1536, 640], "sd15": [768, 320]},
+    "9x16": {"z-image": [768, 1344], "sd15": [432, 768]},
+    "1x1": {"z-image": [1024, 1024], "sd15": [512, 512]}
+  },
+  "looks": {
+    "natural": "naturalistic color, soft contrast, subtle film grain",
+    "teal-orange": "teal and orange color grade, rich contrast, Kodak Vision3 500T, gentle halation",
+    "noir": "high-contrast black and white, deep shadows, hard key light, silver halide grain",
+    "golden-hour": "warm golden-hour backlight, long shadows, Kodak Portra 400 palette, lens flare",
+    "neon-night": "wet streets, neon reflections, cyan and magenta practicals, anamorphic streaks, CineStill 800T"
+  },
+  "defaults": {
+    "model": "z-image-turbo",
+    "aspect": "16x9",
+    "look": "natural",
+    "shot_size": "medium",
+    "camera": "eye-level",
+    "lens": "35mm spherical lens",
+    "action": "",
+    "location": "",
+    "lighting": "motivated soft key light",
+    "seeds": [44],
+    "tags": []
+  }
+}

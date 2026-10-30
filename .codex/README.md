@@ -257,9 +257,18 @@ When that model set is explicitly selected for use, the corresponding
 | Qwen text encoder | `text_encoders/qwen_3_4b.safetensors` |
 | Z-Image VAE | `vae/ae.safetensors` |
 
-Only the explicitly named profile is processed. Startup and workflow loading
-do not trigger this helper or authorize further model downloads. The user
-selected **prepare automation; keep SD 1.5 for now**, so Z-Image remains absent.
+The Z-Image set is installed; its UNet and text encoder sit in the legacy
+`unet/` and `clip/` folders, which the helper accepts in place of the canonical
+ones. Only the explicitly named profile is processed. Startup and workflow
+loading do not trigger this helper or authorize further model downloads.
+
+To add a model, pin it from a Hugging Face file URL; the helper resolves the
+commit, size, SHA-256 and license, and writes the entry to `models.json`:
+
+```bash
+.venv/bin/python .codex/model_download.py add <profile> --key <key> \
+    --folder <models-subfolder> --url https://huggingface.co/<owner>/<repo>/resolve/<rev>/<file>
+```
 
 The helper checks that `/mnt/data` is mounted and the destination is on that
 drive. It keeps 5 GiB disk headroom, resumes interrupted transfers in `.part`

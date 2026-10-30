@@ -14,7 +14,7 @@ Argon owns shot approval; importing a PNG never authorizes paid video generation
 ## Repository layout
 
 - `origin` = private `andreathar/ComfyUI` (ours). `upstream` = `Comfy-Org/ComfyUI`.
-- `master` = upstream + local-only files under `.claude/` and `.codex/`. Never edit
+- `master` = upstream + local-only files under `.claude/`, `.codex/` and `studio/`. Never edit
   upstream files on `master`; core patches go on `local/<topic>` branches.
 - Prefer custom nodes, `extra_model_paths.yaml`, saved workflows, and launch flags
   over core patches — they never conflict with upstream.
@@ -25,6 +25,8 @@ Argon owns shot approval; importing a PNG never authorizes paid video generation
 ## Workflows
 
 - Upstream updates: use the `comfyui-upstream-sync` skill in `.claude/skills/`.
+- Model weights: `comfyui-models` skill (pinned catalogue `.codex/models.json`).
+- Reference stills: `comfyui-shots` skill (`studio/`, outputs in `output/refs/<project>/`).
 - Current plan and open items: `.claude/plans/upstream-and-quality.md`.
 
 ## Runtime rules

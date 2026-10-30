@@ -1,0 +1,12 @@
+{
+  "project": "argon-demo",
+  "scene": "s01",
+  "location": "rain-soaked neon alley in a dense city",
+  "lighting": "wet reflections, practical neon signs, soft haze",
+  "look": "neon-night",
+  "tags": ["night", "rain", "courier"],
+  "shots": [
+    {"shot": "010", "shot_size": "wide", "subject": "a lone courier in a yellow raincoat", "action": "walking toward camera", "lens": "24mm anamorphic lens", "aspect": "2.39x1"},
+    {"shot": "020", "shot_size": "close-up", "subject": "a lone courier in a yellow raincoat", "action": "glancing over her shoulder", "lens": "85mm spherical lens", "seeds": [44, 45]}
+  ]
+}

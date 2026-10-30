@@ -2,6 +2,7 @@ import copy
 import hashlib
 import importlib.util
 import io
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -50,6 +51,16 @@ class DownloadTests(unittest.TestCase):
         with patch.object(downloader.urllib.request, "urlopen", side_effect=AssertionError("Unexpected network")):
             self.assertEqual(downloader.download(self.root, self.model), "verified")
         self.assertEqual(self.target.read_bytes(), self.body)
+
+    def test_file_in_legacy_folder_needs_no_network(self):
+        self.model["folder"] = "diffusion_models"
+        legacy = self.root / "unet/model.safetensors"
+        legacy.parent.mkdir()
+        legacy.write_bytes(self.body)
+        with patch.object(downloader.urllib.request, "urlopen", side_effect=AssertionError("Unexpected network")):
+            self.assertEqual(downloader.download(self.root, self.model), "verified")
+        self.assertEqual(downloader.model_path(self.root, self.model), legacy)
+        self.assertFalse((self.root / "diffusion_models/model.safetensors").exists())
 
     def test_existing_corrupt_file_is_preserved(self):
         self.target.write_bytes(b"keep this file")
@@ -148,6 +159,22 @@ class DownloadTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             downloader.download(self.root, self.model)
         self.assertFalse(self.target.exists())
+
+    def test_hugging_face_entry_is_pinned_with_hash_and_size(self):
+        revision = json.dumps({"sha": "a" * 40, "tags": ["license:apache-2.0"]}).encode()
+        tree = json.dumps([{"type": "file", "path": "split/vae/ae.safetensors", "size": 10, "lfs": {"oid": "b" * 64, "size": 10}}]).encode()
+        with patch.object(downloader.urllib.request, "urlopen", side_effect=[Response(revision), Response(tree)]) as urlopen:
+            entry = downloader.hugging_face_entry("https://huggingface.co/Org/repo/blob/main/split/vae/ae.safetensors", "vae")
+        self.assertEqual(urlopen.call_args_list[1].args[0], f"https://huggingface.co/api/models/Org/repo/tree/{'a' * 40}/split/vae")
+        self.assertEqual(entry, {
+            "folder": "vae", "filename": "ae.safetensors",
+            "url": f"https://huggingface.co/Org/repo/resolve/{'a' * 40}/split/vae/ae.safetensors",
+            "bytes": 10, "sha256": "b" * 64, "license": "apache-2.0",
+        })
+
+    def test_non_hugging_face_url_is_rejected_for_add(self):
+        with self.assertRaises(ValueError):
+            downloader.hugging_face_entry("https://example.com/Org/repo/resolve/main/model.safetensors", "vae")
 
     def test_missing_mount_does_not_create_model_directory(self):
         missing = Path(self.tmp.name) / "unmounted"

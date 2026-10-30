@@ -18,6 +18,7 @@ PROJECT = Path(__file__).resolve().parent.parent
 CATALOGUE = Path(__file__).with_name("models.json")
 CHUNK = 4 * 1024 * 1024
 HEADROOM = 5 * 1024 ** 3
+LEGACY_FOLDERS = {"diffusion_models": "unet", "text_encoders": "clip"}
 
 
 def storage_root(catalogue):
@@ -38,6 +39,10 @@ def model_path(root, model):
     if not re.fullmatch(r"[a-z][a-z0-9_]*", folder) or not name or name in (".", "..") or Path(name).name != name:
         raise ValueError("Model folder and filename must be single safe path components")
     target = root / folder / name
+    # ComfyUI also reads these older folder names; reuse a file already there.
+    legacy = root / LEGACY_FOLDERS.get(folder, folder) / name
+    if not target.exists() and legacy.exists():
+        target = legacy
     if target.is_symlink() or not target.resolve().is_relative_to(root.resolve()):
         raise ValueError(f"Model path escapes storage or is a symlink: {target}")
     return target
@@ -115,12 +120,49 @@ def download(root, model):
         return "resumed" if offset else "downloaded"
 
 
+def hugging_face_entry(url, folder):
+    match = re.fullmatch(r"https://huggingface\.co/([\w.-]+/[\w.-]+)/(?:resolve|blob)/([^/]+)/(.+)", url)
+    if not match:
+        raise ValueError("Use a https://huggingface.co/<owner>/<repo>/resolve/<revision>/<path> URL")
+    repo, revision, path = match.groups()
+    api = f"https://huggingface.co/api/models/{repo}"
+    with urllib.request.urlopen(f"{api}/revision/{revision}", timeout=45) as response:
+        info = json.load(response)
+    sha = info["sha"]
+    with urllib.request.urlopen(f"{api}/tree/{sha}/{path.rpartition('/')[0]}", timeout=45) as response:
+        file = next((f for f in json.load(response) if f["path"] == path), None)
+    if file is None or "lfs" not in file:
+        raise ValueError(f"{path} is not a large file at revision {sha}")
+    licenses = [tag.removeprefix("license:") for tag in info.get("tags", []) if tag.startswith("license:")]
+    return {
+        "folder": folder, "filename": path.rpartition("/")[2],
+        "url": f"https://huggingface.co/{repo}/resolve/{sha}/{path}",
+        "bytes": file["lfs"]["size"], "sha256": file["lfs"]["oid"],
+        "license": licenses[0] if licenses else "unknown",
+    }
+
+
 def main(argv=None):
     catalogue = json.loads(CATALOGUE.read_text())
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("list", "plan", "download", "verify"))
+    parser.add_argument("command", choices=("list", "plan", "download", "verify", "add"))
     parser.add_argument("profiles", nargs="*", help="One or more catalogue profiles")
+    parser.add_argument("--key", help="add: catalogue key for the new model")
+    parser.add_argument("--folder", help="add: ComfyUI model folder, such as vae or loras")
+    parser.add_argument("--url", help="add: Hugging Face file URL; the revision is pinned")
     args = parser.parse_args(argv)
+    if args.command == "add":
+        if len(args.profiles) != 1 or not (args.key and args.folder and args.url):
+            parser.error("add needs one profile plus --key, --folder and --url")
+        if args.key in catalogue["models"]:
+            parser.error(f"Model key already exists: {args.key}")
+        entry = hugging_face_entry(args.url, args.folder)
+        model_path(PROJECT / catalogue["storage"]["root"], entry)
+        catalogue["models"][args.key] = entry
+        catalogue["profiles"].setdefault(args.profiles[0], []).append(args.key)
+        CATALOGUE.write_text(json.dumps(catalogue, indent=2) + "\n")
+        print(json.dumps({args.key: entry}, indent=2))
+        return 0
     if args.command == "list":
         for name, ids in catalogue["profiles"].items():
             size = sum(catalogue["models"][key]["bytes"] for key in ids)
