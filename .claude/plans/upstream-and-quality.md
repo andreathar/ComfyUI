@@ -15,7 +15,7 @@ reference frames for the online video platforms (via Argon Studio handoff).
 | Custom nodes | `comfyui-easy-use` and `comfyui-gguf-loader` use `comfy.conds.CONDRegular`/`CONDList`, unchanged upstream. Only `_apply_freenoise` (private) gained a `model` argument. No custom node imports it. |
 | New behavior | `app/deploy_to_cloud.py`: a prompt queued without `client_id` (Argon/API scripts) writes a permanent marker in `user/` and enables a "deploy to cloud" UI flag. Any upload still needs an explicit user action and credentials. `--offline` would suppress it but also disables partner nodes (Claude/Higgsfield), so leave it unset. |
 | Unversioned state | The 8 custom node packs (no `.git`), `user/` workflows/settings, and `.codex/artifacts/` are git-ignored and not backed up anywhere. |
-| Model gap | `z_image_turbo_bf16` + `qwen_3_4b` exist, but `models/vae/` is empty, so the Z-Image workflow cannot decode until its VAE (`ae.safetensors`) is present. |
+| Model gap | Closed 2026-10-30: Z-Image VAE installed and rendering. |
 
 ## Phase 0 — Safety net (once, before any update)
 
@@ -62,7 +62,9 @@ Procedure lives in `.claude/skills/comfyui-upstream-sync/SKILL.md`. Summary:
 
 ## Phase 3 — Cinematic quality track (RTX 3060 Laptop, 6 GiB VRAM, ~8 GiB free RAM)
 
-1. **Finish Z-Image Turbo:** add its VAE and confirm a 1024² image with no OOM.
+1. **Finish Z-Image Turbo:** done 2026-10-30. VAE installed; `studio/shot.py` renders
+   1344×768 in 79 s cold / 24 s warm and 1536×640 in 32 s, no OOM. Needs Chrome closed
+   and the display on the Intel GPU: free RAM bottomed at 2.3 GiB, swap peaked at 9.3 GiB.
    Measure time and peak VRAM against the SD1.5 baseline.
 2. **Shot templates:** saved workflows for 16:9 (1344×768) and 2.39:1
    (1536×640). Each uses a fixed seed and a prompt scaffold covering lens, shot
