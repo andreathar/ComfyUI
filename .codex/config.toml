@@ -1,5 +1,3 @@
-#:schema https://developers.openai.com/codex/config-schema.json
-
 developer_instructions = """
 Read AGENTS.md and .codex/README.md before working on this checkout.
 Use .venv/bin/python for project Python commands and uv pip --python .venv/bin/python for dependencies.
@@ -20,3 +18,7 @@ PYTHONNOUSERSITE = "1"
 HF_HUB_DISABLE_TELEMETRY = "1"
 DO_NOT_TRACK = "1"
 COMFYUI_DISABLE_PRODUCT_TIPS = "1"
+
+[mcp_servers.code-review-graph]
+command = "/home/athar/.local/bin/code-review-graph"
+args = ["serve"]
