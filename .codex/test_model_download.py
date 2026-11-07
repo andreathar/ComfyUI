@@ -4,6 +4,7 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+from types import SimpleNamespace
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -175,6 +176,40 @@ class DownloadTests(unittest.TestCase):
     def test_non_hugging_face_url_is_rejected_for_add(self):
         with self.assertRaises(ValueError):
             downloader.hugging_face_entry("https://example.com/Org/repo/resolve/main/model.safetensors", "vae")
+
+    def test_model_symlink_on_configured_filesystem_is_accepted(self):
+        project = Path(self.tmp.name) / "project"
+        project.mkdir()
+        (project / "models").symlink_to(self.root, target_is_directory=True)
+        catalogue = {"storage": {"root": "models", "mount": self.tmp.name}}
+        with patch.object(downloader, "PROJECT", project), patch.object(Path, "is_mount", return_value=True):
+            self.assertEqual(downloader.storage_root(catalogue), self.root)
+
+    def test_model_root_outside_configured_mount_is_rejected(self):
+        catalogue = {"storage": {"root": str(self.root), "mount": str(self.root / "drive")}}
+        with patch.object(Path, "is_mount", return_value=True), self.assertRaises(ValueError):
+            downloader.storage_root(catalogue)
+
+    def test_nested_filesystem_is_rejected(self):
+        catalogue = {"storage": {"root": str(self.root), "mount": self.tmp.name}}
+        def stat(path, *args, **kwargs):
+            return SimpleNamespace(st_dev=2 if path == self.root else 1)
+        with patch.object(Path, "is_mount", return_value=True), patch.object(Path, "stat", stat), self.assertRaises(ValueError):
+            downloader.storage_root(catalogue)
+
+    def test_plan_shows_license_destination_and_never_downloads(self):
+        catalogue = Path(self.tmp.name) / "models.json"
+        model = dict(self.model, license="apache-2.0")
+        catalogue.write_text(json.dumps({"profiles": {"tiny": ["weights"]}, "models": {"weights": model}, "storage": {"mount": "/"}}))
+        output = io.StringIO()
+        with patch.object(downloader, "CATALOGUE", catalogue), patch.object(downloader, "storage_root", return_value=self.root), patch.object(downloader.urllib.request, "urlopen") as network, patch("sys.stdout", output):
+            self.assertEqual(downloader.main(["plan", "tiny"]), 0)
+        network.assert_not_called()
+        self.assertIn("license: apache-2.0", output.getvalue())
+        self.assertIn(str(self.target), output.getvalue())
+        self.assertIn("missing", output.getvalue())
+        self.assertFalse(self.target.exists())
+        self.assertFalse(self.partial.exists())
 
     def test_missing_mount_does_not_create_model_directory(self):
         missing = Path(self.tmp.name) / "unmounted"

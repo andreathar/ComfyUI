@@ -1,7 +1,7 @@
 {
   "storage": {
     "root": "models",
-    "mount": "/mnt/data"
+    "mount": "/"
   },
   "profiles": {
     "sd15": [
@@ -17,6 +17,9 @@
       "flux2-klein-4b-q4km",
       "flux2-vae",
       "qwen3-4b"
+    ],
+    "da3-mono-large": [
+      "da3-mono-large"
     ]
   },
   "models": {
@@ -74,6 +77,14 @@
       "url": "https://huggingface.co/Comfy-Org/Flux-2-Klein-4B/resolve/5b3abca5c0dc1ecd4eaf3340868d09063fc1c965/split_files/vae/flux2-vae.safetensors",
       "bytes": 336211292,
       "sha256": "868fe7b343cc8f3a19dbcfcafbc3d5f888802be3f89bd81b65b3621a066ce8f3",
+      "license": "apache-2.0"
+    },
+    "da3-mono-large": {
+      "folder": "geometry_estimation",
+      "filename": "depth_anything_3_mono_large.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/Depth-Anything-3/resolve/8265be070134dc7459217308cdc03109bde199b0/geometry_estimation/depth_anything_3_mono_large.safetensors",
+      "bytes": 1336748056,
+      "sha256": "9b44eda5bedba5b4e125686fdb79d1db309c1b9785277576eb930f885b008f96",
       "license": "apache-2.0"
     }
   }

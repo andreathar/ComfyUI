@@ -222,12 +222,13 @@ artifact choice, resource budget and generation test.
 
 ## Models, workflows, and evidence
 
-### Download models to the larger drive
+### Download models to the configured model folder
 
-Model storage is already on the larger drive: this checkout and its `models/`
-folder live on `/mnt/data` (880 GiB filesystem, about 534 GiB free when checked).
-The system/home filesystem had about 142 GiB free. No model relocation or
-additional ComfyUI search-path configuration is needed for this layout.
+This checkout is on `/mnt/data`, but `models/` links to
+`/home/athar/ComfyUI-models` on the system filesystem. Downloads follow that
+existing model folder; no weights are moved. The catalogue's required mount is
+`/`, matching the actual destination. Check free space there before large
+model downloads; free space on `/mnt/data` is not available to this folder.
 
 The standalone downloader uses `.codex/models.json` to map each selected model
 set to exact native filenames and categories. From the project root:
@@ -236,7 +237,7 @@ set to exact native filenames and categories. From the project root:
 # Show the available model sets and sizes; no downloads.
 .venv/bin/python .codex/model_download.py list
 
-# Preview destinations and missing files; no downloads.
+# Preview destinations, missing files, sizes and licenses; no downloads.
 .venv/bin/python .codex/model_download.py plan sd15
 
 # Download missing SD 1.5 weights, or verify and reuse the existing file.
@@ -256,11 +257,16 @@ When that model set is explicitly selected for use, the corresponding
 | Z-Image Turbo BF16 | `diffusion_models/z_image_turbo_bf16.safetensors` |
 | Qwen text encoder | `text_encoders/qwen_3_4b.safetensors` |
 | Z-Image VAE | `vae/ae.safetensors` |
+| Depth Anything 3 Mono Large (`da3-mono-large`) | `geometry_estimation/depth_anything_3_mono_large.safetensors` |
 
 The Z-Image set is installed; its UNet and text encoder sit in the legacy
 `unet/` and `clip/` folders, which the helper accepts in place of the canonical
 ones. Only the explicitly named profile is processed. Startup and workflow
 loading do not trigger this helper or authorize further model downloads.
+For the Depth Anything 3 video template, use `plan da3-mono-large`, then
+`download da3-mono-large` only after approving its displayed size and license.
+Downloads choose the destination automatically; do not move weights manually
+between model categories.
 
 To add a model, pin it from a Hugging Face file URL; the helper resolves the
 commit, size, SHA-256 and license, and writes the entry to `models.json`:
@@ -270,8 +276,8 @@ commit, size, SHA-256 and license, and writes the entry to `models.json`:
     --folder <models-subfolder> --url https://huggingface.co/<owner>/<repo>/resolve/<rev>/<file>
 ```
 
-The helper checks that `/mnt/data` is mounted and the destination is on that
-drive. It keeps 5 GiB disk headroom, resumes interrupted transfers in `.part`
+The helper checks that the catalogue's required mount exists and the resolved
+destination is on that filesystem. It keeps 5 GiB disk headroom, resumes interrupted transfers in `.part`
 files, verifies the complete size and SHA-256, and publishes complete files
 without overwriting existing models. A per-file lock prevents two instances
 from downloading the same target. Headroom is a preflight check, not a disk

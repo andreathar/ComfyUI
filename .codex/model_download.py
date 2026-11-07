@@ -182,7 +182,7 @@ def main(argv=None):
         target = model_path(root, model)
         if args.command == "plan":
             state = "present; verify before use" if target.exists() else "missing"
-            print(f"{key}: {state}; {model['bytes'] / 1024 ** 3:.2f} GiB -> {target}")
+            print(f"{key}: {state}; {model['bytes'] / 1024 ** 3:.2f} GiB; license: {model.get('license', 'unknown')} -> {target}")
         elif args.command == "verify":
             valid = verified(target, model)
             failures += not valid
