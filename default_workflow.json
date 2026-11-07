@@ -67,7 +67,7 @@
         "secondTabOffset": 80,
         "secondTabWidth": 65
       },
-      "widgets_values": ["qwen_3_4b.safetensors", "lumina2", "default"]
+      "widgets_values": ["qwen_3_4b.safetensors", "lumina2", "cpu"]
     },
     {
       "id": 63,

@@ -15,6 +15,29 @@ local ComfyUI server. Local to this fork; upstream has no `studio/` folder.
 | Per-image tags and provenance | same path, `.json` sidecar |
 | Project index (one line per image) | `output/refs/<project>/index.jsonl` |
 
+## Workflow health
+
+After saving or changing a workflow, refresh the local report with ComfyUI running:
+
+```sh
+python studio/workflow_health.py
+```
+
+This scans saved workflows, the default graph, and Studio templates into
+`user/workflow-health.json`. It checks installed nodes, choices, and link
+endpoints without queuing work, downloading models, or calling external APIs.
+It runs on demand, not as a background monitor.
+
+`preflight_pass` is not a render test; `needs_inputs` marks unresolved templates.
+Runtime receipts from local history match exact graph settings and survive later
+report refreshes. UI receipts require a matching API graph; unsupported subgraphs
+or bypasses retain related-run evidence without claiming a verified UI mapping.
+`success` means every output was targeted without an execution or explicit node
+error; `partial_success` means only some outputs were targeted.
+Receipts do not certify image quality, unchanged model weights, or current
+credentials. Exit status is nonzero for preflight failures or matched runtime
+errors; unverified workflows remain explicitly unverified.
+
 ## Shot sheet
 
 Top-level fields are shared; each entry in `shots` overrides them.
