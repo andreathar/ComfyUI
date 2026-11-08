@@ -14,7 +14,8 @@
         "-y",
         "openbio-comfy-mcp@latest"
       ],
-      "type": "stdio"
+      "type": "stdio",
+      "directTools": true
     }
   }
 }
