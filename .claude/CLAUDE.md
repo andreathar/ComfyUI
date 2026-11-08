@@ -42,3 +42,25 @@ Argon owns shot approval; importing a PNG never authorizes paid video generation
 - Do not add `--offline`: it also disables partner nodes (Claude, Higgsfield).
 - Ask before: model downloads, merging upstream into `master`, pushing, core patches,
   or running paid partner/API workflows.
+
+## Learned preferences and workspace facts
+
+Moved here from an uncommitted AGENTS.md edit on 2026-11-08 (AGENTS.md stays upstream's).
+
+- Keep this install's CUDA 13 / cu130 PyTorch stack. Do not add xformers, sageattention,
+  flash_attn, a nightly torch, or forced FP8 / `--fast` unless a benchmark shows a need.
+- Run and restart ComfyUI with `.codex/launch.sh` on 127.0.0.1:8188, loopback only.
+- Keep LoRA Manager on ComfyUI's flat model folders and bare filenames, not its nested
+  `{base_model}/{first_tag}` download layout. Its settings live in
+  `~/.config/ComfyUI-LoRA-Manager/settings.json`; recipes go to `models/loras/recipes`.
+  A second scanner such as `comfyui-advanced-model-manager` can file weights into its own layout again.
+- `models/` → `/home/athar/ComfyUI-models` → `/mnt/data/ComfyUI-models` (SATA disk). The git-ignored
+  `extra_model_paths.yaml` adds a hot NVMe copy of the H3 shot-swap weights in
+  `/home/athar/ComfyUI-models-hot`, searched first; see
+  `.codex/artifacts/h3-resource-review-2026-11-08/README.md`.
+- `.codex/models.json` and `.codex/model_download.py verify` expect bare filenames; because
+  `models/` resolves onto `/mnt/data`, the catalogue's same-filesystem check can stop before hashing.
+- Disabled packs live in `custom_nodes/.disabled/` (old GGUF pack, Reactor, old model manager,
+  WAS nightly) and `custom_nodes/ComfyUI-DistorchMemoryManager.disabled` (it overrode
+  `--reserve-vram` and patched attention). The live GGUF loader is `comfyui-gguf-loader`.
+  `aiia` still fails to import EchoMimic (`retinaface`) and Ditto (`pyximport`).
