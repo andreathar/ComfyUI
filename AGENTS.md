@@ -445,3 +445,19 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 - `search_code(pattern, project)` — Grep-like text search within indexed files
 - `manage_adr(action)` — CRUD for Architecture Decision Records
 - `ingest_traces(traces)` — Ingest runtime traces to validate HTTP edges
+
+## Learned User Preferences
+
+- Start or restart ComfyUI only through `.codex/launch.sh` (127.0.0.1:8188). A server started from another shell loses its `--reserve-vram 1.0`, `--disable-pinned-memory`, `--enable-assets`, and preview flags.
+- Run long media work (trimming, importing, encoding) as queued ComfyUI prompts with progress and cancel, not as hidden background processes or private thread pools.
+
+## Learned Workspace Facts
+
+- Hardware is an RTX 3060 Laptop GPU with 6 GB VRAM (sm86, 80 W default power limit, thermal throttling under long renders) and about 32 GB RAM; MiniMax H3 models run with heavy offloading.
+- `models/` resolves through `/home/athar/ComfyUI-models` to `/mnt/data/ComfyUI-models`.
+- The Python environment is `.venv` with a cu130 PyTorch build; keep that stack unless a benchmark justifies a change.
+- The media asset library needs `--enable-assets`; without it, imports made through the library lose their references after a refresh.
+- `custom_nodes/ComfyUI-H3-Project-Suite` owns H3 projects (Hub, Context, Context Trim, Save, Import Source); it continues a chosen clip and does not detect or cut scenes.
+- Never decode long videos into image batches; use seek-based `VideoFromFile` trimming and saving so memory stays flat.
+- Studio automation lives in `studio/` (`film.py`, `h3_*.py`) with plans in `studio/plans/`.
+- The codebase-memory graph misses calls made through instance attributes such as `self.prompt_queue.x`; confirm callers with a text search.
