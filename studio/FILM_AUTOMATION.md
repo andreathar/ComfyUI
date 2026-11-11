@@ -4,6 +4,7 @@ The separate [Automated Draft workflow](projects/the-message/AUTOMATED_DRAFT.md)
 uses `h3_loop.py` to export compiled shots to installed Context Loop and Comfy
 Dynamic nodes. Its two-shot generation/checkpoint/assembly test passed. The
 single-take tracking protocol below remains a separate execution path.
+For bundle-driven silent runs, use the [Context Loop run-record protocol](H3_LOOP_RUN.md).
 
 `film.py` compiles the existing canonical production document into Fantastic H3
 shot proposals. It never queues a render or invokes a text provider. The panel
