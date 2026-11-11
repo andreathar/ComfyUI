@@ -1,55 +1,361 @@
 {
   "schema_version": 1,
-  "production": "production.silent-proof-v1.json",
+  "production": "silent-proof-v001/production.json",
   "reviewer": "assistant visual inspection; human creative acceptance remains pending",
   "assets": {
     "andre-identity-video-v1": {
       "input_use_authorized": true,
       "sha256": "786433e7c8f6c719ad4eaa0d3051cc05c5454eb63217a39b9fe0d57ef6779c06",
-      "visual_review": "pending",
+      "visual_review": "accepted_for_modest_head_turns",
       "findings": [
-        "Near-frontal identity; no strong-profile coverage claim. Human likeness acceptance remains pending."
-      ]
+        "Two actual stored near-frontal encoder pictures at 0.0 and 0.5 seconds inspected. Both wear a dark shirt rather than the selected gray crew neck; wardrobe must remain separately controlled. Keep as the existing candidate for modest turns only; human likeness acceptance pending. No fresh latent-video decode this session."
+      ],
+      "reviewer": "human",
+      "selected": true,
+      "source_path": "/mnt/data/ComfyUI-models/refmods/refmod_-Andre_Athar-video_visual.safetensors",
+      "role": "identity",
+      "owner": "MSG-CHR-ANDRE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "stored_encoder_images": [
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-video-v1-enc_0.png",
+          "dimensions": [
+            768,
+            1376
+          ],
+          "mode": "RGB",
+          "sha256": "907015c116a34cc9e826c718f3b794798955a550b2e6b4b59355c4a3d2cb70b2"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-video-v1-enc_1.png",
+          "dimensions": [
+            768,
+            1376
+          ],
+          "mode": "RGB",
+          "sha256": "03a853315c10b3de04258e23e600925c505e8a0a544cbf3f9b7025a1accb7047"
+        }
+      ],
+      "decision": {
+        "message_id": "msg_01M755PVXX4CETD9AJ2ANHQF0G",
+        "at": "2026-11-11T11:25:52.445Z",
+        "answer": "Keep the current video identity for modest head turns",
+        "scope": "Identity reference for silent proof only; not approval of generated shots or other assets"
+      }
     },
     "cafe-counter-wide-v1": {
       "input_use_authorized": true,
       "sha256": "a5eefb8e19822e90af1b44009b6982474299a9f7ecbc349a97d16042f93302f5",
       "visual_review": "pending",
-      "findings": []
+      "findings": [
+        "Proposed camera A/master: espresso equipment left foreground, window table/right daylight, monstera plant between counter and seating. Matches the visual palette; exact shared room geometry is unqualified."
+      ],
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/minimax_h3/Gemini_Generated_Image.jpeg",
+      "role": "location",
+      "owner": "MSG-LOC-CAFE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "dimensions": [
+        1376,
+        768
+      ]
     },
     "cafe-reverse-counter-v1": {
       "input_use_authorized": true,
       "sha256": "1eb6ec1d24631ce74a3372177c4d9db779c5afb9b3460854de303c94a159eaf4",
       "visual_review": "pending",
-      "findings": []
+      "findings": [
+        "Proposed camera C: counter centrally behind the foreground table, windows at right; three chair backs/positions visible around the foreground table versus two prominent chairs in A/B. Counter/furniture relationship and camera reversal remain unqualified. Do not promote to a proven reverse angle."
+      ],
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/minimax_h3/Gemini_Generated_Image_2_.jpeg",
+      "role": "location",
+      "owner": "MSG-LOC-CAFE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "dimensions": [
+        1376,
+        768
+      ]
     },
     "cafe-wardrobe-candidate-v1": {
       "input_use_authorized": true,
       "sha256": "83dbfab0b9171da26b41e71f111946abaa56d021f5025b82a6eb95f4703a128f",
       "visual_review": "pending",
       "findings": [
-        "Inspected saved crop: dark blazer, gray crew-neck shirt; no face. 126x126, texture detail limited."
-      ]
+        "Pixel-exact 126x126 crop of source frame 0, xywh 62,164,126,126. Dark blazer and gray crew-neck shirt visible; no face. Color/garment candidate only; insufficient texture detail for high-detail qualification."
+      ],
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/cafe-take04-candidate-v1.png",
+      "role": "wardrobe",
+      "owner": "MSG-CHR-ANDRE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "dimensions": [
+        126,
+        126
+      ],
+      "provenance": {
+        "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+        "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+        "crop_xywh": [
+          62,
+          164,
+          126,
+          126
+        ],
+        "saved_output": "output/The_Message/references/silent-proof-v001/wardrobe-candidate_00001_.png"
+      },
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "derived_sha256": "83dbfab0b9171da26b41e71f111946abaa56d021f5025b82a6eb95f4703a128f"
     },
     "cafe-window-table-v1": {
       "input_use_authorized": true,
       "sha256": "3664fae152459415d32fabb8f7659f858f48f09a44c8e0daee25314124ba887d",
       "visual_review": "pending",
-      "findings": []
+      "findings": [
+        "Proposed camera B: round table and brown chairs against black-grid windows/radiator at right; monstera behind left chair. The counter is outside this view. Use as a composition reference, not measured 3D continuity."
+      ],
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/minimax_h3/Gemini_Generated_Image_1_.jpeg",
+      "role": "location",
+      "owner": "MSG-LOC-CAFE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "dimensions": [
+        1376,
+        768
+      ]
     },
     "folded-note-candidate-v1": {
       "input_use_authorized": true,
       "sha256": "3a0c35c81375f07022d1d78aebd016d1ba20cf9f875470e9acb38d014fcc6eac",
       "visual_review": "pending",
       "findings": [
-        "Inspected saved crop: cream paper and raised layered edge visible, no readable text, 104x37 only. Useful for color/fold continuity, not a detailed hero insert."
-      ]
+        "Pixel-exact 104x37 crop, xywh 263,268,104,37. Cream paper stack/fold with raised top edge, no readable writing. In source frame it rests near the left edge of the round table, beside Andre, long edge roughly horizontal. Physical scale is unknown; candidate lacks hero-insert detail."
+      ],
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/folded-note-candidate-v1.png",
+      "role": "prop",
+      "owner": "MSG-PRP-NOTE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "dimensions": [
+        104,
+        37
+      ],
+      "provenance": {
+        "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+        "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+        "crop_xywh": [
+          263,
+          268,
+          104,
+          37
+        ],
+        "saved_output": "output/The_Message/references/silent-proof-v001/note-candidate_00001_.png"
+      },
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "derived_sha256": "3a0c35c81375f07022d1d78aebd016d1ba20cf9f875470e9acb38d014fcc6eac"
     },
     "german-cafe-background-v2": {
       "input_use_authorized": true,
       "sha256": "e7768cb048277f2f4cdcc1a7680fe4064ef1e219a036cbd7512c75f081856d3d",
       "visual_review": "pending",
-      "findings": []
+      "findings": [
+        "Current safetensors metadata confirms concept_type=background, mode=encode, optimize_steps=0. All three stored encoder pictures decoded on CPU and inspected: window-table, reverse-counter, counter-wide. Appearance continuity does not establish consistent room geometry; candidate only. Older ambience and voice assets are unselected."
+      ],
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/ComfyUI-models/refmods/The_Message/locations/Cafe_Industrial_background_v2.safetensors",
+      "role": "background",
+      "owner": "MSG-LOC-CAFE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "stored_encoder_images": [
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/german-cafe-background-v2-enc_0.png",
+          "dimensions": [
+            1376,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "6bb43238ed4bd07c8c1431123d5850da74ab2c528c5b6ee60802403587fb9a9b"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/german-cafe-background-v2-enc_1.png",
+          "dimensions": [
+            1376,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "3071a815304a39b5440e073084f285c272e068360e03c7704653dfdd07f9c1af"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/german-cafe-background-v2-enc_2.png",
+          "dimensions": [
+            1376,
+            768
+          ],
+          "mode": "RGB",
+          "sha256": "a86b70d42e16e65699c733cebafcc700bd43dade75ebffd9a74b3355dc416e98"
+        }
+      ]
+    },
+    "cafe-table-insert-v1": {
+      "input_use_authorized": true,
+      "sha256": "0522afd448e32c01b78db4c6eacdcdb5fa7862de6edc5fac43c026d0dd5dad7b",
+      "visual_review": "pending",
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/the-message-table-insert-clean-v2.png",
+      "role": "location",
+      "owner": "MSG-LOC-CAFE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "findings": [
+        "Pixel-exact 260x68 crop, xywh 260,254,260,68. Note lies in the left part of the crop on the wooden tabletop; no face/hands/trouser edge. Very shallow aspect ratio and low detail; it is the same camera, not a newly established insert angle."
+      ],
+      "dimensions": [
+        260,
+        68
+      ],
+      "provenance": {
+        "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+        "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+        "crop_xywh": [
+          260,
+          254,
+          260,
+          68
+        ],
+        "saved_output": "output/The_Message/references/silent-proof-v001/table-insert-clean-v2_00001_.png"
+      },
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "derived_sha256": "0522afd448e32c01b78db4c6eacdcdb5fa7862de6edc5fac43c026d0dd5dad7b"
+    },
+    "andre-identity-baseline": {
+      "input_use_authorized": true,
+      "sha256": "381225721e8e6a9663ac1fda8bae65f8b5c9200e1f63fe7fd68e7b7822286d82",
+      "visual_review": "pending",
+      "reviewer": null,
+      "selected": false,
+      "source_path": "/mnt/data/ComfyUI-models/refmods/refmod-Andre_Athar.safetensors",
+      "role": "identity",
+      "owner": "MSG-CHR-ANDRE",
+      "inspection": {
+        "by": "assistant",
+        "at": "2026-11-11T11:14:32.094240+00:00",
+        "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json"
+      },
+      "findings": [
+        "Eight actual stored encoder pictures inspected, including frontal, profile and full-body views. Some pictures carry a KlingAI watermark; expressions and framing vary. Preserved as the baseline; unselected in this silent bundle."
+      ],
+      "stored_encoder_images": [
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_0.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "0acade64268bd0a7c79740db637fd9364104924f9ac0131dc9aa8e4282319172"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_1.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "4681c2d432ad91079c913e189633d48c6e3138944ab6ca8ac369d3f5a33732a8"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_2.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "6d6f0ba30016e16be17d8f7db0c0f43947a8d580c9179d39ca99edf9c0885494"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_3.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "436784562e3f70e3a30ae59cf0cd8d3a0b40757633f80e6e464ea0c8e9503ec0"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_4.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "830c74e3466306e8235c0361ad56998e8c7a6e1dc933c321922344dba6782c86"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_5.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "546af041c5c46ff47e943e35603c4ebfc80c5350d010f9e58f5aeac91810e212"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_6.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "57b1623cf70369f6acf96144ebdb05663ff38f5b1c09a4b7b6b8f94c2d2d04e8"
+        },
+        {
+          "path": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/andre-identity-baseline-enc_7.png",
+          "dimensions": [
+            768,
+            1184
+          ],
+          "mode": "RGB",
+          "sha256": "5b0fa27a1cbbf1ed3d0307ba8e26310d44ce378e7c4436fda819494880936056"
+        }
+      ]
     }
   },
   "rejected_candidates": [
@@ -57,5 +363,87 @@
       "path": "output/The_Message/references/silent-proof-v001/table-insert-candidate_00001_.png",
       "reason": "Trouser edge at lower left would contaminate an empty prop insert. Preserved, not selected."
     }
-  ]
+  ],
+  "inspected_at": "2026-11-11T11:14:32.094240+00:00",
+  "evidence": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/the-message-production/silent-proof-v001/asset-review-20261111/audit.json",
+  "candidates": {
+    "reaction-candidate-v1": {
+      "path": "/mnt/data/Projects_SSD/ComfyUI/output/The_Message/references/silent-proof-v001/reaction-candidate-v1_00001_.png",
+      "sha256": "1baa8c56622bf4654c3ad100e4a761e32bc6119c5edad1a52c09001ac5f63209",
+      "dimensions": [
+        320,
+        184
+      ],
+      "source": "/mnt/data/Projects_SSD/ComfyUI/output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "source_dimensions": [
+        608,
+        352
+      ],
+      "crop_xywh": [
+        16,
+        40,
+        320,
+        184
+      ],
+      "pixel_exact": true,
+      "visual_review": "pending",
+      "input_use_authorized": true,
+      "selected": false,
+      "reviewer": null,
+      "inspection_status": "does_not_meet_current_shot04_composition",
+      "findings": [
+        "Head-and-shoulders crop is persistent and pixel-exact; no new detail or camera angle.",
+        "Black window frame required by current Shot04 must_show is absent. Crop must not silently replace the wide primary.",
+        "Human likeness acceptance pending."
+      ]
+    },
+    "reaction-candidate-v2": {
+      "path": "/mnt/data/Projects_SSD/ComfyUI/output/The_Message/references/silent-proof-v001/reaction-candidate-v2_00001_.png",
+      "input_path": "/mnt/data/Projects_SSD/ComfyUI/input/the-message-reaction-candidate-v2.png",
+      "sha256": "9013d2942ad8bb03aca624f58895dd27199ca02aef9e1103d9134f7ab9d0288c",
+      "dimensions": [
+        448,
+        258
+      ],
+      "source": "/mnt/data/Projects_SSD/ComfyUI/output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "crop_xywh": [
+        48,
+        24,
+        448,
+        258
+      ],
+      "pixel_exact": true,
+      "prompt_id": "704f9a42-67e8-41b3-b122-20be2b384105",
+      "input_use_authorized": true,
+      "selected": false,
+      "visual_review": "pending",
+      "reviewer": null,
+      "inspection_status": "window_visibility_corrected",
+      "findings": [
+        "Actual saved result inspected: black grid window at right, face and dark jacket/gray shirt at left.",
+        "Wider framing retains more context; source remains only 608x352. It is a crop, not new detail or a new camera angle.",
+        "Note is clipped by lower frame edge; crop is a reaction candidate, not a prop insert."
+      ]
+    }
+  },
+  "continuity": {
+    "status": "unqualified",
+    "master_candidate": "cafe-counter-wide-v1",
+    "camera_candidates": {
+      "A": "cafe-counter-wide-v1",
+      "B": "cafe-window-table-v1",
+      "C": "cafe-reverse-counter-v1"
+    },
+    "landmarks": [
+      "black-grid windows and radiator on screen right",
+      "round pale wood table and brown leather chairs",
+      "espresso equipment and monstera plants"
+    ],
+    "light": "Daylight enters from camera right in all source pictures.",
+    "seat": "Source generated take seats Andre on screen left of the note/table. Mapping this seat to A/B/C remains unverified.",
+    "screen_axis": "Do not claim a verified reverse angle or a 180-degree axis from generated reference images alone.",
+    "human_acceptance": "pending"
+  }
 }
