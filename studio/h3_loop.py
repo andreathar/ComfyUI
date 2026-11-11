@@ -1,9 +1,7 @@
-"""Export compiled Fantastic shots for the installed Context Loop nodes."""
-import argparse
+"""Export compiled shots for the installed H3 Context Loop nodes."""
 import hashlib
 import json
 import re
-from pathlib import Path
 
 
 def canonical(value):
@@ -35,8 +33,7 @@ if expected != actual or bundle['version'] != 2 or not bundle['shots']:
     raise ValueError('Changed or invalid production bundle; re-export it')
 '''
 
-# Invalid non-empty sentinels deliberately fail downstream JSON parsers even
-# when Dynamic Script catches an exception and returns its output list.
+# Dynamic Script catches exceptions; nonempty sentinels make downstream JSON fail.
 PLAN_CODE = '''outputs[:] = ['INVALID_PRODUCTION_BUNDLE', '', 'INVALID', 0, 0, 'INVALID', 'INVALID', 0]
 ''' + _READ + '''shots = bundle['shots']
 plan = {'prompt_prefix': '', 'shots': [
@@ -56,28 +53,3 @@ shot = bundle['shots'][index - 1]
 outputs[:] = [json.dumps(shot['stack_state'], ensure_ascii=False),
               json.dumps(shot['media_state'], ensure_ascii=False)]
 '''
-
-
-def main():
-    from film import compile_project
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('project', type=Path)
-    parser.add_argument('--production', required=True)
-    parser.add_argument('--bindings', required=True)
-    parser.add_argument('--recipe', required=True)
-    parser.add_argument('--shot', action='append')
-    parser.add_argument('--run-name', required=True)
-    parser.add_argument('--output-subfolder')
-    parser.add_argument('--out', type=Path, required=True)
-    args = parser.parse_args()
-    shots = compile_project(args.project, Path(__file__).resolve().parents[1],
-                            args.production, args.bindings, args.recipe, args.shot)
-    bundle = export(shots, args.run_name, args.output_subfolder)
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    with args.out.open('x') as handle:
-        handle.write(json.dumps(bundle, indent=2, ensure_ascii=False) + '\n')
-    print(f'{len(shots)} shots; fingerprint {bundle["fingerprint"]}; {args.out}')
-
-
-if __name__ == '__main__':
-    main()

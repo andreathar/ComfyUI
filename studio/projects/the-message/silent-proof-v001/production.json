@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "project": {
+    "code": "MSG",
+    "title": "The Message - Silent Proof v001",
+    "aspect": "16:9",
+    "fps": 24,
+    "language": "en",
+    "source_text": "An empty industrial cafe waits in daylight. Andre sits beside the window and lowers his gaze. A folded cream note rests on the wooden table. Andre raises his gaze toward the window. From the counter side, he sits quietly. In the wide room, he gives one slight nod."
+  },
+  "style_bible": {
+    "look": "Naturalistic live-action photography with restrained contrast",
+    "palette": [
+      "warm wood",
+      "charcoal",
+      "soft daylight"
+    ],
+    "lens_default": "35mm",
+    "lighting_default": {
+      "key": "daylight from the black-framed windows on camera right",
+      "quality": "soft",
+      "time_of_day": "day"
+    },
+    "camera_rules": [
+      "Locked tripod. One continuous shot. No zoom or cut inside the shot."
+    ],
+    "negative_prompt": "No subtitles, captions, logos, dialogue or added people."
+  },
+  "characters": [
+    {
+      "id": "MSG-CHR-ANDRE",
+      "name": "Andre",
+      "persona": {
+        "summary": "Quiet and thoughtful",
+        "demeanor": "still, modest movements",
+        "speech": "none"
+      },
+      "appearance": "Adult man with short brown hair, brown eyes and light stubble; preserve the supplied identity",
+      "wardrobe": [
+        {
+          "id": "W1",
+          "description": "dark charcoal blazer over a plain light-gray crew-neck shirt"
+        }
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "MSG-LOC-CAFE",
+      "name": "Industrial cafe",
+      "kind": "INT",
+      "description": "Industrial cafe with weathered concrete and exposed brick, black steel window frames, espresso counter, round wooden table, brown leather chairs and green plants"
+    }
+  ],
+  "props": [
+    {
+      "id": "MSG-PRP-NOTE",
+      "name": "Folded note",
+      "description": "One small folded cream paper note on the table; no readable writing required"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "MSG_S001",
+      "number": 1,
+      "slug": "INT. INDUSTRIAL CAFE - DAY",
+      "location": "MSG-LOC-CAFE",
+      "time": "day",
+      "summary": "An empty industrial cafe waits in daylight. Andre sits beside the window and lowers his gaze. A folded cream note rests on the wooden table. Andre raises his gaze toward the window. From the counter side, he sits quietly. In the wide room, he gives one slight nod.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "wardrobe": {
+        "MSG-CHR-ANDRE": "W1"
+      },
+      "script_ref": {
+        "start": 0,
+        "end": 264
+      }
+    }
+  ],
+  "shots": [
+    {
+      "id": "MSG_S001_SH01",
+      "scene": "MSG_S001",
+      "purpose": "establishing",
+      "shot_size": "wide",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "24mm",
+      "subject": "The empty cafe",
+      "action": "The empty cafe remains still in daylight.",
+      "characters": [],
+      "props": [],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 3,
+      "dialogue": [],
+      "complexity": "simple",
+      "script_ref": {
+        "start": 0,
+        "end": 42
+      }
+    },
+    {
+      "id": "MSG_S001_SH02",
+      "scene": "MSG_S001",
+      "purpose": "medium",
+      "shot_size": "medium-wide",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "35mm",
+      "subject": "Andre",
+      "action": "Andre sits at the window table and slowly lowers his gaze toward the note.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 3,
+      "dialogue": [],
+      "complexity": "simple",
+      "script_ref": {
+        "start": 44,
+        "end": 92
+      }
+    },
+    {
+      "id": "MSG_S001_SH03",
+      "scene": "MSG_S001",
+      "purpose": "insert",
+      "shot_size": "close-up",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "macro",
+      "subject": "Folded note",
+      "action": "The folded cream note remains motionless on the wooden tabletop.",
+      "characters": [],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 3,
+      "dialogue": [],
+      "complexity": "simple",
+      "script_ref": {
+        "start": 94,
+        "end": 139
+      }
+    },
+    {
+      "id": "MSG_S001_SH04",
+      "scene": "MSG_S001",
+      "purpose": "reaction",
+      "shot_size": "medium-close",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "50mm",
+      "subject": "Andre",
+      "action": "Andre gently raises his gaze toward the window, keeping his lips closed.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 3,
+      "dialogue": [],
+      "complexity": "simple",
+      "script_ref": {
+        "start": 141,
+        "end": 180
+      }
+    },
+    {
+      "id": "MSG_S001_SH05",
+      "scene": "MSG_S001",
+      "purpose": "medium",
+      "shot_size": "medium-wide",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "35mm",
+      "subject": "Andre",
+      "action": "Andre remains seated and still, with his hands resting quietly.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 3,
+      "dialogue": [],
+      "complexity": "simple",
+      "script_ref": {
+        "start": 182,
+        "end": 220
+      }
+    },
+    {
+      "id": "MSG_S001_SH06",
+      "scene": "MSG_S001",
+      "purpose": "master",
+      "shot_size": "wide",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "24mm",
+      "subject": "Andre in the cafe",
+      "action": "Andre remains seated at the window table and makes one slight nod.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 3,
+      "dialogue": [],
+      "complexity": "simple",
+      "script_ref": {
+        "start": 222,
+        "end": 264
+      }
+    }
+  ]
+}

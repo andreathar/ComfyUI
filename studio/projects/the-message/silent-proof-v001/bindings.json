@@ -1,0 +1,150 @@
+{
+  "MSG_S001_SH01": {
+    "assets": [
+      "cafe-counter-wide-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11001,
+    "shot_controls": {
+      "must_show": [
+        "espresso counter left",
+        "windows right",
+        "round table"
+      ],
+      "props": []
+    },
+    "blocking": "No people, faces or hands visible.",
+    "warnings": [
+      "All references are candidates; visual acceptance pending."
+    ]
+  },
+  "MSG_S001_SH02": {
+    "assets": [
+      "cafe-window-table-v1",
+      "cafe-wardrobe-candidate-v1",
+      "folded-note-candidate-v1",
+      "andre-identity-video-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11002,
+    "shot_controls": {
+      "must_show": [
+        "round table",
+        "black-framed windows",
+        "folded note"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "gaze_target": "the note on the table",
+      "expression": "neutral, lips relaxed and closed"
+    },
+    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "warnings": [
+      "All references are candidates; visual acceptance pending."
+    ]
+  },
+  "MSG_S001_SH03": {
+    "assets": [
+      "cafe-table-insert-v1",
+      "folded-note-candidate-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11003,
+    "shot_controls": {
+      "must_show": [
+        "folded cream note",
+        "wooden tabletop"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ]
+    },
+    "blocking": "No people, faces or hands visible.",
+    "warnings": [
+      "All references are candidates; visual acceptance pending.",
+      "Table primary is a 260x68 crop; resizing does not restore detail or create a new angle."
+    ]
+  },
+  "MSG_S001_SH04": {
+    "assets": [
+      "cafe-window-table-v1",
+      "cafe-wardrobe-candidate-v1",
+      "folded-note-candidate-v1",
+      "andre-identity-video-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11004,
+    "shot_controls": {
+      "must_show": [
+        "face",
+        "black window frame"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "gaze_target": "the window, off camera",
+      "expression": "neutral, lips relaxed and closed"
+    },
+    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "warnings": [
+      "All references are candidates; visual acceptance pending.",
+      "Wide primary reference conflicts with medium-close framing; tighter reaction reference still required before render qualification."
+    ]
+  },
+  "MSG_S001_SH05": {
+    "assets": [
+      "cafe-reverse-counter-v1",
+      "cafe-wardrobe-candidate-v1",
+      "folded-note-candidate-v1",
+      "andre-identity-video-v1",
+      "german-cafe-background-v2"
+    ],
+    "audio_mode": "silent",
+    "seed": 11005,
+    "shot_controls": {
+      "must_show": [
+        "espresso counter",
+        "round table",
+        "folded note"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "gaze_target": "the note on the table",
+      "expression": "neutral, lips relaxed and closed"
+    },
+    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "warnings": [
+      "All references are candidates; visual acceptance pending.",
+      "Cross-angle cafe geography remains unqualified."
+    ]
+  },
+  "MSG_S001_SH06": {
+    "assets": [
+      "cafe-counter-wide-v1",
+      "cafe-wardrobe-candidate-v1",
+      "folded-note-candidate-v1",
+      "andre-identity-video-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11006,
+    "shot_controls": {
+      "must_show": [
+        "espresso counter left",
+        "windows right",
+        "round table"
+      ],
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "gaze_target": "the table",
+      "expression": "neutral, lips relaxed and closed"
+    },
+    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "warnings": [
+      "All references are candidates; visual acceptance pending.",
+      "Cross-angle cafe geography remains unqualified."
+    ]
+  }
+}

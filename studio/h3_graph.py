@@ -314,6 +314,8 @@ BASE = {
 
 
 def compile_graph(shot, prefix):
+    if shot['recipe'].get('delivery_audio') == 'none':
+        raise ValueError('silent recipe requires the bundle-driven H3 loop canvas contract')
     graph = copy.deepcopy(BASE)
     for node, widget, field in [('7', 'stack_state', 'stack_state'), ('8', 'builder_state', 'builder_state'), ('21', 'media_state', 'media_state')]:
         graph[node]['inputs'][widget] = canonical(shot[field])
@@ -321,8 +323,8 @@ def compile_graph(shot, prefix):
     graph['20']['inputs']['filename_prefix'] = prefix
     graph['23']['inputs']['value'] = shot['shot']['duration_s']
     graph['15']['inputs']['noise_seed'] = shot['seed']
-    for widget in ('stack_pictures', 'stack_pictures_n'):
-        graph['9']['inputs'][widget] = shot['recipe'][widget]
+    for key in ('stack_pictures', 'stack_pictures_n'):
+        graph['9']['inputs'][key] = shot['recipe'][key]
     return graph
 
 
@@ -330,26 +332,16 @@ def normalized(graph):
     result = {}
     for node_id, node in graph.items():
         inputs = copy.deepcopy(node['inputs'])
-        buttons = {
-            'MiniMaxH3PromptBuilder': ('Edit prompt…', '+ RefMods', '+ Media loader'),
-            'MiniMaxH3MediaLoader': ('Open loader…', '+ Native-output splitter'),
-        }.get(node['class_type'], ())
-        for key in buttons:
+        buttons = {'MiniMaxH3PromptBuilder': ('Edit prompt…', '+ RefMods', '+ Media loader'),
+                   'MiniMaxH3MediaLoader': ('Open loader…', '+ Native-output splitter')}
+        for key in buttons.get(node['class_type'], ()):
             if key in inputs and inputs[key] is None:
                 del inputs[key]
         for key in ('stack_state', 'builder_state', 'media_state'):
             if key in inputs:
                 inputs[key] = json.loads(inputs[key])
-        state = inputs.get('builder_state')
-        if node['class_type'] == 'MiniMaxH3PromptBuilder' and state and state.get('mode') == 'REF':
-            # Panel's text parser folds name fields into definition sentences.
-            lines = render_prompt(state).split('\n\n', 1)[0].splitlines()[1:]
-            for definition, line in zip(state['ref']['subjectDefs'], lines, strict=True):
-                definition['text'] = line
-                definition.pop('name', None)
-                if definition.get('role') is None:
-                    definition.pop('role', None)
-            state['off'] = {key: value for key, value in state.get('off', {}).items() if value is not False}
+                if key == 'builder_state' and inputs[key].get('mode') == 'REF':
+                    inputs[key] = render_prompt(inputs[key])
         result[str(node_id)] = {'class_type': node['class_type'], 'inputs': inputs}
     return result
 

@@ -1,0 +1,384 @@
+{
+  "apartment-v1": {
+    "path": "input/minimax_h3/apartment_00001_.png",
+    "sha256": "8a023e6cd3d3d8dfd093bca3ae3328fa482560ba54eb2fac1b415ab7eea2276e",
+    "role": "location",
+    "owner": "MSG-LOC-APARTMENT",
+    "kind": "picture",
+    "selection": {
+      "kind": "picture",
+      "file": "minimax_h3/apartment_00001_.png [input]",
+      "name": "apartment_00001_.png",
+      "duration": null,
+      "width": 768,
+      "height": 432,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "mmwaz1aa30"
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "reports/ANDRE_ATHAR_TWO_SCENE_LEARNING.md",
+    "source": "input/minimax_h3/apartment_00001_.png",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "andre-identity-baseline": {
+    "path": "models/refmods/refmod-Andre_Athar.safetensors",
+    "sha256": "381225721e8e6a9663ac1fda8bae65f8b5c9200e1f63fe7fd68e7b7822286d82",
+    "role": "identity",
+    "owner": "MSG-CHR-ANDRE",
+    "kind": "video",
+    "selection": {
+      "file": "refmod-Andre_Athar",
+      "kind": "video",
+      "tokens": 7104,
+      "mode": "weight",
+      "w": 1,
+      "s": 1,
+      "c": 1,
+      "embedded_audio_ignored": false
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "reports/ANDRE_ATHAR_TWO_SCENE_LEARNING.md",
+    "source": "models/refmods/refmod-Andre_Athar.safetensors",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "dark-jacket-gray-shirt-v1": {
+    "path": "input/The_Message/wardrobe/take01_dark_jacket_light_gray_shirt.png",
+    "sha256": "fd7c55ecd147804d1e7fc989d6b034ec54acf36a02671f4e79004b2d17b80e1b",
+    "role": "wardrobe",
+    "owner": "MSG-CHR-ANDRE",
+    "kind": "picture",
+    "selection": {
+      "kind": "picture",
+      "file": "The_Message/wardrobe/take01_dark_jacket_light_gray_shirt.png [input]",
+      "name": "take01_dark_jacket_light_gray_shirt.png",
+      "width": 182,
+      "height": 107,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "the_message_wardrobe_take01"
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "reports/THE_MESSAGE_VOICE_AND_WARDROBE.md",
+    "source": "output/The_Message/scene01/take_00001_.mp4",
+    "wardrobe_id": "W1",
+    "preprocessing": "frame 0 chest crop, 182x107",
+    "instruction": "Clothing only. Preserve dark charcoal blazer and plain light-gray crew-neck shirt; ignore cropped framing.",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "andre-voice-v1": {
+    "path": "models/refmods/The_Message/Andre_Athar_voice_v1.safetensors",
+    "sha256": "14c226cf6f30f7e9747207a22e684587f5fe407bc324ccadb10609cb64854d7d",
+    "role": "voice",
+    "owner": "MSG-VOX-ANDRE",
+    "kind": "audio",
+    "selection": {
+      "file": "The_Message/Andre_Athar_voice_v1",
+      "kind": "audio",
+      "tokens": 640,
+      "seconds": 8,
+      "mode": "weight",
+      "w": 1,
+      "s": 1,
+      "c": 1,
+      "embedded_audio_ignored": false
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "reports/THE_MESSAGE_VOICE_TEST01.md",
+    "source": "input/The_Message/voice/andre_athar_reference_02s_10s.wav",
+    "preprocessing": "2s to 10s excerpt; standalone audio RefMod",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "andre-identity-video-v1": {
+    "path": "models/refmods/refmod_-Andre_Athar-video_visual.safetensors",
+    "sha256": "786433e7c8f6c719ad4eaa0d3051cc05c5454eb63217a39b9fe0d57ef6779c06",
+    "role": "identity",
+    "owner": "MSG-CHR-ANDRE",
+    "kind": "video",
+    "selection": {
+      "file": "refmod_-Andre_Athar-video_visual",
+      "kind": "video",
+      "tokens": 7224,
+      "mode": "weight",
+      "w": 1,
+      "s": 1,
+      "c": 1,
+      "embedded_audio_ignored": false
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.",
+    "source": "models/refmods/refmod_-Andre_Athar-video_visual.safetensors",
+    "instruction": "",
+    "quality_status": "candidate; human output review pending",
+    "inspection": {
+      "source": "video",
+      "encoder_frames": 2,
+      "encoder_times_s": [
+        0,
+        0.5
+      ],
+      "latent_shape": [
+        1,
+        24,
+        7,
+        86,
+        48
+      ],
+      "tokens": 7224,
+      "notes": "Two inspected near-frontal frames; stack picture selector does not apply to video-sourced RefMods. Separate new audio deliberately excluded from comparison."
+    },
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "cafe-counter-wide-v1": {
+    "path": "input/minimax_h3/Gemini_Generated_Image.jpeg",
+    "sha256": "a5eefb8e19822e90af1b44009b6982474299a9f7ecbc349a97d16042f93302f5",
+    "role": "location",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "picture",
+    "selection": {
+      "kind": "picture",
+      "file": "minimax_h3/Gemini_Generated_Image.jpeg [input]",
+      "name": "Gemini_Generated_Image.jpeg",
+      "duration": null,
+      "width": 1376,
+      "height": 768,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "mmwb6ac142"
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.",
+    "source": "input/minimax_h3/Gemini_Generated_Image.jpeg",
+    "instruction": "Wide counter view. Preserve the espresso equipment in the left foreground and the window-table area to the right.",
+    "quality_status": "candidate; human output review pending",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "cafe-window-table-v1": {
+    "path": "input/minimax_h3/Gemini_Generated_Image_1_.jpeg",
+    "sha256": "3664fae152459415d32fabb8f7659f858f48f09a44c8e0daee25314124ba887d",
+    "role": "location",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "picture",
+    "selection": {
+      "kind": "picture",
+      "file": "minimax_h3/Gemini_Generated_Image_1_.jpeg [input]",
+      "name": "Gemini_Generated_Image (1).jpeg",
+      "duration": null,
+      "width": 1376,
+      "height": 768,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "mmwb6ac140"
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.",
+    "source": "input/minimax_h3/Gemini_Generated_Image_1_.jpeg",
+    "instruction": "Window-table angle. Preserve the round wooden table, brown leather chairs, concrete walls, plants and black window frames.",
+    "quality_status": "candidate; human output review pending",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "cafe-reverse-counter-v1": {
+    "path": "input/minimax_h3/Gemini_Generated_Image_2_.jpeg",
+    "sha256": "1eb6ec1d24631ce74a3372177c4d9db779c5afb9b3460854de303c94a159eaf4",
+    "role": "location",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "picture",
+    "selection": {
+      "kind": "picture",
+      "file": "minimax_h3/Gemini_Generated_Image_2_.jpeg [input]",
+      "name": "Gemini_Generated_Image (2).jpeg",
+      "duration": null,
+      "width": 1376,
+      "height": 768,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "mmwb6ac141"
+    },
+    "version": 1,
+    "approved": false,
+    "approval_evidence": "User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.",
+    "source": "input/minimax_h3/Gemini_Generated_Image_2_.jpeg",
+    "instruction": "Reverse view toward the espresso counter, foreground round table, right-side windows and plants.",
+    "quality_status": "candidate; human output review pending",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "german-cafe-ambience-v1": {
+    "path": "models/refmods/refmod_German_Cofee.safetensors",
+    "sha256": "19b2844d47ac5d0f7693301bc1d35b5d1ecb53d92db1193a9f04beb2d13bd97a",
+    "approved": false,
+    "approval_evidence": "User created and enabled this bundle on Cafe Shot 03, then said ok proceed. Input-use authorization only; output quality unapproved.",
+    "quality_status": "candidate",
+    "role": "ambience",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "video",
+    "version": 1,
+    "source": "User-created three-picture Full Reference bundle; encode mode, no optimization steps",
+    "selection": {
+      "file": "refmod_German_Cofee",
+      "kind": "video",
+      "tokens": 3096,
+      "embedded_audio_ignored": false
+    },
+    "instruction": "Cafe environment only: retain materials, plants, black window frames and espresso-counter design across the three views. Use Picture 1 for the shot camera angle; do not apply this bundle to Andre or clothing.",
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "german-cafe-background-v2": {
+    "path": "models/refmods/The_Message/locations/Cafe_Industrial_background_v2.safetensors",
+    "sha256": "e7768cb048277f2f4cdcc1a7680fe4064ef1e219a036cbd7512c75f081856d3d",
+    "approved": false,
+    "approval_evidence": "User instructed you decide and fix everything holistically after authorizing these cafe source views; input-use authorization only.",
+    "quality_status": "Stored views inspected; generated shot fidelity pending",
+    "role": "background",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "video",
+    "version": 2,
+    "source": {
+      "prompt_id": "4ec582a0-c500-414e-a944-a5da0d46d179",
+      "assets": [
+        "cafe-window-table-v1",
+        "cafe-reverse-counter-v1",
+        "cafe-counter-wide-v1"
+      ]
+    },
+    "selection": {
+      "file": "The_Message/locations/Cafe_Industrial_background_v2",
+      "kind": "video",
+      "tokens": 3096,
+      "embedded_audio_ignored": false
+    },
+    "instruction": "Preserve cafe materials, black grid windows, round wooden tables, brown leather chairs, monstera plants and espresso equipment. Use the selected primary Picture for the shot viewpoint and furniture placement. Do not transfer environment features onto Andre or clothing.",
+    "inspection": {
+      "concept_type": "background",
+      "source": "stack",
+      "shape": [
+        1,
+        24,
+        3,
+        48,
+        86
+      ],
+      "tokens": 3096,
+      "decoded_frames": 3,
+      "strength": 1,
+      "mode": "encode"
+    },
+    "input_use_authorized": true,
+    "visual_review": "pending"
+  },
+  "folded-note-candidate-v1": {
+    "path": "input/folded-note-candidate-v1.png",
+    "sha256": "3a0c35c81375f07022d1d78aebd016d1ba20cf9f875470e9acb38d014fcc6eac",
+    "role": "prop",
+    "owner": "MSG-PRP-NOTE",
+    "kind": "picture",
+    "input_use_authorized": true,
+    "visual_review": "pending",
+    "limitations": "Low resolution source crop; no added detail or new camera angle.",
+    "selection": {
+      "kind": "picture",
+      "file": "folded-note-candidate-v1.png [input]",
+      "name": "folded-note-candidate-v1.png",
+      "width": 104,
+      "height": 37,
+      "duration": null,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "folded-note-candidate-v1"
+    },
+    "provenance": {
+      "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "crop_xywh": [
+        263,
+        268,
+        104,
+        37
+      ],
+      "saved_output": "output/The_Message/references/silent-proof-v001/note-candidate_00001_.png"
+    },
+    "approved": false
+  },
+  "cafe-wardrobe-candidate-v1": {
+    "path": "input/cafe-take04-candidate-v1.png",
+    "sha256": "83dbfab0b9171da26b41e71f111946abaa56d021f5025b82a6eb95f4703a128f",
+    "role": "wardrobe",
+    "owner": "MSG-CHR-ANDRE",
+    "kind": "picture",
+    "input_use_authorized": true,
+    "visual_review": "pending",
+    "limitations": "Low resolution source crop; no added detail or new camera angle.",
+    "selection": {
+      "kind": "picture",
+      "file": "cafe-take04-candidate-v1.png [input]",
+      "name": "cafe-take04-candidate-v1.png",
+      "width": 126,
+      "height": 126,
+      "duration": null,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "cafe-wardrobe-candidate-v1"
+    },
+    "provenance": {
+      "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "crop_xywh": [
+        62,
+        164,
+        126,
+        126
+      ],
+      "saved_output": "output/The_Message/references/silent-proof-v001/wardrobe-candidate_00001_.png"
+    },
+    "wardrobe_id": "W1",
+    "approved": false
+  },
+  "cafe-table-insert-v1": {
+    "path": "input/the-message-table-insert-clean-v2.png",
+    "sha256": "0522afd448e32c01b78db4c6eacdcdb5fa7862de6edc5fac43c026d0dd5dad7b",
+    "role": "location",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "picture",
+    "input_use_authorized": true,
+    "visual_review": "pending",
+    "limitations": "Low resolution source crop; no added detail or new camera angle.",
+    "selection": {
+      "kind": "picture",
+      "file": "the-message-table-insert-clean-v2.png [input]",
+      "name": "the-message-table-insert-clean-v2.png",
+      "width": 260,
+      "height": 68,
+      "duration": null,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "cafe-table-insert-v1"
+    },
+    "provenance": {
+      "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "crop_xywh": [
+        260,
+        254,
+        260,
+        68
+      ],
+      "saved_output": "output/The_Message/references/silent-proof-v001/table-insert-clean-v2_00001_.png"
+    },
+    "approved": false
+  }
+}

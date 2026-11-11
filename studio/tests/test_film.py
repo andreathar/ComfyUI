@@ -179,6 +179,24 @@ class TakeTests(unittest.TestCase):
         with self.assertRaises(FileExistsError):
             film.plan_run([self.take], self.root / 'run.json', self.root / 'draft.mp4')
 
+    def test_silent_draft_decodes_without_audio_or_creative_approval(self):
+        video = self.root / 'silent.mp4'
+        subprocess.run(['ffmpeg', '-v', 'error', '-nostdin', '-f', 'lavfi', '-i',
+                        'color=c=blue:s=64x64:r=24', '-frames:v', '6', '-an',
+                        '-c:v', 'libx264', '-threads', '1', str(video)], check=True)
+        info = film.probe_video(video)
+        self.assertFalse(info['audio'])
+        state = film.read_take(self.take)
+        state.update(status='review_pending', output={'path': str(video),
+                     'sha256': film.h3.file_hash(video), **info})
+        film.write_json(self.take / 'take.json', state)
+        edit = [{'take': str(self.take), 'in_frame': 0, 'out_frame': 6}]
+        out = film.assemble(edit, self.root / 'silent-draft.mp4', draft=True)
+        self.assertEqual(film.probe_video(out), info)
+        self.assertIsNone(film.read_take(self.take)['review'])
+        with self.assertRaisesRegex(ValueError, 'approved'):
+            film.assemble(edit, self.root / 'silent-final.mp4')
+
 
 if __name__ == '__main__':
     unittest.main()

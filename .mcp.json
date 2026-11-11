@@ -1,13 +1,11 @@
 {
-  "mcpServers": {
-    "code-review-graph": {
-      "command": "/home/athar/.local/bin/code-review-graph",
-      "args": [
-        "serve"
-      ],
-      "cwd": "/mnt/data/Projects_SSD/ComfyUI",
-      "type": "stdio"
-    }
-  }
+	"mcpServers": {
+		"codebase-memo": {
+			"command": "/home/athar/.local/bin/codebase-memory-mcp",
+			"args": [],
+			"tools": [
+				"*"
+			]
+		}
+	}
 }
-

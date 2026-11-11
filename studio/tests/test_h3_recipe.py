@@ -50,6 +50,46 @@ class RecipeTests(unittest.TestCase):
         self.assertEqual(out['recipe']['delivery_audio'],'none')
         self.assertNotIn('<Audio',out['prompt_text'])
 
+    def test_silent_recipe_cannot_use_legacy_audio_graph(self):
+        self.silent()
+        with self.assertRaisesRegex(ValueError, 'loop canvas'):
+            h3_graph.compile_graph(self.compile(), 'test/video')
+
+    def test_external_refmod_path_and_precedence(self):
+        original = self.root / self.assets['actor']['path']
+        external = self.root / 'external/refmods/actor.safetensors'
+        external.parent.mkdir(parents=True)
+        external.write_bytes(original.read_bytes())
+        (self.root / 'extra_model_paths.yaml').write_text('external:\n  base_path: external\n  refmods: refmods\n  is_default: true\n')
+        original.write_bytes(b'stale local copy')
+        self.assertEqual(h3.asset_path(self.root, self.assets['actor']), external)
+        self.compile()
+        external.write_bytes(b'changed preferred copy')
+        with self.assertRaisesRegex(ValueError, 'hash'):
+            self.compile()
+
+    def test_empty_cast_has_environment_without_identity_or_voice(self):
+        self.silent()
+        self.doc['shots'][0]['characters'] = []
+        self.binding['assets'] = ['room']
+        out = self.compile()
+        self.assertEqual(out['subjects']['environment'], '<Subject 1>')
+        self.assertEqual(out['stack_state']['picks'], [])
+        self.assertNotIn('<Video', out['prompt_text'])
+        self.assertNotIn('<Audio', out['prompt_text'])
+
+    def test_picture_reordering_updates_labels_and_prompt(self):
+        path = self.root / 'input/wardrobe.png'
+        path.write_bytes(b'clothes')
+        self.assets['clothes'] = dict(path='input/wardrobe.png', sha256=h3.file_hash(path), approved=True,
+            role='wardrobe', owner='DEMO-CHR-MAIN', wardrobe_id='W1', kind='picture',
+            selection={'file': 'wardrobe.png [input]', 'kind': 'picture'})
+        self.binding['assets'].insert(0, 'clothes')
+        out = self.compile()
+        self.assertEqual(out['labels']['room'], '<Picture 2>')
+        self.assertIn('primary camera layout from <Picture 2>', out['prompt_text'])
+        self.assertIn('as shown in <Picture 1>', out['prompt_text'])
+
     def test_silent_contract_rejects_voice_and_unused_identity(self):
         self.silent()
         self.binding['assets'].append('voice')

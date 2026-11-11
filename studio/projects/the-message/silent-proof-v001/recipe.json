@@ -1,0 +1,25 @@
+{
+  "id": "h3-ref-silent-medium-v1",
+  "width": 832,
+  "height": 480,
+  "fps": 24,
+  "steps": 20,
+  "scheduler": "beta",
+  "sampler": "sa_solver",
+  "denoise": 1,
+  "shift_video": 12,
+  "shift_audio": 3,
+  "stack_pictures": "up to N",
+  "stack_pictures_n": 4,
+  "ref_image_size": "match",
+  "reference_fps": 24,
+  "max_total_tokens": 0,
+  "voice_description_at_label": false,
+  "models": {
+    "diffusion_models": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+    "text_encoders": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "video_vae": "minimax_h3_video_vae_int8_convrot.safetensors",
+    "audio_vae": "minimax_h3_audio_vae_fp32.safetensors"
+  },
+  "delivery_audio": "none"
+}

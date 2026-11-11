@@ -60,7 +60,7 @@ def event(state, status, **details):
 
 
 def prepare(root, compiled, attempt, output_namespace='The_Message'):
-    output_namespace = safe_id(output_namespace)
+    safe_id(output_namespace)
     path = Path(root) / safe_id(compiled['shot_id']) / safe_id(attempt)
     path.mkdir(parents=True, exist_ok=False)
     for name in ('builder_state', 'stack_state', 'media_state'):
@@ -78,15 +78,14 @@ def prepare(root, compiled, attempt, output_namespace='The_Message'):
                 (8, 'prompt_text', compiled['prompt_text']),
                 (23, 'value', compiled['shot']['duration_s']),
                 (15, 'noise_seed', compiled['seed']),
+                (20, 'filename_prefix', prefix),
                 (9, 'stack_pictures', compiled['recipe']['stack_pictures']),
                 (9, 'stack_pictures_n', compiled['recipe']['stack_pictures_n']),
-                (20, 'filename_prefix', prefix),
             ]]
         write_json(path / 'panel-edits.json', edits)
     state = {'schema_version': 1, 'shot_id': compiled['shot_id'], 'attempt': attempt,
-             'output_namespace': output_namespace,
              'fingerprint': compiled['fingerprint'], 'compiled_sha256': h3.file_hash(path / 'compiled.json'),
-             'prompt_id': None, 'review': None}
+             'prompt_id': None, 'review': None, 'output_namespace': output_namespace}
     event(state, 'prepared')
     write_json(path / 'take.json', state)
     return path
@@ -163,8 +162,7 @@ def reconcile(path, history, output_root):
         prompt_record = record.get('prompt', [])
         graph = prompt_record[2] if len(prompt_record) > 2 else {}
         saved = graph.get(str(node_id), {})
-        namespace = safe_id(state.get('output_namespace', 'The_Message'))
-        expected_prefix = f"{namespace}/shots/{state['shot_id']}/{state['attempt']}/video"
+        expected_prefix = f"{state.get('output_namespace', 'The_Message')}/shots/{state['shot_id']}/{state['attempt']}/video"
         if saved.get('class_type') != 'SaveVideo' or saved['inputs'].get('filename_prefix') != expected_prefix:
             raise ValueError('history output does not belong to this take prefix')
         builders = [n for n in graph.values() if n['class_type'] == 'MiniMaxH3PromptBuilder']
@@ -206,13 +204,14 @@ def review(path, approved, reviewer, note):
         event(state, 'approved' if approved else 'rejected', review=state['review'])
 
 
-def assembly_inputs(entries, *, draft=False):
+def assembly_inputs(entries, draft=False):
     result = []
     for entry in entries:
         state = read_take(entry['take'])
-        if draft and state['status'] not in ('review_pending', 'approved'):
-            raise ValueError(f"{entry['take']}: draft requires a technical pass")
-        if not draft and (state['status'] != 'approved' or not state['review'] or not state['review']['approved']):
+        if draft:
+            if state['status'] not in ('review_pending', 'approved'):
+                raise ValueError(f"{entry['take']}: draft requires technical validation")
+        elif state['status'] != 'approved' or not state['review'] or not state['review']['approved']:
             raise ValueError(f"{entry['take']}: take is not approved")
         output = state['output']
         if h3.file_hash(output['path']) != output['sha256'] or (not draft and state['review']['sha256'] != output['sha256']):
@@ -220,7 +219,7 @@ def assembly_inputs(entries, *, draft=False):
         start, end = entry['in_frame'], entry['out_frame']
         if not isinstance(start, int) or not isinstance(end, int) or not 0 <= start < end <= output['frames']:
             raise ValueError('invalid edit frame range')
-        result.append({**output, 'take': str(Path(entry['take']).resolve()), 'in_frame': start, 'out_frame': end})
+        result.append({**output, 'in_frame': start, 'out_frame': end})
     if not result:
         raise ValueError('empty edit list')
     if len({(x['width'], x['height'], x['fps']) for x in result}) != 1:
@@ -228,8 +227,11 @@ def assembly_inputs(entries, *, draft=False):
     return result
 
 
-def assemble(edit, destination, *, draft=False):
+def assemble(edit, destination, draft=False):
     clips = assembly_inputs(edit, draft=draft)
+    if len({clip['audio'] for clip in clips}) != 1:
+        raise ValueError('assembly requires a consistent audio policy')
+    audio = clips[0]['audio']
     destination = Path(destination)
     if destination.exists() or destination.with_suffix('.receipt.json').exists():
         raise FileExistsError(destination)
@@ -240,89 +242,74 @@ def assemble(edit, destination, *, draft=False):
         for i, clip in enumerate(clips):
             cmd += ['-i', clip['path']]
             start, end = clip['in_frame'], clip['out_frame']
-            filters += [f'[{i}:v]trim=start_frame={start}:end_frame={end},setpts=PTS-STARTPTS[v{i}]',
-                        f"[{i}:a]atrim=start={start / clip['fps']}:end={end / clip['fps']},asetpts=PTS-STARTPTS[a{i}]"]
-        filters.append(''.join(f'[v{i}][a{i}]' for i in range(len(clips))) + f'concat=n={len(clips)}:v=1:a=1[v][a]')
+            filters.append(f'[{i}:v]trim=start_frame={start}:end_frame={end},setpts=PTS-STARTPTS[v{i}]')
+            if audio:
+                filters.append(f"[{i}:a]atrim=start={start / clip['fps']}:end={end / clip['fps']},asetpts=PTS-STARTPTS[a{i}]")
+        filters.append(''.join(f'[v{i}]' + (f'[a{i}]' if audio else '') for i in range(len(clips))) + f'concat=n={len(clips)}:v=1:a={int(audio)}[v]' + ('[a]' if audio else ''))
         candidate = Path(tmp) / 'cut.mp4'
-        cmd += ['-filter_complex', ';'.join(filters), '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-crf', '18', '-c:a', 'aac', str(candidate)]
+        cmd += ['-filter_complex', ';'.join(filters), '-map', '[v]', '-c:v', 'libx264', '-threads', '1', '-crf', '18']
+        cmd += ['-map', '[a]', '-c:a', 'aac'] if audio else ['-an']
+        cmd.append(str(candidate))
         subprocess.run(cmd, capture_output=True, check=True)
         info = probe_video(candidate)
         if info['frames'] != sum(c['out_frame'] - c['in_frame'] for c in clips):
             raise ValueError('assembled frame count mismatch')
         os.link(candidate, destination)
-        write_json(destination.with_suffix('.receipt.json'), {'purpose': 'draft' if draft else 'approved-take assembly',
-                   'inputs': clips, 'output_sha256': h3.file_hash(destination), 'technical': info, 'review': 'pending'})
+        write_json(destination.with_suffix('.receipt.json'), {'inputs': clips, 'output_sha256': h3.file_hash(destination), 'technical': info, 'review': 'pending', 'purpose': 'draft' if draft else 'final'})
     return destination
 
 
-def plan_run(takes, destination, draft_output):
-    destination = Path(destination)
-    entries = []
-    for take in takes:
-        take = Path(take).resolve()
-        state = read_take(take)
-        if h3.file_hash(take / 'compiled.json') != state['compiled_sha256']:
-            raise ValueError('prepared recipe changed')
-        entries.append({'take': str(take), 'compiled_sha256': state['compiled_sha256']})
-    if not entries or len({e['take'] for e in entries}) != len(entries):
-        raise ValueError('run requires distinct takes')
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    with destination.open('x') as stream:
-        json.dump({'schema_version': 1, 'takes': entries, 'draft_output': str(Path(draft_output).resolve())}, stream, indent=2)
-        stream.write('\n')
-    return destination
+def plan_run(takes, path, destination):
+    path = Path(path)
+    if path.exists():
+        raise FileExistsError(path)
+    rows = [{'take': str(Path(t).resolve()), 'compiled_sha256': read_take(t)['compiled_sha256']} for t in takes]
+    if not rows or len({row['take'] for row in rows}) != len(rows):
+        raise ValueError('run needs unique takes')
+    data = {'version': 1, 'takes': rows, 'destination': str(Path(destination).resolve())}
+    with path.open('x') as stream:
+        json.dump(data, stream, indent=2)
+    return path
 
 
 def run_status(path):
     run = read_json(path)
-    states = []
-    for entry in run['takes']:
-        take = Path(entry['take'])
+    edit = []
+    for row in run['takes']:
+        take = Path(row['take'])
         state = read_take(take)
-        if h3.file_hash(take / 'compiled.json') != entry['compiled_sha256'] or state['compiled_sha256'] != entry['compiled_sha256']:
-            raise ValueError('run recipe changed')
-        states.append((take, state))
-    for status, action in [('submitting', 'reconcile_submission'), ('queued', 'wait')]:
-        for take, state in states:
-            if state['status'] == status:
-                return {'action': action, 'take': str(take), 'prompt_id': state['prompt_id']}
-    for take, state in states:
-        if state['status'] not in ('prepared', 'review_pending', 'approved'):
+        if h3.file_hash(take / 'compiled.json') != row['compiled_sha256']:
+            raise ValueError('run compiled input changed')
+        action = {'prepared': 'render', 'submitting': 'reconcile_submission', 'queued': 'wait'}.get(state['status'])
+        if action:
+            return {'action': action, 'take': str(take), 'prompt_id': state['prompt_id']}
+        if state['status'] not in ('review_pending', 'approved'):
             return {'action': 'blocked', 'take': str(take), 'status': state['status']}
-    for take, state in states:
-        if state['status'] == 'prepared':
-            return {'action': 'render', 'take': str(take), 'edits': str(take / 'panel-edits.json')}
-    edit = [{'take': str(take), 'in_frame': 0, 'out_frame': state['output']['frames']} for take, state in states]
-    clips = assembly_inputs(edit, draft=True)
-    destination = Path(run['draft_output'])
+        edit.append({'take': str(take), 'in_frame': 0, 'out_frame': state['output']['frames']})
+    destination = Path(run['destination'])
     receipt_path = destination.with_suffix('.receipt.json')
     if destination.exists() or receipt_path.exists():
         if not destination.is_file() or not receipt_path.is_file():
-            return {'action': 'blocked', 'status': 'incomplete draft publication', 'output': str(destination)}
+            return {'action': 'blocked', 'reason': 'incomplete draft and receipt pair'}
         receipt = read_json(receipt_path)
-        if receipt['purpose'] != 'draft' or receipt['inputs'] != clips:
-            raise ValueError('draft receipt does not match this run')
         if h3.file_hash(destination) != receipt['output_sha256']:
             raise ValueError('draft hash changed')
-        expected = {key: clips[0][key] for key in ('width', 'height', 'fps', 'audio')}
-        expected['frames'] = sum(c['out_frame'] - c['in_frame'] for c in clips)
-        if probe_video(destination) != expected or receipt['technical'] != expected:
-            raise ValueError('draft technical verification failed')
-        return {'action': 'draft_complete', 'output': str(destination), 'receipt': str(receipt_path), 'review': 'pending'}
-    return {'action': 'assemble_draft', 'edit': edit, 'output': run['draft_output']}
+        if receipt.get('purpose') != 'draft' or receipt['inputs'] != assembly_inputs(edit, draft=True):
+            raise ValueError('draft receipt differs from run inputs')
+        return {'action': 'draft_complete', 'destination': str(destination)}
+    return {'action': 'assemble_draft', 'edit': edit, 'destination': str(destination)}
 
 
-def compile_project(project, workspace, production='production.json', bindings_file='bindings.json', recipe_file='recipes/h3-ref-diagnostic-v1.json', shot_ids=None):
+def compile_project(project, workspace, script='production.json', bindings_file='bindings.json', recipe_file='recipes/h3-ref-diagnostic-v1.json', shot_ids=None):
     project = Path(project)
-    doc = read_json(project / production)
+    doc = read_json(project / script)
     assets = read_json(project / 'assets.json')
     bindings = read_json(project / bindings_file)
     recipe = read_json(project / recipe_file)
     known = {shot['id'] for shot in doc['shots']}
-    if shot_ids and set(shot_ids) - known:
+    if shot_ids is not None and set(shot_ids) - known:
         raise ValueError('unknown shot selection: ' + ', '.join(sorted(set(shot_ids) - known)))
-    return [h3.compile_shot(doc, shot['id'], bindings[shot['id']], assets, recipe, workspace)
-            for shot in doc['shots'] if not shot_ids or shot['id'] in shot_ids]
+    return [h3.compile_shot(doc, shot['id'], bindings[shot['id']], assets, recipe, workspace) for shot in doc['shots'] if shot_ids is None or shot['id'] in shot_ids]
 
 
 def preflight_project(project, workspace):
@@ -341,8 +328,7 @@ def preflight_take(path, graph, resource_snapshot, workspace, models, registered
         compiled = read_json(path / 'compiled.json')
         if h3.file_hash(path / 'compiled.json') != state['compiled_sha256']:
             raise ValueError('compiled recipe changed')
-        namespace = safe_id(state.get('output_namespace', 'The_Message'))
-        prefix = f"{namespace}/shots/{state['shot_id']}/{state['attempt']}/video"
+        prefix = f"{state.get('output_namespace', 'The_Message')}/shots/{state['shot_id']}/{state['attempt']}/video"
         graph_hash = h3_graph.verify(graph, compiled, prefix)
         files = h3_preflight.check(workspace, models, compiled.get('assets', {}), registered_nodes)
         resource_check = h3_preflight.resources(resource_snapshot)
@@ -363,14 +349,9 @@ def main(argv=None):
         command = sub.add_parser(name)
         command.add_argument('project', type=Path)
         command.add_argument('--workspace', type=Path, default=Path(__file__).resolve().parent.parent)
-        command.add_argument('--production', default='production.json', help='Production document relative to project')
-        command.add_argument('--bindings', default='bindings.json', help='Asset bindings relative to project')
-        command.add_argument('--recipe', default='recipes/h3-ref-diagnostic-v1.json', help='Render preset relative to project')
-        command.add_argument('--shot', action='append', help='Shot ID; repeat to select several, omit for all')
         if name == 'prepare':
             command.add_argument('--out', type=Path, required=True)
             command.add_argument('--attempt', required=True)
-            command.add_argument('--output-namespace', default='The_Message', help='Movie folder under ComfyUI output; letters, digits, underscores or hyphens')
     command = sub.add_parser('submitting')
     command.add_argument('take', type=Path)
     command = sub.add_parser('preflight')
@@ -395,19 +376,12 @@ def main(argv=None):
     command = sub.add_parser('assemble')
     command.add_argument('edit', type=Path)
     command.add_argument('--out', type=Path, required=True)
-    command.add_argument('--draft', action='store_true', help='Assemble technically verified candidates without approving them')
-    command = sub.add_parser('plan-run')
-    command.add_argument('--take', type=Path, action='append', required=True)
-    command.add_argument('--out', type=Path, required=True)
-    command.add_argument('--draft-output', type=Path, required=True)
-    command = sub.add_parser('run-status')
-    command.add_argument('run', type=Path)
     command = sub.add_parser('assemble-run')
     command.add_argument('run', type=Path)
     args = parser.parse_args(argv)
     if args.command in ('check', 'prepare'):
         print(json.dumps({'preflight': preflight_project(args.project, args.workspace)}))
-        shots = compile_project(args.project, args.workspace, args.production, args.bindings, args.recipe, args.shot)
+        shots = compile_project(args.project, args.workspace)
         if args.command == 'prepare':
             for shot in shots:
                 path = args.out / safe_id(shot['shot_id']) / safe_id(args.attempt)
@@ -416,7 +390,7 @@ def main(argv=None):
         for shot in shots:
             result = {'shot': shot['shot_id'], 'fingerprint': shot['fingerprint'], 'labels': shot['labels'], 'warnings': shot['warnings']}
             if args.command == 'prepare':
-                result['take'] = str(prepare(args.out, shot, args.attempt, args.output_namespace))
+                result['take'] = str(prepare(args.out, shot, args.attempt))
             print(json.dumps(result))
     elif args.command == 'submitting':
         mark_submitting(args.take)
@@ -430,19 +404,13 @@ def main(argv=None):
     elif args.command == 'review':
         review(args.take, args.decision == 'approve', args.reviewer, args.note)
     elif args.command == 'assemble':
-        print(assemble(read_json(args.edit), args.out, draft=args.draft))
-    elif args.command == 'plan-run':
-        print(plan_run(args.take, args.out, args.draft_output))
-    elif args.command == 'run-status':
-        print(json.dumps(run_status(args.run)))
+        print(assemble(read_json(args.edit), args.out))
     elif args.command == 'assemble-run':
         status = run_status(args.run)
-        if status['action'] == 'draft_complete':
-            print(status['output'])
-            return 0
-        if status['action'] != 'assemble_draft':
-            raise ValueError('run is not ready for draft assembly: ' + status['action'])
-        print(assemble(status['edit'], status['output'], draft=True))
+        if status['action'] == 'assemble_draft':
+            print(assemble(status['edit'], status['destination'], draft=True))
+        elif status['action'] != 'draft_complete':
+            raise ValueError(f"run not ready to assemble: {status['action']}")
     return 0
 
 
