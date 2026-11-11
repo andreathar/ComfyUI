@@ -186,8 +186,27 @@ Phase 4 stage split, same shot, `--use-ck-attention`, nodes `H3StageSave`/`H3Sta
 
 For one shot the total is about the same; the gain is that sampling runs never hold the
 text encoder, so a batch can encode all shots, then sample all shots without swapping.
-Remaining Phase 4 work: make `studio/h3_loop.py` emit the encode-all and sample-all
-prompts.
+
+Context Loop measurement: first two silent-proof shots (832×480, 73 frames, 20 steps)
+in the real Automated Draft graph, run `msg-P4-loop2`, 1,330 s total:
+
+| Shot | Extra tokens per step | Encode | Sampler | s/it | Busy clock | Peak temp |
+|---|---|---|---|---|---|---|
+| MSG_S001_SH01 (empty café) | 390 media + 650 text | 7 s | 331 s | 16.5 | 914 MHz | 90 °C |
+| MSG_S001_SH02 (Andre RefMod) | 409 media + 7,224 RefMod + 1,972 text | 38 s | 903 s | 45.1 | 637 MHz | 93 °C |
+
+Video tokens are ~7.4k per shot, so shot 2 runs ~17k tokens against ~8.5k: twice the
+linear work and ~4× the attention, plus deeper throttling. RAM stayed above 14 GB.
+The loop's model alternation costs ~30 s per shot (text encoder re-read). Decision:
+do not restructure `h3_loop.py` for model-major batching (≈3–5% gain); keep the stage
+nodes for manual staged batches.
+
+The largest remaining lever is the reference token budget. The Andre identity RefMod
+alone (7,224 tokens) is larger than the video. `max_total_tokens` only refuses bundles
+over a limit; it does not shrink them, and RefMods keep the size they were saved at.
+Next test: create a smaller Andre identity RefMod once (Compressed Reference, or a
+smaller saved size), render the same shot, and judge likeness against the 7,224-token
+version — a creative decision, not just a speed one.
 
 Hermes Desktop's llama-server (Qwen3.5-9B, ~5.1 GB VRAM) is respawned by its supervisor
 and reloads the model on demand. Close Hermes or unload its model before H3 render sessions.
