@@ -1,0 +1,5 @@
+# gif
+
+Constructed reduced capability test derived from `/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-videohelpersuite/tests/converted-format-input.json`. Not full example certification. Fixture paths refer to the scoped input copies recorded in the API prompt.
+
+Evidence: `/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/gif`. Backend contract observed; disk source reviewed, runtime bytecode not cryptographically attested.

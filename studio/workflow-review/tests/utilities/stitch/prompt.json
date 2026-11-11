@@ -1,0 +1,44 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "WorkflowReview/utilities-20261109T175656610335Z/a.png"
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "WorkflowReview/utilities-20261109T175656610335Z/b.png"
+    }
+  },
+  "3": {
+    "class_type": "AILab_ImageStitch",
+    "inputs": {
+      "image1": [
+        "1",
+        0
+      ],
+      "image2": [
+        "2",
+        0
+      ],
+      "stitch_mode": "right",
+      "match_image_size": true,
+      "megapixels": 0,
+      "max_width": 1024,
+      "max_height": 512,
+      "upscale_method": "bilinear",
+      "spacing_width": 0,
+      "background_color": "#FFFFFF"
+    }
+  },
+  "4": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "3",
+        0
+      ]
+    }
+  }
+}

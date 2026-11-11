@@ -1,0 +1,19 @@
+[
+  {
+    "name": "gif",
+    "passed": true,
+    "frame_hashes": [
+      "0d89f1cffcf8f84eeb54e7c7b926a59f4da7675d6972a49e72eadb0527b16ceb",
+      "6d8487b06327da2d873b14c070a3a41644f0da863a71f4033033d8b2639571b8"
+    ]
+  },
+  {
+    "name": "previews",
+    "passed": true,
+    "images": [
+      "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/previews/0-image_preview_image_preview_ugmiz_0001.png",
+      "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/previews/1-mask_preview_mask_preview_jdabl_0001.png"
+    ],
+    "scope": "both independently decoded PNGs observed, no segmentation accuracy claim"
+  }
+]

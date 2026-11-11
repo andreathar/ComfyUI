@@ -1,0 +1,402 @@
+[
+  {
+    "name": "desaturate",
+    "source_example": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/ComfyUI_LC123_nodes/workflows/LC123 Examples - Image Tools & Post Processing.json",
+    "variant": "constructed_reduced_capability_test",
+    "scope": "No certification of complete source graph or frontend behavior",
+    "status": "backend_success",
+    "prompt_id": "1d9d8dae-8354-4cd3-9081-2eaeacc3f070",
+    "reviewed_source_hashes": {
+      "custom_nodes/comfyui-rmbg/py/AILab_ImageMaskTools.py": "500ec140c405c68a6fe83408d7dfe1da28d30602b373376490d506323dd9d6ce",
+      "custom_nodes/comfyui-itools/nodes/prompt_record.py": "7852c4e151ff4ef26d2da3e7670bc5e84c9f2b57f00a38ec0abe964ee13f995b",
+      "custom_nodes/comfyui-itools/nodes/add_overlay.py": "bc6653d26f1489afbd1ea4bac0d256826788fc0342bf341d9dd704634bfa2d18",
+      "custom_nodes/comfyui-itools/backend/overlay.py": "0e09d31a8c0c5b7c4cdba0b6d3b394628a51461edb0b902d0e7c799df960f4ce",
+      "custom_nodes/comfyui-itools/backend/shared.py": "9367f2ceb50d35b367d89adb601c32d4a8d72e6549e4203a0949dd722acd8173",
+      "custom_nodes/comfyui-videohelpersuite/videohelpersuite/nodes.py": "6d975d8fd8906784a4d9233ccc1238150ed33c6311d06c53fd08b5ee96e30442",
+      "custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py": "5cb45955281b646b3458e454977dbd343a8be46d2e76a9f65c99ef75642da090"
+    },
+    "before": {
+      "timestamp": 1794247020.0626445,
+      "ram_available": 13621977088,
+      "swap_used": 12248236032,
+      "gpu_used_mib": 228,
+      "temperature_c": 50,
+      "gpu_utilization": 0
+    },
+    "outputs": {
+      "2": {
+        "lc_preview": [
+          {
+            "filename": "lc_after_temp_qaiso_00001_.png",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "5f269259-8f6a-4065-af0a-e3f93fc8a2cb"
+          }
+        ],
+        "lc_before": [
+          {
+            "filename": "lc_before_temp_qaiso_00001_.png",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "d6f893a8-c192-4cfc-bd9c-24cdb23a8219"
+          }
+        ]
+      },
+      "3": {
+        "images": [
+          {
+            "filename": "ComfyUI_temp_rdtxy_00001_.png",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "953b96ba-a2d3-428e-8eeb-f828f86fe47d"
+          }
+        ]
+      }
+    },
+    "evidence": [
+      {
+        "source": "/mnt/data/Projects_SSD/ComfyUI/temp/ComfyUI_temp_rdtxy_00001_.png",
+        "copy": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/desaturate/0-ComfyUI_temp_rdtxy_00001_.png",
+        "size": [
+          512,
+          512
+        ],
+        "format": "PNG",
+        "frames": 1,
+        "mode": "RGB",
+        "equal_rgb_channels": true
+      }
+    ],
+    "contract_passed": true,
+    "elapsed_seconds": 0.33,
+    "provenance_limit": "Source hashes verify files on disk, not loaded runtime bytecode.",
+    "qualification": "Backend contract observed; disk source reviewed, runtime bytecode not cryptographically attested.",
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/desaturate"
+  },
+  {
+    "name": "gif",
+    "source_example": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-videohelpersuite/tests/converted-format-input.json",
+    "variant": "constructed_reduced_capability_test",
+    "scope": "No certification of complete source graph or frontend behavior",
+    "status": "backend_success",
+    "prompt_id": "1ea2cd31-b7f0-4c84-bc4b-5359f0b5d632",
+    "reviewed_source_hashes": {
+      "custom_nodes/comfyui-rmbg/py/AILab_ImageMaskTools.py": "500ec140c405c68a6fe83408d7dfe1da28d30602b373376490d506323dd9d6ce",
+      "custom_nodes/comfyui-itools/nodes/prompt_record.py": "7852c4e151ff4ef26d2da3e7670bc5e84c9f2b57f00a38ec0abe964ee13f995b",
+      "custom_nodes/comfyui-itools/nodes/add_overlay.py": "bc6653d26f1489afbd1ea4bac0d256826788fc0342bf341d9dd704634bfa2d18",
+      "custom_nodes/comfyui-itools/backend/overlay.py": "0e09d31a8c0c5b7c4cdba0b6d3b394628a51461edb0b902d0e7c799df960f4ce",
+      "custom_nodes/comfyui-itools/backend/shared.py": "9367f2ceb50d35b367d89adb601c32d4a8d72e6549e4203a0949dd722acd8173",
+      "custom_nodes/comfyui-videohelpersuite/videohelpersuite/nodes.py": "6d975d8fd8906784a4d9233ccc1238150ed33c6311d06c53fd08b5ee96e30442",
+      "custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py": "5cb45955281b646b3458e454977dbd343a8be46d2e76a9f65c99ef75642da090"
+    },
+    "before": {
+      "timestamp": 1794247019.3905318,
+      "ram_available": 13660700672,
+      "swap_used": 12249448448,
+      "gpu_used_mib": 228,
+      "temperature_c": 51,
+      "gpu_utilization": 0
+    },
+    "outputs": {
+      "4": {
+        "gifs": [
+          {
+            "filename": "vhs_00001.gif",
+            "subfolder": "WorkflowReview/local-utilities",
+            "type": "temp",
+            "format": "image/gif",
+            "frame_rate": 2.0,
+            "workflow": "vhs_00001.png",
+            "fullpath": "/mnt/data/Projects_SSD/ComfyUI/temp/WorkflowReview/local-utilities/vhs_00001.gif",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "b2b974cf-e34c-490d-8a23-84de3b216fea"
+          }
+        ]
+      }
+    },
+    "evidence": [
+      {
+        "source": "/mnt/data/Projects_SSD/ComfyUI/temp/WorkflowReview/local-utilities/vhs_00001.gif",
+        "copy": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/gif/0-vhs_00001.gif",
+        "size": [
+          512,
+          512
+        ],
+        "format": "GIF",
+        "frames": 2,
+        "mode": "P"
+      }
+    ],
+    "contract_passed": true,
+    "elapsed_seconds": 0.65,
+    "provenance_limit": "Source hashes verify files on disk, not loaded runtime bytecode.",
+    "qualification": "Backend contract observed; disk source reviewed, runtime bytecode not cryptographically attested.",
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/gif"
+  },
+  {
+    "name": "overlay",
+    "source_example": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-itools/example_workflows/KSamplerOverlay.json",
+    "variant": "constructed_reduced_capability_test",
+    "scope": "No certification of complete source graph or frontend behavior",
+    "status": "backend_success",
+    "prompt_id": "9177701e-47e2-4931-a775-67a7e54cf68d",
+    "reviewed_source_hashes": {
+      "custom_nodes/comfyui-rmbg/py/AILab_ImageMaskTools.py": "500ec140c405c68a6fe83408d7dfe1da28d30602b373376490d506323dd9d6ce",
+      "custom_nodes/comfyui-itools/nodes/prompt_record.py": "7852c4e151ff4ef26d2da3e7670bc5e84c9f2b57f00a38ec0abe964ee13f995b",
+      "custom_nodes/comfyui-itools/nodes/add_overlay.py": "bc6653d26f1489afbd1ea4bac0d256826788fc0342bf341d9dd704634bfa2d18",
+      "custom_nodes/comfyui-itools/backend/overlay.py": "0e09d31a8c0c5b7c4cdba0b6d3b394628a51461edb0b902d0e7c799df960f4ce",
+      "custom_nodes/comfyui-itools/backend/shared.py": "9367f2ceb50d35b367d89adb601c32d4a8d72e6549e4203a0949dd722acd8173",
+      "custom_nodes/comfyui-videohelpersuite/videohelpersuite/nodes.py": "6d975d8fd8906784a4d9233ccc1238150ed33c6311d06c53fd08b5ee96e30442",
+      "custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py": "5cb45955281b646b3458e454977dbd343a8be46d2e76a9f65c99ef75642da090"
+    },
+    "before": {
+      "timestamp": 1794247019.035291,
+      "ram_available": 13672529920,
+      "swap_used": 12250910720,
+      "gpu_used_mib": 228,
+      "temperature_c": 51,
+      "gpu_utilization": 0
+    },
+    "outputs": {
+      "3": {
+        "images": [
+          {
+            "filename": "ComfyUI_temp_rinnv_00001_.png",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "da53ccca-966b-4b71-b34d-8bd3d8579652"
+          }
+        ]
+      }
+    },
+    "evidence": [
+      {
+        "source": "/mnt/data/Projects_SSD/ComfyUI/temp/ComfyUI_temp_rinnv_00001_.png",
+        "copy": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/overlay/0-ComfyUI_temp_rinnv_00001_.png",
+        "size": [
+          512,
+          512
+        ],
+        "format": "PNG",
+        "frames": 1,
+        "mode": "RGBA"
+      }
+    ],
+    "contract_passed": true,
+    "elapsed_seconds": 0.33,
+    "provenance_limit": "Source hashes verify files on disk, not loaded runtime bytecode.",
+    "qualification": "Backend contract observed; iTools source updated after server startup, fresh-source qualification blocked.",
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/overlay"
+  },
+  {
+    "name": "previews",
+    "source_example": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-rmbg/example_workflows/image_mask_preview.json",
+    "variant": "constructed_reduced_capability_test",
+    "scope": "No certification of complete source graph or frontend behavior",
+    "status": "backend_success",
+    "prompt_id": "95b90bc6-336c-4d2f-9bff-29222f21c8d8",
+    "reviewed_source_hashes": {
+      "custom_nodes/comfyui-rmbg/py/AILab_ImageMaskTools.py": "500ec140c405c68a6fe83408d7dfe1da28d30602b373376490d506323dd9d6ce",
+      "custom_nodes/comfyui-itools/nodes/prompt_record.py": "7852c4e151ff4ef26d2da3e7670bc5e84c9f2b57f00a38ec0abe964ee13f995b",
+      "custom_nodes/comfyui-itools/nodes/add_overlay.py": "bc6653d26f1489afbd1ea4bac0d256826788fc0342bf341d9dd704634bfa2d18",
+      "custom_nodes/comfyui-itools/backend/overlay.py": "0e09d31a8c0c5b7c4cdba0b6d3b394628a51461edb0b902d0e7c799df960f4ce",
+      "custom_nodes/comfyui-itools/backend/shared.py": "9367f2ceb50d35b367d89adb601c32d4a8d72e6549e4203a0949dd722acd8173",
+      "custom_nodes/comfyui-videohelpersuite/videohelpersuite/nodes.py": "6d975d8fd8906784a4d9233ccc1238150ed33c6311d06c53fd08b5ee96e30442",
+      "custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py": "5cb45955281b646b3458e454977dbd343a8be46d2e76a9f65c99ef75642da090"
+    },
+    "before": {
+      "timestamp": 1794247017.998054,
+      "ram_available": 12718829568,
+      "swap_used": 12273246208,
+      "gpu_used_mib": 228,
+      "temperature_c": 50,
+      "gpu_utilization": 0
+    },
+    "outputs": {
+      "2": {
+        "images": [
+          {
+            "filename": "image_preview_image_preview_ugmiz_0001.png",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "696fcce1-f745-4670-8239-299a92754819"
+          }
+        ]
+      },
+      "3": {
+        "images": [
+          {
+            "filename": "mask_preview_mask_preview_jdabl_0001.png",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 64,
+              "height": 64
+            },
+            "id": "4238c499-239d-4668-bb1f-1e9ef9d75e23"
+          }
+        ]
+      }
+    },
+    "evidence": [
+      {
+        "source": "/mnt/data/Projects_SSD/ComfyUI/temp/image_preview_image_preview_ugmiz_0001.png",
+        "copy": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/previews/0-image_preview_image_preview_ugmiz_0001.png",
+        "size": [
+          512,
+          512
+        ],
+        "format": "PNG",
+        "frames": 1,
+        "mode": "RGB",
+        "equal_rgb_channels": false
+      },
+      {
+        "source": "/mnt/data/Projects_SSD/ComfyUI/temp/mask_preview_mask_preview_jdabl_0001.png",
+        "copy": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/previews/1-mask_preview_mask_preview_jdabl_0001.png",
+        "size": [
+          64,
+          64
+        ],
+        "format": "PNG",
+        "frames": 1,
+        "mode": "RGB",
+        "equal_rgb_channels": true
+      }
+    ],
+    "contract_passed": true,
+    "elapsed_seconds": 0.66,
+    "provenance_limit": "Source hashes verify files on disk, not loaded runtime bytecode.",
+    "qualification": "Backend contract observed; disk source reviewed, runtime bytecode not cryptographically attested.",
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/previews"
+  },
+  {
+    "name": "prompt-record",
+    "source_example": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-itools/example_workflows/PromptRecord.json",
+    "variant": "constructed_reduced_capability_test",
+    "scope": "No certification of complete source graph or frontend behavior",
+    "status": "backend_success",
+    "prompt_id": "fd2bdb88-0668-48bb-8e59-b3a70340e583",
+    "reviewed_source_hashes": {
+      "custom_nodes/comfyui-rmbg/py/AILab_ImageMaskTools.py": "500ec140c405c68a6fe83408d7dfe1da28d30602b373376490d506323dd9d6ce",
+      "custom_nodes/comfyui-itools/nodes/prompt_record.py": "7852c4e151ff4ef26d2da3e7670bc5e84c9f2b57f00a38ec0abe964ee13f995b",
+      "custom_nodes/comfyui-itools/nodes/add_overlay.py": "bc6653d26f1489afbd1ea4bac0d256826788fc0342bf341d9dd704634bfa2d18",
+      "custom_nodes/comfyui-itools/backend/overlay.py": "0e09d31a8c0c5b7c4cdba0b6d3b394628a51461edb0b902d0e7c799df960f4ce",
+      "custom_nodes/comfyui-itools/backend/shared.py": "9367f2ceb50d35b367d89adb601c32d4a8d72e6549e4203a0949dd722acd8173",
+      "custom_nodes/comfyui-videohelpersuite/videohelpersuite/nodes.py": "6d975d8fd8906784a4d9233ccc1238150ed33c6311d06c53fd08b5ee96e30442",
+      "custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py": "5cb45955281b646b3458e454977dbd343a8be46d2e76a9f65c99ef75642da090"
+    },
+    "before": {
+      "timestamp": 1794247016.982624,
+      "ram_available": 7644209152,
+      "swap_used": 13020106752,
+      "gpu_used_mib": 4388,
+      "temperature_c": 49,
+      "gpu_utilization": 0
+    },
+    "outputs": {
+      "1": {
+        "text": [
+          "WorkflowReview local utility smoke test"
+        ]
+      }
+    },
+    "evidence": [],
+    "contract_passed": true,
+    "elapsed_seconds": 0.99,
+    "provenance_limit": "Source hashes verify files on disk, not loaded runtime bytecode.",
+    "qualification": "Backend contract observed; iTools source updated after server startup, fresh-source qualification blocked.",
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/prompt-record"
+  },
+  {
+    "name": "stitch",
+    "source_example": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-rmbg/example_workflows/V2.7.0_ImageStitch.json",
+    "variant": "constructed_reduced_capability_test",
+    "scope": "No certification of complete source graph or frontend behavior",
+    "status": "backend_success",
+    "prompt_id": "83131afe-ea1d-455e-81d5-017205c53e59",
+    "reviewed_source_hashes": {
+      "custom_nodes/comfyui-rmbg/py/AILab_ImageMaskTools.py": "500ec140c405c68a6fe83408d7dfe1da28d30602b373376490d506323dd9d6ce",
+      "custom_nodes/comfyui-itools/nodes/prompt_record.py": "7852c4e151ff4ef26d2da3e7670bc5e84c9f2b57f00a38ec0abe964ee13f995b",
+      "custom_nodes/comfyui-itools/nodes/add_overlay.py": "bc6653d26f1489afbd1ea4bac0d256826788fc0342bf341d9dd704634bfa2d18",
+      "custom_nodes/comfyui-itools/backend/overlay.py": "0e09d31a8c0c5b7c4cdba0b6d3b394628a51461edb0b902d0e7c799df960f4ce",
+      "custom_nodes/comfyui-itools/backend/shared.py": "9367f2ceb50d35b367d89adb601c32d4a8d72e6549e4203a0949dd722acd8173",
+      "custom_nodes/comfyui-videohelpersuite/videohelpersuite/nodes.py": "6d975d8fd8906784a4d9233ccc1238150ed33c6311d06c53fd08b5ee96e30442",
+      "custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py": "5cb45955281b646b3458e454977dbd343a8be46d2e76a9f65c99ef75642da090"
+    },
+    "before": {
+      "timestamp": 1794247018.674601,
+      "ram_available": 12691111936,
+      "swap_used": 12268294144,
+      "gpu_used_mib": 228,
+      "temperature_c": 51,
+      "gpu_utilization": 0
+    },
+    "outputs": {
+      "4": {
+        "images": [
+          {
+            "filename": "ComfyUI_temp_voevf_00001_.png",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 1024,
+              "height": 512
+            },
+            "id": "3145fcdd-98a4-48fe-98da-bc3837d7780e"
+          }
+        ]
+      }
+    },
+    "evidence": [
+      {
+        "source": "/mnt/data/Projects_SSD/ComfyUI/temp/ComfyUI_temp_voevf_00001_.png",
+        "copy": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/stitch/0-ComfyUI_temp_voevf_00001_.png",
+        "size": [
+          1024,
+          512
+        ],
+        "format": "PNG",
+        "frames": 1,
+        "mode": "RGB",
+        "equal_rgb_channels": false
+      }
+    ],
+    "contract_passed": true,
+    "elapsed_seconds": 0.34,
+    "provenance_limit": "Source hashes verify files on disk, not loaded runtime bytecode.",
+    "qualification": "Backend contract observed; disk source reviewed, runtime bytecode not cryptographically attested.",
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-utilities/20261109T175656610335Z/stitch"
+  }
+]

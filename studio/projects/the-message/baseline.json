@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "source": "live panel inspection 2026-11-10",
+  "scenes": {
+    "MSG_S001_SH01": {
+      "prompt_text": "subject_definitions:\n<Subject 1> is Andre_Athar, the man whose identity is shown in <Video 1>. Their name is Andre_Athar.\n\nsummary:\n[reference generation] Andre_Athar, the man whose identity is referenced in <Video 1>, sits at a small wooden desk in the apartment shown in <Picture 1> and notices a folded note. A quiet, thoughtful moment in natural daylight.\n\nretention_analysis:\n<Subject 1>: fully_preserved - Preserve his facial identity from <Video 1>.\n\ndetailed_description:\nLive-action cinematic realism. Soft natural daylight.\n[Shot 1] One continuous, static, eye-level medium shot. Use <Picture 1> for the room's cream walls, wooden floor, large glass doors and natural daylight; the room must no longer be empty. Add a simple small wooden desk along the left wall, with one folded white paper note on it. Andre_Athar from <Video 1> is seated at the desk, wearing a plain dark jacket over a light gray shirt. His face is clearly visible in a gentle three-quarter view. He remains mostly still and lowers his eyes toward the note once, with a calm, thoughtful expression. Keep the hands below the frame. No walking, camera movement, readable writing or dialogue.\n\noverall_soundscape:\nQuiet indoor room tone. No speech.\n\nnon_diegetic_music:\nN/A",
+      "builder_state": {
+        "version": 1,
+        "mode": "REF",
+        "off": {},
+        "duration": 2,
+        "p2Shot": 1,
+        "lastShot": 1,
+        "imd": "",
+        "soundscape": "",
+        "music": "N/A",
+        "ref": {
+          "subjectDefs": [
+            {
+              "text": "<Subject 1> is Andre_Athar, the man whose identity is shown in <Video 1>.",
+              "role": null,
+              "name": "Andre_Athar"
+            }
+          ],
+          "summaryTypes": [
+            "reference generation"
+          ],
+          "summaryText": "Andre_Athar, the man whose identity is referenced in <Video 1>, sits at a small wooden desk in the apartment shown in <Picture 1> and notices a folded note. A quiet, thoughtful moment in natural daylight.",
+          "retention": [
+            {
+              "label": "<Subject 1>",
+              "context": "",
+              "marker": "fully_preserved",
+              "note": "Preserve his facial identity from <Video 1>."
+            }
+          ],
+          "styleLine": "Live-action cinematic realism. Soft natural daylight.",
+          "detail": "[Shot 1] One continuous, static, eye-level medium shot. Use <Picture 1> for the room's cream walls, wooden floor, large glass doors and natural daylight; the room must no longer be empty. Add a simple small wooden desk along the left wall, with one folded white paper note on it. Andre_Athar from <Video 1> is seated at the desk, wearing a plain dark jacket over a light gray shirt. His face is clearly visible in a gentle three-quarter view. He remains mostly still and lowers his eyes toward the note once, with a calm, thoughtful expression. Keep the hands below the frame. No walking, camera movement, readable writing or dialogue.",
+          "soundscape": "Quiet indoor room tone. No speech.",
+          "music": "N/A"
+        }
+      },
+      "stack_state": {
+        "picks": [
+          {
+            "uid": 2,
+            "name": "refmod-Andre_Athar",
+            "label": "refmod-Andre_Athar",
+            "on": true,
+            "preview": "refmod-Andre_Athar",
+            "visual": {
+              "file": "refmod-Andre_Athar",
+              "kind": "video",
+              "tokens": 4440,
+              "mode": "weight",
+              "w": 1,
+              "s": 1,
+              "c": 1,
+              "embedded_audio_ignored": false
+            }
+          }
+        ],
+        "budget": 0
+      },
+      "media_state": [
+        {
+          "kind": "picture",
+          "file": "minimax_h3/apartment_00001_.png [input]",
+          "name": "apartment_00001_.png",
+          "duration": null,
+          "width": 768,
+          "height": 432,
+          "has_audio": false,
+          "audio_mode": "off",
+          "uid": "mmwaz1aa30"
+        }
+      ]
+    },
+    "MSG_S002_SH01": {
+      "prompt_text": "subject_definitions:\n<Subject 1> is Andre_Athar, the man whose identity is shown in <Video 1>.\n<Audio 1> is <Subject 1>'s voice timbre reference for speaker (S1).\n\nsummary:\n[reference generation] Andre_Athar stands inside by the glass doorway of the apartment in <Picture 1>, wearing the jacket and shirt shown in <Picture 2>. He looks back toward the room while his off-screen voice says Not again.\n\nretention_analysis:\n<Subject 1>: fully_preserved - Preserve his facial identity from <Video 1>. His outfit follows <Picture 2>, not conflicting clothing in the identity photos.\n<Picture 1>: reference - Preserve the apartment appearance, cream walls, wooden floor, glass doors and daylight.\n<Picture 2>: reference - Clothing only: dark charcoal blazer over a plain light-gray crew-neck shirt. Do not copy the cropped framing.\n<Audio 1>: reference - Preserve Andre_Athar's natural voice timbre and accent without copying the recording's words or background sound.\n\ndetailed_description:\nLive-action cinematic realism. Soft natural daylight. Match the quiet mood of the previous shot.\n[Shot 1] One continuous static eye-level medium shot inside the apartment from <Picture 1>. Andre_Athar from <Video 1> is already standing just inside the closed glass doorway. He wears the same dark charcoal blazer over a plain light-gray crew-neck shirt shown in <Picture 2>, without a costume change. His torso stays angled toward the doorway; he slowly turns his head back toward the room once, revealing a clear gentle three-quarter view of his face with a quietly resigned expression. Keep his body mostly still and hands out of frame. Andre_Athar (S1), using the natural voice timbre referenced from <Audio 1>, says in an off-screen voiceover: <d>[English] Not again.</d> while his lips remain completely closed. Say the line once, naturally and clearly. No walking, opening doors, camera movement, extra people, subtitles, readable writing, additional words or singing.\n\noverall_soundscape:\nOne clear off-screen male voice delivering the specified line over faint indoor room tone. No other speakers, sound effects or music.\n\nnon_diegetic_music:\nN/A",
+      "builder_state": {
+        "version": 1,
+        "mode": "REF",
+        "off": {},
+        "duration": 2,
+        "p2Shot": 1,
+        "lastShot": 1,
+        "imd": "",
+        "soundscape": "",
+        "music": "N/A",
+        "ref": {
+          "subjectDefs": [
+            {
+              "text": "<Subject 1> is Andre_Athar, the man whose identity is shown in <Video 1>.",
+              "role": null,
+              "name": "Andre_Athar"
+            },
+            {
+              "text": "<Audio 1> is <Subject 1>'s voice timbre reference for speaker (S1).",
+              "role": null,
+              "name": ""
+            }
+          ],
+          "summaryTypes": [
+            "reference generation"
+          ],
+          "summaryText": "Andre_Athar stands inside by the glass doorway of the apartment in <Picture 1>, wearing the jacket and shirt shown in <Picture 2>. He looks back toward the room while his off-screen voice says Not again.",
+          "retention": [
+            {
+              "label": "<Subject 1>",
+              "context": "",
+              "marker": "fully_preserved",
+              "note": "Preserve his facial identity from <Video 1>. His outfit follows <Picture 2>, not conflicting clothing in the identity photos."
+            },
+            {
+              "label": "<Picture 1>",
+              "context": "",
+              "marker": "reference",
+              "note": "Preserve the apartment appearance, cream walls, wooden floor, glass doors and daylight."
+            },
+            {
+              "label": "<Picture 2>",
+              "context": "",
+              "marker": "reference",
+              "note": "Clothing only: dark charcoal blazer over a plain light-gray crew-neck shirt. Do not copy the cropped framing."
+            },
+            {
+              "label": "<Audio 1>",
+              "context": "",
+              "marker": "reference",
+              "note": "Preserve Andre_Athar's natural voice timbre and accent without copying the recording's words or background sound."
+            }
+          ],
+          "styleLine": "Live-action cinematic realism. Soft natural daylight. Match the quiet mood of the previous shot.",
+          "detail": "[Shot 1] One continuous static eye-level medium shot inside the apartment from <Picture 1>. Andre_Athar from <Video 1> is already standing just inside the closed glass doorway. He wears the same dark charcoal blazer over a plain light-gray crew-neck shirt shown in <Picture 2>, without a costume change. His torso stays angled toward the doorway; he slowly turns his head back toward the room once, revealing a clear gentle three-quarter view of his face with a quietly resigned expression. Keep his body mostly still and hands out of frame. Andre_Athar (S1), using the natural voice timbre referenced from <Audio 1>, says in an off-screen voiceover: <d>[English] Not again.</d> while his lips remain completely closed. Say the line once, naturally and clearly. No walking, opening doors, camera movement, extra people, subtitles, readable writing, additional words or singing.",
+          "soundscape": "One clear off-screen male voice delivering the specified line over faint indoor room tone. No other speakers, sound effects or music.",
+          "music": "N/A"
+        }
+      },
+      "stack_state": {
+        "picks": [
+          {
+            "uid": 1,
+            "name": "refmod-Andre_Athar",
+            "label": "refmod-Andre_Athar",
+            "on": true,
+            "preview": "refmod-Andre_Athar",
+            "visual": {
+              "file": "refmod-Andre_Athar",
+              "kind": "video",
+              "tokens": 7104,
+              "mode": "weight",
+              "w": 1,
+              "s": 1,
+              "c": 1,
+              "embedded_audio_ignored": false
+            }
+          },
+          {
+            "uid": 2,
+            "name": "The_Message/Andre_Athar_voice_v1",
+            "label": "Andre_Athar_voice_v1",
+            "on": true,
+            "preview": null,
+            "audio": {
+              "file": "The_Message/Andre_Athar_voice_v1",
+              "kind": "audio",
+              "tokens": 640,
+              "seconds": 8,
+              "mode": "weight",
+              "w": 1,
+              "s": 1,
+              "c": 1,
+              "embedded_audio_ignored": false
+            }
+          }
+        ],
+        "budget": 0
+      },
+      "media_state": [
+        {
+          "kind": "picture",
+          "file": "minimax_h3/apartment_00001_.png [input]",
+          "name": "apartment_00001_.png",
+          "duration": null,
+          "width": 768,
+          "height": 432,
+          "has_audio": false,
+          "audio_mode": "off",
+          "uid": "mmwaz1aa30"
+        },
+        {
+          "kind": "picture",
+          "file": "The_Message/wardrobe/take01_dark_jacket_light_gray_shirt.png [input]",
+          "name": "take01_dark_jacket_light_gray_shirt.png",
+          "width": 182,
+          "height": 107,
+          "has_audio": false,
+          "audio_mode": "off",
+          "uid": "the_message_wardrobe_take01"
+        }
+      ]
+    }
+  }
+}

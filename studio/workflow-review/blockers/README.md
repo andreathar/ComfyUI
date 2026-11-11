@@ -1,0 +1,3 @@
+# Blockers and unknowns
+
+[workflows.csv](workflows.csv) separates observed schema gaps from unverified requirements. A missing localhost schema is not proof that an extension is absent. Muted/bypassed nodes, frontend virtual nodes and native subgraph IDs are not reported as missing backend types. All nodes, including inactive nodes and unused subgraph definitions, remain in the reference map. File-level exclusions, errors, unsupported media and traversal gaps are in `../workflows.json` (`sources`, `traversal_issues`). No model existence, loader compatibility, safety or hardware qualification is implied.

@@ -1,0 +1,22 @@
+{
+  "protected": [
+    {
+      "path": "output/The_Message/scene01/take_00001_.mp4",
+      "sha256": "b3683b49df28d38691d40b2fd932e5ee56b552cffa7975ad699963001b7fd2a2"
+    },
+    {
+      "path": "output/The_Message/scene02/take_00001_.mp4",
+      "sha256": "0dda2a3b016941eaa15e1f3d2fc3050bef9415eb3cf73794033041dcb21ee0fe"
+    },
+    {
+      "path": "input/The_Message/voice/andre_athar_recording_20261110.wav",
+      "sha256": "f2399f9162fbf85fd874eb81c8daea2c19e1905a503f9308f9ecb482d64fa1d3"
+    },
+    {
+      "path": "input/The_Message/voice/andre_athar_reference_02s_10s.wav",
+      "sha256": "2fa0b85a445d3c56ddd6db760241177eb7bd99fa3300f57ee54ba875f18ef188"
+    }
+  ],
+  "scene01_review": "accepted learning baseline; inherited from report",
+  "scene02_review": "pending; no approval inferred"
+}

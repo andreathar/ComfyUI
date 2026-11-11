@@ -36,30 +36,33 @@ def fingerprint(workflow):
 
 def widget_values(node, schema):
     """Decode native widgets, including the frontend's seed control widget."""
+    linked = {i["name"] for i in node.get("inputs", []) if i.get("link") is not None}
     if node.get("widgets_values_named"):
-        return dict(node["widgets_values_named"])
+        return {k: v for k, v in node["widgets_values_named"].items() if k not in linked}
+    widget_inputs = {i["name"] for i in node.get("inputs", []) if i.get("widget")}
     values = iter(node.get("widgets_values", []))
     result = {}
-    linked = {i["name"] for i in node.get("inputs", []) if i.get("link") is not None}
     def consume(inputs, prefix=""):
         for section in ("required", "optional"):
             for key, spec in inputs.get(section, {}).items():
                 name = prefix + key
-                if name in linked:
+                if name in linked and name not in widget_inputs:
                     continue
                 kind = spec[0]
                 options = spec[1] if len(spec) > 1 else {}
                 if options.get("forceInput") or not (isinstance(kind, list) or kind in ("INT", "FLOAT", "STRING", "BOOLEAN", "COMBO", "COMFY_DYNAMICCOMBO_V3")):
                     continue
                 try:
-                    result[name] = next(values)
+                    value = next(values)
                     if options.get("control_after_generate"):
                         next(values)
                 except StopIteration:
                     return
+                if name not in linked:
+                    result[name] = value
                 if kind == "COMFY_DYNAMICCOMBO_V3":
                     for option in options["options"]:
-                        if option["key"] == result[name]:
+                        if option["key"] == value:
                             consume(option["inputs"], name + ".")
                             break
     consume(schema.get("input", {}))

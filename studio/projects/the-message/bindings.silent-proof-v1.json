@@ -1,0 +1,138 @@
+{
+  "MSG_S001_SH01": {
+    "assets": [
+      "cafe-counter-wide-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11001,
+    "shot_controls": {
+      "framing": "establishing",
+      "props": [],
+      "must_show": [
+        "espresso counter on the left",
+        "window tables on the right"
+      ]
+    },
+    "blocking": "No people, hands or body parts in frame.",
+    "warnings": [
+      "Reference candidates require visual qualification before dispatch.",
+      "Generated cafe views are design references, not a verified 3D floor plan."
+    ]
+  },
+  "MSG_S001_SH02": {
+    "assets": [
+      "cafe-window-table-v1",
+      "cafe-wardrobe-candidate-v1",
+      "andre-identity-video-v1",
+      "folded-note-candidate-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11002,
+    "shot_controls": {
+      "framing": "character_action",
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "expression": "neutral, relaxed closed lips",
+      "gaze_target": "the folded note"
+    },
+    "blocking": "No speech. Keep hands below the tabletop and maintain the same chair.",
+    "warnings": [
+      "Reference candidates require visual qualification before dispatch.",
+      "Generated cafe views are design references, not a verified 3D floor plan."
+    ]
+  },
+  "MSG_S001_SH03": {
+    "assets": [
+      "cafe-table-insert-v1",
+      "folded-note-candidate-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11003,
+    "shot_controls": {
+      "framing": "prop_insert",
+      "props": [
+        "MSG-PRP-NOTE"
+      ]
+    },
+    "blocking": "No people, hands or body parts in frame.",
+    "warnings": [
+      "Reference candidates require visual qualification before dispatch.",
+      "Generated cafe views are design references, not a verified 3D floor plan."
+    ]
+  },
+  "MSG_S001_SH04": {
+    "assets": [
+      "cafe-window-table-v1",
+      "cafe-wardrobe-candidate-v1",
+      "andre-identity-video-v1",
+      "folded-note-candidate-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11004,
+    "shot_controls": {
+      "framing": "portrait_reaction",
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "expression": "neutral, relaxed closed lips",
+      "gaze_target": "the window light, with only a modest head turn"
+    },
+    "blocking": "No speech. Keep hands below the tabletop and maintain the same chair.",
+    "warnings": [
+      "Reference candidates require visual qualification before dispatch.",
+      "Generated cafe views are design references, not a verified 3D floor plan."
+    ]
+  },
+  "MSG_S001_SH05": {
+    "assets": [
+      "cafe-reverse-counter-v1",
+      "cafe-wardrobe-candidate-v1",
+      "andre-identity-video-v1",
+      "folded-note-candidate-v1",
+      "german-cafe-background-v2"
+    ],
+    "audio_mode": "silent",
+    "seed": 11005,
+    "shot_controls": {
+      "framing": "character_action",
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "expression": "neutral, relaxed closed lips",
+      "gaze_target": "the window light, with only a modest head turn"
+    },
+    "blocking": "No speech. Keep hands below the tabletop and maintain the same chair.",
+    "warnings": [
+      "Reference candidates require visual qualification before dispatch.",
+      "Generated cafe views are design references, not a verified 3D floor plan."
+    ]
+  },
+  "MSG_S001_SH06": {
+    "assets": [
+      "cafe-counter-wide-v1",
+      "cafe-wardrobe-candidate-v1",
+      "andre-identity-video-v1",
+      "folded-note-candidate-v1"
+    ],
+    "audio_mode": "silent",
+    "seed": 11006,
+    "shot_controls": {
+      "framing": "establishing",
+      "props": [
+        "MSG-PRP-NOTE"
+      ],
+      "expression": "neutral, relaxed closed lips",
+      "gaze_target": "the window light, with only a modest head turn",
+      "must_show": [
+        "espresso counter on the left",
+        "window tables on the right"
+      ]
+    },
+    "blocking": "No speech. Keep hands below the tabletop and maintain the same chair.",
+    "warnings": [
+      "Reference candidates require visual qualification before dispatch.",
+      "Generated cafe views are design references, not a verified 3D floor plan."
+    ]
+  }
+}

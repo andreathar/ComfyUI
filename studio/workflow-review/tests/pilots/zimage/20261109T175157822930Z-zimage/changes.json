@@ -1,0 +1,19 @@
+{
+  "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 03 - ZImage BF16 512.json",
+  "source_sha256": "d86872884abfd5f9e9906d70dc8df5b191ef9a2c4ad3401ebfcc50971e4101cb",
+  "changes": [
+    {
+      "node": "8",
+      "input": "seed",
+      "old": 202611093,
+      "new": 125216269548164
+    },
+    {
+      "node": "10",
+      "input": "filename_prefix",
+      "old": "PC_Workflow_Tests/ZImage_BF16_512",
+      "new": "WorkflowReview/20261109T175157822930Z-zimage"
+    }
+  ],
+  "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T175157822930Z-zimage"
+}

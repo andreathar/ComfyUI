@@ -1,0 +1,69 @@
+{
+  "MSG_S001_SH01": {
+    "assets": [
+      "apartment-v1",
+      "andre-identity-baseline"
+    ],
+    "audio_mode": "room_tone",
+    "seed": 0,
+    "blocking": "Add the desk and paper; the room must no longer be empty. No walking or dialogue.",
+    "warnings": [
+      "The approved room has no desk or note; these remain prompt-generated props."
+    ]
+  },
+  "MSG_S002_SH01": {
+    "assets": [
+      "apartment-v1",
+      "dark-jacket-gray-shirt-v1",
+      "andre-identity-baseline",
+      "andre-voice-v1"
+    ],
+    "audio_mode": "generated_voiceover",
+    "seed": 0,
+    "blocking": "No walking or opening doors. Lips stay closed; speech is off screen.",
+    "warnings": [
+      "Existing Scene 02 take remains pending review, including visible mouth opening.",
+      "Wardrobe reference is a 182x107 crop; it is a continuity guide, not a texture master."
+    ]
+  },
+  "MSG_S003_SH01": {
+    "assets": [
+      "cafe-counter-wide-v1"
+    ],
+    "audio_mode": "room_tone",
+    "seed": 0,
+    "blocking": "Preserve the chosen primary angle. The cafe is completely empty. No people, no dialogue, no camera movement.",
+    "warnings": [
+      "Optional coverage study, not an approved screenplay change.",
+      "Exact floor plan across the three generated images has not been verified."
+    ]
+  },
+  "MSG_S003_SH02": {
+    "assets": [
+      "cafe-window-table-v1",
+      "dark-jacket-gray-shirt-v1",
+      "andre-identity-video-v1"
+    ],
+    "audio_mode": "room_tone",
+    "seed": 0,
+    "blocking": "Preserve the chosen primary angle. No dialogue, no lip movement, no smile.",
+    "warnings": [
+      "Optional coverage study, not an approved screenplay change.",
+      "Exact floor plan across the three generated images has not been verified."
+    ]
+  },
+  "MSG_S003_SH03": {
+    "assets": [
+      "cafe-reverse-counter-v1",
+      "dark-jacket-gray-shirt-v1",
+      "andre-identity-video-v1"
+    ],
+    "audio_mode": "room_tone",
+    "seed": 0,
+    "blocking": "Preserve the chosen primary angle. No dialogue, no lip movement, no smile.",
+    "warnings": [
+      "Optional coverage study, not an approved screenplay change.",
+      "Exact floor plan across the three generated images has not been verified."
+    ]
+  }
+}

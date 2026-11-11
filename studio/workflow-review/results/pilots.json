@@ -1,0 +1,545 @@
+[
+  {
+    "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 04 - LC123 Prompt and Palette.json",
+    "source_sha256": "6749a4c6a21a97a5063e73a9b77e5e8b9344ea8b120c7450cb432494535990f1",
+    "adaptations": [
+      {
+        "node": "6",
+        "input": "filename_prefix",
+        "old": "PC_Workflow_Tests/LC123_Palette",
+        "new": "WorkflowReview/20261109T172130653925Z-lc123"
+      }
+    ],
+    "status": "backend_success",
+    "executed": true,
+    "measurement": "sampled whole-GPU use and system RAM, not allocator/process peaks",
+    "resources_before": {
+      "timestamp": 1794244890.6774871,
+      "ram_available": 18348212224,
+      "swap_used": 6585618432,
+      "gpu_used_mib": 132,
+      "temperature_c": 45,
+      "gpu_utilization": 0
+    },
+    "prompt_id": "b1490b91-bfb0-4cea-a39f-d0667c8d95af",
+    "outputs": {
+      "3": {
+        "images": [
+          {
+            "filename": "lc_palette_7073945.webp",
+            "subfolder": "",
+            "type": "temp",
+            "metadata": {
+              "kind": "image",
+              "width": 320,
+              "height": 96
+            },
+            "id": "f45817b4-2fe4-4606-91f9-5c9e8d800ed1"
+          }
+        ]
+      },
+      "6": {
+        "images": [
+          {
+            "filename": "20261109T172130653925Z-lc123_00001_.png",
+            "subfolder": "WorkflowReview",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 320,
+              "height": 96
+            },
+            "id": "297bccd9-acb1-4c28-a7b0-6c0746eb46dd"
+          }
+        ]
+      },
+      "5": {
+        "text": [
+          "Subject: an architect wearing a blue jacket, pose: standing\nScene: luxury penthouse interior with light oak floors, brass fixtures, floor-to-ceiling windows, city skyline beyond glass, soft spill, minimal designer furniture, polished concrete accents, no main person, no readable text or logos, afternoon light with warmer tilt, comfortable outdoor contrast, clear sky conditions, crisp air, clean distant detail\nPalette: #FF0000, #00FF00, #0000FF, #FFFF00\nMood: calm and welcoming"
+        ]
+      }
+    },
+    "elapsed_seconds": 2.05,
+    "visual_acceptance": "assistant_inspected four primary-colour swatches; human creative acceptance pending",
+    "image_integrity": [
+      {
+        "path": "/mnt/data/Projects_SSD/ComfyUI/output/WorkflowReview/20261109T172130653925Z-lc123_00001_.png",
+        "size": [
+          320,
+          96
+        ],
+        "pixel_extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      }
+    ],
+    "visual_notes": "Text combines human subject with scene no main person; semantic conflict inherited from source.",
+    "cached_node_reports": [
+      []
+    ],
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T172130653925Z-lc123",
+    "test_copy_directory": "/mnt/data/Projects_SSD/ComfyUI/studio/workflow-review/tests/pilots/lc123/20261109T172130653925Z-lc123",
+    "sampled_peak_gpu_mib": 132,
+    "sampled_min_ram_available_gib": 16.87,
+    "sampled_peak_temperature_c": 45
+  },
+  {
+    "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 01 - SD15 512.json",
+    "source_sha256": "abd3750e588ce529364d2784428ae96bc6307f496f1c01f8f6e5db92517e4c92",
+    "adaptations": [
+      {
+        "node": "3",
+        "input": "seed",
+        "old": 202611091,
+        "new": 123391591823112
+      },
+      {
+        "node": "9",
+        "input": "filename_prefix",
+        "old": "PC_Workflow_Tests/SD15_512",
+        "new": "WorkflowReview/20261109T172133145373Z-sd15"
+      }
+    ],
+    "status": "backend_success",
+    "executed": true,
+    "measurement": "sampled whole-GPU use and system RAM, not allocator/process peaks",
+    "resources_before": {
+      "timestamp": 1794244893.1684463,
+      "ram_available": 18063982592,
+      "swap_used": 6584295424,
+      "gpu_used_mib": 132,
+      "temperature_c": 45,
+      "gpu_utilization": 0
+    },
+    "prompt_id": "51086783-2da2-42a3-a360-17d466d81e86",
+    "outputs": {
+      "9": {
+        "images": [
+          {
+            "filename": "20261109T172133145373Z-sd15_00001_.png",
+            "subfolder": "WorkflowReview",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "1deb710a-fc2d-469a-981d-5a3cc057c880"
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 10.42,
+    "visual_acceptance": "assistant_inspected: coherent output; human creative acceptance pending",
+    "image_integrity": [
+      {
+        "path": "/mnt/data/Projects_SSD/ComfyUI/output/WorkflowReview/20261109T172133145373Z-sd15_00001_.png",
+        "size": [
+          512,
+          512
+        ],
+        "pixel_extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      }
+    ],
+    "visual_notes": "Red cabin reflected in lake; visible forest and mist; strong saturation.",
+    "cached_node_reports": [
+      []
+    ],
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T172133145373Z-sd15",
+    "test_copy_directory": "/mnt/data/Projects_SSD/ComfyUI/studio/workflow-review/tests/pilots/sd15/20261109T172133145373Z-sd15",
+    "sampled_peak_gpu_mib": 2300,
+    "sampled_min_ram_available_gib": 15.48,
+    "sampled_peak_temperature_c": 66
+  },
+  {
+    "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 02 - FLUX2 Klein Q8 512.json",
+    "source_sha256": "51480baa5d147c1027ce79bd9d580955bc55255369f397ccda0867b752d129f7",
+    "adaptations": [
+      {
+        "node": "8",
+        "input": "seed",
+        "old": 202611092,
+        "new": 123402434129973
+      },
+      {
+        "node": "10",
+        "input": "filename_prefix",
+        "old": "PC_Workflow_Tests/FLUX2_Klein_Q8_512",
+        "new": "WorkflowReview/20261109T172143987699Z-flux"
+      }
+    ],
+    "status": "backend_success",
+    "executed": true,
+    "measurement": "sampled whole-GPU use and system RAM, not allocator/process peaks",
+    "resources_before": {
+      "timestamp": 1794244904.0072398,
+      "ram_available": 16598994944,
+      "swap_used": 6583246848,
+      "gpu_used_mib": 2274,
+      "temperature_c": 60,
+      "gpu_utilization": 0
+    },
+    "prompt_id": "5decc16c-6710-4a61-973f-5bb57011b8e6",
+    "outputs": {
+      "10": {
+        "images": [
+          {
+            "filename": "20261109T172143987699Z-flux_00001_.png",
+            "subfolder": "WorkflowReview",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "91dc61e1-d61f-4415-a8c7-8f0bb958fa8c"
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 45.24,
+    "visual_acceptance": "assistant_inspected: coherent output; human creative acceptance pending",
+    "image_integrity": [
+      {
+        "path": "/mnt/data/Projects_SSD/ComfyUI/output/WorkflowReview/20261109T172143987699Z-flux_00001_.png",
+        "size": [
+          512,
+          512
+        ],
+        "pixel_extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      }
+    ],
+    "visual_notes": "Red vintage motorcycle on wet cobblestone street with neon reflections; subject matches.",
+    "cached_node_reports": [
+      []
+    ],
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T172143987699Z-flux",
+    "test_copy_directory": "/mnt/data/Projects_SSD/ComfyUI/studio/workflow-review/tests/pilots/flux/20261109T172143987699Z-flux",
+    "sampled_peak_gpu_mib": 4930,
+    "sampled_min_ram_available_gib": 15.16,
+    "sampled_peak_temperature_c": 70
+  },
+  {
+    "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 03 - ZImage BF16 512.json",
+    "source_sha256": "d86872884abfd5f9e9906d70dc8df5b191ef9a2c4ad3401ebfcc50971e4101cb",
+    "adaptations": [
+      {
+        "node": "8",
+        "input": "seed",
+        "old": 202611093,
+        "new": 123448112998414
+      },
+      {
+        "node": "10",
+        "input": "filename_prefix",
+        "old": "PC_Workflow_Tests/ZImage_BF16_512",
+        "new": "WorkflowReview/20261109T172229666569Z-zimage"
+      }
+    ],
+    "status": "backend_success",
+    "executed": true,
+    "measurement": "sampled whole-GPU use and system RAM, not allocator/process peaks",
+    "resources_before": {
+      "timestamp": 1794244949.6856227,
+      "ram_available": 16460152832,
+      "swap_used": 6843404288,
+      "gpu_used_mib": 3748,
+      "temperature_c": 58,
+      "gpu_utilization": 0
+    },
+    "prompt_id": "99cd1136-83b5-452b-b070-d2b48c90ea91",
+    "outputs": {
+      "10": {
+        "images": [
+          {
+            "filename": "20261109T172229666569Z-zimage_00001_.png",
+            "subfolder": "WorkflowReview",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "2a94d6f2-75d6-4a18-8034-5e9b3672d012"
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 176.84,
+    "visual_acceptance": "assistant_inspected: coherent output; human creative acceptance pending",
+    "image_integrity": [
+      {
+        "path": "/mnt/data/Projects_SSD/ComfyUI/output/WorkflowReview/20261109T172229666569Z-zimage_00001_.png",
+        "size": [
+          512,
+          512
+        ],
+        "pixel_extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            252
+          ],
+          [
+            0,
+            255
+          ]
+        ]
+      }
+    ],
+    "visual_notes": "Coherent red scooter on wet street; does not match requested vintage motorcycle exactly.",
+    "cached_node_reports": [
+      [
+        "7"
+      ]
+    ],
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T172229666569Z-zimage",
+    "test_copy_directory": "/mnt/data/Projects_SSD/ComfyUI/studio/workflow-review/tests/pilots/zimage/20261109T172229666569Z-zimage",
+    "sampled_peak_gpu_mib": 5060,
+    "sampled_min_ram_available_gib": 9.71,
+    "sampled_peak_temperature_c": 58
+  },
+  {
+    "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 01 - SD15 512.json",
+    "source_sha256": "abd3750e588ce529364d2784428ae96bc6307f496f1c01f8f6e5db92517e4c92",
+    "adaptations": [
+      {
+        "node": "3",
+        "input": "seed",
+        "old": 202611091,
+        "new": 125112690757609
+      },
+      {
+        "node": "9",
+        "input": "filename_prefix",
+        "old": "PC_Workflow_Tests/SD15_512",
+        "new": "WorkflowReview/20261109T175014244334Z-sd15"
+      }
+    ],
+    "status": "backend_success",
+    "executed": true,
+    "measurement": "sampled whole-GPU use and system RAM, not allocator/process peaks",
+    "resources_before": {
+      "timestamp": 1794246614.2677724,
+      "ram_available": 12549341184,
+      "swap_used": 9318408192,
+      "gpu_used_mib": 228,
+      "temperature_c": 46,
+      "gpu_utilization": 0
+    },
+    "prompt_id": "cfb13655-8f55-4c4d-b39e-d8c3333361c4",
+    "outputs": {
+      "9": {
+        "images": [
+          {
+            "filename": "20261109T175014244334Z-sd15_00001_.png",
+            "subfolder": "WorkflowReview",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "be85d646-413a-4c95-8ade-8edca4f32b0e"
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 8.55,
+    "visual_acceptance": "assistant_inspected contact sheet; human creative acceptance pending",
+    "image_integrity": [
+      {
+        "path": "/mnt/data/Projects_SSD/ComfyUI/output/WorkflowReview/20261109T175014244334Z-sd15_00001_.png",
+        "size": [
+          512,
+          512
+        ]
+      }
+    ],
+    "visual_notes": "Red cabin reflected in lake, strong saturation.",
+    "cached_node_reports": [
+      []
+    ],
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T175014244334Z-sd15",
+    "test_copy_directory": "/mnt/data/Projects_SSD/ComfyUI/studio/workflow-review/tests/pilots/sd15/20261109T175014244334Z-sd15",
+    "sampled_peak_gpu_mib": 2308,
+    "sampled_min_ram_available_gib": 11.64,
+    "sampled_peak_temperature_c": 67
+  },
+  {
+    "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 02 - FLUX2 Klein Q8 512.json",
+    "source_sha256": "51480baa5d147c1027ce79bd9d580955bc55255369f397ccda0867b752d129f7",
+    "adaptations": [
+      {
+        "node": "8",
+        "input": "seed",
+        "old": 202611092,
+        "new": 125121666561492
+      },
+      {
+        "node": "10",
+        "input": "filename_prefix",
+        "old": "PC_Workflow_Tests/FLUX2_Klein_Q8_512",
+        "new": "WorkflowReview/20261109T175023220153Z-flux"
+      }
+    ],
+    "status": "backend_success",
+    "executed": true,
+    "measurement": "sampled whole-GPU use and system RAM, not allocator/process peaks",
+    "resources_before": {
+      "timestamp": 1794246623.2392073,
+      "ram_available": 12389990400,
+      "swap_used": 9246986240,
+      "gpu_used_mib": 2276,
+      "temperature_c": 60,
+      "gpu_utilization": 0
+    },
+    "prompt_id": "cfc52675-b2d4-4fea-8a13-43f03cabfc6c",
+    "outputs": {
+      "10": {
+        "images": [
+          {
+            "filename": "20261109T175023220153Z-flux_00001_.png",
+            "subfolder": "WorkflowReview",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "6851600c-f9de-4905-9283-651fb091d91d"
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 51.54,
+    "visual_acceptance": "assistant_inspected contact sheet; human creative acceptance pending",
+    "image_integrity": [
+      {
+        "path": "/mnt/data/Projects_SSD/ComfyUI/output/WorkflowReview/20261109T175023220153Z-flux_00001_.png",
+        "size": [
+          512,
+          512
+        ]
+      }
+    ],
+    "visual_notes": "Red vintage motorcycle on wet street, subject matched.",
+    "cached_node_reports": [
+      []
+    ],
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T175023220153Z-flux",
+    "test_copy_directory": "/mnt/data/Projects_SSD/ComfyUI/studio/workflow-review/tests/pilots/flux/20261109T175023220153Z-flux",
+    "sampled_peak_gpu_mib": 4932,
+    "sampled_min_ram_available_gib": 11.54,
+    "sampled_peak_temperature_c": 70
+  },
+  {
+    "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 03 - ZImage BF16 512.json",
+    "source_sha256": "d86872884abfd5f9e9906d70dc8df5b191ef9a2c4ad3401ebfcc50971e4101cb",
+    "adaptations": [
+      {
+        "node": "8",
+        "input": "seed",
+        "old": 202611093,
+        "new": 125216269548164
+      },
+      {
+        "node": "10",
+        "input": "filename_prefix",
+        "old": "PC_Workflow_Tests/ZImage_BF16_512",
+        "new": "WorkflowReview/20261109T175157822930Z-zimage"
+      }
+    ],
+    "status": "backend_success",
+    "executed": true,
+    "measurement": "sampled whole-GPU use and system RAM, not allocator/process peaks",
+    "resources_before": {
+      "timestamp": 1794246717.8462622,
+      "ram_available": 13187170304,
+      "swap_used": 10518138880,
+      "gpu_used_mib": 3748,
+      "temperature_c": 50,
+      "gpu_utilization": 0
+    },
+    "prompt_id": "4b9468ac-5793-4e98-b5d0-343d5621b092",
+    "outputs": {
+      "10": {
+        "images": [
+          {
+            "filename": "20261109T175157822930Z-zimage_00001_.png",
+            "subfolder": "WorkflowReview",
+            "type": "output",
+            "metadata": {
+              "kind": "image",
+              "width": 512,
+              "height": 512
+            },
+            "id": "cecade6b-c0f5-4028-a7db-d88d5119fe9e"
+          }
+        ]
+      }
+    },
+    "elapsed_seconds": 183.94,
+    "visual_acceptance": "assistant_inspected contact sheet; human creative acceptance pending",
+    "image_integrity": [
+      {
+        "path": "/mnt/data/Projects_SSD/ComfyUI/output/WorkflowReview/20261109T175157822930Z-zimage_00001_.png",
+        "size": [
+          512,
+          512
+        ]
+      }
+    ],
+    "visual_notes": "Red scooter instead of requested vintage motorcycle.",
+    "cached_node_reports": [
+      [
+        "7"
+      ]
+    ],
+    "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T175157822930Z-zimage",
+    "test_copy_directory": "/mnt/data/Projects_SSD/ComfyUI/studio/workflow-review/tests/pilots/zimage/20261109T175157822930Z-zimage",
+    "sampled_peak_gpu_mib": 5028,
+    "sampled_min_ram_available_gib": 7.22,
+    "sampled_peak_temperature_c": 60
+  }
+]

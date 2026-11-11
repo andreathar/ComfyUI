@@ -1,0 +1,19 @@
+{
+  "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 01 - SD15 512.json",
+  "source_sha256": "abd3750e588ce529364d2784428ae96bc6307f496f1c01f8f6e5db92517e4c92",
+  "changes": [
+    {
+      "node": "3",
+      "input": "seed",
+      "old": 202611091,
+      "new": 123391591823112
+    },
+    {
+      "node": "9",
+      "input": "filename_prefix",
+      "old": "PC_Workflow_Tests/SD15_512",
+      "new": "WorkflowReview/20261109T172133145373Z-sd15"
+    }
+  ],
+  "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T172133145373Z-sd15"
+}

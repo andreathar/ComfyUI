@@ -1,0 +1,19 @@
+{
+  "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 02 - FLUX2 Klein Q8 512.json",
+  "source_sha256": "51480baa5d147c1027ce79bd9d580955bc55255369f397ccda0867b752d129f7",
+  "changes": [
+    {
+      "node": "8",
+      "input": "seed",
+      "old": 202611092,
+      "new": 123402434129973
+    },
+    {
+      "node": "10",
+      "input": "filename_prefix",
+      "old": "PC_Workflow_Tests/FLUX2_Klein_Q8_512",
+      "new": "WorkflowReview/20261109T172143987699Z-flux"
+    }
+  ],
+  "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T172143987699Z-flux"
+}

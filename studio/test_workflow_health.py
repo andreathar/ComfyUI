@@ -44,6 +44,52 @@ class WorkflowHealthTests(unittest.TestCase):
         node = {"widgets_values": [42, "fixed", "euler"]}
         self.assertEqual(widget_values(node, SCHEMAS["Sampler"]), {"seed": 42, "sampler": "euler"})
 
+    def test_connected_widget_keeps_following_choices_aligned(self):
+        schema = {"input": {"required": {"weights": [["present"]], "dtype": [["default"]]}}}
+        doc = {"nodes": [{"id": 1, "type": "Loader", "widgets_values": ["stale", "default"],
+                         "inputs": [{"name": "weights", "link": 0, "widget": {"name": "weights"}}]}]}
+        self.assertEqual(widget_values(doc["nodes"][0], schema), {"dtype": "default"})
+        self.assertEqual(check_workflow(doc, {"Loader": schema})[0], [])
+        doc["nodes"][0]["widgets_values"][1] = "invalid"
+        self.assertTrue(check_workflow(doc, {"Loader": schema})[0])
+
+    def test_connected_named_choices_are_not_validated_as_literals(self):
+        node = {"widgets_values_named": {"clip_name": "stale", "type": "lumina2", "device": "cpu"},
+                "inputs": [{"name": "clip_name", "link": 0}]}
+        before = copy.deepcopy(node)
+        self.assertEqual(widget_values(node, SCHEMAS["CLIPLoader"]), {"type": "lumina2", "device": "cpu"})
+        self.assertEqual(check_workflow({"nodes": [dict(node, id=1, type="CLIPLoader")]}, SCHEMAS)[0], [])
+        self.assertEqual(node, before)
+
+    def test_connected_primitive_widgets_consume_retained_values(self):
+        for kind, value in (("INT", 42), ("FLOAT", 0.5), ("STRING", "text"), ("BOOLEAN", True)):
+            with self.subTest(kind=kind):
+                schema = {"input": {"required": {"first": [kind, {}], "next": ["STRING", {}]}}}
+                node = {"widgets_values": [value, "correct"],
+                        "inputs": [{"name": "first", "link": 1, "widget": {"name": "first"}}]}
+                self.assertEqual(widget_values(node, schema), {"next": "correct"})
+
+    def test_connected_seed_consumes_control_after_generate(self):
+        for control in ("fixed", "randomize"):
+            node = {"widgets_values": [42, control, "euler"],
+                    "inputs": [{"name": "seed", "link": 0, "widget": {"name": "seed"}}]}
+            self.assertEqual(widget_values(node, SCHEMAS["Sampler"]), {"sampler": "euler"})
+
+    def test_connected_socket_only_inputs_consume_no_widgets(self):
+        for options in ({}, {"forceInput": True}):
+            schema = {"input": {"required": {"first": ["INT", options], "next": ["STRING", {}]}}}
+            node = {"widgets_values": ["correct"], "inputs": [{"name": "first", "link": 1}]}
+            self.assertEqual(widget_values(node, schema), {"next": "correct"})
+
+    def test_connected_dynamic_combo_keeps_later_widgets_aligned(self):
+        schema = {"input": {"required": {
+            "model": ["COMFY_DYNAMICCOMBO_V3", {"options": [{"key": "small", "inputs": {"required": {"tokens": ["INT", {}]}}}]}],
+            "text": ["STRING", {}],
+        }}}
+        node = {"widgets_values": ["small", 32, "correct"],
+                "inputs": [{"name": "model", "link": 1, "widget": {"name": "model"}}]}
+        self.assertEqual(widget_values(node, schema), {"model.tokens": 32, "text": "correct"})
+
     def test_missing_choice_and_node(self):
         doc = workflow()
         doc["nodes"][0]["widgets_values"][0] = "missing.safetensors"

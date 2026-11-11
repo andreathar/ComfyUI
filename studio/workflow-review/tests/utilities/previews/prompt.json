@@ -1,0 +1,26 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "WorkflowReview/utilities-20261109T175656610335Z/a.png"
+    }
+  },
+  "2": {
+    "class_type": "AILab_ImagePreview",
+    "inputs": {
+      "image": [
+        "1",
+        0
+      ]
+    }
+  },
+  "3": {
+    "class_type": "AILab_MaskPreview",
+    "inputs": {
+      "mask": [
+        "1",
+        1
+      ]
+    }
+  }
+}

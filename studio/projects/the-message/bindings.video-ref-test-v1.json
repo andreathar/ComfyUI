@@ -1,0 +1,19 @@
+{
+  "MSG_S002_SH01": {
+    "assets": [
+      "apartment-v1",
+      "dark-jacket-gray-shirt-v1",
+      "andre-identity-video-v1",
+      "andre-voice-v1"
+    ],
+    "audio_mode": "generated_voiceover",
+    "seed": 0,
+    "blocking": "No walking or opening doors. Lips stay closed; speech is off screen.",
+    "warnings": [
+      "Existing Scene 02 take remains pending review, including visible mouth opening.",
+      "Wardrobe reference is a 182x107 crop; it is a continuity guide, not a texture master.",
+      "Controlled identity-package comparison against tk004: location, wardrobe, approved standalone voice, prompt, seed and sampling settings unchanged.",
+      "New video RefMod audio is not selected; no competing voice or old visual identity stack."
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "WorkflowReview/utilities-20261109T175656610335Z/a.png"
+    }
+  },
+  "2": {
+    "class_type": "iToolsAddOverlay",
+    "inputs": {
+      "image": [
+        "1",
+        0
+      ],
+      "text": "LOCAL REVIEW",
+      "background_color": "#000000AA",
+      "font_size": 20,
+      "overlay_mode": true
+    }
+  },
+  "3": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "2",
+        0
+      ]
+    }
+  }
+}

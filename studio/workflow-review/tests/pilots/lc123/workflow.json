@@ -1,0 +1,619 @@
+{
+  "id": "7cea1436-3591-4b1e-b410-be92842ddd81",
+  "revision": 0,
+  "last_node_id": 6,
+  "last_link_id": 5,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LCSubject",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        340,
+        334
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "description",
+          "name": "description",
+          "type": "STRING",
+          "widget": {
+            "name": "description"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "pose",
+          "name": "pose",
+          "type": "COMBO",
+          "widget": {
+            "name": "pose"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "action",
+          "name": "action",
+          "type": "COMBO",
+          "widget": {
+            "name": "action"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "outfit",
+          "name": "outfit",
+          "type": "COMBO",
+          "widget": {
+            "name": "outfit"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "position_horizontal",
+          "name": "position_horizontal",
+          "type": "COMBO",
+          "widget": {
+            "name": "position_horizontal"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "position_vertical",
+          "name": "position_vertical",
+          "type": "COMBO",
+          "widget": {
+            "name": "position_vertical"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "position_depth",
+          "name": "position_depth",
+          "type": "COMBO",
+          "widget": {
+            "name": "position_depth"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LCSubject"
+      },
+      "widgets_values": [
+        "an architect wearing a blue jacket",
+        "standing",
+        "none",
+        "none",
+        "center",
+        "middle",
+        "midground",
+        "an architect wearing a blue jacket, pose: standing, position: center, middle, midground"
+      ],
+      "widgets_values_named": {
+        "description": "an architect wearing a blue jacket",
+        "pose": "standing",
+        "action": "none",
+        "outfit": "none",
+        "position_horizontal": "center",
+        "position_vertical": "middle",
+        "position_depth": "midground",
+        "lc_live_prompt": "an architect wearing a blue jacket, pose: standing, position: center, middle, midground"
+      },
+      "color": "#326432",
+      "bgcolor": "#326432"
+    },
+    {
+      "id": 2,
+      "type": "LCSceneBuilder",
+      "pos": [
+        0,
+        450
+      ],
+      "size": [
+        340,
+        316
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "scene_preset",
+          "name": "scene_preset",
+          "type": "COMBO",
+          "widget": {
+            "name": "scene_preset"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "description",
+          "name": "description",
+          "type": "STRING",
+          "widget": {
+            "name": "description"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "time_of_day",
+          "name": "time_of_day",
+          "type": "COMBO",
+          "widget": {
+            "name": "time_of_day"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "weather",
+          "name": "weather",
+          "type": "COMBO",
+          "widget": {
+            "name": "weather"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "environment_details",
+          "name": "environment_details",
+          "type": "STRING",
+          "widget": {
+            "name": "environment_details"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LCSceneBuilder"
+      },
+      "widgets_values": [
+        "Luxury penthouse",
+        "",
+        "Afternoon",
+        "Clear",
+        "",
+        "luxury penthouse interior with light oak floors, brass fixtures, floor-to-ceiling windows, city skyline beyond glass, soft spill, minimal designer furniture, polished concrete accents, no main person, no readable text or logos, afternoon light with warmer tilt, comfortable outdoor contrast, clear sky conditions, crisp air, clean distant detail"
+      ],
+      "widgets_values_named": {
+        "scene_preset": "Luxury penthouse",
+        "description": "",
+        "time_of_day": "Afternoon",
+        "weather": "Clear",
+        "environment_details": "",
+        "lc_live_prompt": "luxury penthouse interior with light oak floors, brass fixtures, floor-to-ceiling windows, city skyline beyond glass, soft spill, minimal designer furniture, polished concrete accents, no main person, no readable text or logos, afternoon light with warmer tilt, comfortable outdoor contrast, clear sky conditions, crisp air, clean distant detail"
+      },
+      "color": "#551e1e",
+      "bgcolor": "#410a0a"
+    },
+    {
+      "id": 3,
+      "type": "LCColorPalette",
+      "pos": [
+        440,
+        450
+      ],
+      "size": [
+        340,
+        280
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "mode",
+          "name": "mode",
+          "type": "COMBO",
+          "widget": {
+            "name": "mode"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "preset",
+          "name": "preset",
+          "type": "COMBO",
+          "widget": {
+            "name": "preset"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "num_colors",
+          "name": "num_colors",
+          "type": "INT",
+          "widget": {
+            "name": "num_colors"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            3
+          ]
+        },
+        {
+          "localized_name": "preview",
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LCColorPalette"
+      },
+      "widgets_values": [
+        "preset",
+        "Vibrant Primary",
+        4
+      ],
+      "widgets_values_named": {
+        "mode": "preset",
+        "preset": "Vibrant Primary",
+        "num_colors": 4
+      },
+      "color": "#324B4B",
+      "bgcolor": "#324B4B"
+    },
+    {
+      "id": 4,
+      "type": "LCPromptAssembler",
+      "pos": [
+        880,
+        0
+      ],
+      "size": [
+        340,
+        356
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "subjects",
+          "name": "subjects",
+          "shape": 7,
+          "type": "STRING",
+          "link": 1
+        },
+        {
+          "localized_name": "scene",
+          "name": "scene",
+          "shape": 7,
+          "type": "STRING",
+          "link": 2
+        },
+        {
+          "localized_name": "camera",
+          "name": "camera",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "localized_name": "lighting",
+          "name": "lighting",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "localized_name": "style",
+          "name": "style",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "localized_name": "palette",
+          "name": "palette",
+          "shape": 7,
+          "type": "STRING",
+          "link": 3
+        },
+        {
+          "localized_name": "pretty_print",
+          "name": "pretty_print",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "pretty_print"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "remove_empty",
+          "name": "remove_empty",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "remove_empty"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "include_scene_bboxes",
+          "name": "include_scene_bboxes",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "include_scene_bboxes"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "mood",
+          "name": "mood",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "mood"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "background",
+          "name": "background",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "background"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "composition",
+          "name": "composition",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "composition"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "extra",
+          "name": "extra",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "extra"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "margin",
+          "name": "margin",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "margin"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            4
+          ]
+        },
+        {
+          "localized_name": "json",
+          "name": "json",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LCPromptAssembler"
+      },
+      "widgets_values": [
+        true,
+        true,
+        false,
+        "calm and welcoming",
+        "",
+        "",
+        "",
+        0.05
+      ],
+      "widgets_values_named": {
+        "pretty_print": true,
+        "remove_empty": true,
+        "include_scene_bboxes": false,
+        "mood": "calm and welcoming",
+        "background": "",
+        "composition": "",
+        "extra": "",
+        "margin": 0.05
+      },
+      "color": "#141914",
+      "bgcolor": "#000500"
+    },
+    {
+      "id": 5,
+      "type": "PreviewAny",
+      "pos": [
+        1320,
+        0
+      ],
+      "size": [
+        210,
+        122
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "source",
+          "name": "source",
+          "type": "*",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "Assembled prompt \u2014 text only",
+      "properties": {
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": [],
+      "widgets_values_named": {}
+    },
+    {
+      "id": 6,
+      "type": "SaveImage",
+      "pos": [
+        880,
+        500
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 5
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "title": "Save palette swatches",
+      "properties": {},
+      "widgets_values": [
+        "WorkflowReview/20261109T172130653925Z-lc123"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "WorkflowReview/20261109T172130653925Z-lc123"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      4,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      2,
+      0,
+      4,
+      1,
+      "STRING"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      5,
+      "STRING"
+    ],
+    [
+      4,
+      4,
+      0,
+      5,
+      0,
+      "STRING"
+    ],
+    [
+      5,
+      3,
+      1,
+      6,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "comfyui_mcp": {
+      "workflow_uuid": "19f1d36a-f51e-4bc4-8edb-9ac8b9eff13b"
+    },
+    "ds": {
+      "scale": 0.6540824142156864,
+      "offset": [
+        1030.4571589165896,
+        326.10213473541216
+      ]
+    }
+  },
+  "version": 0.4
+}

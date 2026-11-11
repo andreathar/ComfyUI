@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "production": "production.silent-proof-v1.json",
+  "reviewer": "assistant visual inspection; human creative acceptance remains pending",
+  "assets": {
+    "andre-identity-video-v1": {
+      "input_use_authorized": true,
+      "sha256": "786433e7c8f6c719ad4eaa0d3051cc05c5454eb63217a39b9fe0d57ef6779c06",
+      "visual_review": "pending",
+      "findings": [
+        "Near-frontal identity; no strong-profile coverage claim. Human likeness acceptance remains pending."
+      ]
+    },
+    "cafe-counter-wide-v1": {
+      "input_use_authorized": true,
+      "sha256": "a5eefb8e19822e90af1b44009b6982474299a9f7ecbc349a97d16042f93302f5",
+      "visual_review": "pending",
+      "findings": []
+    },
+    "cafe-reverse-counter-v1": {
+      "input_use_authorized": true,
+      "sha256": "1eb6ec1d24631ce74a3372177c4d9db779c5afb9b3460854de303c94a159eaf4",
+      "visual_review": "pending",
+      "findings": []
+    },
+    "cafe-wardrobe-candidate-v1": {
+      "input_use_authorized": true,
+      "sha256": "83dbfab0b9171da26b41e71f111946abaa56d021f5025b82a6eb95f4703a128f",
+      "visual_review": "pending",
+      "findings": [
+        "Inspected saved crop: dark blazer, gray crew-neck shirt; no face. 126x126, texture detail limited."
+      ]
+    },
+    "cafe-window-table-v1": {
+      "input_use_authorized": true,
+      "sha256": "3664fae152459415d32fabb8f7659f858f48f09a44c8e0daee25314124ba887d",
+      "visual_review": "pending",
+      "findings": []
+    },
+    "folded-note-candidate-v1": {
+      "input_use_authorized": true,
+      "sha256": "3a0c35c81375f07022d1d78aebd016d1ba20cf9f875470e9acb38d014fcc6eac",
+      "visual_review": "pending",
+      "findings": [
+        "Inspected saved crop: cream paper and raised layered edge visible, no readable text, 104x37 only. Useful for color/fold continuity, not a detailed hero insert."
+      ]
+    },
+    "german-cafe-background-v2": {
+      "input_use_authorized": true,
+      "sha256": "e7768cb048277f2f4cdcc1a7680fe4064ef1e219a036cbd7512c75f081856d3d",
+      "visual_review": "pending",
+      "findings": []
+    }
+  },
+  "rejected_candidates": [
+    {
+      "path": "output/The_Message/references/silent-proof-v001/table-insert-candidate_00001_.png",
+      "reason": "Trouser edge at lower left would contaminate an empty prop insert. Preserved, not selected."
+    }
+  ]
+}

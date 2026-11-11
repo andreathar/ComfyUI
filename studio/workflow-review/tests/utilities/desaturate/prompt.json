@@ -1,0 +1,28 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "WorkflowReview/utilities-20261109T175656610335Z/a.png"
+    }
+  },
+  "2": {
+    "class_type": "LCImageDesaturate",
+    "inputs": {
+      "image": [
+        "1",
+        0
+      ],
+      "factor": 1,
+      "method": "luminance (Rec.709)"
+    }
+  },
+  "3": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "2",
+        0
+      ]
+    }
+  }
+}

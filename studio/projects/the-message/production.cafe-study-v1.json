@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "project": {
+    "code": "MSG",
+    "title": "The Message",
+    "aspect": "16:9",
+    "fps": 24,
+    "language": "English",
+    "source_text": "Andre Athar sits at a small wooden desk in a quiet apartment and lowers his eyes toward a folded note.\n\nAt the glass doorway, Andre looks back toward the room. His off-screen voice says: Not again.\n\nOptional cafe coverage study: an empty industrial cafe; Andre sits by the window and glances at a folded note, then looks toward the counter without speaking."
+  },
+  "style_bible": {
+    "look": "Live-action cinematic realism, quiet natural daylight",
+    "palette": [
+      "cream",
+      "wood",
+      "charcoal"
+    ],
+    "lens_default": "50mm",
+    "lighting_default": {
+      "key": "soft daylight through glass doors",
+      "quality": "soft",
+      "time_of_day": "day"
+    },
+    "camera_rules": [
+      "One small action per shot. Keep camera still."
+    ],
+    "negative_prompt": "No extra people, readable text, subtitles, singing or music."
+  },
+  "characters": [
+    {
+      "id": "MSG-CHR-ANDRE",
+      "name": "Andre_Athar",
+      "persona": {
+        "summary": "A quiet man receiving an unsettling message",
+        "demeanor": "Still, restrained",
+        "speech": "Natural voice from the approved reference"
+      },
+      "appearance": "Preserve the approved Andre Athar identity reference",
+      "wardrobe": [
+        {
+          "id": "W1",
+          "description": "dark charcoal blazer over a plain light-gray crew-neck shirt"
+        }
+      ],
+      "voice": "MSG-VOX-ANDRE"
+    }
+  ],
+  "locations": [
+    {
+      "id": "MSG-LOC-APARTMENT",
+      "name": "Apartment",
+      "kind": "INT",
+      "description": "Cream walls, wooden floor and large glass doors; natural daylight.",
+      "geography": "Use the approved room. Desk and folded note are additions to the empty reference, not established room assets."
+    },
+    {
+      "id": "MSG-LOC-CAFE",
+      "name": "Industrial cafe",
+      "kind": "INT",
+      "description": "Concrete and brick, black metal windows, wood tables, brown leather chairs, monstera plants, espresso counter.",
+      "geography": "Three user-supplied generated angles. One primary angle per shot; exact multi-view geometry remains unverified."
+    }
+  ],
+  "props": [
+    {
+      "id": "MSG-PRP-NOTE",
+      "name": "Folded note",
+      "description": "Folded white paper without readable writing"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "MSG_S001",
+      "number": 1,
+      "slug": "INT. APARTMENT - DAY",
+      "location": "MSG-LOC-APARTMENT",
+      "time": "day",
+      "summary": "Andre notices a folded note at the desk.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "wardrobe": {
+        "MSG-CHR-ANDRE": "W1"
+      },
+      "script_ref": {
+        "start": 0,
+        "end": 102
+      }
+    },
+    {
+      "id": "MSG_S002",
+      "number": 2,
+      "slug": "INT. APARTMENT - DAY",
+      "location": "MSG-LOC-APARTMENT",
+      "time": "day",
+      "summary": "Andre looks back from the glass doorway; his off-screen voice says Not again.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "wardrobe": {
+        "MSG-CHR-ANDRE": "W1"
+      },
+      "script_ref": {
+        "start": 104,
+        "end": 197
+      }
+    },
+    {
+      "id": "MSG_S003",
+      "number": 3,
+      "slug": "INT. INDUSTRIAL CAFE - DAY",
+      "location": "MSG-LOC-CAFE",
+      "time": "day",
+      "summary": "Reference coverage of a quiet industrial cafe with an espresso counter and a round window table.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "wardrobe": {
+        "MSG-CHR-ANDRE": "W1"
+      },
+      "script_ref": {
+        "start": 199,
+        "end": 357
+      },
+      "lighting": {
+        "key": "daylight through tall black-framed windows",
+        "quality": "soft",
+        "time_of_day": "day"
+      }
+    }
+  ],
+  "shots": [
+    {
+      "id": "MSG_S001_SH01",
+      "scene": "MSG_S001",
+      "purpose": "medium",
+      "shot_size": "medium",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "50mm",
+      "subject": "Andre Athar",
+      "action": "Andre sits at a small wooden desk along the left wall. A folded white paper note rests on the desk. His face stays visible in a gentle three-quarter view. He lowers his eyes toward the note once, keeping his body still.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "location": "MSG-LOC-APARTMENT",
+      "duration_s": 2,
+      "script_ref": {
+        "start": 0,
+        "end": 102
+      },
+      "props": [
+        "MSG-PRP-NOTE"
+      ]
+    },
+    {
+      "id": "MSG_S002_SH01",
+      "scene": "MSG_S002",
+      "purpose": "medium",
+      "shot_size": "medium",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "50mm",
+      "subject": "Andre Athar",
+      "action": "Andre already stands inside the closed glass doorway, torso angled toward it. He slowly turns his head toward the room once, showing a gentle three-quarter face with quiet resignation. His body remains still.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "location": "MSG-LOC-APARTMENT",
+      "duration_s": 2,
+      "script_ref": {
+        "start": 104,
+        "end": 197
+      },
+      "dialogue": [
+        {
+          "character": "MSG-CHR-ANDRE",
+          "line": "Not again.",
+          "delivery": "naturally and clearly"
+        }
+      ]
+    },
+    {
+      "id": "MSG_S003_SH01",
+      "scene": "MSG_S003",
+      "purpose": "establishing",
+      "shot_size": "wide",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "35mm",
+      "subject": "Industrial cafe",
+      "action": "A static view of the empty cafe, espresso counter at left foreground and window table at right. No people enter.",
+      "characters": [],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 2,
+      "script_ref": {
+        "start": 199,
+        "end": 357
+      },
+      "draft": true
+    },
+    {
+      "id": "MSG_S003_SH02",
+      "scene": "MSG_S003",
+      "purpose": "medium",
+      "shot_size": "medium",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "50mm",
+      "subject": "Andre Athar",
+      "action": "Andre sits at the round window table. A folded white note lies on the table. He lowers his eyes toward it once; his lips remain gently together and his face is neutral.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 2,
+      "script_ref": {
+        "start": 199,
+        "end": 357
+      },
+      "draft": true
+    },
+    {
+      "id": "MSG_S003_SH03",
+      "scene": "MSG_S003",
+      "purpose": "reaction",
+      "shot_size": "medium-close",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "85mm",
+      "subject": "Andre Athar",
+      "action": "Andre remains seated at the same round window table, seen from the reverse-counter angle. He looks toward the counter once, with relaxed closed lips and a neutral face. He does not speak.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "location": "MSG-LOC-CAFE",
+      "duration_s": 2,
+      "script_ref": {
+        "start": 199,
+        "end": 357
+      },
+      "draft": true
+    }
+  ]
+}

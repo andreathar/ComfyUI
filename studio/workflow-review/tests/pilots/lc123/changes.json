@@ -1,0 +1,13 @@
+{
+  "source": "/mnt/data/Projects_SSD/ComfyUI/user/default/workflows/PC Test 04 - LC123 Prompt and Palette.json",
+  "source_sha256": "6749a4c6a21a97a5063e73a9b77e5e8b9344ea8b120c7450cb432494535990f1",
+  "changes": [
+    {
+      "node": "6",
+      "input": "filename_prefix",
+      "old": "PC_Workflow_Tests/LC123_Palette",
+      "new": "WorkflowReview/20261109T172130653925Z-lc123"
+    }
+  ],
+  "evidence_directory": "/mnt/data/Projects_SSD/ComfyUI/.codex/artifacts/workflow-review-pilots/20261109T172130653925Z-lc123"
+}

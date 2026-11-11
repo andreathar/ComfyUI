@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "project": {
+    "code": "MSG",
+    "title": "The Message",
+    "aspect": "16:9",
+    "fps": 24,
+    "language": "English",
+    "source_text": "Andre Athar sits at a small wooden desk in a quiet apartment and lowers his eyes toward a folded note.\n\nAt the glass doorway, Andre looks back toward the room. His off-screen voice says: Not again."
+  },
+  "style_bible": {
+    "look": "Live-action cinematic realism, quiet natural daylight",
+    "palette": [
+      "cream",
+      "wood",
+      "charcoal"
+    ],
+    "lens_default": "50mm",
+    "lighting_default": {
+      "key": "soft daylight through glass doors",
+      "quality": "soft",
+      "time_of_day": "day"
+    },
+    "camera_rules": [
+      "One small action per shot. Hands below the frame. Keep camera still."
+    ],
+    "negative_prompt": "No extra people, readable text, subtitles, singing or music."
+  },
+  "characters": [
+    {
+      "id": "MSG-CHR-ANDRE",
+      "name": "Andre_Athar",
+      "persona": {
+        "summary": "A quiet man receiving an unsettling message",
+        "demeanor": "Still, restrained",
+        "speech": "Natural voice from the approved reference"
+      },
+      "appearance": "Preserve the approved Andre Athar identity reference",
+      "wardrobe": [
+        {
+          "id": "W1",
+          "description": "dark charcoal blazer over a plain light-gray crew-neck shirt"
+        }
+      ],
+      "voice": "MSG-VOX-ANDRE"
+    }
+  ],
+  "locations": [
+    {
+      "id": "MSG-LOC-APARTMENT",
+      "name": "Apartment",
+      "kind": "INT",
+      "description": "Cream walls, wooden floor and large glass doors; natural daylight.",
+      "geography": "Use the approved room. Desk and folded note are additions to the empty reference, not established room assets."
+    }
+  ],
+  "props": [
+    {
+      "id": "MSG-PRP-NOTE",
+      "name": "Folded note",
+      "description": "Folded white paper without readable writing"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "MSG_S001",
+      "number": 1,
+      "slug": "INT. APARTMENT - DAY",
+      "location": "MSG-LOC-APARTMENT",
+      "time": "day",
+      "summary": "Andre notices a folded note at the desk.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "wardrobe": {
+        "MSG-CHR-ANDRE": "W1"
+      },
+      "script_ref": {
+        "start": 0,
+        "end": 102
+      }
+    },
+    {
+      "id": "MSG_S002",
+      "number": 2,
+      "slug": "INT. APARTMENT - DAY",
+      "location": "MSG-LOC-APARTMENT",
+      "time": "day",
+      "summary": "Andre looks back from the glass doorway; his off-screen voice says Not again.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "wardrobe": {
+        "MSG-CHR-ANDRE": "W1"
+      },
+      "script_ref": {
+        "start": 104,
+        "end": 197
+      }
+    }
+  ],
+  "shots": [
+    {
+      "id": "MSG_S001_SH01",
+      "scene": "MSG_S001",
+      "purpose": "medium",
+      "shot_size": "medium",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "50mm",
+      "subject": "Andre Athar",
+      "action": "Andre sits at a small wooden desk along the left wall. A folded white paper note rests on the desk. His face stays visible in a gentle three-quarter view. He lowers his eyes toward the note once, keeping his body still.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "location": "MSG-LOC-APARTMENT",
+      "duration_s": 2,
+      "script_ref": {
+        "start": 0,
+        "end": 102
+      },
+      "props": [
+        "MSG-PRP-NOTE"
+      ]
+    },
+    {
+      "id": "MSG_S002_SH01",
+      "scene": "MSG_S002",
+      "purpose": "medium",
+      "shot_size": "medium",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "lens": "50mm",
+      "subject": "Andre Athar",
+      "action": "Andre already stands inside the closed glass doorway, torso angled toward it. He slowly turns his head toward the room once, showing a gentle three-quarter face with quiet resignation. His body remains still.",
+      "characters": [
+        "MSG-CHR-ANDRE"
+      ],
+      "location": "MSG-LOC-APARTMENT",
+      "duration_s": 2,
+      "script_ref": {
+        "start": 104,
+        "end": 197
+      },
+      "dialogue": [
+        {
+          "character": "MSG-CHR-ANDRE",
+          "line": "Not again.",
+          "delivery": "naturally and clearly"
+        }
+      ]
+    }
+  ]
+}

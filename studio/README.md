@@ -78,6 +78,52 @@ The PNG keeps ComfyUI's native `prompt` metadata for Argon; the sidecar adds
 the model files' SHA-256 and license from `.codex/models.json`. Import into
 Argon stays manual.
 
+## H3 encode preflight
+
+`studio/h3_manifest.py` checks an explicit version-1 manifest containing an API
+`graph`, `stage_save_node`, versioned `recipe`, committed `prompt_text`,
+`continuation: false`, source frame/dimension expectations, and hashed `assets`
+and `software` files. Asset bindings use `node.input` or
+`node.media.index.file` / `node.media.index.mask`, each with `selected`, `path`
+and `sha256`. Paths resolve relative to `--root`; model paths may be explicitly
+absolute. Use only trusted local manifests: the checker reads their declared files.
+
+```bash
+.venv/bin/python studio/h3_manifest.py <manifest.json> [--root /path/to/ComfyUI]
+.venv/bin/python -m unittest discover -s studio -p test_h3_manifest.py
+```
+
+This supports the direct Fantastic REF-mode, picture-plus-masked-video encode
+recipe only. It hashes the encode dependency closure, not sampler branches, and
+prints JSON without queuing work or writing files. A successful check validates
+configuration/content identities, not decoded media or effective tensor shapes.
+Stage receipts are compared but **reuse remains blocked** until actual ComfyUI
+model search-path resolution and trusted encode provenance are integrated.
+An exit code of zero does not mean an existing stage can be sampled safely.
+
+### Decoded H3 media validation
+
+`studio/h3_media_validate.py` independently verifies prepared source pixels,
+repeat-last video padding, frame counts/timestamps, guard video/NPY agreement,
+audio samples and optional final lossless protected-pixel/audio equality.
+It uses the compositor's PyAV resize path and native RGB16, not lossy MP4/RGB8.
+
+```bash
+.venv/bin/python studio/h3_media_validate.py <contract.json> [--root /path/to/ComfyUI]
+.venv/bin/python -m unittest discover -s studio -p test_h3_media_validate.py
+```
+
+The version-1 contract contains `source` expectations (`delivery_frames`,
+`working_frames`, `width`, `height`, `fps`, `sample_rate`, `channels`),
+`guard_padding_policy` (`repeat_last` or explicitly `tracked`), and `assets`.
+Each asset has `path` and `sha256`; roles are `original` (prepared source clip,
+not the full film), `working`, `guard`, `guard_array`, `audio`, and optional
+`final`. Paths are trusted local declarations, relative to `--root` or absolute.
+Tracked padding drift is reported, never silently treated as repeated masks.
+The checker prints JSON, writes nothing, and does not approve segmentation,
+original-film alignment, likeness or performance. Neither checker is wired into
+live nodes or the batch driver.
+
 ## Worker (openreel jobs)
 
 `studio/worker.py` runs the job files openreel writes to

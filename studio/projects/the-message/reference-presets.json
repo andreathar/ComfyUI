@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "node_type": "MiniMaxH3FantasticRefModCreate",
+  "status": "Reusable starting presets; new assets require inspection and qualification",
+  "common_widgets": {
+    "mode": "Full Reference",
+    "ref_resolution": 768,
+    "grid": 16,
+    "latent_frames": 22,
+    "refinement_steps": 0,
+    "max_tokens": 7250,
+    "audio_max_seconds": 30,
+    "write_preview": true
+  },
+  "profiles": {
+    "identity": {
+      "widgets": {
+        "concept_type": "identity",
+        "subfolder": "characters"
+      },
+      "variables": [
+        "name",
+        "subject_name",
+        "appearance",
+        "retained_attributes",
+        "source"
+      ],
+      "source_guidance": "Consistent person, neutral illumination, sharp unobscured face; frontal and complementary three-quarter/profile views. Keep voice in a separate asset.",
+      "review": [
+        "human likeness",
+        "actual stored encoder views",
+        "latent tokens",
+        "watermarks or inconsistent features"
+      ]
+    },
+    "location": {
+      "widgets": {
+        "concept_type": "background",
+        "subfolder": "locations"
+      },
+      "variables": [
+        "name",
+        "subject_name",
+        "appearance",
+        "description",
+        "retained_attributes",
+        "source"
+      ],
+      "source_guidance": "Empty location with consistent layout and light across angles. Record doors, windows, landmarks, seating and camera positions. Select one primary picture separately per shot.",
+      "review": [
+        "cross-view geometry",
+        "all intended stored views",
+        "landmark retention",
+        "latent tokens"
+      ]
+    },
+    "voice": {
+      "widgets": {
+        "concept_type": "voice",
+        "subfolder": "voices"
+      },
+      "variables": [
+        "name",
+        "subject_name",
+        "voice_description",
+        "source"
+      ],
+      "source_guidance": "Clean speech by the authorized speaker without music or competing voices; connect audio VAE and an audio-only source.",
+      "review": [
+        "speaker and accent",
+        "noise or clipping",
+        "duration actually encoded",
+        "playback approval"
+      ]
+    }
+  },
+  "notes": [
+    "A visual location uses concept_type background. Ambience is an audio concept in Fantastic Draft from RefMods; this preset correction does not rewrite existing RefMod files.",
+    "Full Reference is encode mode: grid and refinement_steps are not evidence that optimization occurred. Do not silently switch to Compressed Reference.",
+    "The stored source, encoder frames and token count must be inspected after creation; filename and preview alone do not establish quality.",
+    "7250 is a per-asset save ceiling from the current test settings, not a combined-run VRAM guarantee. It is an editable setting, not a source-count rule.",
+    "Wardrobe and props remain separate full-detail picture assets; derive their names, owner and instructions from the asset registry.",
+    "These presets do not create, replace or approve any asset automatically."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "1": {
+    "class_type": "LCSubject",
+    "inputs": {
+      "description": "an architect wearing a blue jacket",
+      "pose": "standing",
+      "action": "none",
+      "outfit": "none",
+      "position_horizontal": "center",
+      "position_vertical": "middle",
+      "position_depth": "midground",
+      "lc_live_prompt": "an architect wearing a blue jacket, pose: standing, position: center, middle, midground"
+    }
+  },
+  "2": {
+    "class_type": "LCSceneBuilder",
+    "inputs": {
+      "scene_preset": "Luxury penthouse",
+      "description": "",
+      "time_of_day": "Afternoon",
+      "weather": "Clear",
+      "environment_details": "",
+      "lc_live_prompt": "luxury penthouse interior with light oak floors, brass fixtures, floor-to-ceiling windows, city skyline beyond glass, soft spill, minimal designer furniture, polished concrete accents, no main person, no readable text or logos, afternoon light with warmer tilt, comfortable outdoor contrast, clear sky conditions, crisp air, clean distant detail"
+    }
+  },
+  "3": {
+    "class_type": "LCColorPalette",
+    "inputs": {
+      "mode": "preset",
+      "preset": "Vibrant Primary",
+      "num_colors": 4
+    }
+  },
+  "4": {
+    "class_type": "LCPromptAssembler",
+    "inputs": {
+      "pretty_print": true,
+      "remove_empty": true,
+      "include_scene_bboxes": false,
+      "mood": "calm and welcoming",
+      "background": "",
+      "composition": "",
+      "extra": "",
+      "margin": 0.05,
+      "subjects": [
+        "1",
+        0
+      ],
+      "scene": [
+        "2",
+        0
+      ],
+      "palette": [
+        "3",
+        0
+      ]
+    }
+  },
+  "5": {
+    "class_type": "PreviewAny",
+    "inputs": {
+      "source": [
+        "4",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "WorkflowReview/20261109T172130653925Z-lc123",
+      "images": [
+        "3",
+        1
+      ]
+    }
+  }
+}

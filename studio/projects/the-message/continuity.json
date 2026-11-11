@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "wardrobe": "W1",
+  "transition": "cut",
+  "carry_latent": false,
+  "scene01": "accepted learning baseline",
+  "scene02": "pending human review",
+  "script_origin": "Reconstructed from the two existing scene prompts; proposed breakdown, not an original screenplay supplied by the user",
+  "reference_quality": {
+    "identity": "baseline retained",
+    "voice": "approved off-camera test",
+    "location": "approved room; geometry not guaranteed",
+    "wardrobe": "small crop; do not upscale automatically"
+  }
+}

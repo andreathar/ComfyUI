@@ -1,0 +1,30 @@
+{
+  "diffusion_models": {
+    "path": "models/diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+    "size_bytes": 20970379616,
+    "mtime_ns": 1793606547909710448,
+    "sha256": "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779",
+    "resolver_config_sha256": "e111d08021b521b9b8452cebcc908cd3008b9286dd423341435a187fde01ef74"
+  },
+  "text_encoders": {
+    "path": "models/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "size_bytes": 15687142551,
+    "mtime_ns": 1793606059627319915,
+    "sha256": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+    "resolver_config_sha256": "e111d08021b521b9b8452cebcc908cd3008b9286dd423341435a187fde01ef74"
+  },
+  "video_vae": {
+    "path": "models/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+    "size_bytes": 2811065184,
+    "mtime_ns": 1794015727880044165,
+    "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+    "resolver_config_sha256": "e111d08021b521b9b8452cebcc908cd3008b9286dd423341435a187fde01ef74"
+  },
+  "audio_vae": {
+    "path": "models/vae/minimax_h3_audio_vae_fp32.safetensors",
+    "size_bytes": 605254808,
+    "mtime_ns": 1793605614786586907,
+    "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+    "resolver_config_sha256": "e111d08021b521b9b8452cebcc908cd3008b9286dd423341435a187fde01ef74"
+  }
+}

@@ -1,7 +1,7 @@
-#This is an example that uses the websockets api and the SaveImageWebsocket node to get images directly without
-#them being saved to disk
+# This is an example that uses the websockets api and the SaveImageWebsocket node to get images directly without
+# them being saved to disk
 
-import websocket #NOTE: websocket-client (https://github.com/websocket-client/websocket-client)
+import websocket # NOTE: websocket-client (https://github.com/websocket-client/websocket-client)
 import uuid
 import json
 import urllib.request
@@ -38,7 +38,7 @@ def get_images(ws, prompt):
                 data = message['data']
                 if data['prompt_id'] == prompt_id:
                     if data['node'] is None:
-                        break #Execution is done
+                        break  # Execution is done
                     else:
                         current_node = data['node']
         else:
