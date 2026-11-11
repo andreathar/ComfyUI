@@ -21,6 +21,6 @@ export UV_LINK_MODE=copy
 exec .venv/bin/python main.py \
     --listen 127.0.0.1 --port 8188 \
     --disable-auto-launch --enable-manager --enable-assets \
-    --reserve-vram 1.0 --disable-pinned-memory \
+    --reserve-vram 1.0 --disable-pinned-memory --use-ck-attention \
     --preview-method latent2rgb \
     "$@"

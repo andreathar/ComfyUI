@@ -151,6 +151,47 @@ qualification; never silently replace the final recipe.
   sessions.
 - Keep only packs this workflow uses loaded during long renders (49 → ~10).
 
+## Measured results (2026-11-11)
+
+Cold replay (`bench.py --free`) of `MSG_S003_SH01` tk004 (prompt `063db6d1`), same seed,
+GPU cooled to 58 °C before each run. Output folder `output/Andre_H3_bench/`; monitor data
+in `.codex/artifacts/h3-resource-review-2026-11-08/runs/msg-P*`.
+
+| Run | Attention | Wall | Sampler | s/it | Busy SM clock | PSNR vs P0 | SSIM Y |
+|---|---|---|---|---|---|---|---|
+| P0 | PyTorch SDPA (launch.sh, pinned off) | 210.8 s | 184 s | 9.06 | 1,212 MHz | — | — |
+| P3a | `--use-ck-attention` | 168.1 s | 147 s | 7.28 | 1,013 MHz | 38.6 dB | 0.984 |
+| P3b | `--use-sage-attention` | 171.5 s | 147 s | 7.36 | 1,089 MHz | 38.7 dB | 0.984 |
+
+- P0 reproduced the original tk004 video bit for bit (PSNR inf), so replays are deterministic.
+- This shot takes ~211 s cold, not the 470–630 s estimated above; the 936 s auto-draft
+  figure includes the recursive loop and two shots. The sampler is 87% of the time.
+- Comfy Kitchen int8 attention is ~20% faster end to end at a *lower* mean clock;
+  composition is unchanged at frames 0/28/55. SageAttention is no better.
+- Throttling persists after the attention change: thermal (0x20) in ~56–70% and power
+  cap (0x04) in ~28–42% of busy samples, peak 89 °C, minimum 487 MHz. Phase 2 remains
+  the next lever.
+- Owner accepted P3a; `--use-ck-attention` is now in `.codex/launch.sh`.
+- `nvidia-smi -pl` is refused on this laptop ("not supported in current scope"), so
+  Phase 2 can only use a clock cap (`sudo nvidia-smi -lgc 210,1200`) or cooling.
+
+Phase 4 stage split, same shot, `--use-ck-attention`, nodes `H3StageSave`/`H3StageLoad`
+(ComfyUI-H3-Project-Suite, safetensors under `output/h3_stages/`):
+
+| Run | Wall | Text encoder loaded | Swap out | Min free RAM | PSNR vs P3a |
+|---|---|---|---|---|---|
+| P3a single prompt | 168.1 s | yes | 4.5 GB | 13.9 GB | — |
+| P4 encode + save | 12.0 s | yes | 0 | 17.7 GB | — |
+| P4 load + sample | 154.1 s | no | 0 | 17.8 GB | inf (bit-identical) |
+
+For one shot the total is about the same; the gain is that sampling runs never hold the
+text encoder, so a batch can encode all shots, then sample all shots without swapping.
+Remaining Phase 4 work: make `studio/h3_loop.py` emit the encode-all and sample-all
+prompts.
+
+Hermes Desktop's llama-server (Qwen3.5-9B, ~5.1 GB VRAM) is respawned by its supervisor
+and reloads the model on demand. Close Hermes or unload its model before H3 render sessions.
+
 ## Not recommended
 
 - `--highvram` / `--gpu-only`: 6 GB cannot hold either model.
@@ -170,7 +211,7 @@ qualification; never silently replace the final recipe.
 | Phase 4 | −20–40 s per shot in batches | ~210–350 s |
 | Phase 5 (pilots only) | −30–40% | pilots ~150–230 s |
 
-Ranges are estimates until Phase 0–3 measurements exist; thermal results dominate.
+These ranges were pre-measurement estimates; see "Measured results" for actual numbers.
 
 ## Decisions for the owner
 
