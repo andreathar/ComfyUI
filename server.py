@@ -444,6 +444,8 @@ class PromptServer():
                 type_dir = folder_paths.get_temp_directory()
             elif dir_type == "output":
                 type_dir = folder_paths.get_output_directory()
+            else:
+                return None, dir_type
 
             return type_dir, dir_type
 
@@ -473,6 +475,8 @@ class PromptServer():
 
             image_upload_type = post.get("type")
             upload_dir, image_upload_type = get_dir_by_type(image_upload_type)
+            if upload_dir is None:
+                return web.Response(status=400), None, None
 
             if image and image.file:
                 filename = image.filename
@@ -1137,14 +1141,20 @@ class PromptServer():
         @routes.get("/history")
         async def get_history(request):
             max_items = request.rel_url.query.get("max_items", None)
-            if max_items is not None:
-                max_items = int(max_items)
+            try:
+                if max_items is not None:
+                    max_items = int(max_items)
+            except ValueError:
+                return web.json_response({"error": "max_items must be an integer"}, status=400)
 
             offset = request.rel_url.query.get("offset", None)
-            if offset is not None:
-                offset = int(offset)
-            else:
-                offset = -1
+            try:
+                if offset is not None:
+                    offset = int(offset)
+                else:
+                    offset = -1
+            except ValueError:
+                return web.json_response({"error": "offset must be an integer"}, status=400)
 
             return web.json_response(self.prompt_queue.get_history(max_items=max_items, offset=offset))
 
@@ -1269,19 +1279,8 @@ class PromptServer():
             # Check if a specific prompt_id was provided for targeted interruption
             prompt_id = json_data.get('prompt_id')
             if prompt_id:
-                currently_running, _ = self.prompt_queue.get_current_queue()
-
-                # Check if the prompt_id matches any currently running prompt
-                should_interrupt = False
-                for item in currently_running:
-                    # item structure: (number, prompt_id, prompt, extra_data, outputs_to_execute)
-                    if item[1] == prompt_id:
-                        logging.info(f"Interrupting prompt {prompt_id}")
-                        should_interrupt = True
-                        break
-
-                if should_interrupt:
-                    nodes.interrupt_processing()
+                if self.prompt_queue.interrupt_if_running(prompt_id):
+                    logging.info(f"Interrupting prompt {prompt_id}")
                 else:
                     logging.info(f"Prompt {prompt_id} is not currently running, skipping interrupt")
             else:

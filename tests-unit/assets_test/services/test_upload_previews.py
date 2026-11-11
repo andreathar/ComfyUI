@@ -131,6 +131,17 @@ async def test_an_exr_that_cant_be_previewed_still_uploads(mock_create_session, 
 
 
 @pytest.mark.asyncio
+async def test_image_upload_rejects_unknown_directory_type(mock_create_session, roots):
+    async with await _client(AssetsEnabled(_Args())) as client:
+        response = await client.post(
+            "/upload/image",
+            data=_form("frame.png", _png(), type="unknown"),
+        )
+
+    assert response.status == 400
+
+
+@pytest.mark.asyncio
 async def test_mask_upload_still_answers_with_json(mock_create_session, roots):
     (roots / "input" / "base.png").write_bytes(_png())
     original_ref = json.dumps({"filename": "base.png", "type": "input", "subfolder": ""})

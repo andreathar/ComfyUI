@@ -31,13 +31,13 @@ async def test_group_missing_fields_follow_execution_list_mode(is_input_list, la
             ], outputs=[])
 
         @classmethod
-        def execute(cls, rows):
-            received.append(rows)
+        def execute(cls, **kwargs):
+            received.append(kwargs["rows"])
             return io.NodeOutput()
 
         @classmethod
-        def check_lazy_status(cls, rows):
-            received.append(rows)
+        def check_lazy_status(cls, **kwargs):
+            received.append(kwargs["rows"])
             return []
 
     values = {} if empty else {"rows.0.x": 0.5, "rows.2.x": 0.8}
@@ -71,7 +71,7 @@ async def test_group_validation_errors_identify_original_input(monkeypatch, valu
             ], outputs=[io.Float.Output()], is_output_node=not downstream)
 
         @classmethod
-        def execute(cls, rows):
+        def execute(cls, **kwargs):
             raise AssertionError("Invalid group must not execute")
 
     class Sink(io.ComfyNode):
@@ -80,7 +80,7 @@ async def test_group_validation_errors_identify_original_input(monkeypatch, valu
             return io.Schema(node_id=cls.__name__, inputs=[io.Float.Input("source")], outputs=[], is_output_node=True)
 
         @classmethod
-        def execute(cls, source):
+        def execute(cls, **kwargs):
             return io.NodeOutput()
 
     monkeypatch.setitem(nodes.NODE_CLASS_MAPPINGS, "Group", Group)

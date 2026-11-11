@@ -23,7 +23,7 @@ else:
     models_dir = os.path.join(base_path, "models")
 
 folder_names_and_paths["checkpoints"] = ([os.path.join(models_dir, "checkpoints")], supported_pt_extensions)
-folder_names_and_paths["configs"] = ([os.path.join(models_dir, "configs")], [".yaml"])
+folder_names_and_paths["configs"] = ([os.path.join(models_dir, "configs")], {".yaml"})
 
 folder_names_and_paths["loras"] = ([os.path.join(models_dir, "loras")], supported_pt_extensions)
 folder_names_and_paths["vae"] = ([os.path.join(models_dir, "vae")], supported_pt_extensions)
@@ -32,7 +32,7 @@ folder_names_and_paths["diffusion_models"] = ([os.path.join(models_dir, "unet"),
 folder_names_and_paths["clip_vision"] = ([os.path.join(models_dir, "clip_vision")], supported_pt_extensions)
 folder_names_and_paths["style_models"] = ([os.path.join(models_dir, "style_models")], supported_pt_extensions)
 folder_names_and_paths["embeddings"] = ([os.path.join(models_dir, "embeddings")], supported_pt_extensions)
-folder_names_and_paths["diffusers"] = ([os.path.join(models_dir, "diffusers")], ["folder"])
+folder_names_and_paths["diffusers"] = ([os.path.join(models_dir, "diffusers")], {"folder"})
 folder_names_and_paths["vae_approx"] = ([os.path.join(models_dir, "vae_approx")], supported_pt_extensions)
 
 folder_names_and_paths["controlnet"] = ([os.path.join(models_dir, "controlnet"), os.path.join(models_dir, "t2i_adapter")], supported_pt_extensions)

@@ -25,3 +25,7 @@ filtered-openapi.yaml
 uv.lock
 .comfy_environment
 /previews/
+.codex/
+.github/
+.ruff_cache/
+.pytest_cache/
