@@ -448,16 +448,19 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 
 ## Learned User Preferences
 
-- Start or restart ComfyUI only through `.codex/launch.sh` (127.0.0.1:8188). A server started from another shell loses its `--reserve-vram 1.0`, `--disable-pinned-memory`, `--enable-assets`, and preview flags.
+- Start or restart ComfyUI only through `.codex/launch.sh` (127.0.0.1:8188). A server started from another shell loses its `--reserve-vram 1.0`, `--disable-pinned-memory`, `--use-ck-attention`, `--enable-assets`, and preview flags.
 - Run long media work (trimming, importing, encoding) as queued ComfyUI prompts with progress and cancel, not as hidden background processes or private thread pools.
 
 ## Learned Workspace Facts
 
-- Hardware is an RTX 3060 Laptop GPU with 6 GB VRAM (sm86, 80 W default power limit, thermal throttling under long renders) and about 32 GB RAM; MiniMax H3 models run with heavy offloading.
+- Hardware is an RTX 3060 Laptop GPU with 6 GB VRAM (sm86, 80 W power limit that `nvidia-smi -pl` cannot change, thermal throttling under long renders) and about 32 GB RAM; MiniMax H3 models run with heavy offloading.
 - `models/` resolves through `/home/athar/ComfyUI-models` to `/mnt/data/ComfyUI-models`.
 - The Python environment is `.venv` with a cu130 PyTorch build; keep that stack unless a benchmark justifies a change.
 - The media asset library needs `--enable-assets`; without it, imports made through the library lose their references after a refresh.
 - `custom_nodes/ComfyUI-H3-Project-Suite` owns H3 projects (Hub, Context, Context Trim, Save, Import Source); it continues a chosen clip and does not detect or cut scenes.
+- The Project Suite is its own git repo (the main repo ignores `custom_nodes/`), and its H3 Stage Save/Load nodes keep encode results as safetensors in `output/h3_stages/` so sampling runs without the text encoder.
+- On H3, `--use-ck-attention` (Comfy Kitchen int8) is about 20% faster than PyTorch attention with matching frames and on par with SageAttention. Sampler time is driven by reference tokens (a RefMod can outweigh the video itself), not model alternation; `max_total_tokens` only rejects oversized bundles and does not shrink them.
+- A Hermes llama-server router can hold about 5 GB of VRAM and respawns its model on demand; check `nvidia-smi` before rendering or benchmarking.
 - Never decode long videos into image batches; use seek-based `VideoFromFile` trimming and saving so memory stays flat.
 - Studio automation lives in `studio/` (`film.py`, `h3_*.py`) with plans in `studio/plans/`.
 - The codebase-memory graph misses calls made through instance attributes such as `self.prompt_queue.x`; confirm callers with a text search.
