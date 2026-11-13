@@ -6,6 +6,8 @@ import fcntl
 import hashlib
 import json
 from pathlib import Path
+import re
+import shutil
 import subprocess
 import time
 
@@ -62,6 +64,14 @@ def check_graph(bundle, graph):
     for node_id, node in graph.items():
         if node['class_type'] == 'VAEDecodeAudio':
             errors.append(f'node {node_id}: audio decode remains active')
+        if node['class_type'] == 'MiniMaxH3FantasticEditComposite':
+            errors.append(f'node {node_id}: edit composite pass-through must be removed from silent generation')
+        if node['class_type'] == 'WorkflowMonitorBrain':
+            m_inputs = node.get('inputs', {})
+            if m_inputs.get('enabled') is not True:
+                errors.append(f'node {node_id}: WorkflowMonitorBrain must have enabled=True when present')
+            if str(m_inputs.get('sample_interval', '2')) not in ('1', '2', '5'):
+                errors.append(f'node {node_id}: unsupported WorkflowMonitorBrain sample_interval')
     return errors
 
 
@@ -111,11 +121,10 @@ def _preflight(state, resource_snapshot, registered_nodes):
         '16': ('SamplerCustomAdvanced', {'noise': ['15', 0], 'guider': ['12', 0], 'sampler': ['13', 0],
                                         'sigmas': ['14', 0], 'latent_image': ['9', 2]}),
         '17': ('VAEDecode', {'samples': ['16', 0], 'vae': ['5', 0]}),
-        '25': ('MiniMaxH3FantasticEditComposite', {'images': ['17', 0], 'references': ['21', 0], 'blend': 8, 'max_size': 0}),
         '34': ('MiniMaxH3ChainLoopStart', {'plan': ['33', 0], 'start_clip': 1, 'scene_range': '', 'verify_resume_history': True}),
         '35': ('MiniMaxH3ChainCurrent', {'state': ['34', 1], 'align_audio_reference': False}),
         '36': ('DynamicScriptNode', {'output_ports_count': 2}),
-        '37': ('MiniMaxH3LoopTrim', {'images': ['25', 0], 'state': ['35', 0]}),
+        '37': ('MiniMaxH3LoopTrim', {'images': ['17', 0], 'state': ['35', 0]}),
         '38': ('MiniMaxH3ChainSegmentSave', {'state': ['35', 0], 'images': ['37', 0], 'sampled_latent': ['16', 0]}),
         '39': ('MiniMaxH3ChainLoopEnd', {'execution_mode': 'recursive', 'flow': ['34', 0], 'state': ['35', 0],
                                       'images': ['37', 0], 'sampled_latent': ['16', 0], 'segment': ['38', 0]}),
@@ -126,6 +135,8 @@ def _preflight(state, resource_snapshot, registered_nodes):
         node = graph.get(node_id, {})
         if node.get('class_type') != class_type or any(node.get('inputs', {}).get(k) != v for k, v in inputs.items()):
             errors.append(f'node {node_id}: sampling/loop route does not match the full-run contract')
+    if graph.get('39', {}).get('inputs', {}).get('between_scene_cleanup') not in ('unload_models', 'fresh_scene'):
+        errors.append('node 39: between_scene_cleanup must be unload_models or fresh_scene for 6 GB VRAM safety')
     loader = graph.get('30', {})
     source = loader.get('inputs', {}).get('file_path')
     if loader.get('class_type') != 'DynamicLoadTextFileNode' or not isinstance(source, str):
@@ -367,6 +378,262 @@ def reconcile(path, history, output_root):
         return state
 
 
+def _copy_atomic(src, dst):
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dst.with_name(f'.{dst.name}.tmp')
+    shutil.copyfile(src, tmp)
+    tmp.replace(dst)
+
+
+def publish_delivery(path, destination, output_root):
+    """Publish friendly immutable shot and film copies plus index.json and README.md."""
+    destination = Path(destination)
+    if '..' in destination.parts or destination.is_symlink():
+        raise ValueError('invalid delivery destination')
+    destination = destination.resolve()
+    with _locked_run(path) as state:
+        if state['status'] not in ('review_pending', 'approved') or state.get('partial') is not False or not state.get('output'):
+            raise ValueError('delivery publication requires a complete technical-pass run')
+        bundle = state['bundle']
+        output = state['output']
+        final_src = Path(output['path'])
+        if not final_src.is_file() or h3.file_hash(final_src) != output['sha256']:
+            raise ValueError('completed assembly missing or hash changed before publication')
+        manifest_segments = output['manifest']['segments']
+        index_path = destination / 'index.json'
+        film_name = f"{bundle['run_name']}.mp4"
+        expected_shots = []
+        for pos, (shot, seg) in enumerate(zip(bundle['shots'], manifest_segments), 1):
+            seg_src = _output_path(output_root, seg['segment'])
+            if not seg_src.is_file() or h3.file_hash(seg_src) != seg['segment_sha256']:
+                raise ValueError(f'shot {pos}: verified segment missing or hash changed')
+            slug = re.sub(r'[^a-z0-9]+', '_', shot['shot_id'].lower()).strip('_')
+            rel_shot = f'shots/{pos:02d}_{slug}.mp4'
+            expected_shots.append((seg_src, rel_shot, {
+                'index': pos,
+                'shot_id': shot['shot_id'],
+                'friendly_file': rel_shot,
+                'canonical_segment': seg['segment'],
+                'canonical_checkpoint': seg['checkpoint'],
+                'revision': seg['revision'],
+                'sha256': seg['segment_sha256'],
+                'seed': shot['seed'],
+                'frames': shot['frames'],
+                'duration_s': round(shot['frames'] / state['delivery']['fps'], 3),
+                'assets': list(shot['assets']),
+                'warnings': shot.get('warnings', []),
+            }))
+        creative_status = 'approved' if state['status'] == 'approved' and state.get('review') else 'review_pending'
+        index_doc = {
+            'schema_version': 1,
+            'run_name': bundle['run_name'],
+            'identity_sha256': state['identity_sha256'],
+            'bundle_fingerprint': bundle['fingerprint'],
+            'prompt_id': state['prompt_id'],
+            'technical_status': 'passed',
+            'creative_status': creative_status,
+            'review': state.get('review'),
+            'delivery': {
+                **state['delivery'],
+                'duration_s': round(state['delivery']['frames'] / state['delivery']['fps'], 3),
+                'film_file': film_name,
+                'film_sha256': output['sha256'],
+                'canonical_draft': str(final_src),
+            },
+            'shots': [entry for _, _, entry in expected_shots],
+        }
+        if destination.exists():
+            if not index_path.is_file():
+                if any(destination.iterdir()):
+                    raise ValueError('delivery destination already exists and has no matching index.json')
+            else:
+                existing = film.read_json(index_path)
+                if (existing.get('identity_sha256') != state['identity_sha256'] or
+                        existing.get('delivery', {}).get('film_sha256') != output['sha256']):
+                    raise ValueError('delivery destination belongs to a different run or media hash')
+                film_dst = destination / film_name
+                if not film_dst.is_file() or h3.file_hash(film_dst) != output['sha256']:
+                    raise ValueError('existing published film hash mismatch')
+                for _, rel_shot, entry in expected_shots:
+                    shot_dst = destination / rel_shot
+                    if not shot_dst.is_file() or h3.file_hash(shot_dst) != entry['sha256']:
+                        raise ValueError(f"existing published shot hash mismatch: {rel_shot}")
+                return existing
+        destination.mkdir(parents=True, exist_ok=True)
+        _copy_atomic(final_src, destination / film_name)
+        for seg_src, rel_shot, entry in expected_shots:
+            shot_dst = destination / rel_shot
+            _copy_atomic(seg_src, shot_dst)
+            if h3.file_hash(shot_dst) != entry['sha256']:
+                raise ValueError(f'published shot copy hash mismatch: {rel_shot}')
+        if h3.file_hash(destination / film_name) != output['sha256']:
+            raise ValueError('published film copy hash mismatch')
+        _write_delivery_docs(destination, index_doc, expected_shots, bundle['run_name'], f'output/h3_chains/{bundle["run_name"]}/')
+        state['published_delivery'] = {'destination': str(destination), 'film_sha256': output['sha256']}
+        return index_doc
+
+
+def _write_delivery_docs(destination, index_doc, expected_shots, title, source_note):
+    delivery = index_doc['delivery']
+    lines = [
+        f'# {title}',
+        '',
+        f"- Technical verification: **passed** (`{delivery['width']}x{delivery['height']}`, `{delivery['fps']}` fps, `{delivery['frames']}` frames, audio `{delivery['audio']}`)",
+        f"- Creative review: **{index_doc['creative_status']}** (technical pass is not creative approval)",
+        f"- Assembled silent film: `{delivery['film_file']}` (`{delivery['film_sha256']}`)",
+        f'- Canonical source: `{source_note}` (preserved untouched)',
+        '',
+        '## Shots',
+        '',
+    ]
+    for _, _, entry in expected_shots:
+        lines.append(
+            f"- `{entry['friendly_file']}` — `{entry['shot_id']}` · {entry['frames']} frames ({entry['duration_s']}s) · seed `{entry['seed']}` · rev `{entry['revision']}` · sha256 `{entry['sha256'][:16]}…`"
+        )
+    readme_tmp = destination / '.README.md.tmp'
+    readme_tmp.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    readme_tmp.replace(destination / 'README.md')
+    film.write_json(destination / 'index.json', index_doc)
+
+
+def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, destination, output_root):
+    """Replace one verified shot in a completed run without mutating either source run."""
+    destination = Path(destination)
+    if not re.fullmatch(r'[A-Za-z0-9_-]+', run_name) or '..' in destination.parts or destination.is_symlink():
+        raise ValueError('invalid replacement run_name or destination')
+    destination = destination.resolve()
+    with _locked_run(base_run_path) as base_state, _locked_run(patch_run_path) as patch_state:
+        for label, st in (('base', base_state), ('patch', patch_state)):
+            if st['status'] not in ('review_pending', 'approved') or st.get('partial') is not False or not st.get('output'):
+                raise ValueError(f'{label} run requires a complete technical-pass record')
+        if base_state['delivery']['width'] != patch_state['delivery']['width'] or base_state['delivery']['height'] != patch_state['delivery']['height'] or base_state['delivery']['fps'] != patch_state['delivery']['fps']:
+            raise ValueError('replacement shot dimensions or fps do not match base run')
+        patch_shots = patch_state['bundle']['shots']
+        if len(patch_shots) != 1 or patch_shots[0]['shot_id'] != shot_id:
+            raise ValueError(f'patch run must contain only {shot_id}')
+        target_pos = next((i for i, s in enumerate(base_state['bundle']['shots']) if s['shot_id'] == shot_id), None)
+        if target_pos is None:
+            raise ValueError(f'{shot_id} not in base run')
+        merged_shots = []
+        merged_segments = []
+        expected_shots = []
+        ordered_hashes = []
+        for idx, (b_shot, b_seg) in enumerate(zip(base_state['bundle']['shots'], base_state['output']['manifest']['segments'])):
+            pos = idx + 1
+            if idx == target_pos:
+                use_shot = patch_shots[0]
+                use_seg = dict(patch_state['output']['manifest']['segments'][0], index=pos)
+                source_run = patch_state['bundle']['run_name']
+            else:
+                use_shot = b_shot
+                use_seg = b_seg
+                source_run = base_state['bundle']['run_name']
+            seg_src = _output_path(output_root, use_seg['segment'])
+            if not seg_src.is_file() or h3.file_hash(seg_src) != use_seg['segment_sha256']:
+                raise ValueError(f'shot {pos}: segment missing or hash changed')
+            if film.probe_video(seg_src) != {'width': base_state['delivery']['width'], 'height': base_state['delivery']['height'], 'fps': base_state['delivery']['fps'], 'frames': use_shot['frames'], 'audio': False}:
+                raise ValueError(f'shot {pos}: segment probe mismatch')
+            ordered_hashes.extend(_frame_hashes(seg_src))
+            slug = re.sub(r'[^a-z0-9]+', '_', use_shot['shot_id'].lower()).strip('_')
+            rel_shot = f'shots/{pos:02d}_{slug}.mp4'
+            merged_shots.append(use_shot)
+            merged_segments.append(use_seg)
+            expected_shots.append((seg_src, rel_shot, {
+                'index': pos,
+                'shot_id': use_shot['shot_id'],
+                'source_run': source_run,
+                'friendly_file': rel_shot,
+                'canonical_segment': use_seg['segment'],
+                'canonical_checkpoint': use_seg['checkpoint'],
+                'revision': use_seg['revision'],
+                'sha256': use_seg['segment_sha256'],
+                'seed': use_shot['seed'],
+                'frames': use_shot['frames'],
+                'duration_s': round(use_shot['frames'] / base_state['delivery']['fps'], 3),
+                'assets': list(use_shot['assets']),
+                'warnings': use_shot.get('warnings', []),
+            }))
+        merged_bundle = h3_loop.export(merged_shots, run_name, f'The_Message/deliveries/{destination.name}')
+        total_frames = sum(s['frames'] for s in merged_shots)
+        film_name = f'{run_name}.mp4'
+        index_path = destination / 'index.json'
+        if destination.exists():
+            if index_path.is_file():
+                existing = film.read_json(index_path)
+                if existing.get('bundle_fingerprint') == merged_bundle['fingerprint']:
+                    film_dst = destination / film_name
+                    if film_dst.is_file() and h3.file_hash(film_dst) == existing['delivery']['film_sha256']:
+                        return existing
+            if any(destination.iterdir()):
+                raise ValueError('replacement destination already exists with different content')
+        destination.mkdir(parents=True, exist_ok=True)
+        for seg_src, rel_shot, entry in expected_shots:
+            shot_dst = destination / rel_shot
+            _copy_atomic(seg_src, shot_dst)
+            if h3.file_hash(shot_dst) != entry['sha256']:
+                raise ValueError(f'published shot copy hash mismatch: {rel_shot}')
+        manifest_tag = {
+            'format': 'h3_chain_editorial_replacement_v1',
+            'run_name': run_name,
+            'base_run_name': base_state['bundle']['run_name'],
+            'base_prompt_id': base_state['prompt_id'],
+            'patch_run_name': patch_state['bundle']['run_name'],
+            'patch_prompt_id': patch_state['prompt_id'],
+            'replaced_shot_id': shot_id,
+            'replaced_base_revision': base_state['output']['manifest']['segments'][target_pos]['revision'],
+            'replacement_revision': patch_state['output']['manifest']['segments'][0]['revision'],
+            'bundle_fingerprint': merged_bundle['fingerprint'],
+            'clip_count': len(merged_segments),
+            'total_delivered_frames': total_frames,
+            'segments': merged_segments,
+        }
+        concat_tmp = destination / '.concat.txt.tmp'
+        concat_tmp.write_text(''.join(f"file '{(destination / rel).as_posix()}'\n" for _, rel, _ in expected_shots), encoding='utf-8')
+        film_tmp = destination / f'.{film_name}.tmp.mp4'
+        try:
+            subprocess.run([
+                'ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0',
+                '-i', str(concat_tmp), '-map', '0:v:0', '-c:v', 'copy', '-an',
+                '-movflags', 'use_metadata_tags', '-metadata', 'h3_manifest=' + json.dumps(manifest_tag),
+                str(film_tmp),
+            ], check=True)
+        finally:
+            concat_tmp.unlink(missing_ok=True)
+        expected_probe = {'width': base_state['delivery']['width'], 'height': base_state['delivery']['height'], 'fps': base_state['delivery']['fps'], 'frames': total_frames, 'audio': False}
+        if film.probe_video(film_tmp) != expected_probe or _frame_hashes(film_tmp) != ordered_hashes:
+            film_tmp.unlink(missing_ok=True)
+            raise ValueError('replacement film probe or decoded frame order mismatch')
+        film_dst = destination / film_name
+        film_tmp.replace(film_dst)
+        film_sha = h3.file_hash(film_dst)
+        index_doc = {
+            'schema_version': 1,
+            'run_name': run_name,
+            'bundle_fingerprint': merged_bundle['fingerprint'],
+            'base_run': {'run_name': base_state['bundle']['run_name'], 'prompt_id': base_state['prompt_id'], 'film_sha256': base_state['output']['sha256']},
+            'replacement': {
+                'shot_id': shot_id,
+                'patch_run_name': patch_state['bundle']['run_name'],
+                'patch_prompt_id': patch_state['prompt_id'],
+                'previous_revision': base_state['output']['manifest']['segments'][target_pos]['revision'],
+                'new_revision': patch_state['output']['manifest']['segments'][0]['revision'],
+            },
+            'technical_status': 'passed',
+            'creative_status': 'review_pending',
+            'delivery': {
+                **expected_probe,
+                'audio': 'none',
+                'duration_s': round(total_frames / expected_probe['fps'], 3),
+                'film_file': film_name,
+                'film_sha256': film_sha,
+                'canonical_draft': str(film_dst),
+            },
+            'shots': [entry for _, _, entry in expected_shots],
+        }
+        _write_delivery_docs(destination, index_doc, expected_shots, run_name, f"base {base_state['bundle']['run_name']} + patch {patch_state['bundle']['run_name']} ({shot_id})")
+        return index_doc
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
@@ -381,11 +648,12 @@ def main(argv=None):
         if name == 'submitting':
             command.add_argument('--graph', type=Path, required=True)
     for name, argument in (('bind', 'prompt_id'), ('unknown', 'reason'),
-                           ('recover', 'history'), ('reconcile', 'history')):
+                           ('recover', 'history'), ('reconcile', 'history'),
+                           ('publish', 'destination')):
         command = commands.add_parser(name)
         command.add_argument('run', type=Path)
         command.add_argument(argument)
-        if name == 'reconcile':
+        if name in ('reconcile', 'publish'):
             command.add_argument('--output-root', type=Path, required=True)
     args = parser.parse_args(argv)
     if args.command == 'prepare':
@@ -403,6 +671,8 @@ def main(argv=None):
         print(json.dumps(recover_submission(args.run, film.read_json(args.history))))
     elif args.command == 'reconcile':
         print(json.dumps(reconcile(args.run, film.read_json(args.history), args.output_root)))
+    elif args.command == 'publish':
+        print(json.dumps(publish_delivery(args.run, args.destination, args.output_root)))
 
 
 if __name__ == '__main__':

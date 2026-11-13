@@ -380,5 +380,71 @@
       "saved_output": "output/The_Message/references/silent-proof-v001/table-insert-clean-v2_00001_.png"
     },
     "approved": false
+  },
+  "cafe-table-note-insert-v2": {
+    "path": "input/The_Message/props/folded-note-clean-v2.png",
+    "sha256": "61e478415cbdb4e1e712d0018cbfcacee108348462e6053884d8f11b2ef4fc2a",
+    "role": "location",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "picture",
+    "input_use_authorized": true,
+    "visual_review": "pending",
+    "limitations": "Generated 768x432 tabletop close-up plate; human creative review pending.",
+    "instruction": "Overhead tabletop close-up: preserve the single closed rectangular cream folded note/envelope resting flat in the upper-left quadrant of the warm oak wooden tabletop; keep wood grain and soft directional shadow motionless.",
+    "selection": {
+      "kind": "picture",
+      "file": "The_Message/props/folded-note-clean-v2.png [input]",
+      "name": "folded-note-clean-v2.png",
+      "width": 768,
+      "height": 432,
+      "duration": null,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "cafe-table-note-insert-v2"
+    },
+    "provenance": {
+      "source": "output/refs/the-message/s001/folded-letter-tabletop/s001-folded-letter-tabletop_sd15_16x9_s808_00001_.png",
+      "source_sha256": "61e478415cbdb4e1e712d0018cbfcacee108348462e6053884d8f11b2ef4fc2a",
+      "spec": "studio/shots/the-message-props.json",
+      "scale_cm_approx": "14x9 cm folded rectangular note",
+      "fold": "closed rectangular paper note with triangular top flap, flat crease",
+      "orientation": "slight counter-clockwise angle, horizontal long axis",
+      "table_position": "upper-left quadrant of warm oak tabletop, empty wood surface to right"
+    },
+    "approved": false
+  },
+  "cafe-reaction-v2": {
+    "path": "input/the-message-reaction-candidate-v2.png",
+    "sha256": "9013d2942ad8bb03aca624f58895dd27199ca02aef9e1103d9134f7ab9d0288c",
+    "role": "location",
+    "owner": "MSG-LOC-CAFE",
+    "kind": "picture",
+    "input_use_authorized": true,
+    "visual_review": "pending",
+    "limitations": "448x258 same-camera crop from 608x352 source take; retains window landmark without inventing new detail.",
+    "instruction": "Medium-close cafe framing: subject seated at left table edge, espresso counter in soft background, black-grid industrial window at right.",
+    "selection": {
+      "kind": "picture",
+      "file": "the-message-reaction-candidate-v2.png [input]",
+      "name": "the-message-reaction-candidate-v2.png",
+      "width": 448,
+      "height": 258,
+      "duration": null,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "cafe-reaction-v2"
+    },
+    "provenance": {
+      "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+      "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+      "crop_xywh": [
+        48,
+        24,
+        448,
+        258
+      ],
+      "saved_output": "output/The_Message/references/silent-proof-v001/reaction-candidate-v2_00001_.png"
+    },
+    "approved": false
   }
 }

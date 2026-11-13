@@ -138,13 +138,13 @@
       "scene": "MSG_S001",
       "purpose": "insert",
       "shot_size": "close-up",
-      "angle": "eye-level",
+      "angle": "overhead",
       "camera_move": {
         "type": "static"
       },
       "lens": "macro",
       "subject": "Folded note",
-      "action": "The folded cream note remains motionless on the wooden tabletop.",
+      "action": "One closed rectangular cream paper note rests completely motionless on the warm oak wooden tabletop surface in tight overhead close-up.",
       "characters": [],
       "props": [
         "MSG-PRP-NOTE"
@@ -196,7 +196,7 @@
       },
       "lens": "35mm",
       "subject": "Andre",
-      "action": "Andre remains seated and still, with his hands resting quietly.",
+      "action": "Andre remains seated and still with his hands resting in his lap below the table edge, eyes lowered toward one closed cream note lying flat on the table.",
       "characters": [
         "MSG-CHR-ANDRE"
       ],

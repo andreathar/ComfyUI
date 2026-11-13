@@ -1,10 +1,12 @@
 # One workflow, multiple shots
 
-Use **06 - Learning Production / The Message - Automated Draft** for the
-file-driven sequence. **The Message - Shot Template** remains saved separately
-for individual shot experiments. Save workflow edits with Ctrl+S before closing;
-the production JSON, source references, checkpoints and rendered files are
-separate assets and are not embedded in the workflow.
+Use **06 - Learning Production / The Message - Silent Film Production** for the
+consolidated silent 832×480 sequence on the 6 GB RTX 3060 Laptop.
+**The Message - Reference Preparation** holds one-time asset cropping, RefMod
+creation (`refinement_steps=0`, encode-only) and RefMod inspection.
+**The Message - Automated Draft** and **The Message - Shot Template** remain
+saved separately as historical baselines. Save workflow edits with Ctrl+S
+before closing.
 
 ## What changes between productions
 
@@ -88,5 +90,17 @@ runs, actual process-crash recovery, continuous shots and dialogue/voice continu
 are not qualified by this test. Raw prose still needs a reviewed production/shot
 document; no automatic text-provider call or paid video generation is included.
 
-Machine-specific receipts and timings are in
-`.codex/artifacts/the-message-production/auto-draft-v001/`.
+## Executed six-shot silent production (`The_Message_Silent_Proof_v003`)
+
+Use **06 - Learning Production / The Message - Silent Film Production** with
+`.codex/launch.sh` (`--reserve-vram 1.0 --disable-pinned-memory --use-ck-attention --enable-assets --preview-method latent2rgb`):
+
+1. **Prepare**: `.venv/bin/python studio/h3_loop_run.py prepare --root ATTEMPT_DIR --bundle BUNDLE.json --graph LIVE_GRAPH.json --models MODEL_PINS.json --workspace "$PWD"`
+2. **Preflight**: `.venv/bin/python studio/h3_preflight.py snapshot --out RESOURCES.json` (checks idle queue, free RAM, usable ComfyUI VRAM, zero foreign GPU processes such as `llama-server`, and GPU `< 88 °C`), or run **only Node `41`** on CPU (`0.01s`).
+3. **Run**: Submit once from the connected ComfyUI browser tab so passive `WorkflowMonitorBrain` (`Node 44`) records complete phase timings and 2-second resource samples into `/workflow_monitor/runs`, then bind `PROMPT_ID`.
+4. **Reconcile & Publish**: `.venv/bin/python studio/h3_loop_run.py reconcile RUN_DIR HISTORY.json --output-root output` followed by `publish RUN_DIR DELIVERY_DIR --output-root output`.
+5. **Resume / Reassemble**: Keep `verify_resume_history=true` on `Node 34`; unmute `Nodes 47–49` and run only to `49` for CPU manifest verification, or wire `ManifestLoad (47) -> Assemble (40)` for sampling-free reassembly (`verified in prompt e17581f4`).
+
+Saved tabs safe to close after `Ctrl+S`: `The Message - Silent Film Production.json`, `The Message - Reference Preparation.json`, `The Message - Stress Pilot 73f - Monitored.json`, and `The Message - Shot 04 Reaction 73f - Monitored.json` (preserve any unsaved `*Monitor draft` tab if still editing).
+
+Delivery folder: `/mnt/data/Projects_SSD/ComfyUI/output/The_Message/deliveries/silent-proof-v003/` (`The_Message_Silent_Proof_v003.mp4`, `shots/01_cafe_wide.mp4` … `06_closing_wide.mp4`, `contact-sheet-6shots.png`, `index.json`, `README.md`). Status remains `review_pending`: Shot 03 transitions mid-shot from the tabletop note insert to a wide empty cafe view and awaits human creative decision before any single-shot replacement.

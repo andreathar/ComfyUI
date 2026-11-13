@@ -450,17 +450,20 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 
 - Start or restart ComfyUI only through `.codex/launch.sh` (127.0.0.1:8188). A server started from another shell loses its `--reserve-vram 1.0`, `--disable-pinned-memory`, `--use-ck-attention`, `--enable-assets`, and preview flags.
 - Run long media work (trimming, importing, encoding) as queued ComfyUI prompts with progress and cancel, not as hidden background processes or private thread pools.
+- Check `/queue` before submitting a GPU job or restarting ComfyUI so active renders are never interrupted or duplicated; report technical and resource measurements separately from visual-quality review (a technical pass is not creative approval).
+- Keep the Plannotator Inbox thread and task board updated as multi-step work progresses, and check the Inbox for user answers before assuming a decision is still open.
 
 ## Learned Workspace Facts
 
 - Hardware is an RTX 3060 Laptop GPU with 6 GB VRAM (sm86, 80 W power limit that `nvidia-smi -pl` cannot change, thermal throttling under long renders) and about 32 GB RAM; MiniMax H3 models run with heavy offloading.
 - `models/` resolves through `/home/athar/ComfyUI-models` to `/mnt/data/ComfyUI-models`.
-- The Python environment is `.venv` with a cu130 PyTorch build; keep that stack unless a benchmark justifies a change.
+- The Python environment is `.venv` with a locked cu130 PyTorch/torchaudio stack; keep that stack unless a benchmark justifies a change, because mismatched CUDA wheels break `torchaudio` imports and stop `comfyui-minimaxh3-contex-loop` and `ComfyUI-H3-Project-Suite` from loading.
 - The media asset library needs `--enable-assets`; without it, imports made through the library lose their references after a refresh.
 - `custom_nodes/ComfyUI-H3-Project-Suite` owns H3 projects (Hub, Context, Context Trim, Save, Import Source); it continues a chosen clip and does not detect or cut scenes.
 - The Project Suite is its own git repo (the main repo ignores `custom_nodes/`), and its H3 Stage Save/Load nodes keep encode results as safetensors in `output/h3_stages/` so sampling runs without the text encoder.
 - On H3, `--use-ck-attention` (Comfy Kitchen int8) is about 20% faster than PyTorch attention with matching frames and on par with SageAttention. Sampler time is driven by reference tokens (a RefMod can outweigh the video itself), not model alternation; `max_total_tokens` only rejects oversized bundles and does not shrink them.
 - A Hermes llama-server router can hold about 5 GB of VRAM and respawns its model on demand; check `nvidia-smi` before rendering or benchmarking.
 - Never decode long videos into image batches; use seek-based `VideoFromFile` trimming and saving so memory stays flat.
-- Studio automation lives in `studio/` (`film.py`, `h3_*.py`) with plans in `studio/plans/`.
+- Studio automation lives in `studio/` (`film.py`, `h3_*.py`, canonical unit tests in `studio/test_*.py`, project specs in `studio/projects/`, plans in `studio/plans/`); on 6 GB VRAM, recursive Context Loop graphs require `MiniMaxH3ChainLoopEnd` `between_scene_cleanup` set to `unload_models` or `fresh_scene` so DynamicVRAM buffers release between shots.
+- `custom_nodes/ComfyUI-Workflow-Monitor-Brain` provides the unconnected `WorkflowMonitorBrain` output node (`/workflow_monitor/runs` under `user/default/workflow_monitor/runs/`); keep it enabled in the compiled prompt even when targeting specific outputs, and submit through a connected ComfyUI browser session when per-node phase timing is needed (headless API submissions record resources only).
 - The codebase-memory graph misses calls made through instance attributes such as `self.prompt_queue.x`; confirm callers with a text search.

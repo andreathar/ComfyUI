@@ -22,7 +22,6 @@
     "assets": [
       "cafe-window-table-v1",
       "cafe-wardrobe-candidate-v1",
-      "folded-note-candidate-v1",
       "andre-identity-video-v1"
     ],
     "audio_mode": "silent",
@@ -31,46 +30,46 @@
       "must_show": [
         "round table",
         "black-framed windows",
-        "folded note"
+        "one closed cream note flat on the tabletop"
       ],
       "props": [
         "MSG-PRP-NOTE"
       ],
-      "gaze_target": "the note on the table",
+      "gaze_target": "the closed cream note on the table",
       "expression": "neutral, lips relaxed and closed"
     },
-    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "blocking": "His hands remain clasped still in his lap below the table edge, out of frame. One closed cream note rests untouched near the left side of the tabletop.",
     "warnings": [
-      "All references are candidates; visual acceptance pending."
+      "All references are candidates; visual acceptance pending.",
+      "Paper-stack prop picture omitted so H3 keeps a single closed note."
     ]
   },
   "MSG_S001_SH03": {
     "assets": [
-      "cafe-table-insert-v1",
-      "folded-note-candidate-v1"
+      "cafe-table-note-insert-v2"
     ],
     "audio_mode": "silent",
     "seed": 11003,
     "shot_controls": {
+      "environment_override": "Tight overhead macro surface of a warm pale oak wooden cafe tabletop in soft natural daylight, with one closed rectangular cream folded paper note resting flat in the upper-left quadrant and empty wood grain filling the rest of the frame",
       "must_show": [
-        "folded cream note",
-        "wooden tabletop"
+        "one closed folded cream note in upper-left quadrant",
+        "warm oak wooden tabletop wood grain filling the entire frame from start to finish"
       ],
       "props": [
         "MSG-PRP-NOTE"
       ]
     },
-    "blocking": "No people, faces or hands visible.",
+    "blocking": "Fixed locked-down macro tabletop insert for the entire duration. Keep the exact close-up tabletop framing of <Picture 1> from first frame to last frame; never pull out, pan, cut, or reveal chairs, counters, walls, windows or room interior. No people, faces or hands visible.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
-      "Table primary is a 260x68 crop; resizing does not restore detail or create a new angle."
+      "Uses 768x432 clean single-note tabletop candidate with tabletop-only environment_override to prevent mid-shot room pull-out."
     ]
   },
   "MSG_S001_SH04": {
     "assets": [
-      "cafe-window-table-v1",
+      "cafe-reaction-v2",
       "cafe-wardrobe-candidate-v1",
-      "folded-note-candidate-v1",
       "andre-identity-video-v1"
     ],
     "audio_mode": "silent",
@@ -83,22 +82,20 @@
       "props": [
         "MSG-PRP-NOTE"
       ],
-      "gaze_target": "the window, off camera",
+      "gaze_target": "the window at screen right, off camera",
       "expression": "neutral, lips relaxed and closed"
     },
-    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "blocking": "His hands stay resting still in his lap below the lower frame edge.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
-      "Wide primary reference conflicts with medium-close framing; tighter reaction reference still required before render qualification."
+      "Primary is a 448x258 crop from the 608x352 take retaining the black window landmark."
     ]
   },
   "MSG_S001_SH05": {
     "assets": [
       "cafe-reverse-counter-v1",
       "cafe-wardrobe-candidate-v1",
-      "folded-note-candidate-v1",
-      "andre-identity-video-v1",
-      "german-cafe-background-v2"
+      "andre-identity-video-v1"
     ],
     "audio_mode": "silent",
     "seed": 11005,
@@ -106,25 +103,25 @@
       "must_show": [
         "espresso counter",
         "round table",
-        "folded note"
+        "one closed cream note flat on the table"
       ],
       "props": [
         "MSG-PRP-NOTE"
       ],
-      "gaze_target": "the note on the table",
+      "gaze_target": "the closed cream note on the table, eyes lowered",
       "expression": "neutral, lips relaxed and closed"
     },
-    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "blocking": "His hands stay resting still in his lap below the table edge, out of frame, leaving the tabletop clear around the single closed cream note. His eyes stay lowered toward the note.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
-      "Cross-angle cafe geography remains unqualified."
+      "Cross-angle cafe geography remains unqualified.",
+      "background-v2 omitted after Stress56_v003_NoBG A/B: primary reverse picture preserves counter, brick, window, plant and table while saving 3,096 reference tokens + 3,151 conditioning tokens (16:11 vs 20:21) and keeping hands in lap."
     ]
   },
   "MSG_S001_SH06": {
     "assets": [
       "cafe-counter-wide-v1",
       "cafe-wardrobe-candidate-v1",
-      "folded-note-candidate-v1",
       "andre-identity-video-v1"
     ],
     "audio_mode": "silent",
@@ -141,10 +138,11 @@
       "gaze_target": "the table",
       "expression": "neutral, lips relaxed and closed"
     },
-    "blocking": "Keep the note near Andre on the tabletop. No handling of the note.",
+    "blocking": "His hands remain still in his lap below the table edge while one closed cream note sits undisturbed on the tabletop.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
-      "Cross-angle cafe geography remains unqualified."
+      "Cross-angle cafe geography remains unqualified.",
+      "Paper-stack prop picture omitted so H3 keeps a single closed note."
     ]
   }
 }

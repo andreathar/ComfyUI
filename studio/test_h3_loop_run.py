@@ -70,6 +70,21 @@ class LoopContractTests(unittest.TestCase):
         errors = h3_loop_run.check_graph(self.bundle, self.graph)
         self.assertTrue(any('node 9' in e for e in errors))
 
+    def test_edit_composite_passthrough_is_rejected_in_silent_generation(self):
+        self.graph['25'] = {'class_type': 'MiniMaxH3FantasticEditComposite', 'inputs': {'images': ['17', 0], 'references': ['21', 0]}}
+        errors = h3_loop_run.check_graph(self.bundle, self.graph)
+        self.assertTrue(any('edit composite' in e for e in errors))
+
+    def test_workflow_monitor_brain_passes_when_enabled_and_rejects_disabled(self):
+        self.graph['46'] = {
+            'class_type': 'WorkflowMonitorBrain',
+            'inputs': {'enabled': True, 'run_label': 'Shot 05 monitor', 'sample_interval': '2', 'phase_overrides': '{}'},
+        }
+        self.assertEqual(h3_loop_run.check_graph(self.bundle, self.graph), [])
+        self.graph['46']['inputs']['enabled'] = False
+        errors = h3_loop_run.check_graph(self.bundle, self.graph)
+        self.assertTrue(any('WorkflowMonitorBrain' in e for e in errors))
+
 
 class RunRecordFixture:
     def setUp(self):
@@ -88,16 +103,15 @@ class RunRecordFixture:
             '16': {'class_type': 'SamplerCustomAdvanced', 'inputs': {'noise': ['15', 0], 'guider': ['12', 0],
                   'sampler': ['13', 0], 'sigmas': ['14', 0], 'latent_image': ['9', 2]}},
             '17': {'class_type': 'VAEDecode', 'inputs': {'samples': ['16', 0], 'vae': ['5', 0]}},
-            '25': {'class_type': 'MiniMaxH3FantasticEditComposite', 'inputs': {
-                'images': ['17', 0], 'references': ['21', 0], 'blend': 8, 'max_size': 0}},
             '34': {'class_type': 'MiniMaxH3ChainLoopStart', 'inputs': {
                 'plan': ['33', 0], 'start_clip': 1, 'scene_range': '', 'verify_resume_history': True}},
             '35': {'class_type': 'MiniMaxH3ChainCurrent', 'inputs': {'state': ['34', 1], 'align_audio_reference': False}},
-            '39': {'class_type': 'MiniMaxH3ChainLoopEnd', 'inputs': {'execution_mode': 'recursive', 'flow': ['34', 0],
+            '39': {'class_type': 'MiniMaxH3ChainLoopEnd', 'inputs': {
+                'execution_mode': 'recursive', 'between_scene_cleanup': 'unload_models', 'flow': ['34', 0],
                 'state': ['35', 0], 'images': ['37', 0], 'sampled_latent': ['16', 0], 'segment': ['38', 0]}},
         })
         self.graph['36']['inputs']['output_ports_count'] = 2
-        self.graph['37']['inputs'].update(images=['25', 0], state=['35', 0])
+        self.graph['37']['inputs'].update(images=['17', 0], state=['35', 0])
         self.graph['38']['inputs'].update(state=['35', 0], images=['37', 0], sampled_latent=['16', 0])
         self.graph['40']['inputs'].update(manifest=['39', 0], blend_schedule='plan',
                                          boundary_tone_match='off', color_stabilization='off')
@@ -139,6 +153,12 @@ class RunRecordTests(RunRecordFixture, unittest.TestCase):
         self.graph['16']['inputs']['latent_image'] = ['9', 1]
         path = self.prepare()
         with self.assertRaisesRegex(ValueError, 'node 16'):
+            h3_loop_run.preflight(path, self.resources, self.nodes)
+
+    def test_disabled_between_scene_cleanup_blocks_preflight(self):
+        self.graph['39']['inputs']['between_scene_cleanup'] = 'off'
+        path = self.prepare()
+        with self.assertRaisesRegex(ValueError, 'between_scene_cleanup'):
             h3_loop_run.preflight(path, self.resources, self.nodes)
 
     def test_cli_prepares_record_without_submitting(self):
@@ -407,3 +427,64 @@ class CompletionTests(RunRecordFixture, unittest.TestCase):
         self.completed['prompt-one']['status'].update(completed=False, status_str='error')
         result = h3_loop_run.reconcile(self.path, self.completed, self.output)
         self.assertEqual(result['status'], 'failed')
+
+    def test_publish_delivery_is_idempotent_and_refuses_conflict(self):
+        h3_loop_run.reconcile(self.path, self.completed, self.output)
+        dest = self.root / 'delivery'
+        first = h3_loop_run.publish_delivery(self.path, dest, self.output)
+        self.assertEqual(first['technical_status'], 'passed')
+        self.assertEqual(first['creative_status'], 'review_pending')
+        self.assertTrue((dest / 'silent_test.mp4').is_file())
+        self.assertTrue((dest / 'shots/01_msg_s001_sh01.mp4').is_file())
+        self.assertTrue((dest / 'shots/02_msg_s001_sh02.mp4').is_file())
+        self.assertTrue((dest / 'README.md').is_file())
+        second = h3_loop_run.publish_delivery(self.path, dest, self.output)
+        self.assertEqual(first, second)
+        conflict = self.root / 'conflict'
+        conflict.mkdir()
+        (conflict / 'other.txt').write_text('existing')
+        with self.assertRaisesRegex(ValueError, 'already exists'):
+            h3_loop_run.publish_delivery(self.path, conflict, self.output)
+
+    def test_controlled_single_shot_replacement_preserves_other_segments_and_base_run(self):
+        base_before = h3_loop_run.reconcile(self.path, self.completed, self.output)
+        patch_shot = copy.deepcopy(self.bundle['shots'][1])
+        patch_shot['prompt_text'] = 'Tabletop only close-up'
+        patch_bundle = h3_loop.export([patch_shot], 'patch_sh02')
+        patch_source = self.root / 'patch_bundle.json'
+        patch_source.write_text(json.dumps(patch_bundle))
+        patch_graph = copy.deepcopy(self.graph)
+        patch_graph['30']['inputs']['file_path'] = str(patch_source)
+        patch_dir = h3_loop_run.prepare(self.root / 'runs', patch_bundle, patch_graph, self.models, self.root)
+        h3_loop_run.preflight(patch_dir, self.resources, self.nodes)
+        h3_loop_run.mark_submitting(patch_dir, patch_graph, self.resources, self.nodes)
+        h3_loop_run.bind_prompt(patch_dir, 'prompt-patch')
+        patch_seg_path = self.output / 'patch2.mp4'
+        subprocess.run(['ffmpeg', '-v', 'error', '-f', 'lavfi', '-i', 'color=green:s=32x32:r=24',
+                        '-frames:v', '3', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', str(patch_seg_path)], check=True)
+        (self.output / 'patch2.checkpoint').write_bytes(b'patch checkpoint')
+        (self.output / 'patch2.txt').write_text(patch_shot['prompt_text'])
+        compat = dict(width=32, height=32, fps=24, generation_fingerprint=patch_bundle['fingerprint'])
+        seg = dict(index=1, id='MSG_S001_SH02', revision='rev-patch-2', segment='patch2.mp4',
+                   checkpoint='patch2.checkpoint', prompt_file='patch2.txt', revision_metadata='patch2.json',
+                   prompt=patch_shot['prompt_text'], seed=patch_shot['seed'], steps=20, raw_frames=3, delivered_frames=3)
+        for k in ('segment', 'checkpoint', 'prompt_file'):
+            seg[k + '_sha256'] = h3_recipe.file_hash(self.output / seg[k])
+        (self.output / 'patch2.json').write_text(json.dumps(dict(
+            format='h3_chain_segment_v3', run_name='patch_sh02', plan_hash='patch-plan', compatibility=compat, segment=seg)))
+        p_manifest = dict(format='h3_chain_manifest_v3', run_name='patch_sh02', plan_hash='patch-plan',
+                          compatibility=compat, clip_count=1, total_delivered_frames=3, segments=[seg])
+        patch_final = self.output / patch_bundle['output_subfolder'] / 'draft.mp4'
+        patch_final.parent.mkdir(parents=True)
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(patch_seg_path), '-c', 'copy',
+                        '-movflags', 'use_metadata_tags', '-metadata', 'h3_manifest=' + json.dumps(p_manifest), str(patch_final)], check=True)
+        p_hist = {'prompt-patch': {'prompt': [0, 'prompt-patch', patch_graph, {}, ['40']],
+                                   'status': {'completed': True, 'status_str': 'success', 'messages': []},
+                                   'outputs': {'40': {'images': [dict(filename='draft.mp4', subfolder=patch_bundle['output_subfolder'], type='output')]}}}}
+        h3_loop_run.reconcile(patch_dir, p_hist, self.output)
+        rep_dest = self.root / 'delivery_v2'
+        doc = h3_loop_run.assemble_replacement(self.path, patch_dir, 'MSG_S001_SH02', 'silent_test_v2', rep_dest, self.output)
+        self.assertEqual(doc['shots'][0]['sha256'], base_before['output']['segments'][0]['segment_sha256'])
+        self.assertEqual(doc['shots'][1]['sha256'], seg['segment_sha256'])
+        self.assertEqual(self.read(self.path)['output']['sha256'], base_before['output']['sha256'])
+        self.assertEqual(h3_loop_run.assemble_replacement(self.path, patch_dir, 'MSG_S001_SH02', 'silent_test_v2', rep_dest, self.output), doc)

@@ -1,0 +1,374 @@
+- generic [ref=e1]:
+  - main [ref=e9]:
+    - generic [ref=e11]:
+      - text: .. .. ..
+      - generic:
+        - generic [ref=e13]:
+          - tablist [ref=e16]:
+            - tab "Unsaved Workflow" [ref=e18] [cursor=pointer]
+            - tab "Unsaved Workflow (2)" [selected] [ref=e1318] [cursor=pointer]
+          - button "Create a new blank workflow" [ref=e22] [cursor=pointer]:
+            - generic [ref=e23]: 
+          - button "Login" [ref=e25] [cursor=pointer]
+        - generic:
+          - generic:
+            - navigation [ref=e28]:
+              - generic [ref=e29]:
+                - generic [ref=e30]:
+                  - button "Menu" [ref=e31] [cursor=pointer]
+                  - button "Job History" [ref=e34] [cursor=pointer]
+                  - button "Assets (a)" [ref=e38] [cursor=pointer]
+                  - button "Node Library (n)" [ref=e42] [cursor=pointer]
+                  - button "Model Library (m)" [ref=e46] [cursor=pointer]
+                  - button "Workflows (w)" [ref=e50] [cursor=pointer]
+                  - button "Apps" [ref=e54] [cursor=pointer]
+                  - button "ComfyUI Agent Panel — your agent session's window into this graph" [ref=e58] [cursor=pointer]:
+                    - generic [ref=e59]: 
+                  - 'button "Vision Assistant: snapshots, your library, and help with this workflow" [ref=e62] [cursor=pointer]'
+                  - button "Templates" [ref=e67] [cursor=pointer]
+                - generic [ref=e71]:
+                  - button "Help Center" [ref=e72] [cursor=pointer]:
+                    - generic [ref=e73]: 
+                  - button "Toggle Bottom Panel" [ref=e76] [cursor=pointer]
+                  - button "Keyboard Shortcuts (Ctrl + Shift + k)" [ref=e80] [cursor=pointer]
+                  - button "Settings (Ctrl + ,)" [ref=e84] [cursor=pointer]
+            - generic:
+              - generic:
+                - complementary "Sidebar" [ref=e980]:
+                  - generic [ref=e982]:
+                    - generic [ref=e983]:
+                      - generic [ref=e984]:
+                        - generic "Nodes" [ref=e986]
+                        - button "Close sidebar" [ref=e988] [cursor=pointer]
+                      - tablist [ref=e991]:
+                        - tab "All nodes" [selected] [ref=e992] [cursor=pointer]
+                      - generic [ref=e993]:
+                        - generic [ref=e996]:
+                          - button "Clear" [ref=e1170] [cursor=pointer]
+                          - combobox "Search" [ref=e997]: Workflow Monitor Brain
+                        - generic [ref=e998]:
+                          - button "Filter" [ref=e999] [cursor=pointer]
+                          - button "Sort" [ref=e1001] [cursor=pointer]
+                    - tabpanel "All nodes" [ref=e1006]:
+                      - generic [ref=e1007]:
+                        - heading "Bookmarked" [level=3] [ref=e1008]
+                        - generic [ref=e1009]: No bookmarks yet
+                        - generic [ref=e1090]:
+                          - heading "Extensions" [level=3] [ref=e1091]
+                          - tree [ref=e1092]:
+                            - generic [ref=e1093]:
+                              - treeitem "monitoring" [expanded] [level=1] [ref=e1172] [cursor=pointer]
+                              - treeitem "Workflow Monitor Brain Bookmark" [active] [level=2] [ref=e1179] [cursor=pointer]:
+                                - generic [ref=e1181]: Workflow Monitor Brain
+                                - button "Bookmark" [ref=e1183]:
+                                  - generic [ref=e1184]: 
+                - separator [ref=e1166]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - group "Workflow actions" [ref=e88]:
+                              - generic [ref=e89]:
+                                - button "Enter app mode" [ref=e91] [cursor=pointer]:
+                                  - generic: App
+                                - button "Graph mode, workflow actions" [ref=e95] [cursor=pointer]:
+                                  - generic [ref=e97]: Graph
+                            - text: 
+                        - generic [ref=e100]:
+                          - generic [ref=e101]:
+                            - button "Launch LoRA Manager (Shift+Click opens in new window)" [ref=e103] [cursor=pointer]
+                            - button "Align" [ref=e107] [cursor=pointer]:
+                              - img "Align"
+                            - generic [ref=e110]:
+                              - generic [ref=e111]: .. .. ..
+                              - generic [ref=e114]:
+                                - generic "Batch Count" [ref=e115]:
+                                  - generic [ref=e116]:
+                                    - textbox "Batch Count" [ref=e117]: "1"
+                                    - generic [ref=e118]:
+                                      - button "Increment" [ref=e119] [cursor=pointer]
+                                      - button "Decrement" [disabled]
+                                - button "Run" [ref=e120] [cursor=pointer]
+                                - button "Run options" [ref=e122] [cursor=pointer]
+                              - button "Cancel current run" [disabled]
+                              - button "0 active View active jobs (right-click to clear queue)" [ref=e123] [cursor=pointer]:
+                                - generic [ref=e124]: 0 active
+                                - generic [ref=e125]: View active jobs (right-click to clear queue)
+                            - button "Extensions" [ref=e126] [cursor=pointer]
+                            - button "Deploy to Comfy API" [ref=e128] [cursor=pointer]
+                            - button "Toggle properties panel" [ref=e131] [cursor=pointer]
+                          - status
+                  - generic:
+                    - toolbar "Canvas Toolbar" [ref=e133]:
+                      - button "Canvas Mode" [ref=e134] [cursor=pointer]
+                      - button "Fit View (.)" [ref=e140] [cursor=pointer]
+                      - button "Zoom Controls" [ref=e142] [cursor=pointer]:
+                        - generic [ref=e143]: 80%
+                      - button "Show Minimap (ALT + SHIFT + M)" [ref=e147] [cursor=pointer]
+                      - button "Hide Links" [ref=e149] [cursor=pointer]
+                    - text: 
+      - generic [ref=e1338]:
+        - generic [ref=e1339]:
+          - generic [ref=e1343]:
+            - button [ref=e1345] [cursor=pointer]
+            - generic [ref=e1347]: Workflow Monitor Brain
+          - generic [ref=e1350]:
+            - generic [ref=e1351]:
+              - generic [ref=e1359]:
+                - generic [ref=e1360]: enabled
+                - switch "enabled" [checked] [ref=e1364] [cursor=pointer]
+              - generic [ref=e1372]:
+                - generic [ref=e1373]: run_label
+                - textbox "run_label" [ref=e1377]
+              - generic [ref=e1385]:
+                - generic [ref=e1386]: sample_interval
+                - generic [ref=e1390]:
+                  - combobox "sample_interval" [ref=e1391] [cursor=pointer]:
+                    - generic [ref=e1392]: "2"
+                  - button [ref=e1393] [cursor=pointer]
+              - generic [ref=e1402]:
+                - generic [ref=e1403]: phase_overrides
+                - textbox "phase_overrides" [ref=e1407]: "{}"
+              - generic [ref=e1413]:
+                - strong [ref=e1414]: Ready to observe
+                - paragraph [ref=e1415]: Run this workflow to record its phases and existing Comfy Dynamic readings.
+                - generic [ref=e1416]: Local recording · no wires needed
+                - button "Open report" [ref=e1417] [cursor=pointer]
+            - generic [ref=e1418]: Workflow-Monitor-Brain
+        - button "Resize from bottom-right corner" [ref=e1421]
+        - button "Resize from top-right corner" [ref=e1424]
+        - button "Resize from bottom-left corner" [ref=e1427]
+        - button "Resize from top-left corner" [ref=e1430]
+      - generic [ref=e1434]:
+        - button "Delete Selected Items" [ref=e1435] [cursor=pointer]
+        - button "Node Info" [ref=e1438] [cursor=pointer]
+        - button "Color" [ref=e1441] [cursor=pointer]:
+          - generic [ref=e1442]: 
+        - button "Convert Selection to Subgraph" [ref=e1445] [cursor=pointer]
+        - button "Bypass/Unbypass Selected Nodes" [ref=e1448] [cursor=pointer]
+        - button "Execute to selected output nodes (Highlighted with orange border)" [ref=e1450] [cursor=pointer]
+        - button "More Options" [ref=e1452] [cursor=pointer]
+    - generic [ref=e843]:
+      - status "Notification"
+      - alert "Notification"
+    - generic:
+      - generic:
+        - status [ref=e844]
+        - status [ref=e845]
+        - status [ref=e846]
+    - text: 
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - button
+                - generic: Workflow Monitor Brain
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: enabled
+                    - generic:
+                      - generic:
+                        - generic:
+                          - switch "enabled" [checked]
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: run_label
+                    - generic:
+                      - generic:
+                        - generic:
+                          - textbox "run_label"
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: sample_interval
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - combobox "sample_interval":
+                              - generic: "2"
+                            - button
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: phase_overrides
+                    - generic:
+                      - generic:
+                        - generic:
+                          - textbox "phase_overrides": "{}"
+  - generic [ref=e847]:
+    - generic [ref=e848]:
+      - generic [ref=e853]: Control Panel
+      - generic [ref=e854]: comfy_dynamic
+      - generic [ref=e855]:
+        - button "?" [ref=e856] [cursor=pointer]
+        - button "Click-through is OFF. Click to let mouse events pass through the panel" [ref=e857] [cursor=pointer]
+        - button "❚❚" [ref=e862] [cursor=pointer]
+        - button "↺" [ref=e863] [cursor=pointer]
+        - button "↗" [ref=e864] [cursor=pointer]
+        - 'button "Vertical maximize: fill page height" [ref=e865] [cursor=pointer]'
+        - button "–" [ref=e868] [cursor=pointer]
+    - generic [ref=e869]:
+      - generic [ref=e870]:
+        - generic "CPU utilization - - logical cores" [ref=e871]:
+          - generic [ref=e872]: CPU
+          - generic [ref=e873]: 30.3%
+          - generic [ref=e874]: 16 threads
+        - generic "System RAM usage - used / total, proc = ComfyUI process RSS" [ref=e877]:
+          - generic [ref=e878]: RAM
+          - generic [ref=e879]: 41.9%
+          - generic [ref=e880]: 13.0 GB / 31.1 GB · proc 1.59 GB
+        - generic "GPU utilization (NVIDIA NVML) -" [ref=e883]:
+          - generic [ref=e884]: GPU
+          - generic [ref=e885]: 0%
+          - generic [ref=e886]: "cuda:0 NVIDIA GeForce RTX 3060 Laptop GPU : cudaMallocAsync"
+        - generic "Primary GPU VRAM usage - used / total" [ref=e888]:
+          - generic [ref=e889]: VRAM
+          - generic [ref=e890]: 3.8%
+          - generic [ref=e891]: 219 MB / 5.67 GB
+        - generic "CPU temperature (100 C = 100%). Windows needs LibreHardwareMonitor running" [ref=e894]:
+          - generic [ref=e895]: CPU C
+          - generic [ref=e896]: "82"
+          - generic [ref=e897]: C
+        - generic "GPU temperature (100 C = 100%, NVIDIA NVML)" [ref=e900]:
+          - generic [ref=e901]: GPU C
+          - generic [ref=e902]: "52"
+          - generic [ref=e903]: C
+      - generic [ref=e908]:
+        - generic [ref=e909]: CPU
+        - generic [ref=e911]: RAM
+        - generic [ref=e913]: GPU
+        - generic [ref=e915]: VRAM
+        - generic [ref=e917]: CPU C
+        - generic [ref=e919]: GPU C
+      - generic [ref=e921]:
+        - button "Free RAM" [ref=e922] [cursor=pointer]
+        - button "Free VRAM" [ref=e923] [cursor=pointer]
+        - generic "Also trim working sets of all other processes (may affect running programs)" [ref=e924] [cursor=pointer]:
+          - checkbox "All processes" [ref=e925]
+          - generic [ref=e926]: All processes
+        - generic [ref=e927]:
+          - combobox [ref=e928] [cursor=pointer]:
+            - option "Quick links" [selected]
+            - option "ComfyUI"
+            - option "ComfyUI Docs"
+            - option "ComfyUI Registry"
+            - option "Comfy-Org (HF)"
+            - option "Hugging Face"
+            - option "Civitai"
+            - option "Civitai (red)"
+            - option "CivArchive"
+            - option "OpenModelDB"
+            - option "comfyui_dynamic (GitHub)"
+          - combobox [ref=e929] [cursor=pointer]:
+            - option "Local dirs" [selected]
+      - generic [ref=e930]:
+        - generic [ref=e931]:
+          - generic [ref=e932] [cursor=pointer]:
+            - generic [ref=e933]: ▼
+            - generic [ref=e934]: Loaded models (0)
+            - button "Unload ALL loaded models" [ref=e935]
+          - generic [ref=e940]: No loaded models
+        - generic [ref=e943] [cursor=pointer]:
+          - generic [ref=e944]: ▼
+          - generic [ref=e945]: Unloaded models (0)
+          - button "Clear unloaded records" [ref=e946]
+    - generic "Status messages" [ref=e951]
+    - generic [ref=e952]:
+      - combobox "UI language" [ref=e954] [cursor=pointer]:
+        - option "EN" [selected]
+        - option "中文"
+      - slider "Panel opacity (30-100%)" [ref=e956] [cursor=pointer]: "100"
+      - generic "Refresh rate (0-10 Hz, 0 = paused)" [ref=e957]:
+        - generic [ref=e958]:
+          - button "-" [ref=e959] [cursor=pointer]
+          - button "+" [ref=e960] [cursor=pointer]
+        - spinbutton [ref=e961]: "2"
+        - generic [ref=e962]: Hz
+      - generic "Mouse position" [ref=e965]: (207, 365)
+      - generic "Panel position" [ref=e967]: (64, 390)
+      - generic "Panel size" [ref=e969]: 400x600
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - button
+                    - generic: Workflow Monitor Brain
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: enabled
+                        - generic:
+                          - generic:
+                            - generic:
+                              - switch "enabled" [checked]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: run_label
+                        - generic:
+                          - generic:
+                            - generic:
+                              - textbox "run_label"
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: sample_interval
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - combobox "sample_interval":
+                                  - generic: "2"
+                                - button
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: phase_overrides
+                        - generic:
+                          - generic:
+                            - generic:
+                              - textbox "phase_overrides": "{}"
+      - generic:
+        - heading "Workflow Monitor Brain" [level=3]
+        - paragraph: Records workflow phases and existing Comfy Dynamic resource readings. No generation connections are needed.
+        - generic:
+          - heading "Inputs" [level=4]
+          - generic:
+            - generic: enabled
+            - generic: BOOLEAN
+          - generic:
+            - generic: run_label
+            - generic: STRING
+          - generic:
+            - generic: sample_interval
+            - generic: COMBO
+          - generic:
+            - generic: phase_overrides
+            - generic: STRING

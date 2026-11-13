@@ -36,6 +36,18 @@ class PreflightTests(unittest.TestCase):
         self.assertFalse(result['ready'])
         self.assertEqual(result['errors'], ['Conflicting GPU export status is active or unknown'])
 
+    def test_foreign_gpu_process_and_thermal_ceiling_block_dispatch(self):
+        result = preflight.resources({
+            'running': 0, 'pending': 0, 'free_ram_bytes': 20 * 2**30, 'free_vram_bytes': 1 * 2**30,
+            'usable_comfy_vram_bytes': 1 * 2**30, 'min_free_vram_bytes': 4 * 2**30,
+            'conflicting_export': False, 'foreign_gpu_processes': ['llama-server(pid=99,4800MiB)'],
+            'gpu_temp_c': 89, 'observed_at': time.time(),
+        })
+        self.assertFalse(result['ready'])
+        self.assertTrue(any('usable_comfy_vram_bytes' in e for e in result['errors']))
+        self.assertTrue(any('foreign GPU process' in e for e in result['errors']))
+        self.assertTrue(any('temperature too high' in e for e in result['errors']))
+
     def test_model_role_cannot_pin_an_unrelated_file(self):
         with tempfile.TemporaryDirectory() as root:
             path = Path(root) / 'unrelated'

@@ -1,0 +1,22 @@
+{
+  "project": "the-message",
+  "scene": "s001",
+  "model": "sd15",
+  "aspect": "16x9",
+  "look": "natural",
+  "shots": [
+    {
+      "shot": "folded-letter-tabletop",
+      "shot_size": "overhead close-up",
+      "camera": "top-down 60-degree angle",
+      "lens": "50mm lens",
+      "subject": "one folded cream paper letter envelope closed flat in the center",
+      "action": "resting motionless on a warm wooden cafe table",
+      "location": "wooden tabletop surface with wood grain",
+      "lighting": "soft window daylight from right casting a subtle shadow",
+      "negative": "low quality, blurry, stack, pile, multiple pages, open book, hands, person, cup, bowl, plate, logo, watermark",
+      "seeds": [808],
+      "tags": ["prop", "note", "insert"]
+    }
+  ]
+}

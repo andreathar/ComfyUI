@@ -19,12 +19,15 @@ asset pins, ordered shot IDs, delivery contract and event history. It is only
 `prepared`: the graph receipt and model pins are not fresh runtime evidence.
 
 Collect live registered node names and a resource snapshot with Unix
-`observed_at`, `running`, `pending`, `free_ram_bytes`, `free_vram_bytes` and
+`observed_at`, `running`, `pending`, `free_ram_bytes`, `free_vram_bytes`,
+`usable_comfy_vram_bytes`, `foreign_gpu_processes`, `gpu_temp_c` and
 `conflicting_export`. Confirm the connected server uses the supplied workspace
-and default model resolver. The free-memory snapshot does not qualify peak fit;
-the resource pilot and human reference review remain separate production gates.
+and default model resolver. `h3_preflight.py snapshot` captures this directly
+from `/queue`, `/proc/meminfo` and `nvidia-smi` (blocking if a foreign GPU
+process such as `llama-server` holds VRAM or the GPU is ≥ 88 °C).
 
 ```bash
+.venv/bin/python studio/h3_preflight.py snapshot --out RESOURCES.json
 .venv/bin/python studio/h3_loop_run.py preflight RUN_DIR \
   --resources RESOURCES.json --nodes NODE_NAMES.json
 .venv/bin/python studio/h3_loop_run.py submitting RUN_DIR \
@@ -69,5 +72,15 @@ require their own deliberate contract. Partial manifests remain partial.
 
 A valid full result becomes `review_pending`, with `review` still unset.
 Duplicate completion is idempotent; changed completed media invalidates the old
-technical pass. Human acceptance, final delivery publication and native resume
-qualification are separate steps. These commands never overwrite media.
+technical pass. Publish friendly immutable copies (`shots/01_*.mp4`,
+`<run_name>.mp4`, `index.json` and `README.md`) without altering canonical chain
+checkpoints:
+
+```bash
+.venv/bin/python studio/h3_loop_run.py publish RUN_DIR DELIVERY_DIR \
+  --output-root ACTUAL_CONNECTED_OUTPUT_DIRECTORY
+```
+
+Publication is idempotent for the same verified run and refuses conflicting
+destinations. Human creative acceptance and native resume qualification remain
+separate steps. These commands never overwrite media.

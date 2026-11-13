@@ -1,0 +1,795 @@
+- generic [ref=f1e1]:
+  - main [ref=f1e9]:
+    - generic [ref=f1e11]:
+      - text: .. .. ..
+      - generic:
+        - generic [ref=f1e13]:
+          - tablist [ref=f1e16]:
+            - tab "Unsaved Workflow" [ref=f1e18] [cursor=pointer]
+            - tab "Unsaved Workflow (2)" [selected] [ref=f1e23] [cursor=pointer]
+          - button "Create a new blank workflow" [ref=f1e27] [cursor=pointer]:
+            - generic [ref=f1e28]: 
+          - button "Login" [ref=f1e30] [cursor=pointer]
+        - generic:
+          - generic:
+            - navigation [ref=f1e33]:
+              - generic [ref=f1e34]:
+                - generic [ref=f1e35]:
+                  - button "Menu" [ref=f1e36] [cursor=pointer]
+                  - button "Job History" [ref=f1e39] [cursor=pointer]
+                  - button "Assets (a)" [ref=f1e43] [cursor=pointer]:
+                    - generic [ref=f1e44]: "4"
+                  - button "Node Library (n)" [ref=f1e47] [cursor=pointer]
+                  - button "Model Library (m)" [ref=f1e51] [cursor=pointer]
+                  - button "Workflows (w)" [ref=f1e55] [cursor=pointer]
+                  - button "Apps" [ref=f1e59] [cursor=pointer]
+                  - button "ComfyUI Agent Panel — your agent session's window into this graph" [ref=f1e63] [cursor=pointer]:
+                    - generic [ref=f1e64]: 
+                  - 'button "Vision Assistant: snapshots, your library, and help with this workflow" [ref=f1e67] [cursor=pointer]'
+                  - button "Templates" [ref=f1e72] [cursor=pointer]
+                - generic [ref=f1e76]:
+                  - button "Help Center" [ref=f1e77] [cursor=pointer]:
+                    - generic [ref=f1e78]: 
+                  - button "Toggle Bottom Panel" [ref=f1e81] [cursor=pointer]
+                  - button "Keyboard Shortcuts (Ctrl + Shift + k)" [ref=f1e85] [cursor=pointer]
+                  - button "Settings (Ctrl + ,)" [ref=f1e89] [cursor=pointer]
+            - generic:
+              - generic:
+                - complementary "Sidebar" [ref=f1e587]:
+                  - generic [ref=f1e589]:
+                    - generic [ref=f1e590]:
+                      - generic [ref=f1e591]:
+                        - generic "Nodes" [ref=f1e593]
+                        - button "Close sidebar" [ref=f1e595] [cursor=pointer]
+                      - tablist [ref=f1e598]:
+                        - tab "All nodes" [selected] [ref=f1e599] [cursor=pointer]
+                      - generic [ref=f1e600]:
+                        - generic [ref=f1e603]:
+                          - button "Clear" [ref=f1e777] [cursor=pointer]
+                          - combobox "Search" [ref=f1e604]: Dynamic Script
+                        - generic [ref=f1e605]:
+                          - button "Filter" [ref=f1e606] [cursor=pointer]
+                          - button "Sort" [ref=f1e608] [cursor=pointer]
+                    - tabpanel "All nodes" [ref=f1e613]:
+                      - generic [ref=f1e614]:
+                        - heading "Bookmarked" [level=3] [ref=f1e615]
+                        - generic [ref=f1e616]: No bookmarks yet
+                        - generic [ref=f1e697]:
+                          - heading "Extensions" [level=3] [ref=f1e698]
+                          - tree [ref=f1e699]:
+                            - generic [ref=f1e700]:
+                              - treeitem "dynamic" [expanded] [level=1] [ref=f1e779] [cursor=pointer]
+                              - treeitem "script" [expanded] [level=2] [ref=f1e786] [cursor=pointer]
+                              - treeitem "Dynamic Script Node Bookmark" [level=3] [ref=f1e790] [cursor=pointer]:
+                                - generic [ref=f1e792]: Dynamic Script Node
+                                - button "Bookmark" [ref=f1e794]:
+                                  - generic [ref=f1e795]: 
+                - separator [ref=f1e773]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - group "Workflow actions" [ref=f1e93]:
+                              - generic [ref=f1e94]:
+                                - button "Enter app mode" [ref=f1e96] [cursor=pointer]:
+                                  - generic: App
+                                - button "Graph mode, workflow actions" [ref=f1e100] [cursor=pointer]:
+                                  - generic [ref=f1e102]: Graph
+                            - text: 
+                        - generic [ref=f1e105]:
+                          - generic [ref=f1e106]:
+                            - button "Launch LoRA Manager (Shift+Click opens in new window)" [ref=f1e108] [cursor=pointer]
+                            - button "Align" [ref=f1e112] [cursor=pointer]:
+                              - img "Align"
+                            - generic [ref=f1e115]:
+                              - generic [ref=f1e116]: .. .. ..
+                              - generic [ref=f1e119]:
+                                - generic "Batch Count" [ref=f1e120]:
+                                  - generic [ref=f1e121]:
+                                    - textbox "Batch Count" [ref=f1e122]: "1"
+                                    - generic [ref=f1e123]:
+                                      - button "Increment" [ref=f1e124] [cursor=pointer]
+                                      - button "Decrement" [disabled]
+                                - button "Run" [ref=f1e125] [cursor=pointer]
+                                - button "Run options" [ref=f1e127] [cursor=pointer]
+                              - button "Cancel current run" [disabled]
+                              - button "0 active View active jobs (right-click to clear queue)" [ref=f1e1804] [cursor=pointer]:
+                                - generic [ref=f1e129]: 0 active
+                                - generic [ref=f1e130]: View active jobs (right-click to clear queue)
+                            - button "Extensions" [ref=f1e131] [cursor=pointer]
+                            - button "Deploy to Comfy API" [ref=f1e133] [cursor=pointer]
+                            - button "Toggle properties panel" [ref=f1e136] [cursor=pointer]
+                          - status
+                  - generic:
+                    - toolbar "Canvas Toolbar" [ref=f1e138]:
+                      - button "Canvas Mode" [ref=f1e139] [cursor=pointer]
+                      - button "Fit View (.)" [ref=f1e145] [cursor=pointer]
+                      - button "Zoom Controls" [ref=f1e147] [cursor=pointer]:
+                        - generic [ref=f1e148]: 80%
+                      - button "Show Minimap (ALT + SHIFT + M)" [ref=f1e152] [cursor=pointer]
+                      - button "Hide Links" [ref=f1e154] [cursor=pointer]
+                    - text: 
+      - generic:
+        - generic [ref=f1e157]:
+          - generic [ref=f1e158]:
+            - generic [ref=f1e162]:
+              - button [ref=f1e164] [cursor=pointer]
+              - generic [ref=f1e166]: Workflow Monitor Brain
+            - generic [ref=f1e169]:
+              - generic [ref=f1e170]:
+                - generic [ref=f1e178]:
+                  - generic [ref=f1e179]: enabled
+                  - switch "enabled" [checked] [ref=f1e183] [cursor=pointer]
+                - generic [ref=f1e191]:
+                  - generic [ref=f1e192]: run_label
+                  - textbox "run_label" [ref=f1e196]
+                - generic [ref=f1e204]:
+                  - generic [ref=f1e205]: sample_interval
+                  - generic [ref=f1e209]:
+                    - combobox "sample_interval" [ref=f1e210] [cursor=pointer]:
+                      - generic [ref=f1e211]: "2"
+                    - button [ref=f1e212] [cursor=pointer]
+                - generic [ref=f1e221]:
+                  - generic [ref=f1e222]: phase_overrides
+                  - textbox "phase_overrides" [ref=f1e226]: "{}"
+                - generic [ref=f1e232]:
+                  - strong [ref=f1e233]: succeeded
+                  - paragraph [ref=f1e234]: CPU 0% · RAM 40.8% · GPU 0%
+                  - generic [ref=f1e235]: 2 samples · complete
+                  - button "Open report" [ref=f1e236] [cursor=pointer]
+              - generic [ref=f1e237]: Workflow-Monitor-Brain
+          - button "Resize from bottom-right corner" [ref=f1e240]
+          - button "Resize from top-right corner" [ref=f1e243]
+          - button "Resize from bottom-left corner" [ref=f1e246]
+          - button "Resize from top-left corner" [ref=f1e249]
+        - generic [ref=f1e252]:
+          - generic [ref=f1e253]:
+            - generic [ref=f1e257]:
+              - button [ref=f1e259] [cursor=pointer]
+              - generic [ref=f1e261]: Workflow Monitor Brain
+            - generic [ref=f1e264]:
+              - generic [ref=f1e265]:
+                - generic [ref=f1e273]:
+                  - generic [ref=f1e274]: enabled
+                  - switch "enabled" [checked] [ref=f1e278] [cursor=pointer]
+                - generic [ref=f1e286]:
+                  - generic [ref=f1e287]: run_label
+                  - textbox "run_label" [ref=f1e291]
+                - generic [ref=f1e299]:
+                  - generic [ref=f1e300]: sample_interval
+                  - generic [ref=f1e304]:
+                    - combobox "sample_interval" [ref=f1e305] [cursor=pointer]:
+                      - generic [ref=f1e306]: "2"
+                    - button [ref=f1e307] [cursor=pointer]
+                - generic [ref=f1e316]:
+                  - generic [ref=f1e317]: phase_overrides
+                  - textbox "phase_overrides" [ref=f1e321]: "{}"
+                - generic [ref=f1e327]:
+                  - strong [ref=f1e328]: succeeded
+                  - paragraph [ref=f1e329]: CPU 0% · RAM 40.8% · GPU 0%
+                  - generic [ref=f1e330]: 2 samples · complete
+                  - button "Open report" [ref=f1e331] [cursor=pointer]
+              - generic [ref=f1e332]: Workflow-Monitor-Brain
+          - button "Resize from bottom-right corner" [ref=f1e335]
+          - button "Resize from top-right corner" [ref=f1e338]
+          - button "Resize from bottom-left corner" [ref=f1e341]
+          - button "Resize from top-left corner" [ref=f1e344]
+        - generic [ref=f1e815]:
+          - generic [ref=f1e816]:
+            - generic [ref=f1e820]:
+              - button [ref=f1e822] [cursor=pointer]
+              - generic [ref=f1e824]: Dynamic Script Node
+            - generic [ref=f1e827]:
+              - generic [ref=f1e842]:
+                - generic [ref=f1e843]: exception
+                - generic [ref=f1e848]: output_0
+              - generic [ref=f1e853]:
+                - generic [ref=f1e858]:
+                  - generic [ref=f1e859]: input_ports_count
+                  - generic "input_ports_count" [ref=f1e862]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=f1e866]: "0"
+                    - button "Increment" [ref=f1e868] [cursor=pointer]
+                - generic [ref=f1e874]:
+                  - generic [ref=f1e875]: output_ports_count
+                  - generic "output_ports_count" [ref=f1e878]:
+                    - button "Decrement" [ref=f1e879] [cursor=pointer]
+                    - spinbutton [ref=f1e882]: "1"
+                    - button "Increment" [ref=f1e884] [cursor=pointer]
+                - generic [ref=f1e890]:
+                  - generic [ref=f1e891]: module_count
+                  - generic "module_count" [ref=f1e894]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=f1e896]: "0"
+                    - button "Increment" [ref=f1e898] [cursor=pointer]
+                - generic [ref=f1e907]:
+                  - generic [ref=f1e908]: module_name_prefix
+                  - textbox "module_name_prefix" [ref=f1e912]: dynamic_module
+                - generic [ref=f1e920]:
+                  - generic [ref=f1e921]: use_module_cache
+                  - switch "use_module_cache" [checked] [ref=f1e925] [cursor=pointer]
+                - generic [ref=f1e933]:
+                  - generic [ref=f1e934]: clear_module_cache
+                  - switch "clear_module_cache" [ref=f1e938] [cursor=pointer]
+                - generic [ref=f1e946]:
+                  - generic [ref=f1e947]: remove_import_restrictions
+                  - switch "remove_import_restrictions" [ref=f1e951] [cursor=pointer]
+                - generic [ref=f1e959]:
+                  - generic [ref=f1e960]: lazy_execution
+                  - switch "lazy_execution" [ref=f1e964] [cursor=pointer]
+                - generic [ref=f1e972]:
+                  - generic: code
+                  - textbox "code" [ref=f1e973]:
+                    - /placeholder: ""
+                    - text: import time time.sleep(4) outputs[0] = "CPU-only monitor smoke"
+              - generic [ref=f1e974]: comfyui_dynamic
+          - button "Resize from bottom-right corner" [ref=f1e977]
+          - button "Resize from top-right corner" [ref=f1e980]
+          - button "Resize from bottom-left corner" [ref=f1e983]
+          - button "Resize from top-left corner" [ref=f1e986]
+    - generic [ref=f1e347]:
+      - status "Notification"
+      - alert "Notification"
+    - generic:
+      - generic:
+        - status [ref=f1e348]
+        - status [ref=f1e349]
+        - status [ref=f1e350]
+    - text: 
+  - generic [ref=f1e352]:
+    - generic [ref=f1e357]: Control Panel
+    - generic [ref=f1e359]:
+      - button "?" [ref=f1e360] [cursor=pointer]
+      - button "Click-through is OFF. Click to let mouse events pass through the panel" [ref=f1e361] [cursor=pointer]
+      - button "❚❚" [ref=f1e366] [cursor=pointer]
+      - button "↺" [ref=f1e367] [cursor=pointer]
+      - button "↗" [ref=f1e368] [cursor=pointer]
+      - 'button "Vertical maximize: fill page height" [ref=f1e369] [cursor=pointer]'
+      - button "+" [ref=f1e814] [cursor=pointer]
+  - dialog "Workflow Monitor Brain report" [ref=f1e1805]:
+    - banner [ref=f1e1806]:
+      - heading "Workflow Monitor Brain" [level=2] [ref=f1e1807]
+      - button "Close" [ref=f1e1808] [cursor=pointer]
+    - status [ref=f1e1809]: succeeded · complete · 2 samples · 0.0 MiB stored
+    - generic [ref=f1e1810]:
+      - generic [ref=f1e1811]:
+        - generic [ref=f1e1812]: Recorded run
+        - combobox "Recorded run" [ref=f1e1813]:
+          - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM" [selected]
+          - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+          - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+      - generic [ref=f1e1814]:
+        - generic [ref=f1e1815]: Compare with baseline
+        - combobox "Compare with baseline" [ref=f1e1816]:
+          - option "Choose a baseline…"
+          - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM"
+          - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM" [selected]
+          - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+      - button "Refresh" [ref=f1e1817] [cursor=pointer]
+      - button "Compare runs" [active] [ref=f1e1818] [cursor=pointer]
+    - generic [ref=f1e1819]:
+      - generic [ref=f1e1820]:
+        - heading "Recorded workflow" [level=3] [ref=f1e1821]
+        - paragraph [ref=f1e1822]: 24e3f380-0d30-4e81-9c2d-b01ebfaa154e · 11/11/2026, 11:55:32 PM
+        - paragraph [ref=f1e1823]: "Latest readings: CPU 0% · RAM 40.8% · process 1592.3 MiB · GPU 0% · CPU 91 °C · GPU 66 °C"
+        - paragraph [ref=f1e1824]: "Duplicate monitor nodes: configuration from node 1 is used."
+        - paragraph [ref=f1e1825]: Preparation has the largest observed phase time (4.0 s). Compare one controlled change with the same seed, references and cache policy.
+        - generic [ref=f1e1826]:
+          - link "Export summary" [ref=f1e1827] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/24e3f380-0d30-4e81-9c2d-b01ebfaa154e/run
+          - link "Export events" [ref=f1e1828] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/24e3f380-0d30-4e81-9c2d-b01ebfaa154e/events
+          - link "Export samples" [ref=f1e1829] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/24e3f380-0d30-4e81-9c2d-b01ebfaa154e/samples
+          - button "Delete this recording…" [ref=f1e1830] [cursor=pointer]
+      - generic [ref=f1e1831]:
+        - heading "Observed phase time" [level=3] [ref=f1e1832]
+        - paragraph [ref=f1e1833]: Overlapping occurrences are combined within each phase; phases may overlap each other. These are host intervals, not GPU kernel timings.
+        - table [ref=f1e1835]:
+          - rowgroup [ref=f1e1836]:
+            - row [ref=f1e1837]:
+              - columnheader "Phase" [ref=f1e1838]
+              - columnheader "Wall time" [ref=f1e1839]
+          - rowgroup [ref=f1e1840]:
+            - row [ref=f1e1841]:
+              - cell "Preparation" [ref=f1e1842]
+              - cell "3.96 s" [ref=f1e1843]
+      - generic [ref=f1e1844]:
+        - heading "Resource history" [level=3] [ref=f1e1845]
+        - generic [ref=f1e1846]:
+          - generic [ref=f1e1847]: Measurement
+          - combobox "Measurement" [ref=f1e1848]:
+            - option "Host CPU %" [selected]
+            - option "Host RAM %"
+            - option "GPU utilization % · all applications"
+            - option "VRAM MiB · model-management counter"
+            - option "VRAM MiB · NVIDIA device total"
+            - option "ComfyUI process RSS MiB"
+            - option "CPU temperature °C"
+            - option "GPU temperature °C"
+        - img "Host CPU % across recorded samples. Missing samples are gaps." [ref=f1e1850]:
+          - generic [ref=f1e1851]: "0"
+          - generic [ref=f1e1852]: "50"
+          - generic [ref=f1e1853]: "100"
+          - generic [ref=f1e1854]: Host CPU % · 2.0 s observed · requested cadence 2 s · sampled peaks
+        - paragraph [ref=f1e1855]: Showing the latest 2 samples. Gaps stay visible. Device-wide GPU readings include other applications.
+      - generic [ref=f1e1856]:
+        - heading "Latest observed model residency" [level=3] [ref=f1e1857]
+        - paragraph [ref=f1e1858]: No loaded models observed in the latest snapshot.
+      - generic [ref=f1e1859]:
+        - heading "Node occurrences" [level=3] [ref=f1e1860]
+        - paragraph [ref=f1e1861]: Latest 1 of 1 observed occurrences · 0 cached nodes. Unobserved nodes are not assumed cached.
+        - table [ref=f1e1863]:
+          - rowgroup [ref=f1e1864]:
+            - row [ref=f1e1865]:
+              - columnheader "Node" [ref=f1e1866]
+              - columnheader "Phase" [ref=f1e1867]
+              - columnheader "Scene" [ref=f1e1868]
+              - columnheader "Duration" [ref=f1e1869]
+          - rowgroup [ref=f1e1870]:
+            - row [ref=f1e1871]:
+              - cell [ref=f1e1872]:
+                - button "#3 · DynamicScriptNode" [ref=f1e1873] [cursor=pointer]
+              - cell "Preparation" [ref=f1e1874]
+              - cell "Unassigned" [ref=f1e1875]
+              - cell "3.96 s" [ref=f1e1876]
+      - generic [ref=f1e1877]:
+        - heading "Captured settings and provenance" [level=3] [ref=f1e1878]
+        - table [ref=f1e1880]:
+          - rowgroup [ref=f1e1881]:
+            - row [ref=f1e1882]:
+              - columnheader "Node / input" [ref=f1e1883]
+              - columnheader "Configured value" [ref=f1e1884]
+          - rowgroup [ref=f1e1885]:
+            - row [ref=f1e1886]:
+              - cell "#3 · code" [ref=f1e1887]
+              - cell "Digest 9df5e6dd178e" [ref=f1e1888]
+    - generic [ref=f1e1889]:
+      - heading "Baseline comparison" [level=3] [ref=f1e1890]
+      - paragraph [ref=f1e1891]: Scene or runtime settings differ; timing is not directly comparable.
+      - paragraph [ref=f1e1892]: Different cached nodes; timing is not directly comparable.
+      - paragraph [ref=f1e1893]: Some runtime settings are unresolved; equal fingerprints do not prove equal inputs.
+      - paragraph [ref=f1e1894]: Generation configuration differs; this pair does not establish a causal speedup.
+      - table [ref=f1e1896]:
+        - rowgroup [ref=f1e1897]:
+          - row [ref=f1e1898]:
+            - columnheader "Phase" [ref=f1e1899]
+            - columnheader "Baseline" [ref=f1e1900]
+            - columnheader "Candidate" [ref=f1e1901]
+            - columnheader "Change" [ref=f1e1902]
+        - rowgroup [ref=f1e1903]:
+          - row [ref=f1e1904]:
+            - cell "Compositing / trim" [ref=f1e1905]
+            - cell "0.00 s" [ref=f1e1906]
+            - cell "Unknown" [ref=f1e1907]
+            - cell "Not directly comparable" [ref=f1e1908]
+          - row [ref=f1e1909]:
+            - cell "Conditioning / encoding" [ref=f1e1910]
+            - cell "15.27 s" [ref=f1e1911]
+            - cell "Unknown" [ref=f1e1912]
+            - cell "Not directly comparable" [ref=f1e1913]
+          - row [ref=f1e1914]:
+            - cell "Decoding" [ref=f1e1915]
+            - cell "34.95 s" [ref=f1e1916]
+            - cell "Unknown" [ref=f1e1917]
+            - cell "Not directly comparable" [ref=f1e1918]
+          - row [ref=f1e1919]:
+            - cell "Model setup" [ref=f1e1920]
+            - cell "0.78 s" [ref=f1e1921]
+            - cell "Unknown" [ref=f1e1922]
+            - cell "Not directly comparable" [ref=f1e1923]
+          - row [ref=f1e1924]:
+            - cell "Preparation" [ref=f1e1925]
+            - cell "0.00 s" [ref=f1e1926]
+            - cell "3.96 s" [ref=f1e1927]
+            - cell "Not directly comparable" [ref=f1e1928]
+          - row [ref=f1e1929]:
+            - cell "Reference selection" [ref=f1e1930]
+            - cell "0.00 s" [ref=f1e1931]
+            - cell "Unknown" [ref=f1e1932]
+            - cell "Not directly comparable" [ref=f1e1933]
+          - row [ref=f1e1934]:
+            - cell "Sampling" [ref=f1e1935]
+            - cell "1045.06 s" [ref=f1e1936]
+            - cell "Unknown" [ref=f1e1937]
+            - cell "Not directly comparable" [ref=f1e1938]
+          - row [ref=f1e1939]:
+            - cell "Saving / assembly" [ref=f1e1940]
+            - cell "1.29 s" [ref=f1e1941]
+            - cell "Unknown" [ref=f1e1942]
+            - cell "Not directly comparable" [ref=f1e1943]
+          - row [ref=f1e1944]:
+            - cell "Scene orchestration" [ref=f1e1945]
+            - cell "0.06 s" [ref=f1e1946]
+            - cell "Unknown" [ref=f1e1947]
+            - cell "Not directly comparable" [ref=f1e1948]
+          - row [ref=f1e1949]:
+            - cell "Unknown / custom" [ref=f1e1950]
+            - cell "0.04 s" [ref=f1e1951]
+            - cell "Unknown" [ref=f1e1952]
+            - cell "Not directly comparable" [ref=f1e1953]
+      - table [ref=f1e1955]:
+        - rowgroup [ref=f1e1956]:
+          - row [ref=f1e1957]:
+            - columnheader "Setting / structure" [ref=f1e1958]
+            - columnheader "Baseline" [ref=f1e1959]
+            - columnheader "Candidate" [ref=f1e1960]
+        - rowgroup [ref=f1e1961]:
+          - row [ref=f1e1962]:
+            - cell "#10 · source" [ref=f1e1963]
+            - 'cell "Linked from #7 · output 1" [ref=f1e1964]'
+            - cell "Unknown" [ref=f1e1965]
+          - row [ref=f1e1966]:
+            - cell "#11 · source" [ref=f1e1967]
+            - 'cell "Linked from #27 · output 1" [ref=f1e1968]'
+            - cell "Unknown" [ref=f1e1969]
+          - row [ref=f1e1970]:
+            - cell "#12 · model" [ref=f1e1971]
+            - 'cell "Linked from #3 · output 0" [ref=f1e1972]'
+            - cell "Unknown" [ref=f1e1973]
+          - row [ref=f1e1974]:
+            - cell "#12 · conditioning" [ref=f1e1975]
+            - 'cell "Linked from #9 · output 0" [ref=f1e1976]'
+            - cell "Unknown" [ref=f1e1977]
+          - row [ref=f1e1978]:
+            - cell "#13 · sampler_name" [ref=f1e1979]
+            - cell "sa_solver" [ref=f1e1980]
+            - cell "Unknown" [ref=f1e1981]
+          - row [ref=f1e1982]:
+            - cell "#14 · scheduler" [ref=f1e1983]
+            - cell "beta" [ref=f1e1984]
+            - cell "Unknown" [ref=f1e1985]
+          - row [ref=f1e1986]:
+            - cell "#14 · steps" [ref=f1e1987]
+            - 'cell "Linked from #35 · output 7" [ref=f1e1988]'
+            - cell "Unknown" [ref=f1e1989]
+          - row [ref=f1e1990]:
+            - cell "#14 · denoise" [ref=f1e1991]
+            - cell "1" [ref=f1e1992]
+            - cell "Unknown" [ref=f1e1993]
+          - row [ref=f1e1994]:
+            - cell "#14 · model" [ref=f1e1995]
+            - 'cell "Linked from #3 · output 0" [ref=f1e1996]'
+            - cell "Unknown" [ref=f1e1997]
+          - row [ref=f1e1998]:
+            - cell "#15 · noise_seed" [ref=f1e1999]
+            - 'cell "Linked from #35 · output 5" [ref=f1e2000]'
+            - cell "Unknown" [ref=f1e2001]
+          - row [ref=f1e2002]:
+            - cell "#16 · noise" [ref=f1e2003]
+            - 'cell "Linked from #15 · output 0" [ref=f1e2004]'
+            - cell "Unknown" [ref=f1e2005]
+          - row [ref=f1e2006]:
+            - cell "#16 · guider" [ref=f1e2007]
+            - 'cell "Linked from #12 · output 0" [ref=f1e2008]'
+            - cell "Unknown" [ref=f1e2009]
+          - row [ref=f1e2010]:
+            - cell "#16 · sampler" [ref=f1e2011]
+            - 'cell "Linked from #13 · output 0" [ref=f1e2012]'
+            - cell "Unknown" [ref=f1e2013]
+          - row [ref=f1e2014]:
+            - cell "#16 · sigmas" [ref=f1e2015]
+            - 'cell "Linked from #14 · output 0" [ref=f1e2016]'
+            - cell "Unknown" [ref=f1e2017]
+          - row [ref=f1e2018]:
+            - cell "#16 · latent_image" [ref=f1e2019]
+            - 'cell "Linked from #9 · output 2" [ref=f1e2020]'
+            - cell "Unknown" [ref=f1e2021]
+          - row [ref=f1e2022]:
+            - cell "#17 · samples" [ref=f1e2023]
+            - 'cell "Linked from #16 · output 0" [ref=f1e2024]'
+            - cell "Unknown" [ref=f1e2025]
+          - row [ref=f1e2026]:
+            - cell "#17 · vae" [ref=f1e2027]
+            - 'cell "Linked from #5 · output 0" [ref=f1e2028]'
+            - cell "Unknown" [ref=f1e2029]
+          - row [ref=f1e2030]:
+            - cell "#2 · unet_name" [ref=f1e2031]
+            - cell "minimax_h3_ref2va_pruned_int8_convrot.safetensors" [ref=f1e2032]
+            - cell "Unknown" [ref=f1e2033]
+          - row [ref=f1e2034]:
+            - cell "#2 · weight_dtype" [ref=f1e2035]
+            - cell "default" [ref=f1e2036]
+            - cell "Unknown" [ref=f1e2037]
+          - row [ref=f1e2038]:
+            - cell "#21 · media_state" [ref=f1e2039]
+            - 'cell "Linked from #36 · output 2" [ref=f1e2040]'
+            - cell "Unknown" [ref=f1e2041]
+          - row [ref=f1e2042]:
+            - cell "#26 · mods" [ref=f1e2043]
+            - 'cell "Linked from #7 · output 0" [ref=f1e2044]'
+            - cell "Unknown" [ref=f1e2045]
+          - row [ref=f1e2046]:
+            - cell "#26 · references" [ref=f1e2047]
+            - 'cell "Linked from #21 · output 0" [ref=f1e2048]'
+            - cell "Unknown" [ref=f1e2049]
+          - row [ref=f1e2050]:
+            - cell "#27 · code" [ref=f1e2051]
+            - cell "Digest ea31bc63acb0" [ref=f1e2052]
+            - cell "Unknown" [ref=f1e2053]
+          - row [ref=f1e2054]:
+            - cell "#27 · input_0" [ref=f1e2055]
+            - 'cell "Linked from #35 · output 3" [ref=f1e2056]'
+            - cell "Unknown" [ref=f1e2057]
+          - row [ref=f1e2058]:
+            - cell "#27 · input_1" [ref=f1e2059]
+            - 'cell "Linked from #35 · output 1" [ref=f1e2060]'
+            - cell "Unknown" [ref=f1e2061]
+          - row [ref=f1e2062]:
+            - cell "#27 · input_2" [ref=f1e2063]
+            - 'cell "Linked from #35 · output 2" [ref=f1e2064]'
+            - cell "Unknown" [ref=f1e2065]
+          - row [ref=f1e2066]:
+            - cell "#27 · input_3" [ref=f1e2067]
+            - 'cell "Linked from #26 · output 0" [ref=f1e2068]'
+            - cell "Unknown" [ref=f1e2069]
+          - row [ref=f1e2070]:
+            - cell "#27 · input_4" [ref=f1e2071]
+            - 'cell "Linked from #7 · output 1" [ref=f1e2072]'
+            - cell "Unknown" [ref=f1e2073]
+          - row [ref=f1e2074]:
+            - cell "#3 · shift_video" [ref=f1e2075]
+            - cell "12" [ref=f1e2076]
+            - cell "Unknown" [ref=f1e2077]
+          - row [ref=f1e2078]:
+            - cell "#3 · shift_audio" [ref=f1e2079]
+            - cell "3" [ref=f1e2080]
+            - cell "Unknown" [ref=f1e2081]
+          - row [ref=f1e2082]:
+            - cell "#3 · model" [ref=f1e2083]
+            - 'cell "Linked from #2 · output 0" [ref=f1e2084]'
+            - cell "Unknown" [ref=f1e2085]
+          - row [ref=f1e2086]:
+            - cell "#3 · code" [ref=f1e2087]
+            - cell "Unknown" [ref=f1e2088]
+            - cell "Digest 9df5e6dd178e" [ref=f1e2089]
+          - row [ref=f1e2090]:
+            - cell "#30 · file_path" [ref=f1e2091]
+            - cell "bundle.json" [ref=f1e2092]
+            - cell "Unknown" [ref=f1e2093]
+          - row [ref=f1e2094]:
+            - cell "#31 · code" [ref=f1e2095]
+            - cell "Digest 20db93187832" [ref=f1e2096]
+            - cell "Unknown" [ref=f1e2097]
+          - row [ref=f1e2098]:
+            - cell "#31 · input_0" [ref=f1e2099]
+            - 'cell "Linked from #30 · output 0" [ref=f1e2100]'
+            - cell "Unknown" [ref=f1e2101]
+          - row [ref=f1e2102]:
+            - cell "#32 · audio_profile" [ref=f1e2103]
+            - cell "No final audio" [ref=f1e2104]
+            - cell "Unknown" [ref=f1e2105]
+          - row [ref=f1e2106]:
+            - cell "#33 · plan_json" [ref=f1e2107]
+            - cell "Digest 4769485e2b31" [ref=f1e2108]
+            - cell "Unknown" [ref=f1e2109]
+          - row [ref=f1e2110]:
+            - cell "#33 · run_name" [ref=f1e2111]
+            - 'cell "Linked from #31 · output 3" [ref=f1e2112]'
+            - cell "Unknown" [ref=f1e2113]
+          - row [ref=f1e2114]:
+            - cell "#33 · generation_fingerprint" [ref=f1e2115]
+            - 'cell "Linked from #31 · output 2" [ref=f1e2116]'
+            - cell "Unknown" [ref=f1e2117]
+          - row [ref=f1e2118]:
+            - cell "#33 · width" [ref=f1e2119]
+            - 'cell "Linked from #31 · output 4" [ref=f1e2120]'
+            - cell "Unknown" [ref=f1e2121]
+          - row [ref=f1e2122]:
+            - cell "#33 · height" [ref=f1e2123]
+            - 'cell "Linked from #31 · output 5" [ref=f1e2124]'
+            - cell "Unknown" [ref=f1e2125]
+          - row [ref=f1e2126]:
+            - cell "#33 · encode_mode" [ref=f1e2127]
+            - cell "video" [ref=f1e2128]
+            - cell "Unknown" [ref=f1e2129]
+          - row [ref=f1e2130]:
+            - cell "#33 · crop" [ref=f1e2131]
+            - cell "disabled" [ref=f1e2132]
+            - cell "Unknown" [ref=f1e2133]
+          - row [ref=f1e2134]:
+            - cell "#33 · default_duration_seconds" [ref=f1e2135]
+            - cell "3" [ref=f1e2136]
+            - cell "Unknown" [ref=f1e2137]
+          - row [ref=f1e2138]:
+            - cell "#33 · default_steps" [ref=f1e2139]
+            - cell "20" [ref=f1e2140]
+            - cell "Unknown" [ref=f1e2141]
+          - row [ref=f1e2142]:
+            - cell "#33 · chain_policy" [ref=f1e2143]
+            - 'cell "Linked from #32 · output 0" [ref=f1e2144]'
+            - cell "Unknown" [ref=f1e2145]
+          - row [ref=f1e2146]:
+            - cell "#33 · plan_json_input" [ref=f1e2147]
+            - 'cell "Linked from #31 · output 1" [ref=f1e2148]'
+            - cell "Unknown" [ref=f1e2149]
+          - row [ref=f1e2150]:
+            - cell "#34 · start_clip" [ref=f1e2151]
+            - cell "1" [ref=f1e2152]
+            - cell "Unknown" [ref=f1e2153]
+          - row [ref=f1e2154]:
+            - cell "#34 · scene_range" [ref=f1e2155]
+            - cell [ref=f1e2156]
+            - cell "Unknown" [ref=f1e2157]
+          - row [ref=f1e2158]:
+            - cell "#34 · plan" [ref=f1e2159]
+            - 'cell "Linked from #33 · output 0" [ref=f1e2160]'
+            - cell "Unknown" [ref=f1e2161]
+          - row [ref=f1e2162]:
+            - cell "#35 · state" [ref=f1e2163]
+            - 'cell "Linked from #34 · output 1" [ref=f1e2164]'
+            - cell "Unknown" [ref=f1e2165]
+          - row [ref=f1e2166]:
+            - cell "#36 · code" [ref=f1e2167]
+            - cell "Digest 8eedab803ead" [ref=f1e2168]
+            - cell "Unknown" [ref=f1e2169]
+          - row [ref=f1e2170]:
+            - cell "#36 · input_0" [ref=f1e2171]
+            - 'cell "Linked from #30 · output 0" [ref=f1e2172]'
+            - cell "Unknown" [ref=f1e2173]
+          - row [ref=f1e2174]:
+            - cell "#36 · input_1" [ref=f1e2175]
+            - 'cell "Linked from #35 · output 1" [ref=f1e2176]'
+            - cell "Unknown" [ref=f1e2177]
+          - row [ref=f1e2178]:
+            - cell "#37 · fps" [ref=f1e2179]
+            - 'cell "Linked from #31 · output 8" [ref=f1e2180]'
+            - cell "Unknown" [ref=f1e2181]
+          - row [ref=f1e2182]:
+            - cell "#37 · images" [ref=f1e2183]
+            - 'cell "Linked from #17 · output 0" [ref=f1e2184]'
+            - cell "Unknown" [ref=f1e2185]
+          - row [ref=f1e2186]:
+            - cell "#37 · state" [ref=f1e2187]
+            - 'cell "Linked from #35 · output 0" [ref=f1e2188]'
+            - cell "Unknown" [ref=f1e2189]
+          - row [ref=f1e2190]:
+            - cell "#38 · state" [ref=f1e2191]
+            - 'cell "Linked from #35 · output 0" [ref=f1e2192]'
+            - cell "Unknown" [ref=f1e2193]
+          - row [ref=f1e2194]:
+            - cell "#38 · images" [ref=f1e2195]
+            - 'cell "Linked from #37 · output 0" [ref=f1e2196]'
+            - cell "Unknown" [ref=f1e2197]
+          - row [ref=f1e2198]:
+            - cell "#38 · sampled_latent" [ref=f1e2199]
+            - 'cell "Linked from #16 · output 0" [ref=f1e2200]'
+            - cell "Unknown" [ref=f1e2201]
+          - row [ref=f1e2202]:
+            - cell "#38 · images_with_overlap" [ref=f1e2203]
+            - 'cell "Linked from #37 · output 2" [ref=f1e2204]'
+            - cell "Unknown" [ref=f1e2205]
+          - row [ref=f1e2206]:
+            - cell "#38 · denoised_latent" [ref=f1e2207]
+            - 'cell "Linked from #16 · output 1" [ref=f1e2208]'
+            - cell "Unknown" [ref=f1e2209]
+          - row [ref=f1e2210]:
+            - cell "#39 · between_scene_cleanup" [ref=f1e2211]
+            - cell "unload_models" [ref=f1e2212]
+            - cell "Unknown" [ref=f1e2213]
+          - row [ref=f1e2214]:
+            - cell "#39 · execution_mode" [ref=f1e2215]
+            - cell "recursive" [ref=f1e2216]
+            - cell "Unknown" [ref=f1e2217]
+          - row [ref=f1e2218]:
+            - cell "#39 · flow" [ref=f1e2219]
+            - 'cell "Linked from #34 · output 0" [ref=f1e2220]'
+            - cell "Unknown" [ref=f1e2221]
+          - row [ref=f1e2222]:
+            - cell "#39 · state" [ref=f1e2223]
+            - 'cell "Linked from #35 · output 0" [ref=f1e2224]'
+            - cell "Unknown" [ref=f1e2225]
+          - row [ref=f1e2226]:
+            - cell "#39 · images" [ref=f1e2227]
+            - 'cell "Linked from #37 · output 0" [ref=f1e2228]'
+            - cell "Unknown" [ref=f1e2229]
+          - row [ref=f1e2230]:
+            - cell "#39 · sampled_latent" [ref=f1e2231]
+            - 'cell "Linked from #16 · output 0" [ref=f1e2232]'
+            - cell "Unknown" [ref=f1e2233]
+          - row [ref=f1e2234]:
+            - cell "#39 · segment" [ref=f1e2235]
+            - 'cell "Linked from #38 · output 0" [ref=f1e2236]'
+            - cell "Unknown" [ref=f1e2237]
+          - row [ref=f1e2238]:
+            - cell "#4 · clip_name" [ref=f1e2239]
+            - cell "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors" [ref=f1e2240]
+            - cell "Unknown" [ref=f1e2241]
+          - row [ref=f1e2242]:
+            - cell "#4 · type" [ref=f1e2243]
+            - cell "minimax" [ref=f1e2244]
+            - cell "Unknown" [ref=f1e2245]
+          - row [ref=f1e2246]:
+            - cell "#4 · device" [ref=f1e2247]
+            - cell "default" [ref=f1e2248]
+            - cell "Unknown" [ref=f1e2249]
+          - row [ref=f1e2250]:
+            - cell "#40 · audio_source" [ref=f1e2251]
+            - 'cell "Linked from #31 · output 6" [ref=f1e2252]'
+            - cell "Unknown" [ref=f1e2253]
+          - row [ref=f1e2254]:
+            - cell "#40 · output_subfolder" [ref=f1e2255]
+            - 'cell "Linked from #31 · output 7" [ref=f1e2256]'
+            - cell "Unknown" [ref=f1e2257]
+          - row [ref=f1e2258]:
+            - cell "#40 · manifest" [ref=f1e2259]
+            - 'cell "Linked from #39 · output 0" [ref=f1e2260]'
+            - cell "Unknown" [ref=f1e2261]
+          - row [ref=f1e2262]:
+            - cell "#41 · source" [ref=f1e2263]
+            - 'cell "Linked from #45 · output 1" [ref=f1e2264]'
+            - cell "Unknown" [ref=f1e2265]
+          - row [ref=f1e2266]:
+            - cell "#45 · code" [ref=f1e2267]
+            - cell "Digest b895fc408ffc" [ref=f1e2268]
+            - cell "Unknown" [ref=f1e2269]
+          - row [ref=f1e2270]:
+            - cell "#45 · input_0" [ref=f1e2271]
+            - 'cell "Linked from #30 · output 0" [ref=f1e2272]'
+            - cell "Unknown" [ref=f1e2273]
+          - row [ref=f1e2274]:
+            - cell "#45 · input_1" [ref=f1e2275]
+            - 'cell "Linked from #33 · output 1" [ref=f1e2276]'
+            - cell "Unknown" [ref=f1e2277]
+          - row [ref=f1e2278]:
+            - cell "#5 · vae_name" [ref=f1e2279]
+            - cell "minimax_h3_video_vae_int8_convrot.safetensors" [ref=f1e2280]
+            - cell "Unknown" [ref=f1e2281]
+          - row [ref=f1e2282]:
+            - cell "#7 · stack_state" [ref=f1e2283]
+            - 'cell "Linked from #36 · output 1" [ref=f1e2284]'
+            - cell "Unknown" [ref=f1e2285]
+          - row [ref=f1e2286]:
+            - cell "#9 · prompt" [ref=f1e2287]
+            - 'cell "Linked from #35 · output 4" [ref=f1e2288]'
+            - cell "Unknown" [ref=f1e2289]
+          - row [ref=f1e2290]:
+            - cell "#9 · width" [ref=f1e2291]
+            - 'cell "Linked from #35 · output 8" [ref=f1e2292]'
+            - cell "Unknown" [ref=f1e2293]
+          - row [ref=f1e2294]:
+            - cell "#9 · height" [ref=f1e2295]
+            - 'cell "Linked from #35 · output 9" [ref=f1e2296]'
+            - cell "Unknown" [ref=f1e2297]
+          - row [ref=f1e2298]:
+            - cell "#9 · length" [ref=f1e2299]
+            - 'cell "Linked from #35 · output 6" [ref=f1e2300]'
+            - cell "Unknown" [ref=f1e2301]
+          - row [ref=f1e2302]:
+            - cell "#9 · ref_image_size" [ref=f1e2303]
+            - cell "match" [ref=f1e2304]
+            - cell "Unknown" [ref=f1e2305]
+          - row [ref=f1e2306]:
+            - cell "#9 · reference_fps" [ref=f1e2307]
+            - cell "24" [ref=f1e2308]
+            - cell "Unknown" [ref=f1e2309]
+          - row [ref=f1e2310]:
+            - cell "#9 · max_total_tokens" [ref=f1e2311]
+            - cell "0" [ref=f1e2312]
+            - cell "Unknown" [ref=f1e2313]
+          - row [ref=f1e2314]:
+            - cell "#9 · stack_pictures" [ref=f1e2315]
+            - cell "up to N" [ref=f1e2316]
+            - cell "Unknown" [ref=f1e2317]
+          - row [ref=f1e2318]:
+            - cell "#9 · stack_pictures_n" [ref=f1e2319]
+            - cell "4" [ref=f1e2320]
+            - cell "Unknown" [ref=f1e2321]
+          - row [ref=f1e2322]:
+            - cell "#9 · clip" [ref=f1e2323]
+            - 'cell "Linked from #4 · output 0" [ref=f1e2324]'
+            - cell "Unknown" [ref=f1e2325]
+          - row [ref=f1e2326]:
+            - cell "#9 · mods" [ref=f1e2327]
+            - 'cell "Linked from #7 · output 0" [ref=f1e2328]'
+            - cell "Unknown" [ref=f1e2329]
+          - row [ref=f1e2330]:
+            - cell "#9 · references" [ref=f1e2331]
+            - 'cell "Linked from #21 · output 0" [ref=f1e2332]'
+            - cell "Unknown" [ref=f1e2333]
+          - row [ref=f1e2334]:
+            - cell "#9 · vae" [ref=f1e2335]
+            - 'cell "Linked from #5 · output 0" [ref=f1e2336]'
+            - cell "Unknown" [ref=f1e2337]

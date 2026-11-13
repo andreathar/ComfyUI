@@ -1,0 +1,399 @@
+- generic [ref=f2e1]:
+  - main [ref=f2e9]:
+    - generic [ref=f2e11]:
+      - text: .. .. ..
+      - generic:
+        - generic [ref=f2e13]:
+          - tablist [ref=f2e16]:
+            - tab "Unsaved Workflow" [ref=f2e18] [cursor=pointer]
+            - tab "Unsaved Workflow (2)" [selected] [ref=f2e23] [cursor=pointer]
+          - button "Create a new blank workflow" [ref=f2e27] [cursor=pointer]:
+            - generic [ref=f2e28]: 
+          - button "Login" [ref=f2e30] [cursor=pointer]
+        - generic:
+          - generic:
+            - navigation [ref=f2e33]:
+              - generic [ref=f2e34]:
+                - generic [ref=f2e35]:
+                  - button "Menu" [ref=f2e36] [cursor=pointer]
+                  - button "Job History" [ref=f2e39] [cursor=pointer]
+                  - button "Assets (a)" [ref=f2e43] [cursor=pointer]
+                  - button "Node Library (n)" [ref=f2e47] [cursor=pointer]
+                  - button "Model Library (m)" [ref=f2e51] [cursor=pointer]
+                  - button "Workflows (w)" [ref=f2e55] [cursor=pointer]
+                  - button "Apps" [ref=f2e59] [cursor=pointer]
+                  - 'button "Vision Assistant: snapshots, your library, and help with this workflow" [ref=f2e63] [cursor=pointer]'
+                  - button "ComfyUI Agent Panel — your agent session's window into this graph" [ref=f2e67] [cursor=pointer]:
+                    - generic [ref=f2e68]: 
+                  - button "Templates" [ref=f2e72] [cursor=pointer]
+                - generic [ref=f2e76]:
+                  - button "Help Center" [ref=f2e77] [cursor=pointer]:
+                    - generic [ref=f2e78]: 
+                  - button "Toggle Bottom Panel" [ref=f2e81] [cursor=pointer]
+                  - button "Keyboard Shortcuts (Ctrl + Shift + k)" [ref=f2e85] [cursor=pointer]
+                  - button "Settings (Ctrl + ,)" [ref=f2e89] [cursor=pointer]
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - group "Workflow actions" [ref=f2e93]:
+                              - generic [ref=f2e94]:
+                                - button "Enter app mode" [ref=f2e96] [cursor=pointer]:
+                                  - generic: App
+                                - button "Graph mode, workflow actions" [ref=f2e100] [cursor=pointer]:
+                                  - generic [ref=f2e102]: Graph
+                            - text: 
+                        - generic [ref=f2e105]:
+                          - generic [ref=f2e106]:
+                            - button "Launch LoRA Manager (Shift+Click opens in new window)" [ref=f2e108] [cursor=pointer]
+                            - button "Align" [ref=f2e112] [cursor=pointer]:
+                              - img "Align"
+                            - generic [ref=f2e115]:
+                              - generic [ref=f2e116]: .. .. ..
+                              - generic [ref=f2e119]:
+                                - generic "Batch Count" [ref=f2e120]:
+                                  - generic [ref=f2e121]:
+                                    - textbox "Batch Count" [ref=f2e122]: "1"
+                                    - generic [ref=f2e123]:
+                                      - button "Increment" [ref=f2e124] [cursor=pointer]
+                                      - button "Decrement" [disabled]
+                                - button "Run" [ref=f2e125] [cursor=pointer]
+                                - button "Run options" [ref=f2e127] [cursor=pointer]
+                              - button "Cancel current run" [disabled]
+                              - button "0 active View active jobs (right-click to clear queue)" [ref=f2e128] [cursor=pointer]:
+                                - generic [ref=f2e129]: 0 active
+                                - generic [ref=f2e130]: View active jobs (right-click to clear queue)
+                            - button "Extensions" [ref=f2e131] [cursor=pointer]
+                            - button "Deploy to Comfy API" [ref=f2e133] [cursor=pointer]
+                            - button "Toggle properties panel" [ref=f2e136] [cursor=pointer]
+                          - status
+                  - generic:
+                    - toolbar "Canvas Toolbar" [ref=f2e138]:
+                      - button "Canvas Mode" [ref=f2e139] [cursor=pointer]
+                      - button "Fit View (.)" [ref=f2e145] [cursor=pointer]
+                      - button "Zoom Controls" [ref=f2e147] [cursor=pointer]:
+                        - generic [ref=f2e148]: 80%
+                      - button "Show Minimap (ALT + SHIFT + M)" [ref=f2e152] [cursor=pointer]
+                      - button "Hide Links" [ref=f2e154] [cursor=pointer]
+                    - text: 
+      - generic:
+        - generic [ref=f2e157]:
+          - generic [ref=f2e158]:
+            - generic [ref=f2e162]:
+              - button [ref=f2e164] [cursor=pointer]
+              - generic [ref=f2e166]: Workflow Monitor Brain
+            - generic [ref=f2e169]:
+              - generic [ref=f2e170]:
+                - generic [ref=f2e178]:
+                  - generic [ref=f2e179]: enabled
+                  - switch "enabled" [checked] [ref=f2e183] [cursor=pointer]
+                - generic [ref=f2e191]:
+                  - generic [ref=f2e192]: run_label
+                  - textbox "run_label" [ref=f2e196]
+                - generic [ref=f2e204]:
+                  - generic [ref=f2e205]: sample_interval
+                  - generic [ref=f2e209]:
+                    - combobox "sample_interval" [ref=f2e210] [cursor=pointer]:
+                      - generic [ref=f2e211]: "2"
+                    - button [ref=f2e212] [cursor=pointer]
+                - generic [ref=f2e221]:
+                  - generic [ref=f2e222]: phase_overrides
+                  - textbox "phase_overrides" [ref=f2e226]: "{}"
+                - generic [ref=f2e232]:
+                  - strong [ref=f2e233]: succeeded
+                  - paragraph [ref=f2e234]: CPU 0% · RAM 40.8% · GPU 0%
+                  - generic [ref=f2e235]: 2 samples · complete
+                  - button "Open report" [ref=f2e236] [cursor=pointer]
+              - generic [ref=f2e237]: Workflow-Monitor-Brain
+          - button "Resize from bottom-right corner" [ref=f2e240]
+          - button "Resize from top-right corner" [ref=f2e243]
+          - button "Resize from bottom-left corner" [ref=f2e246]
+          - button "Resize from top-left corner" [ref=f2e249]
+        - generic [ref=f2e252]:
+          - generic [ref=f2e253]:
+            - generic [ref=f2e257]:
+              - button [ref=f2e259] [cursor=pointer]
+              - generic [ref=f2e261]: Workflow Monitor Brain
+            - generic [ref=f2e264]:
+              - generic [ref=f2e265]:
+                - generic [ref=f2e273]:
+                  - generic [ref=f2e274]: enabled
+                  - switch "enabled" [checked] [ref=f2e278] [cursor=pointer]
+                - generic [ref=f2e286]:
+                  - generic [ref=f2e287]: run_label
+                  - textbox "run_label" [ref=f2e291]
+                - generic [ref=f2e299]:
+                  - generic [ref=f2e300]: sample_interval
+                  - generic [ref=f2e304]:
+                    - combobox "sample_interval" [ref=f2e305] [cursor=pointer]:
+                      - generic [ref=f2e306]: "2"
+                    - button [ref=f2e307] [cursor=pointer]
+                - generic [ref=f2e316]:
+                  - generic [ref=f2e317]: phase_overrides
+                  - textbox "phase_overrides" [ref=f2e321]: "{}"
+                - generic [ref=f2e327]:
+                  - strong [ref=f2e328]: succeeded
+                  - paragraph [ref=f2e329]: CPU 0% · RAM 40.8% · GPU 0%
+                  - generic [ref=f2e330]: 2 samples · complete
+                  - button "Open report" [ref=f2e331] [cursor=pointer]
+              - generic [ref=f2e332]: Workflow-Monitor-Brain
+          - button "Resize from bottom-right corner" [ref=f2e335]
+          - button "Resize from top-right corner" [ref=f2e338]
+          - button "Resize from bottom-left corner" [ref=f2e341]
+          - button "Resize from top-left corner" [ref=f2e344]
+        - generic [ref=f2e347]:
+          - generic [ref=f2e348]:
+            - generic [ref=f2e352]:
+              - button [ref=f2e354] [cursor=pointer]
+              - generic [ref=f2e356]: Dynamic Script Node
+            - generic [ref=f2e359]:
+              - generic [ref=f2e361]:
+                - generic [ref=f2e362]: exception
+                - generic [ref=f2e367]: output_0
+              - generic [ref=f2e372]:
+                - generic [ref=f2e377]:
+                  - generic [ref=f2e378]: input_ports_count
+                  - generic "input_ports_count" [ref=f2e381]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=f2e383]: "0"
+                    - button "Increment" [ref=f2e385] [cursor=pointer]
+                - generic [ref=f2e391]:
+                  - generic [ref=f2e392]: output_ports_count
+                  - generic "output_ports_count" [ref=f2e395]:
+                    - button "Decrement" [ref=f2e396] [cursor=pointer]
+                    - spinbutton [ref=f2e399]: "1"
+                    - button "Increment" [ref=f2e401] [cursor=pointer]
+                - generic [ref=f2e407]:
+                  - generic [ref=f2e408]: module_count
+                  - generic "module_count" [ref=f2e411]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=f2e413]: "0"
+                    - button "Increment" [ref=f2e415] [cursor=pointer]
+                - generic [ref=f2e424]:
+                  - generic [ref=f2e425]: module_name_prefix
+                  - textbox "module_name_prefix" [ref=f2e429]: dynamic_module
+                - generic [ref=f2e437]:
+                  - generic [ref=f2e438]: use_module_cache
+                  - switch "use_module_cache" [checked] [ref=f2e442] [cursor=pointer]
+                - generic [ref=f2e450]:
+                  - generic [ref=f2e451]: clear_module_cache
+                  - switch "clear_module_cache" [ref=f2e455] [cursor=pointer]
+                - generic [ref=f2e463]:
+                  - generic [ref=f2e464]: remove_import_restrictions
+                  - switch "remove_import_restrictions" [ref=f2e468] [cursor=pointer]
+                - generic [ref=f2e476]:
+                  - generic [ref=f2e477]: lazy_execution
+                  - switch "lazy_execution" [ref=f2e481] [cursor=pointer]
+                - generic [ref=f2e489]:
+                  - generic: code
+                  - textbox "code" [ref=f2e490]:
+                    - /placeholder: ""
+                    - text: import time time.sleep(4) outputs[0] = "CPU-only monitor smoke"
+              - generic [ref=f2e491]: comfyui_dynamic
+          - button "Resize from bottom-right corner" [ref=f2e494]
+          - button "Resize from top-right corner" [ref=f2e497]
+          - button "Resize from bottom-left corner" [ref=f2e500]
+          - button "Resize from top-left corner" [ref=f2e503]
+    - generic [ref=f2e506]:
+      - status "Notification"
+      - alert "Notification"
+    - generic:
+      - generic:
+        - status [ref=f2e507]
+        - status [ref=f2e508]
+        - status [ref=f2e509]
+    - text: 
+  - generic [ref=f2e510]:
+    - generic [ref=f2e511]:
+      - generic [ref=f2e516]: Control Panel
+      - generic [ref=f2e517]: comfy_dynamic
+      - generic [ref=f2e518]:
+        - button "?" [ref=f2e519] [cursor=pointer]
+        - button "Click-through is OFF. Click to let mouse events pass through the panel" [ref=f2e520] [cursor=pointer]
+        - button "❚❚" [ref=f2e525] [cursor=pointer]
+        - button "↺" [ref=f2e526] [cursor=pointer]
+        - button "↗" [ref=f2e527] [cursor=pointer]
+        - 'button "Vertical maximize: fill page height" [ref=f2e528] [cursor=pointer]'
+        - button "–" [ref=f2e531] [cursor=pointer]
+    - generic [ref=f2e532]:
+      - generic [ref=f2e533]:
+        - generic "CPU utilization - - logical cores" [ref=f2e534]:
+          - generic [ref=f2e535]: CPU
+          - generic [ref=f2e536]: 36%
+          - generic [ref=f2e537]: 16 threads
+        - generic "System RAM usage - used / total, proc = ComfyUI process RSS" [ref=f2e539]:
+          - generic [ref=f2e540]: RAM
+          - generic [ref=f2e541]: 42.5%
+          - generic [ref=f2e542]: 13.2 GB / 31.1 GB · proc 1.58 GB
+        - generic "GPU utilization (NVIDIA NVML) -" [ref=f2e545]:
+          - generic [ref=f2e546]: GPU
+          - generic [ref=f2e547]: 0%
+          - generic [ref=f2e548]: "cuda:0 NVIDIA GeForce RTX 3060 Laptop GPU : cudaMallocAsync"
+        - generic "Primary GPU VRAM usage - used / total" [ref=f2e550]:
+          - generic [ref=f2e551]: VRAM
+          - generic [ref=f2e552]: 3.8%
+          - generic [ref=f2e553]: 219 MB / 5.67 GB
+        - generic "CPU temperature (100 C = 100%). Windows needs LibreHardwareMonitor running" [ref=f2e556]:
+          - generic [ref=f2e557]: CPU C
+          - generic [ref=f2e558]: "80"
+          - generic [ref=f2e559]: C
+        - generic "GPU temperature (100 C = 100%, NVIDIA NVML)" [ref=f2e562]:
+          - generic [ref=f2e563]: GPU C
+          - generic [ref=f2e564]: "62"
+          - generic [ref=f2e565]: C
+      - generic [ref=f2e570]:
+        - generic [ref=f2e571]: CPU
+        - generic [ref=f2e573]: RAM
+        - generic [ref=f2e575]: GPU
+        - generic [ref=f2e577]: VRAM
+        - generic [ref=f2e579]: CPU C
+        - generic [ref=f2e581]: GPU C
+      - generic [ref=f2e583]:
+        - button "Free RAM" [ref=f2e584] [cursor=pointer]
+        - button "Free VRAM" [ref=f2e585] [cursor=pointer]
+        - generic "Also trim working sets of all other processes (may affect running programs)" [ref=f2e586] [cursor=pointer]:
+          - checkbox "All processes" [ref=f2e587]
+          - generic [ref=f2e588]: All processes
+        - generic [ref=f2e589]:
+          - combobox [ref=f2e590] [cursor=pointer]:
+            - option "Quick links" [selected]
+            - option "ComfyUI"
+            - option "ComfyUI Docs"
+            - option "ComfyUI Registry"
+            - option "Comfy-Org (HF)"
+            - option "Hugging Face"
+            - option "Civitai"
+            - option "Civitai (red)"
+            - option "CivArchive"
+            - option "OpenModelDB"
+            - option "comfyui_dynamic (GitHub)"
+          - combobox [ref=f2e591] [cursor=pointer]:
+            - option "Local dirs" [selected]
+      - generic [ref=f2e592]:
+        - generic [ref=f2e593]:
+          - generic [ref=f2e594] [cursor=pointer]:
+            - generic [ref=f2e595]: ▼
+            - generic [ref=f2e596]: Loaded models (0)
+            - button "Unload ALL loaded models" [ref=f2e597]
+          - generic [ref=f2e602]: No loaded models
+        - generic [ref=f2e605] [cursor=pointer]:
+          - generic [ref=f2e606]: ▼
+          - generic [ref=f2e607]: Unloaded models (0)
+          - button "Clear unloaded records" [ref=f2e608]
+    - generic "Status messages" [ref=f2e613]
+    - generic [ref=f2e614]:
+      - combobox "UI language" [ref=f2e616] [cursor=pointer]:
+        - option "EN" [selected]
+        - option "中文"
+      - slider "Panel opacity (30-100%)" [ref=f2e618] [cursor=pointer]: "100"
+      - generic "Refresh rate (0-10 Hz, 0 = paused)" [ref=f2e619]:
+        - generic [ref=f2e620]:
+          - button "-" [ref=f2e621] [cursor=pointer]
+          - button "+" [ref=f2e622] [cursor=pointer]
+        - spinbutton [ref=f2e623]: "2"
+        - generic [ref=f2e624]: Hz
+      - generic "Mouse position" [ref=f2e627]: (1340, 177)
+      - generic "Panel position" [ref=f2e629]: (64, 390)
+      - generic "Panel size" [ref=f2e631]: 400x600
+  - dialog "Workflow Monitor Brain report" [ref=f2e636]:
+    - banner [ref=f2e637]:
+      - heading "Workflow Monitor Brain" [level=2] [ref=f2e638]
+      - button "Close" [ref=f2e639] [cursor=pointer]
+    - status [ref=f2e640]: succeeded · complete · 2 samples · 0.0 MiB stored
+    - generic [ref=f2e641]:
+      - generic [ref=f2e642]:
+        - generic [ref=f2e643]: Recorded run
+        - combobox "Recorded run" [ref=f2e644]:
+          - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM" [selected]
+          - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+          - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+      - generic [ref=f2e645]:
+        - generic [ref=f2e646]: Compare with baseline
+        - combobox "Compare with baseline" [ref=f2e647]:
+          - option "Choose a baseline…"
+          - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM" [selected]
+          - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+          - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+      - button "Refresh" [ref=f2e648] [cursor=pointer]
+      - button "Compare runs" [active] [ref=f2e649] [cursor=pointer]
+    - generic [ref=f2e650]:
+      - generic [ref=f2e651]:
+        - heading "Recorded workflow" [level=3] [ref=f2e652]
+        - paragraph [ref=f2e653]: 24e3f380-0d30-4e81-9c2d-b01ebfaa154e · 11/11/2026, 11:55:32 PM
+        - paragraph [ref=f2e654]: "Latest readings: CPU 0% · RAM 40.8% · process 1592.3 MiB · GPU 0% · CPU 91 °C · GPU 66 °C"
+        - paragraph [ref=f2e655]: "Duplicate monitor nodes: configuration from node 1 is used."
+        - paragraph [ref=f2e656]: Preparation has the largest observed phase time (4.0 s). Compare one controlled change with the same seed, references and cache policy.
+        - generic [ref=f2e657]:
+          - link "Export summary" [ref=f2e658] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/24e3f380-0d30-4e81-9c2d-b01ebfaa154e/run
+          - link "Export events" [ref=f2e659] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/24e3f380-0d30-4e81-9c2d-b01ebfaa154e/events
+          - link "Export samples" [ref=f2e660] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/24e3f380-0d30-4e81-9c2d-b01ebfaa154e/samples
+          - button "Delete this recording…" [ref=f2e661] [cursor=pointer]
+      - generic [ref=f2e662]:
+        - heading "Observed phase time" [level=3] [ref=f2e663]
+        - paragraph [ref=f2e664]: Overlapping occurrences are combined within each phase; phases may overlap each other. These are host intervals, not GPU kernel timings.
+        - table [ref=f2e666]:
+          - rowgroup [ref=f2e667]:
+            - row [ref=f2e668]:
+              - columnheader "Phase" [ref=f2e669]
+              - columnheader "Wall time" [ref=f2e670]
+          - rowgroup [ref=f2e671]:
+            - row [ref=f2e672]:
+              - cell "Preparation" [ref=f2e673]
+              - cell "3.96 s" [ref=f2e674]
+      - generic [ref=f2e675]:
+        - heading "Resource history" [level=3] [ref=f2e676]
+        - generic [ref=f2e677]:
+          - generic [ref=f2e678]: Measurement
+          - combobox "Measurement" [ref=f2e679]:
+            - option "Host CPU %" [selected]
+            - option "Host RAM %"
+            - option "GPU utilization % · all applications"
+            - option "VRAM MiB · model-management counter"
+            - option "VRAM MiB · NVIDIA device total"
+            - option "ComfyUI process RSS MiB"
+            - option "CPU temperature °C"
+            - option "GPU temperature °C"
+        - img "Host CPU % across recorded samples. Missing samples are gaps." [ref=f2e681]:
+          - generic [ref=f2e682]: "0"
+          - generic [ref=f2e683]: "50"
+          - generic [ref=f2e684]: "100"
+          - generic [ref=f2e685]: Host CPU % · 2.0 s observed · requested cadence 2 s · sampled peaks
+        - paragraph [ref=f2e686]: Showing the latest 2 samples. Gaps stay visible. Device-wide GPU readings include other applications.
+      - generic [ref=f2e687]:
+        - heading "Latest observed model residency" [level=3] [ref=f2e688]
+        - paragraph [ref=f2e689]: No loaded models observed in the latest snapshot.
+      - generic [ref=f2e690]:
+        - heading "Node occurrences" [level=3] [ref=f2e691]
+        - paragraph [ref=f2e692]: Latest 1 of 1 observed occurrences · 0 cached nodes. Unobserved nodes are not assumed cached.
+        - table [ref=f2e694]:
+          - rowgroup [ref=f2e695]:
+            - row [ref=f2e696]:
+              - columnheader "Node" [ref=f2e697]
+              - columnheader "Phase" [ref=f2e698]
+              - columnheader "Scene" [ref=f2e699]
+              - columnheader "Duration" [ref=f2e700]
+          - rowgroup [ref=f2e701]:
+            - row [ref=f2e702]:
+              - cell [ref=f2e703]:
+                - button "#3 · DynamicScriptNode" [ref=f2e704] [cursor=pointer]
+              - cell "Preparation" [ref=f2e705]
+              - cell "Unassigned" [ref=f2e706]
+              - cell "3.96 s" [ref=f2e707]
+      - generic [ref=f2e708]:
+        - heading "Captured settings and provenance" [level=3] [ref=f2e709]
+        - table [ref=f2e711]:
+          - rowgroup [ref=f2e712]:
+            - row [ref=f2e713]:
+              - columnheader "Node / input" [ref=f2e714]
+              - columnheader "Configured value" [ref=f2e715]
+          - rowgroup [ref=f2e716]:
+            - row [ref=f2e717]:
+              - cell "#3 · code" [ref=f2e718]
+              - cell "Digest 9df5e6dd178e" [ref=f2e719]

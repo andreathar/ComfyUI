@@ -151,12 +151,12 @@
     "folded-note-candidate-v1": {
       "input_use_authorized": true,
       "sha256": "3a0c35c81375f07022d1d78aebd016d1ba20cf9f875470e9acb38d014fcc6eac",
-      "visual_review": "pending",
+      "visual_review": "rejected_for_single_note_shots",
       "findings": [
-        "Pixel-exact 104x37 crop, xywh 263,268,104,37. Cream paper stack/fold with raised top edge, no readable writing. In source frame it rests near the left edge of the round table, beside Andre, long edge roughly horizontal. Physical scale is unknown; candidate lacks hero-insert detail."
+        "Pixel-exact 104x37 crop, xywh 263,268,104,37. Cream paper stack/fold with raised top edge, no readable writing. In Shot 05 v001 pilot, this 10-20 sheet stack crop caused H3 to lift and animate sheets off the table. Unselected from all six silent-proof shots; preserved on disk."
       ],
-      "reviewer": null,
-      "selected": true,
+      "reviewer": "assistant",
+      "selected": false,
       "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/folded-note-candidate-v1.png",
       "role": "prop",
       "owner": "MSG-PRP-NOTE",
@@ -186,12 +186,12 @@
     "german-cafe-background-v2": {
       "input_use_authorized": true,
       "sha256": "e7768cb048277f2f4cdcc1a7680fe4064ef1e219a036cbd7512c75f081856d3d",
-      "visual_review": "pending",
+      "visual_review": "unselected_after_ab_comparison",
       "findings": [
-        "Current safetensors metadata confirms concept_type=background, mode=encode, optimize_steps=0. All three stored encoder pictures decoded on CPU and inspected: window-table, reverse-counter, counter-wide. Appearance continuity does not establish consistent room geometry; candidate only. Older ambience and voice assets are unselected."
+        "Current safetensors metadata confirms concept_type=background, mode=encode, optimize_steps=0. All three stored encoder pictures decoded on CPU and inspected: window-table, reverse-counter, counter-wide. Controlled Shot 05 56f A/B (Stress56_v002 vs Stress56_v003_NoBG at seed 11005) showed primary cafe-reverse-counter-v1 alone preserves espresso counter, brick/concrete wall, black-grid windows, Monstera plant, round table and lighting while cutting 3,096 reference tokens + 3,151 conditioning tokens (16:11 vs 20:21, 5,174 MiB vs ~5,400 MiB VRAM). Preserved on disk; unselected from six-shot silent policy."
       ],
-      "reviewer": null,
-      "selected": true,
+      "reviewer": "assistant",
+      "selected": false,
       "source_path": "/mnt/data/ComfyUI-models/refmods/The_Message/locations/Cafe_Industrial_background_v2.safetensors",
       "role": "background",
       "owner": "MSG-LOC-CAFE",
@@ -233,9 +233,9 @@
     "cafe-table-insert-v1": {
       "input_use_authorized": true,
       "sha256": "0522afd448e32c01b78db4c6eacdcdb5fa7862de6edc5fac43c026d0dd5dad7b",
-      "visual_review": "pending",
-      "reviewer": null,
-      "selected": true,
+      "visual_review": "superseded_by_v2",
+      "reviewer": "assistant",
+      "selected": false,
       "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/the-message-table-insert-clean-v2.png",
       "role": "location",
       "owner": "MSG-LOC-CAFE",
@@ -356,6 +356,59 @@
           "sha256": "5b0fa27a1cbbf1ed3d0307ba8e26310d44ce378e7c4436fda819494880936056"
         }
       ]
+    },
+    "cafe-table-note-insert-v2": {
+      "input_use_authorized": true,
+      "sha256": "61e478415cbdb4e1e712d0018cbfcacee108348462e6053884d8f11b2ef4fc2a",
+      "visual_review": "pending",
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/The_Message/props/folded-note-clean-v2.png",
+      "role": "location",
+      "owner": "MSG-LOC-CAFE",
+      "dimensions": [
+        768,
+        432
+      ],
+      "findings": [
+        "Inspected 768x432 16:9 overhead tabletop close-up generated locally via studio/shot.py (seed 808). Single closed rectangular cream/off-white folded paper note/envelope with triangular flap, no loose page stack, no readable writing, resting flat in upper-left quadrant of warm oak wooden tabletop with soft directional shadow. Human creative acceptance pending."
+      ],
+      "provenance": {
+        "source": "output/refs/the-message/s001/folded-letter-tabletop/s001-folded-letter-tabletop_sd15_16x9_s808_00001_.png",
+        "source_sha256": "61e478415cbdb4e1e712d0018cbfcacee108348462e6053884d8f11b2ef4fc2a",
+        "scale_cm_approx": "14x9 cm folded rectangular note",
+        "fold": "closed rectangular paper note with triangular flap, flat crease",
+        "orientation": "slight counter-clockwise angle, horizontal long axis",
+        "table_position": "upper-left quadrant of warm oak tabletop"
+      }
+    },
+    "cafe-reaction-v2": {
+      "input_use_authorized": true,
+      "sha256": "9013d2942ad8bb03aca624f58895dd27199ca02aef9e1103d9134f7ab9d0288c",
+      "visual_review": "pending",
+      "reviewer": null,
+      "selected": true,
+      "source_path": "/mnt/data/Projects_SSD/ComfyUI/input/the-message-reaction-candidate-v2.png",
+      "role": "location",
+      "owner": "MSG-LOC-CAFE",
+      "dimensions": [
+        448,
+        258
+      ],
+      "findings": [
+        "Pixel-exact 448x258 same-camera crop of 608x352 source take frame 0 (xywh 48,24,448,258). Includes Andre's upper body at left, espresso machine in soft background, and black-grid industrial window at right, resolving Shot 04 medium-close framing vs window landmark. Human creative acceptance pending."
+      ],
+      "provenance": {
+        "source": "output/The_Message/references/silent-proof-v001/source-frame_00001_.png",
+        "source_sha256": "c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2",
+        "crop_xywh": [
+          48,
+          24,
+          448,
+          258
+        ],
+        "saved_output": "output/The_Message/references/silent-proof-v001/reaction-candidate-v2_00001_.png"
+      }
     }
   },
   "rejected_candidates": [

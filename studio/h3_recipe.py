@@ -124,7 +124,7 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
     if recipe not in (DIAGNOSTIC, FOUR_VIEW_CANDIDATE, SILENT_MEDIUM) or doc['project']['fps'] != 24 or doc['project']['aspect'] != '16:9':
         raise ValueError('unregistered H3 recipe; candidate changes need explicit qualification')
     controls = binding.get('shot_controls', {})
-    unknown = controls.keys() - {'framing', 'must_show', 'gaze_target', 'expression', 'screen_position', 'props'}
+    unknown = controls.keys() - {'framing', 'must_show', 'gaze_target', 'expression', 'screen_position', 'props', 'environment_override'}
     if unknown:
         raise ValueError(f'unknown shot control: {sorted(unknown)}')
     if controls.get('framing') == 'environment_reaction':
@@ -206,14 +206,20 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
             clothing += f' as shown in {labels[key]}'
         character_text.append(f"{subject} (S{number}): {character['appearance']}. Wears {clothing}.")
         speakers[cid] = f'S{number}'
-    location, _ = resolve('location', shot['location'])
+    location, primary_asset = resolve('location', shot['location'])
     environment = f"<Subject {len(shot['characters']) + 1}>"
     location_doc = next(loc for loc in doc['locations'] if loc['id'] == shot['location'])
     backgrounds = [(k, a) for k, a in selected if a['role'] in ('background', 'ambience')]
     environment_sources = ', '.join([location] + [labels[k] for k, _ in backgrounds])
-    defs.append({'text': f"{environment} is the environment shown in {environment_sources}: {location_doc['description']}."})
+    env_desc = controls.get('environment_override') or location_doc['description']
+    defs.append({'text': f"{environment} is the environment shown in {environment_sources}: {env_desc}."})
+    retention_note = (
+        'Preserve tabletop wood grain, paper fold geometry, close-up camera distance and lighting; ' + primary_asset.get('instruction', '')
+        if controls.get('environment_override')
+        else 'Preserve architecture, furniture and lighting; use the primary picture for camera layout. ' + ' '.join(a.get('instruction', '') for _, a in backgrounds)
+    ).strip()
     retention.append({'label': environment, 'context': 'appears in [Shot 1]', 'marker': 'partially_preserved',
-                      'note': 'Preserve architecture, furniture and lighting; use the primary picture for camera layout. ' + ' '.join(a.get('instruction', '') for _, a in backgrounds)})
+                      'note': retention_note})
     for key, asset in media:
         if asset['role'] != 'location':
             defs.append({'text': f"{labels[key]} is a {asset['role']} reference for {asset['owner']}."})
