@@ -1,11 +1,4 @@
 {
 	"mcpServers": {
-		"codebase-memo": {
-			"command": "/home/athar/.local/bin/codebase-memory-mcp",
-			"args": [],
-			"tools": [
-				"*"
-			]
-		}
 	}
 }

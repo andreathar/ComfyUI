@@ -29,3 +29,5 @@ uv.lock
 .github/
 .ruff_cache/
 .pytest_cache/
+.playwright-cli*
+.zed/
