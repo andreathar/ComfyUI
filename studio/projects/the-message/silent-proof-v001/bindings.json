@@ -30,15 +30,15 @@
       "must_show": [
         "round table",
         "black-framed windows",
-        "one closed cream note flat on the tabletop"
+        "one closed white angular envelope flat on the tabletop"
       ],
       "props": [
         "MSG-PRP-NOTE"
       ],
-      "gaze_target": "the closed cream note on the table",
+      "gaze_target": "the closed white angular envelope on the table",
       "expression": "neutral, lips relaxed and closed"
     },
-    "blocking": "His hands remain clasped still in his lap below the table edge, out of frame. One closed cream note rests untouched near the left side of the tabletop.",
+    "blocking": "His hands remain clasped still in his lap below the table edge, out of frame. One closed white angular envelope rests untouched near the left side of the tabletop. Frame Andre seated on the left half and the window on the right; show the tabletop in the lower third.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
       "Paper-stack prop picture omitted so H3 keeps a single closed note."
@@ -51,9 +51,9 @@
     "audio_mode": "silent",
     "seed": 11003,
     "shot_controls": {
-      "environment_override": "Tight overhead macro surface of a warm pale oak wooden cafe tabletop in soft natural daylight, with one closed rectangular cream folded paper note resting flat in the upper-left quadrant and empty wood grain filling the rest of the frame",
+      "environment_override": "Tight overhead close-up of the textured brown wooden cafe tabletop shown in the reference, with one small closed white angular paper envelope resting flat in the upper-left quadrant and empty wood grain filling the rest of the frame",
       "must_show": [
-        "one closed folded cream note in upper-left quadrant",
+        "one closed white angular envelope in upper-left quadrant",
         "warm oak wooden tabletop wood grain filling the entire frame from start to finish"
       ],
       "props": [
@@ -83,12 +83,14 @@
         "MSG-PRP-NOTE"
       ],
       "gaze_target": "the window at screen right, off camera",
-      "expression": "neutral, lips relaxed and closed"
+      "expression": "neutral, lips relaxed and closed",
+      "reference_layout": "setting"
     },
-    "blocking": "His hands stay resting still in his lap below the lower frame edge.",
+    "blocking": "Start with eyes lowered. Raise only the eyes and chin once toward the window at screen right, then hold the off-camera gaze. Frame Andre from chest to head with a black window-frame edge visible at screen right. Hands and envelope remain below the lower frame edge. The reference supplies cafe appearance; use the requested medium-close framing.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
-      "Primary is a 448x258 crop from the 608x352 take retaining the black window landmark."
+      "Primary is a 448x258 crop from the 608x352 take retaining the black window landmark.",
+      "Tighter camera framing is text-controlled; the wider reaction reference is setting-only. Visual qualification pending."
     ]
   },
   "MSG_S001_SH05": {
@@ -103,15 +105,15 @@
       "must_show": [
         "espresso counter",
         "round table",
-        "one closed cream note flat on the table"
+        "one closed white angular envelope flat on the table"
       ],
       "props": [
         "MSG-PRP-NOTE"
       ],
-      "gaze_target": "the closed cream note on the table, eyes lowered",
+      "gaze_target": "the closed white angular envelope on the table, eyes lowered",
       "expression": "neutral, lips relaxed and closed"
     },
-    "blocking": "His hands stay resting still in his lap below the table edge, out of frame, leaving the tabletop clear around the single closed cream note. His eyes stay lowered toward the note.",
+    "blocking": "His hands stay resting still in his lap below the table edge, out of frame, leaving the tabletop clear around the single closed white angular envelope. His eyes stay lowered toward the note.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
       "Cross-angle cafe geography remains unqualified.",
@@ -138,7 +140,7 @@
       "gaze_target": "the table",
       "expression": "neutral, lips relaxed and closed"
     },
-    "blocking": "His hands remain still in his lap below the table edge while one closed cream note sits undisturbed on the tabletop.",
+    "blocking": "His hands remain still in his lap below the table edge while one closed white angular envelope sits undisturbed on the tabletop.",
     "warnings": [
       "All references are candidates; visual acceptance pending.",
       "Cross-angle cafe geography remains unqualified.",

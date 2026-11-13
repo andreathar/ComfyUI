@@ -390,7 +390,7 @@
     "input_use_authorized": true,
     "visual_review": "pending",
     "limitations": "Generated 768x432 tabletop close-up plate; human creative review pending.",
-    "instruction": "Overhead tabletop close-up: preserve the single closed rectangular cream folded note/envelope resting flat in the upper-left quadrant of the warm oak wooden tabletop; keep wood grain and soft directional shadow motionless.",
+    "instruction": "Overhead tabletop close-up: preserve the exact small closed white angular paper envelope, folded flap, silhouette and upper-left position shown in the reference; keep the textured brown tabletop, wood grain and soft shadow motionless.",
     "selection": {
       "kind": "picture",
       "file": "The_Message/props/folded-note-clean-v2.png [input]",
@@ -411,7 +411,13 @@
       "orientation": "slight counter-clockwise angle, horizontal long axis",
       "table_position": "upper-left quadrant of warm oak tabletop, empty wood surface to right"
     },
-    "approved": false
+    "approved": false,
+    "canonical_prop": {
+      "description": "One small closed white angular paper envelope with a visible folded flap, resting flat on the table.",
+      "selection_evidence": "Plannotator msg_01M79D8RV4FH3SX4YPAD1CW0NM",
+      "scope": "Canonical prop design only; no new generated-take approval",
+      "scale_cm": "unverified; no physical scale reference in the picture"
+    }
   },
   "cafe-reaction-v2": {
     "path": "input/the-message-reaction-candidate-v2.png",

@@ -1,0 +1,303 @@
+- dialog "Workflow Monitor Brain report" [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Workflow Monitor Brain" [level=2] [ref=e3]
+    - button "Close" [active] [ref=e4] [cursor=pointer]
+  - status [ref=e5]: succeeded · capture events-only · 0 samples · 0.0 MiB stored
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: Recorded run
+      - combobox "Recorded run" [ref=e9]:
+        - option "andre-walk-track-v1 · running · 11/13/2026, 3:06:01 AM" [selected]
+        - option "brain-v2-cpu-smoke · succeeded · 11/13/2026, 3:03:11 AM"
+        - option "andre-sit-wide-24mm-v3 · succeeded · 11/13/2026, 2:05:57 AM"
+        - option "andre-sit-lateral-openfloor-v2 · succeeded · 11/13/2026, 1:48:23 AM"
+        - option "andre-stand-pullback-v1 · succeeded · 11/13/2026, 1:33:00 AM"
+        - option "master-studio-static-plate-integration-SH03 · succeeded · 11/13/2026, 1:16:43 AM"
+        - option "camera-reference-CAM_PLATE_HOLD-no-sampling · succeeded · 11/13/2026, 1:11:35 AM"
+        - option "camera-reference-CAM_STATIC_ANCHOR · succeeded · 11/13/2026, 12:59:01 AM"
+        - option "camera-reference-CAM_DOLLY-3f360b9f · succeeded · 11/13/2026, 12:44:56 AM"
+        - option "camera-reference-CAM_STATIC-bf8f9263 · succeeded · 11/13/2026, 12:35:53 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/13/2026, 12:03:23 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/12/2026, 11:42:17 PM"
+        - option "master-f1f5-continue-sh03 · succeeded · 11/12/2026, 7:58:16 PM"
+        - option "master-f1f5-cut-sh03 · succeeded · 11/12/2026, 7:45:19 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:11:24 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:10:43 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:26:22 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:17:04 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:37:48 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:37:14 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:36:53 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:36:21 PM"
+        - option "T10.05 - fresh 2-shot smoke repeatability · succeeded · 11/12/2026, 2:30:15 PM"
+        - option "T10.02 - targeted safe interruption test · interrupted · 11/12/2026, 2:27:26 PM"
+        - option "T10.03 - resume at scene 2 (verify_resume_history=True) · succeeded · 11/12/2026, 2:21:57 PM"
+        - option "T10.01 - scene 1 only (partial) · succeeded · 11/12/2026, 2:17:59 PM"
+        - option "Shot 03 - 73f tabletop-only insert replacement · succeeded · 11/12/2026, 2:06:44 PM"
+        - option "The Message - Silent Proof v003 - 6 shots - no background-v2 · succeeded · 11/12/2026, 12:35:42 AM"
+        - option "Shot 04 - 73f reaction - cafe-reaction-v2 - hands in lap · succeeded · 11/12/2026, 12:13:03 AM"
+        - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM"
+        - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+        - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+    - generic [ref=e10]:
+      - generic [ref=e11]: Compare with baseline
+      - combobox "Compare with baseline" [ref=e12]:
+        - option "Choose a baseline…" [selected]
+        - option "andre-walk-track-v1 · running · 11/13/2026, 3:06:01 AM"
+        - option "brain-v2-cpu-smoke · succeeded · 11/13/2026, 3:03:11 AM"
+        - option "andre-sit-wide-24mm-v3 · succeeded · 11/13/2026, 2:05:57 AM"
+        - option "andre-sit-lateral-openfloor-v2 · succeeded · 11/13/2026, 1:48:23 AM"
+        - option "andre-stand-pullback-v1 · succeeded · 11/13/2026, 1:33:00 AM"
+        - option "master-studio-static-plate-integration-SH03 · succeeded · 11/13/2026, 1:16:43 AM"
+        - option "camera-reference-CAM_PLATE_HOLD-no-sampling · succeeded · 11/13/2026, 1:11:35 AM"
+        - option "camera-reference-CAM_STATIC_ANCHOR · succeeded · 11/13/2026, 12:59:01 AM"
+        - option "camera-reference-CAM_DOLLY-3f360b9f · succeeded · 11/13/2026, 12:44:56 AM"
+        - option "camera-reference-CAM_STATIC-bf8f9263 · succeeded · 11/13/2026, 12:35:53 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/13/2026, 12:03:23 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/12/2026, 11:42:17 PM"
+        - option "master-f1f5-continue-sh03 · succeeded · 11/12/2026, 7:58:16 PM"
+        - option "master-f1f5-cut-sh03 · succeeded · 11/12/2026, 7:45:19 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:11:24 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:10:43 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:26:22 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:17:04 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:37:48 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:37:14 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:36:53 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:36:21 PM"
+        - option "T10.05 - fresh 2-shot smoke repeatability · succeeded · 11/12/2026, 2:30:15 PM"
+        - option "T10.02 - targeted safe interruption test · interrupted · 11/12/2026, 2:27:26 PM"
+        - option "T10.03 - resume at scene 2 (verify_resume_history=True) · succeeded · 11/12/2026, 2:21:57 PM"
+        - option "T10.01 - scene 1 only (partial) · succeeded · 11/12/2026, 2:17:59 PM"
+        - option "Shot 03 - 73f tabletop-only insert replacement · succeeded · 11/12/2026, 2:06:44 PM"
+        - option "The Message - Silent Proof v003 - 6 shots - no background-v2 · succeeded · 11/12/2026, 12:35:42 AM"
+        - option "Shot 04 - 73f reaction - cafe-reaction-v2 - hands in lap · succeeded · 11/12/2026, 12:13:03 AM"
+        - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM"
+        - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+        - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+    - button "Refresh" [ref=e13] [cursor=pointer]
+    - button "Compare runs" [ref=e14] [cursor=pointer]
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - heading "brain-v2-cpu-smoke" [level=3] [ref=e17]
+      - paragraph [ref=e18]: ff4b75f8-53e8-473a-9f73-7248dd1feccd · 11/13/2026, 3:03:11 AM
+      - paragraph [ref=e19]: Saving / assembly has the largest observed phase time (0.0 s). Compare one controlled change with the same seed, references and cache policy.
+      - paragraph [ref=e20]: Linked settings remain unresolved unless explicit runtime metadata provides them.
+      - generic [ref=e21]:
+        - link "Export benchmark" [ref=e22] [cursor=pointer]:
+          - /url: /workflow_monitor/export/ff4b75f8-53e8-473a-9f73-7248dd1feccd/benchmark
+        - link "Export summary" [ref=e23] [cursor=pointer]:
+          - /url: /workflow_monitor/export/ff4b75f8-53e8-473a-9f73-7248dd1feccd/run
+        - link "Export events" [ref=e24] [cursor=pointer]:
+          - /url: /workflow_monitor/export/ff4b75f8-53e8-473a-9f73-7248dd1feccd/events
+        - link "Export samples" [ref=e25] [cursor=pointer]:
+          - /url: /workflow_monitor/export/ff4b75f8-53e8-473a-9f73-7248dd1feccd/samples
+        - button "Delete this recording…" [ref=e26] [cursor=pointer]
+    - generic [ref=e27]:
+      - heading "Benchmark evidence" [level=3] [ref=e28]
+      - paragraph [ref=e29]: Capture and reproducibility are separate. 2 linked inputs remain unresolved.
+      - region "Evidence · Coverage" [ref=e30]:
+        - table [ref=e31]:
+          - rowgroup [ref=e32]:
+            - row [ref=e33]:
+              - columnheader "Evidence" [ref=e34]
+              - columnheader "Coverage" [ref=e35]
+          - rowgroup [ref=e36]:
+            - row [ref=e37]:
+              - cell "events" [ref=e38]
+              - cell "complete" [ref=e39]
+            - row [ref=e40]:
+              - cell "resources" [ref=e41]
+              - cell "unavailable" [ref=e42]
+            - row [ref=e43]:
+              - cell "resolved inputs" [ref=e44]
+              - cell "incomplete" [ref=e45]
+            - row [ref=e46]:
+              - cell "runtime settings" [ref=e47]
+              - cell "native output attestation" [ref=e48]
+            - row [ref=e49]:
+              - cell "input package" [ref=e50]
+              - cell "unavailable" [ref=e51]
+            - row [ref=e52]:
+              - cell "artifact identity" [ref=e53]
+              - cell "unverified" [ref=e54]
+            - row [ref=e55]:
+              - cell "outputs" [ref=e56]
+              - cell "hashed at completion; decode unverified" [ref=e57]
+            - row [ref=e58]:
+              - cell "creative review" [ref=e59]
+              - cell "submitted findings; acceptance separate" [ref=e60]
+      - paragraph [ref=e61]: Capture completeness does not establish reproducibility or creative acceptance.
+      - paragraph [ref=e62]: Loaded model content identity remains unverified; runtime package/reference hashes are output attestations.
+      - paragraph [ref=e63]: Output hashes identify files at collection time; declared media metadata is not full-decode validation.
+      - paragraph [ref=e64]: Submitted visual findings are separate from human production acceptance.
+      - paragraph [ref=e65]: Step times cover observed adjacent progress values only; merged or missing steps are not invented.
+      - paragraph [ref=e66]: Times are host observations; GPU resources include other applications and peaks are sampled.
+    - generic [ref=e67]:
+      - heading "Evaluated run reports" [level=3] [ref=e68]
+      - paragraph [ref=e69]: Values reported by this run's native outputs. Their source link and code digest are recorded; loaded model bytes remain unverified.
+      - region "Report / source · Setting · Reported value" [ref=e70]:
+        - table [ref=e71]:
+          - rowgroup [ref=e72]:
+            - row [ref=e73]:
+              - columnheader "Report / source" [ref=e74]
+              - columnheader "Setting" [ref=e75]
+              - columnheader "Reported value" [ref=e76]
+          - rowgroup [ref=e77]:
+            - row [ref=e78]:
+              - 'cell "settings · #4" [ref=e79]'
+              - cell "width" [ref=e80]
+              - cell "128" [ref=e81]
+            - row [ref=e82]:
+              - 'cell "settings · #4" [ref=e83]'
+              - cell "height" [ref=e84]
+              - cell "64" [ref=e85]
+            - row [ref=e86]:
+              - 'cell "settings · #4" [ref=e87]'
+              - cell "recipe_id" [ref=e88]
+              - cell "brain-cpu-smoke-v2" [ref=e89]
+    - generic [ref=e90]:
+      - heading "Saved output identity" [level=3] [ref=e91]
+      - paragraph [ref=e92]: Hashes were collected once after completion. A file hash and declared metadata do not prove full decode or visual quality.
+      - region "File · Size · SHA256 · Declared media metadata" [ref=e93]:
+        - table [ref=e94]:
+          - rowgroup [ref=e95]:
+            - row [ref=e96]:
+              - columnheader "File" [ref=e97]
+              - columnheader "Size" [ref=e98]
+              - columnheader "SHA256" [ref=e99]
+              - columnheader "Declared media metadata" [ref=e100]
+          - rowgroup [ref=e101]:
+            - row [ref=e102]:
+              - cell "The_Message/brain_motion_v2/CPU_SMOKE_00001_.png" [ref=e103]
+              - cell "0.0 MiB" [ref=e104]
+              - cell "144820b74e2076f16609d6f86aecf68b2fc54873a5001e087efc4801dd30f297" [ref=e105]
+              - 'cell "{\"width\":128,\"height\":64}" [ref=e106]'
+    - generic [ref=e107]:
+      - heading "Submitted visual findings" [level=3] [ref=e108]
+      - paragraph [ref=e109]: Findings are bound to the saved output hash. The reviewer label is submitted attribution; production acceptance remains separate.
+      - region "Output hash / reviewer · Aspect · Finding" [ref=e110]:
+        - table [ref=e111]:
+          - rowgroup [ref=e112]:
+            - row [ref=e113]:
+              - columnheader "Output hash / reviewer" [ref=e114]
+              - columnheader "Aspect" [ref=e115]
+              - columnheader "Finding" [ref=e116]
+          - rowgroup [ref=e117]:
+            - row [ref=e118]:
+              - cell "144820b74e20 · assistant" [ref=e119]
+              - cell "notes" [ref=e120]
+              - 'cell "CPU smoke only: fully decoded PNG is a solid blue 128x64 fixture. No action, camera, likeness or model-quality claim." [ref=e121]'
+    - generic [ref=e122]:
+      - heading "Recorded sampler steps" [level=3] [ref=e123]
+      - paragraph [ref=e124]: Each row is one sampler occurrence. Times use adjacent observed steps only; missing steps stay missing. These are host progress times.
+      - paragraph [ref=e125]: No sampling occurrence observed. Cached or unobserved sampling is not a fresh benchmark.
+    - generic [ref=e126]:
+      - heading "Observed phase time" [level=3] [ref=e127]
+      - paragraph [ref=e128]: Overlapping occurrences are combined within each phase; phases may overlap each other. These are host intervals, not GPU kernel timings.
+      - region "Phase · Wall time" [ref=e129]:
+        - table [ref=e130]:
+          - rowgroup [ref=e131]:
+            - row [ref=e132]:
+              - columnheader "Phase" [ref=e133]
+              - columnheader "Wall time" [ref=e134]
+          - rowgroup [ref=e135]:
+            - row [ref=e136]:
+              - cell "Saving / assembly" [ref=e137]
+              - cell "0.01 s" [ref=e138]
+            - row [ref=e139]:
+              - cell "Unknown / custom" [ref=e140]
+              - cell "0.00 s" [ref=e141]
+            - row [ref=e142]:
+              - cell "Preparation" [ref=e143]
+              - cell "0.00 s" [ref=e144]
+    - generic [ref=e145]:
+      - heading "Resource history" [level=3] [ref=e146]
+      - generic [ref=e147]:
+        - generic [ref=e148]: Measurement
+        - combobox "Measurement" [ref=e149]:
+          - option "Host CPU %" [selected]
+          - option "Host RAM %"
+          - option "GPU utilization % · all applications"
+          - option "VRAM MiB · model-management counter"
+          - option "VRAM MiB · NVIDIA device total"
+          - option "ComfyUI process RSS MiB"
+          - option "CPU temperature °C"
+          - option "GPU temperature °C"
+      - paragraph [ref=e151]: No readings available for this measurement.
+      - paragraph [ref=e152]: Showing the latest 0 samples. Gaps stay visible. Device-wide GPU readings include other applications.
+    - generic [ref=e153]:
+      - heading "Latest observed model residency" [level=3] [ref=e154]
+      - paragraph [ref=e155]: Model inventory unavailable.
+    - generic [ref=e156]:
+      - heading "Node occurrences" [level=3] [ref=e157]
+      - paragraph [ref=e158]: Latest 5 of 5 observed occurrences · 0 cached nodes. Unobserved nodes are not assumed cached.
+      - region "Node · Phase · Scene · Duration" [ref=e159]:
+        - table [ref=e160]:
+          - rowgroup [ref=e161]:
+            - row [ref=e162]:
+              - columnheader "Node" [ref=e163]
+              - columnheader "Phase" [ref=e164]
+              - columnheader "Scene" [ref=e165]
+              - columnheader "Duration" [ref=e166]
+          - rowgroup [ref=e167]:
+            - row [ref=e168]:
+              - cell [ref=e169]:
+                - button "#6 · PrimitiveInt" [ref=e170] [cursor=pointer]
+              - cell "Preparation" [ref=e171]
+              - cell "Unassigned" [ref=e172]
+              - cell "0.00 s" [ref=e173]
+            - row [ref=e174]:
+              - cell [ref=e175]:
+                - button "#3 · DynamicScriptNode" [ref=e176] [cursor=pointer]
+              - cell "Preparation" [ref=e177]
+              - cell "Unassigned" [ref=e178]
+              - cell "0.00 s" [ref=e179]
+            - row [ref=e180]:
+              - cell [ref=e181]:
+                - button "#4 · PreviewAny" [ref=e182] [cursor=pointer]
+              - cell "Unknown / custom" [ref=e183]
+              - cell "Unassigned" [ref=e184]
+              - cell "0.00 s" [ref=e185]
+            - row [ref=e186]:
+              - cell [ref=e187]:
+                - button "#1 · EmptyImage" [ref=e188] [cursor=pointer]
+              - cell "Unknown / custom" [ref=e189]
+              - cell "Unassigned" [ref=e190]
+              - cell "0.00 s" [ref=e191]
+            - row [ref=e192]:
+              - cell [ref=e193]:
+                - button "#2 · SaveImage" [ref=e194] [cursor=pointer]
+              - cell "Saving / assembly" [ref=e195]
+              - cell "Unassigned" [ref=e196]
+              - cell "0.01 s" [ref=e197]
+    - generic [ref=e198]:
+      - heading "Captured settings and provenance" [level=3] [ref=e199]
+      - region "Node / input · Configured value" [ref=e200]:
+        - table [ref=e201]:
+          - rowgroup [ref=e202]:
+            - row [ref=e203]:
+              - columnheader "Node / input" [ref=e204]
+              - columnheader "Configured value" [ref=e205]
+          - rowgroup [ref=e206]:
+            - row [ref=e207]:
+              - cell "#1 · width" [ref=e208]
+              - 'cell "Linked from #6 · output 0" [ref=e209]'
+            - row [ref=e210]:
+              - cell "#1 · height" [ref=e211]
+              - cell "64" [ref=e212]
+            - row [ref=e213]:
+              - cell "#2 · images" [ref=e214]
+              - 'cell "Linked from #1 · output 0" [ref=e215]'
+            - row [ref=e216]:
+              - cell "#3 · code" [ref=e217]
+              - cell "Digest 46ad0c46887c" [ref=e218]
+            - row [ref=e219]:
+              - cell "#3 · input_0" [ref=e220]
+              - 'cell "Linked from #6 · output 0" [ref=e221]'
+            - row [ref=e222]:
+              - cell "#4 · source" [ref=e223]
+              - 'cell "Linked from #3 · output 1" [ref=e224]'
+            - row [ref=e225]:
+              - cell "#6 · value" [ref=e226]
+              - cell "128" [ref=e227]

@@ -11,7 +11,7 @@ import json
 import urllib.request
 from pathlib import Path
 
-from master_studio_package import live_resolver_code
+from master_studio_package import live_resolver_code, resolve_shot_package
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "user/default/workflows/06 - Learning Production/The Message - Master Movie Studio.json"
@@ -437,13 +437,19 @@ guide = """## The Message · Master Movie Studio (RTX 3060 6 GB)
 Lessons from the first 6-shot film, wired as one graph:
 
 1. **Common Variables Bus** — Project Name feeds Hub directly. Shot Tag selects the full shot package (prompt/media/RefMod/seed/transition). Duration preview shows **raw vs delivered** frames.
-2. **Transition** — package default is `cut`. `continue` only arms H3 Context when Hub has an approved tail; overlap (22f) is added to raw length so delivered duration matches the request.
+2. **Transition** — package default is `cut`. `continue` only arms H3 Context when Hub has an approved tail. Frame-grid rounding affects delivery: at 3s/24fps, cut delivers 73f; continue samples 107f, trims 22f and delivers 85f. Read the raw/delivered preview before running.
 3. **Structured Prompts** — package resolver drives Media / Prompt Builder / RefMod / Seed. Node `24` lists reference tags on CPU.
 4. **Subgraphs** — Model/LoRA `30`, Conditioning/Context `40`, Sampler/Decode/Trim `50`. Labs `70`/`80` stay muted.
 5. **H3 Project Suite** — Open project… on Hub (resolved project name). Approve before a continue take.
 6. **WorkflowMonitorBrain** — provenance digests for primitives, prompt, and LoRA; records under `user/workflow_monitor`.
 
 Silent video decode by default. Do not unmute Audio Decode until AV trim wiring exists.
+
+For motionless inserts, the optional Static Plate 101→102→103→104 branch holds the first
+package Picture at the common delivery size, frame count and FPS. Prefix105 names each
+shot under The_Message/master_studio_static_plates. Output104 is muted by default.
+For a full static-only queue, mute ProjectSave61 and generative SaveVideo64 first;
+restore them and mute104 for generated shots. A plate has no AV continuation latent.
 """
 
 nodes = []
@@ -472,25 +478,25 @@ n16 = build_std_node(16, "FantasticSeeds", [-720, 650], [300, 120], {"seed": 110
 n17a = build_std_node(17, "PrimitiveFloat", [-720, 800], [300, 70], {"value": 12.0}, title="Var · Shift Video", color="#223", bgcolor="#335")
 n17b = build_std_node(19, "PrimitiveFloat", [-720, 900], [300, 70], {"value": 3.0}, title="Var · Shift Audio", color="#223", bgcolor="#335")
 
-def make_dynamic_script(nid, pos, size, title, code, input_count, output_count, color="#1b4669", bgcolor="#29699c"):
+def make_dynamic_script(nid, pos, size, title, code, input_count, output_count, color="#1b4669", bgcolor="#29699c", lazy_execution=True):
     node = build_std_node(nid, "DynamicScriptNode", pos, size, {
         "input_ports_count": input_count, "output_ports_count": output_count, "module_count": 0,
         "module_name_prefix": "dynamic_module", "use_module_cache": True,
         "clear_module_cache": False, "remove_import_restrictions": False,
-        "lazy_execution": True, "code": code,
+        "lazy_execution": lazy_execution, "code": code,
     }, title=title, color=color, bgcolor=bgcolor)
     node["inputs"] = [{"name": f"input_{i}", "type": "*", "link": None, "shape": 7} for i in range(input_count)]
     node["outputs"] = [{"name": "exception", "type": "*", "links": []}] + [
         {"name": f"output_{i}", "type": "*", "links": []} for i in range(output_count)
     ]
     node["widgets_values"] = [
-        input_count, output_count, 0, "dynamic_module", True, False, False, True, code,
+        input_count, output_count, 0, "dynamic_module", True, False, False, lazy_execution, code,
     ]
     node["widgets_values_named"] = {
         "input_ports_count": input_count, "output_ports_count": output_count, "module_count": 0,
         "module_name_prefix": "dynamic_module", "use_module_cache": True,
         "clear_module_cache": False, "remove_import_restrictions": False,
-        "lazy_execution": True, "code": code,
+        "lazy_execution": lazy_execution, "code": code,
     }
     return node
 
@@ -503,7 +509,7 @@ n18 = make_dynamic_script(
 n20 = build_std_node(20, "PreviewAny", [-380, 680], [420, 200], {}, title="Live Production Plan Summary")
 
 # Shot package resolver — Shot Tag selects prompt/media/RefMod/seed/transition together.
-sh05 = _PACKAGES["MSG_S001_SH05"]
+sh05 = resolve_shot_package("MSG_S001_SH05")
 media_state = json.dumps(sh05["media_state"], separators=(",", ":"))
 stack_state = json.dumps(sh05["stack_state"], separators=(",", ":"))
 builder_state = json.dumps(sh05["builder_state"], separators=(",", ":"))
@@ -512,7 +518,7 @@ prompt_text = sh05["prompt_text"]
 n27 = make_dynamic_script(
     27, [80, -220], [360, 280],
     "Shot Package Resolver (tag → prompt/media/RefMod/seed/transition)",
-    PKG_CODE, 1, 7, color="#2a4a2a", bgcolor="#3a6a3a",
+    PKG_CODE, 1, 7, color="#2a4a2a", bgcolor="#3a6a3a", lazy_execution=False,
 )
 n28 = build_std_node(28, "PreviewAny", [480, -220], [360, 120], {}, title="Resolved Shot Package")
 
@@ -553,10 +559,28 @@ n64["widgets_values_named"] = {
 n44 = build_std_node(44, "WorkflowMonitorBrain", [2120, 400], [320, 160], {
     "enabled": True, "run_label": "master-studio", "sample_interval": "2", "phase_overrides": "{}",
 }, title="Workflow Monitor Brain")
+n101 = build_std_node(101, "ImageScale", [1480, 1150], [270, 130], {
+    "upscale_method": "lanczos", "width": 832, "height": 480, "crop": "center",
+}, title="Static Plate · Fit without stretching")
+n102 = build_std_node(102, "RepeatImageBatch", [1830, 1150], [270, 60], {"amount": 73},
+                      title="Static Plate · Hold for delivered frames")
+n103 = build_std_node(103, "CreateVideo", [2180, 1150], [300, 180], {
+    "fps": 24.0, "bit_depth": "auto", "color_space": "sRGB", "chroma_subsampling": "auto", "codec": "none",
+}, title="Static Plate · Build silent video")
+n104 = build_std_node(104, "SaveVideo", [2520, 1150], [300, 160], {
+    "filename_prefix": "The_Message/master_studio_static_plates/insert", "format": "auto",
+}, title="Static Plate · Export locked insert", mode=2)
+n104["widgets_values"] = ["The_Message/master_studio_static_plates/insert", "auto", "auto"]
+n104["widgets_values_named"] = {"filename_prefix": "The_Message/master_studio_static_plates/insert",
+                                 "format": "auto", "format.codec": "auto"}
+n105 = build_std_node(105, "MiniMaxH3FilenamePrefix", [2520, 1450], [320, 160], {
+    "folder": "The_Message", "subfolder": "master_studio_static_plates", "date_folder": "YYYY-MM-DD", "filename": "insert",
+}, title="Static Plate · Per-shot output prefix")
 
 nodes.extend([
     n10, n11, n12, n13, n14, n15, n16, n17a, n17b, n18, n20, n27, n28,
     n21, n22, n23, n24, n25, n30, n40, n50, n70, n80, n60, n61, n62, n63, n64, n44,
+    n101, n102, n103, n104, n105,
 ])
 nmap = {n["id"]: n for n in nodes}
 
@@ -649,6 +673,18 @@ wire(18, 6, 63, "fps", "FLOAT")
 wire(63, 0, 64, "video", "VIDEO")
 wire(62, 0, 64, "filename_prefix", "STRING")
 
+# Optional held-reference export: same delivery variables, no H3 sampler.
+wire(22, 1, 101, "image", "IMAGE")
+wire(18, 3, 101, "width", "INT")
+wire(18, 4, 101, "height", "INT")
+wire(101, 0, 102, "image", "IMAGE")
+wire(18, 11, 102, "amount", "INT")
+wire(102, 0, 103, "images", "IMAGE")
+wire(18, 6, 103, "fps", "FLOAT")
+wire(103, 0, 104, "video", "VIDEO")
+wire(18, 2, 105, "filename", "STRING")
+wire(105, 0, 104, "filename_prefix", "STRING")
+
 # Convert array-style links for UI format expected by ComfyUI (list of 6-tuples)
 ui_links = []
 for L in links:
@@ -660,12 +696,13 @@ groups = [
     {"id": 3, "title": "3 · Production Subgraphs", "bounding": [980, -80, 460, 980], "color": "#A88", "font_size": 24},
     {"id": 4, "title": "4 · H3 Project Suite + Monitor", "bounding": [1480, 360, 1140, 680], "color": "#88A", "font_size": 24},
     {"id": 5, "title": "5 · Muted Labs (keep muted)", "bounding": [1480, -80, 420, 400], "color": "#666", "font_size": 24},
+    {"id": 6, "title": "6 · Static Plate Export · optional locked inserts", "bounding": [1450, 1080, 1420, 560], "color": "#4b8a8d", "font_size": 24},
 ]
 
 workflow = {
     "id": "the-message-master-movie-studio-2026-11-12",
     "revision": 1,
-    "last_node_id": 80,
+    "last_node_id": 105,
     "last_link_id": lid - 1,
     "nodes": nodes,
     "links": ui_links,
@@ -680,7 +717,8 @@ workflow = {
     "version": 0.4,
 }
 
-OUT.parent.mkdir(parents=True, exist_ok=True)
-OUT.write_text(json.dumps(workflow, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-print(f"Wrote {OUT}")
-print(f"nodes={len(nodes)} links={len(ui_links)} subgraphs=5 last_link_id={lid-1}")
+if __name__ == "__main__":
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(workflow, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Wrote {OUT}")
+    print(f"nodes={len(nodes)} links={len(ui_links)} subgraphs=5 last_link_id={lid-1}")

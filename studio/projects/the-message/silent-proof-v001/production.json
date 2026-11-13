@@ -6,7 +6,7 @@
     "aspect": "16:9",
     "fps": 24,
     "language": "en",
-    "source_text": "An empty industrial cafe waits in daylight. Andre sits beside the window and lowers his gaze. A folded cream note rests on the wooden table. Andre raises his gaze toward the window. From the counter side, he sits quietly. In the wide room, he gives one slight nod."
+    "source_text": "An empty industrial cafe waits in daylight. Andre sits beside the window and lowers his gaze. A closed white angular envelope rests on the wooden table. Andre raises his gaze toward the window. From the counter side, he sits quietly. In the wide room, he gives one slight nod."
   },
   "style_bible": {
     "look": "Naturalistic live-action photography with restrained contrast",
@@ -55,8 +55,8 @@
   "props": [
     {
       "id": "MSG-PRP-NOTE",
-      "name": "Folded note",
-      "description": "One small folded cream paper note on the table; no readable writing required"
+      "name": "Closed white angular envelope",
+      "description": "One small closed white angular paper envelope on the table; no readable writing required"
     }
   ],
   "scenes": [
@@ -66,7 +66,7 @@
       "slug": "INT. INDUSTRIAL CAFE - DAY",
       "location": "MSG-LOC-CAFE",
       "time": "day",
-      "summary": "An empty industrial cafe waits in daylight. Andre sits beside the window and lowers his gaze. A folded cream note rests on the wooden table. Andre raises his gaze toward the window. From the counter side, he sits quietly. In the wide room, he gives one slight nod.",
+      "summary": "An empty industrial cafe waits in daylight. Andre sits beside the window and lowers his gaze. A closed white angular envelope rests on the wooden table. Andre raises his gaze toward the window. From the counter side, he sits quietly. In the wide room, he gives one slight nod.",
       "characters": [
         "MSG-CHR-ANDRE"
       ],
@@ -78,7 +78,7 @@
       },
       "script_ref": {
         "start": 0,
-        "end": 264
+        "end": 276
       }
     }
   ],
@@ -103,7 +103,7 @@
       "complexity": "simple",
       "script_ref": {
         "start": 0,
-        "end": 42
+        "end": 43
       }
     },
     {
@@ -130,7 +130,7 @@
       "complexity": "simple",
       "script_ref": {
         "start": 44,
-        "end": 92
+        "end": 93
       }
     },
     {
@@ -143,8 +143,8 @@
         "type": "static"
       },
       "lens": "macro",
-      "subject": "Folded note",
-      "action": "One closed rectangular cream paper note rests completely motionless on the warm oak wooden tabletop surface in tight overhead close-up.",
+      "subject": "Closed white angular envelope",
+      "action": "One closed white angular paper envelope rests completely motionless on the warm oak wooden tabletop surface in tight overhead close-up.",
       "characters": [],
       "props": [
         "MSG-PRP-NOTE"
@@ -155,7 +155,7 @@
       "complexity": "simple",
       "script_ref": {
         "start": 94,
-        "end": 139
+        "end": 152
       }
     },
     {
@@ -181,8 +181,8 @@
       "dialogue": [],
       "complexity": "simple",
       "script_ref": {
-        "start": 141,
-        "end": 180
+        "start": 153,
+        "end": 193
       }
     },
     {
@@ -196,7 +196,7 @@
       },
       "lens": "35mm",
       "subject": "Andre",
-      "action": "Andre remains seated and still with his hands resting in his lap below the table edge, eyes lowered toward one closed cream note lying flat on the table.",
+      "action": "Andre remains seated and still with his hands resting in his lap below the table edge, eyes lowered toward one closed white angular envelope lying flat on the table.",
       "characters": [
         "MSG-CHR-ANDRE"
       ],
@@ -208,8 +208,8 @@
       "dialogue": [],
       "complexity": "simple",
       "script_ref": {
-        "start": 182,
-        "end": 220
+        "start": 194,
+        "end": 233
       }
     },
     {
@@ -235,8 +235,8 @@
       "dialogue": [],
       "complexity": "simple",
       "script_ref": {
-        "start": 222,
-        "end": 264
+        "start": 234,
+        "end": 276
       }
     }
   ]

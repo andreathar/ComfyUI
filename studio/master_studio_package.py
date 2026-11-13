@@ -14,12 +14,12 @@ SNAPSHOTS = ROOT / "user/master_studio/packages"
 
 # Prompt library filenames keyed by shot id (Silent Proof v004 category).
 PROMPT_FILES = {
-    "MSG_S001_SH01": "The Message · 01 · Cafe Wide Establishing.json",
-    "MSG_S001_SH02": "The Message · 02 · Window Table Gaze.json",
-    "MSG_S001_SH03": "The Message · 03 · Tabletop Note Insert.json",
-    "MSG_S001_SH04": "The Message · 04 · Window Reaction.json",
-    "MSG_S001_SH05": "The Message · 05 · Reverse Counter Gaze.json",
-    "MSG_S001_SH06": "The Message · 06 · Closing Wide Master.json",
+    "MSG_S001_SH01": "The Message _ 01 _ Cafe Wide Establishing.json",
+    "MSG_S001_SH02": "The Message _ 02 _ Window Table Gaze.json",
+    "MSG_S001_SH03": "The Message _ 03 _ Tabletop Note Insert.json",
+    "MSG_S001_SH04": "The Message _ 04 _ Window Reaction.json",
+    "MSG_S001_SH05": "The Message _ 05 _ Reverse Counter Gaze.json",
+    "MSG_S001_SH06": "The Message _ 06 _ Closing Wide Master.json",
 }
 
 
@@ -43,9 +43,9 @@ def resolve_shot_package(shot_id):
     bindings = json.loads((PROJECT / "bindings.json").read_text(encoding="utf-8"))
     binding = bindings[shot_id]
     prompt = json.loads((PROMPTS / PROMPT_FILES[shot_id]).read_text(encoding="utf-8"))
-    media_path = MEDIA / f"The Message · {shot_id} Media.json"
+    media_path = MEDIA / f"The Message _ {shot_id} Media.json"
     media = json.loads(media_path.read_text(encoding="utf-8"))
-    refmod_path = REFMODS / f"The Message · {shot_id} RefMods.json"
+    refmod_path = REFMODS / f"The Message _ {shot_id} RefMods.json"
     if refmod_path.exists():
         refmod = json.loads(refmod_path.read_text(encoding="utf-8"))
         stack_state = {"picks": refmod.get("picks", []), "budget": refmod.get("budget", 0)}
@@ -72,7 +72,7 @@ def live_resolver_code():
     """Use the same resolver on the canvas without importing project modules."""
     constants = {"PROJECT": PROJECT, "PROMPTS": PROMPTS, "MEDIA": MEDIA, "REFMODS": REFMODS,
                  "TRANSITIONS": TRANSITIONS, "SNAPSHOTS": SNAPSHOTS}
-    header = ["import json", "import hashlib", "from pathlib import Path"]
+    header = ["import json", "import hashlib", "import uuid", "from pathlib import Path"]
     header += [f"{key} = Path({str(path)!r})" for key, path in constants.items()]
     header += [f"PROMPT_FILES = {PROMPT_FILES!r}"]
     header += [inspect.getsource(fn) for fn in (default_transitions, load_transitions, resolve_shot_package)]
@@ -87,8 +87,17 @@ if snapshot.exists():
     if snapshot.read_text(encoding='utf-8') != payload:
         raise ValueError('Saved package snapshot changed: ' + revision)
 else:
-    with snapshot.open('x', encoding='utf-8') as stream:
-        stream.write(payload)
+    pending = SNAPSHOTS / ('.' + revision + '.' + uuid.uuid4().hex + '.tmp')
+    try:
+        with pending.open('x', encoding='utf-8') as stream:
+            stream.write(payload)
+        try:
+            snapshot.hardlink_to(pending)
+        except FileExistsError:
+            if snapshot.read_text(encoding='utf-8') != payload:
+                raise ValueError('Saved package snapshot changed: ' + revision)
+    finally:
+        pending.unlink(missing_ok=True)
 summary = dict(shot_id=pkg['shot_id'], prompt_name=pkg['prompt_name'], seed=pkg['seed'],
                transition=pkg['transition'], revision=revision, snapshot=str(snapshot),
                authority='Committed prompt, media and RefMod libraries; linked widgets are previews')

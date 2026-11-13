@@ -1,0 +1,14 @@
+- dialog "Workflow Monitor Brain report" [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - heading "Workflow Monitor Brain" [level=2] [ref=f2e3]
+    - button "Close" [active] [ref=f2e4] [cursor=pointer]
+  - status [ref=f2e5]: Loading local records…
+  - generic [ref=f2e6]:
+    - generic [ref=f2e7]:
+      - generic [ref=f2e8]: Recorded run
+      - combobox "Recorded run" [ref=f2e9]
+    - generic [ref=f2e10]:
+      - generic [ref=f2e11]: Compare with baseline
+      - combobox "Compare with baseline" [ref=f2e12]
+    - button "Refresh" [ref=f2e13] [cursor=pointer]
+    - button "Compare runs" [ref=f2e14] [cursor=pointer]

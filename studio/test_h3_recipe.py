@@ -147,7 +147,7 @@ class RecipeTests(unittest.TestCase):
         ref = out['builder_state']['ref']
         name = self.doc['characters'][0]['name']
         self.assertIn(f'Their name is {name}.', out['prompt_text'])
-        self.assertIn('<Subject 1> (appears in [Shot 1]): fully_preserved', out['prompt_text'])
+        self.assertIn('<Subject 1> (appears in [Shot 1]): partially_preserved', out['prompt_text'])
         self.assertIn('<Subject 1> (S1)', ref['detail'])
         self.assertIn(f"It is {name}'s voice.", out['prompt_text'])
         self.assertTrue(all(line == line.rstrip() for line in out['prompt_text'].splitlines()))
@@ -181,6 +181,80 @@ class RecipeTests(unittest.TestCase):
         self.binding['shot_controls'] = {'framng': 'environment_reaction'}
         with self.assertRaisesRegex(ValueError, 'shot control'):
             self.compile()
+
+    def test_setting_reference_does_not_override_requested_camera(self):
+        self.silent()
+        self.binding['shot_controls'] = {'reference_layout': 'setting'}
+        self.doc['shots'][0].update(shot_size='close-up', angle='overhead', lens='50mm',
+            camera_move={'type': 'dolly-in', 'speed': 'slow'})
+        self.doc['style_bible']['camera_rules'] = ['One continuous shot.']
+        out = self.compile()
+        self.assertIn('close-up shot, overhead, 50mm lens', out['prompt_text'])
+        self.assertIn('Camera: slow dolly-in', out['prompt_text'])
+        self.assertNotIn('primary camera layout from', out['prompt_text'])
+        self.assertNotIn('use the primary picture for camera layout', out['prompt_text'])
+        self.assertIn('setting appearance only', out['prompt_text'])
+        self.assertIn('camera instructions below', out['prompt_text'])
+
+    def test_invalid_reference_layout_is_rejected(self):
+        self.binding['shot_controls'] = {'reference_layout': 'seting'}
+        with self.assertRaisesRegex(ValueError, 'reference layout'):
+            self.compile()
+
+    def test_setting_reference_preserves_authored_content_instructions(self):
+        self.silent()
+        self.binding['shot_controls'] = {'reference_layout': 'setting'}
+        self.assets['room']['instruction'] = 'Preserve the angular folded-paper outline and its visible flap.'
+        self.assertIn(self.assets['room']['instruction'], self.compile()['prompt_text'])
+
+    def test_first_frame_layout_declares_picture_anchor_and_keeps_camera_motion(self):
+        self.silent()
+        self.binding['shot_controls'] = {'reference_layout': 'first_frame'}
+        self.doc['shots'][0]['camera_move'] = {'type':'dolly-in','speed':'slow'}
+        self.doc['style_bible']['camera_rules'] = ['One continuous shot.']
+        out = self.compile()
+        defs = out['builder_state']['ref']['subjectDefs']
+        self.assertTrue(any(d['text'].startswith('<Picture 1>') and 'first frame of [Shot 1]' in d['text'] for d in defs))
+        self.assertIn('keyframe completion', out['builder_state']['ref']['summaryTypes'])
+        self.assertIn('Camera: slow dolly-in', out['prompt_text'])
+        self.assertIn('Opening composition from <Picture 1>', out['prompt_text'])
+
+    def test_wardrobe_reference_belongs_to_character_not_a_frame_anchor(self):
+        self.silent()
+        path = self.root / 'input/wardrobe.png'
+        path.write_bytes(b'gray shirt')
+        self.assets['clothes'] = dict(path='input/wardrobe.png', sha256=h3.file_hash(path), approved=True,
+            role='wardrobe', owner='DEMO-CHR-MAIN', wardrobe_id='W1', kind='picture',
+            instruction='Preserve the embroidered blue cuff; ignore cropped framing.',
+            selection={'file':'wardrobe.png [input]', 'kind':'picture'})
+        self.binding['assets'].insert(0, 'clothes')
+        out = self.compile()
+        defs = out['builder_state']['ref']['subjectDefs']
+        self.assertFalse(any(d['text'].startswith('<Picture 1>') for d in defs))
+        person = next(d['text'] for d in defs if d['text'].startswith('<Subject 1>'))
+        self.assertIn('<Picture 1>', person)
+        self.assertIn('Preserve the embroidered blue cuff; ignore cropped framing.', person)
+        self.assertNotIn('DEMO-CHR-MAIN', out['prompt_text'])
+        identity = next(r for r in out['builder_state']['ref']['retention'] if r['label']=='<Subject 1>')
+        self.assertIn('Facial identity only', identity['note'])
+        self.assertIn('wardrobe', identity['note'])
+
+    def test_prop_reference_becomes_reusable_subject_not_a_frame_anchor(self):
+        self.silent()
+        prop_id = 'DEMO-PRP-NOTE'
+        self.doc['props'] = [{'id':prop_id,'name':'Envelope','description':'One white angular envelope'}]
+        self.doc['shots'][0]['props'] = [prop_id]
+        path = self.root / 'input/note.png'
+        path.write_bytes(b'envelope')
+        self.assets['note'] = dict(path='input/note.png',sha256=h3.file_hash(path),approved=True,
+            role='prop',owner=prop_id,kind='picture',selection={'file':'note.png [input]','kind':'picture'})
+        self.binding['assets'].append('note')
+        out = self.compile()
+        defs = out['builder_state']['ref']['subjectDefs']
+        self.assertFalse(any(d['text'].startswith('<Picture 2>') for d in defs))
+        self.assertIn('One white angular envelope', out['prompt_text'])
+        self.assertIn('<Subject 3>', out['prompt_text'])
+        self.assertNotIn('DEMO-PRP-NOTE', out['prompt_text'])
 
     def test_project_selection_uses_named_inputs_and_rejects_unknown_shot(self):
         film.write_json(self.root / 'selected-script.json', self.doc)

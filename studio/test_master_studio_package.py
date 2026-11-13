@@ -4,6 +4,9 @@ import sys
 import unittest
 import json
 import tempfile
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
+from types import SimpleNamespace
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -39,7 +42,7 @@ class MasterStudioPackageTests(unittest.TestCase):
             prompt = root / "prompts" / "shot.json"
             prompt.write_text(json.dumps({"name": "Shot", "prompt": "First text", "state": {"version": 1, "mode": "REF"}}))
             (root / "project/bindings.json").write_text(json.dumps({"S1": {"seed": 42}}))
-            (root / "media/The Message · S1 Media.json").write_text('{"items": []}')
+            (root / "media/The Message _ S1 Media.json").write_text('{"items": []}')
             with patch.multiple(packages, PROJECT=root / "project", PROMPTS=root / "prompts", MEDIA=root / "media",
                                 REFMODS=root / "refmods", TRANSITIONS=root / "transitions.json", PROMPT_FILES={"S1": "shot.json"},
                                 SNAPSHOTS=root / "snapshots"):
@@ -56,6 +59,30 @@ class MasterStudioPackageTests(unittest.TestCase):
                 self.assertEqual(json.loads(env["outputs"][1])["version"], 2)
                 self.assertNotEqual(first["revision"], second["revision"])
                 self.assertEqual(json.loads(old_snapshot.read_text())["prompt_text"], "First text")
+                Path(second["snapshot"]).unlink()
+                def resolve_once(_):
+                    env = {"inputs": ["S1"], "outputs": [None] * 7}
+                    exec(code, env)
+                    return json.loads(env["outputs"][6])["revision"]
+                with ThreadPoolExecutor(max_workers=4) as pool:
+                    revisions = list(pool.map(resolve_once, range(16)))
+                self.assertEqual(set(revisions), {second["revision"]})
+                self.assertEqual(len(list((root / "snapshots").iterdir())), 2)
+                Path(second["snapshot"]).unlink()
+                real_open = Path.open
+                @contextmanager
+                def interrupted_open(path, mode="r", *args, **kwargs):
+                    with real_open(path, mode, *args, **kwargs) as stream:
+                        if mode == "x":
+                            def write_partial(text):
+                                stream.write(text[:10])
+                                raise OSError("Simulated interrupted write")
+                            yield SimpleNamespace(write=write_partial)
+                        else:
+                            yield stream
+                with patch.object(Path, "open", interrupted_open), self.assertRaises(OSError):
+                    exec(code, env)
+                self.assertFalse(Path(second["snapshot"]).exists())
                 prompt.unlink()
                 with self.assertRaises(FileNotFoundError):
                     exec(code, env)

@@ -124,9 +124,12 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
     if recipe not in (DIAGNOSTIC, FOUR_VIEW_CANDIDATE, SILENT_MEDIUM) or doc['project']['fps'] != 24 or doc['project']['aspect'] != '16:9':
         raise ValueError('unregistered H3 recipe; candidate changes need explicit qualification')
     controls = binding.get('shot_controls', {})
-    unknown = controls.keys() - {'framing', 'must_show', 'gaze_target', 'expression', 'screen_position', 'props', 'environment_override'}
+    unknown = controls.keys() - {'framing', 'must_show', 'gaze_target', 'expression', 'screen_position', 'props', 'environment_override', 'reference_layout'}
     if unknown:
         raise ValueError(f'unknown shot control: {sorted(unknown)}')
+    reference_layout = controls.get('reference_layout', 'composition')
+    if reference_layout not in ('composition', 'setting', 'first_frame'):
+        raise ValueError(f'unknown reference layout: {reference_layout}')
     if controls.get('framing') == 'environment_reaction':
         shot.update(shot_size='medium-wide', lens='35mm')
     elif controls.get('framing'):
@@ -190,8 +193,10 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
         character = characters[cid]
         label, _ = resolve('identity', cid)
         subject = f'<Subject {number}>'
-        defs.append({'text': f"{subject} is {character['name']}, whose identity is shown in {label}.", 'role': None, 'name': character['name']})
-        retention.append({'label': subject, 'context': 'appears in [Shot 1]', 'marker': 'fully_preserved', 'note': f'Preserve facial identity from {label}.'})
+        definition = {'text': f"{subject} is {character['name']}, whose facial identity is shown in {label}.", 'role': None, 'name': character['name']}
+        defs.append(definition)
+        retention.append({'label': subject, 'context': 'appears in [Shot 1]', 'marker': 'partially_preserved',
+                          'note': f'Facial identity only from {label}; use the wardrobe, pose and gaze specified for this shot.'})
         wardrobe_id = scene.get('wardrobe', {}).get(cid)
         wardrobes = {w['id']: w['description'] for w in character['wardrobe']}
         if wardrobe_id is None and len(wardrobes) == 1:
@@ -204,6 +209,10 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
             if asset.get('wardrobe_id') != wardrobe_id:
                 raise ValueError(f'{cid}: wardrobe reference does not match the scene')
             clothing += f' as shown in {labels[key]}'
+        definition['text'] += f' Clothing: {clothing}.'
+        for key, asset in wardrobe_refs:
+            if asset.get('instruction'):
+                definition['text'] += f" For {labels[key]}: {asset['instruction']}"
         character_text.append(f"{subject} (S{number}): {character['appearance']}. Wears {clothing}.")
         speakers[cid] = f'S{number}'
     location, primary_asset = resolve('location', shot['location'])
@@ -218,13 +227,30 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
         if controls.get('environment_override')
         else 'Preserve architecture, furniture and lighting; use the primary picture for camera layout. ' + ' '.join(a.get('instruction', '') for _, a in backgrounds)
     ).strip()
+    if reference_layout == 'setting':
+        retention_note = 'Use setting appearance only: materials, architecture and lighting. Follow the shot framing and camera instructions below; the reference does not fix the viewpoint or subject placement.'
+        retention_note += ' ' + ' '.join(a.get('instruction', '') for _, a in backgrounds)
+    elif reference_layout == 'first_frame':
+        retention_note = 'Use the picture for the opening composition and visible object geometry; continue with the camera and action described for this shot.'
+        retention_note += ' ' + ' '.join(a.get('instruction', '') for _, a in backgrounds)
+    if reference_layout in ('setting', 'first_frame') or not controls.get('environment_override'):
+        retention_note = ' '.join(filter(None, [retention_note.strip(), primary_asset.get('instruction', '')]))
     retention.append({'label': environment, 'context': 'appears in [Shot 1]', 'marker': 'partially_preserved',
                       'note': retention_note})
+    if reference_layout == 'first_frame':
+        defs.append({'text': f'{location} is the first frame of [Shot 1], providing the opening composition and visible object shapes.'})
+        retention.append({'label': location, 'context': 'first frame of [Shot 1]', 'marker': 'fully_preserved',
+                          'note': 'Match the opening image, then develop the specified shot without a cut.'})
+    prop_text = []
+    props = {p['id']: p for p in doc.get('props', [])}
     for key, asset in media:
-        if asset['role'] != 'location':
-            defs.append({'text': f"{labels[key]} is a {asset['role']} reference for {asset['owner']}."})
-            retention.append({'label': labels[key], 'context': 'appears in [Shot 1]', 'marker': 'attribute_transfer', 'note': asset.get('instruction', f"Use as {asset['role']} reference.")})
-    prop_text = [f"Use prop reference {labels[k]} for {a['owner']}." for k, a in media if a['role'] == 'prop']
+        if asset['role'] == 'prop':
+            prop = props[asset['owner']]
+            subject = f'<Subject {len(shot["characters"]) + 2 + len(prop_text)}>'
+            defs.append({'text': f"{subject} is {prop['description']}, with appearance from {labels[key]}."})
+            retention.append({'label': subject, 'context': 'appears in [Shot 1]', 'marker': 'partially_preserved',
+                              'note': asset.get('instruction', 'Preserve the object appearance; use the shot instructions for its placement.')})
+            prop_text.append(f'Use prop reference {labels[key]} for {subject}.')
     if set(controls.get('props', [])) - set(shot.get('props', [])):
         raise ValueError('shot control props must be declared in the shot')
     dialogue = []
@@ -240,10 +266,16 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
         dialogue.append(f"{characters[cid]['name']} ({speakers[cid]}) says once {channel}, {delivery}: <d>[{doc['project'].get('language', 'en')}] {line['line']}</d>")
     lighting = shot.get('lighting', scene.get('lighting', doc['style_bible']['lighting_default']))
     move = shot['camera_move']
+    layout_description = {
+        'composition': f'Environment: {environment}, primary camera layout from {location}.',
+        'first_frame': f'Environment: {environment}. Opening composition from {location}; then follow the specified camera movement.',
+        'setting': f'Environment: {environment}; follow this shot\'s explicit framing and movement rather than the reference viewpoint.',
+    }[reference_layout]
     description = ' '.join([
         f"[Shot 1] One continuous {shot['shot_size']} shot, {shot['angle']}, {shot['lens']} lens.",
         'Camera: ' + ' '.join(filter(None, [move.get('speed'), move['type']])) + '. ' + move.get('note', ''),
-        f'Environment: {environment}, primary camera layout from {location}.', *character_text, *prop_text, shot['action'], *dialogue,
+        layout_description,
+        *character_text, *prop_text, shot['action'], *dialogue,
         ('Keep visible in the same frame: ' + '; '.join(controls['must_show']) + '.') if controls.get('must_show') else '',
         *[f'{label}: {controls[key]}.' for key, label in [('gaze_target', 'Gaze target'), ('expression', 'Expression'), ('screen_position', 'Screen position')] if key in controls],
         binding.get('blocking', ''), ' '.join(doc['style_bible'].get('camera_rules', [])),
@@ -254,7 +286,7 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
              'visible_dialogue': 'Only the specified dialogue over faint room tone. No music.'}[mode]
     state = {'version': 1, 'mode': 'REF', 'off': {}, 'duration': shot['duration_s'], 'p2Shot': 1, 'lastShot': 1,
              'imd': '', 'soundscape': '', 'music': 'N/A', 'ref': {
-                 'subjectDefs': defs, 'summaryTypes': ['reference generation'] + (['audio reference'] if dialogue else []), 'summaryText': f"In {environment}, {shot['action']}",
+                 'subjectDefs': defs, 'summaryTypes': (['keyframe completion'] if reference_layout == 'first_frame' else []) + ['reference generation'] + (['audio reference'] if dialogue else []), 'summaryText': f"In {environment}, {shot['action']}",
                  'retention': retention, 'styleLine': f"{doc['style_bible']['look']}. Lighting: {lighting['key']}, {lighting['quality']}.",
                  'detail': description, 'soundscape': sound, 'music': 'N/A'}}
     picks = []

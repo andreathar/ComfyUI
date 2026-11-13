@@ -1,0 +1,733 @@
+- dialog "Workflow Monitor Brain report" [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Workflow Monitor Brain" [level=2] [ref=e3]
+    - button "Close" [active] [ref=e4] [cursor=pointer]
+  - status [ref=e5]: running · capture complete · 68 samples · 0.1 MiB stored
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: Recorded run
+      - combobox "Recorded run" [ref=e9]:
+        - option "andre-walk-track-v1 · running · 11/13/2026, 3:06:01 AM"
+        - option "brain-v2-cpu-smoke · succeeded · 11/13/2026, 3:03:11 AM" [selected]
+        - option "andre-sit-wide-24mm-v3 · succeeded · 11/13/2026, 2:05:57 AM"
+        - option "andre-sit-lateral-openfloor-v2 · succeeded · 11/13/2026, 1:48:23 AM"
+        - option "andre-stand-pullback-v1 · succeeded · 11/13/2026, 1:33:00 AM"
+        - option "master-studio-static-plate-integration-SH03 · succeeded · 11/13/2026, 1:16:43 AM"
+        - option "camera-reference-CAM_PLATE_HOLD-no-sampling · succeeded · 11/13/2026, 1:11:35 AM"
+        - option "camera-reference-CAM_STATIC_ANCHOR · succeeded · 11/13/2026, 12:59:01 AM"
+        - option "camera-reference-CAM_DOLLY-3f360b9f · succeeded · 11/13/2026, 12:44:56 AM"
+        - option "camera-reference-CAM_STATIC-bf8f9263 · succeeded · 11/13/2026, 12:35:53 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/13/2026, 12:03:23 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/12/2026, 11:42:17 PM"
+        - option "master-f1f5-continue-sh03 · succeeded · 11/12/2026, 7:58:16 PM"
+        - option "master-f1f5-cut-sh03 · succeeded · 11/12/2026, 7:45:19 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:11:24 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:10:43 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:26:22 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:17:04 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:37:48 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:37:14 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:36:53 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:36:21 PM"
+        - option "T10.05 - fresh 2-shot smoke repeatability · succeeded · 11/12/2026, 2:30:15 PM"
+        - option "T10.02 - targeted safe interruption test · interrupted · 11/12/2026, 2:27:26 PM"
+        - option "T10.03 - resume at scene 2 (verify_resume_history=True) · succeeded · 11/12/2026, 2:21:57 PM"
+        - option "T10.01 - scene 1 only (partial) · succeeded · 11/12/2026, 2:17:59 PM"
+        - option "Shot 03 - 73f tabletop-only insert replacement · succeeded · 11/12/2026, 2:06:44 PM"
+        - option "The Message - Silent Proof v003 - 6 shots - no background-v2 · succeeded · 11/12/2026, 12:35:42 AM"
+        - option "Shot 04 - 73f reaction - cafe-reaction-v2 - hands in lap · succeeded · 11/12/2026, 12:13:03 AM"
+        - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM"
+        - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+        - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+    - generic [ref=e10]:
+      - generic [ref=e11]: Compare with baseline
+      - combobox "Compare with baseline" [ref=e12]:
+        - option "Choose a baseline…" [selected]
+        - option "andre-walk-track-v1 · running · 11/13/2026, 3:06:01 AM"
+        - option "brain-v2-cpu-smoke · succeeded · 11/13/2026, 3:03:11 AM"
+        - option "andre-sit-wide-24mm-v3 · succeeded · 11/13/2026, 2:05:57 AM"
+        - option "andre-sit-lateral-openfloor-v2 · succeeded · 11/13/2026, 1:48:23 AM"
+        - option "andre-stand-pullback-v1 · succeeded · 11/13/2026, 1:33:00 AM"
+        - option "master-studio-static-plate-integration-SH03 · succeeded · 11/13/2026, 1:16:43 AM"
+        - option "camera-reference-CAM_PLATE_HOLD-no-sampling · succeeded · 11/13/2026, 1:11:35 AM"
+        - option "camera-reference-CAM_STATIC_ANCHOR · succeeded · 11/13/2026, 12:59:01 AM"
+        - option "camera-reference-CAM_DOLLY-3f360b9f · succeeded · 11/13/2026, 12:44:56 AM"
+        - option "camera-reference-CAM_STATIC-bf8f9263 · succeeded · 11/13/2026, 12:35:53 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/13/2026, 12:03:23 AM"
+        - option "MSG_S001_SH05 · succeeded · 11/12/2026, 11:42:17 PM"
+        - option "master-f1f5-continue-sh03 · succeeded · 11/12/2026, 7:58:16 PM"
+        - option "master-f1f5-cut-sh03 · succeeded · 11/12/2026, 7:45:19 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:11:24 PM"
+        - option "master-studio · succeeded · 11/12/2026, 7:10:43 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:26:22 PM"
+        - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:17:04 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:37:48 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:37:14 PM"
+        - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:36:53 PM"
+        - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:36:21 PM"
+        - option "T10.05 - fresh 2-shot smoke repeatability · succeeded · 11/12/2026, 2:30:15 PM"
+        - option "T10.02 - targeted safe interruption test · interrupted · 11/12/2026, 2:27:26 PM"
+        - option "T10.03 - resume at scene 2 (verify_resume_history=True) · succeeded · 11/12/2026, 2:21:57 PM"
+        - option "T10.01 - scene 1 only (partial) · succeeded · 11/12/2026, 2:17:59 PM"
+        - option "Shot 03 - 73f tabletop-only insert replacement · succeeded · 11/12/2026, 2:06:44 PM"
+        - option "The Message - Silent Proof v003 - 6 shots - no background-v2 · succeeded · 11/12/2026, 12:35:42 AM"
+        - option "Shot 04 - 73f reaction - cafe-reaction-v2 - hands in lap · succeeded · 11/12/2026, 12:13:03 AM"
+        - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM"
+        - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+        - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+    - button "Refresh" [ref=e13] [cursor=pointer]
+    - button "Compare runs" [ref=e14] [cursor=pointer]
+  - generic [ref=e15]:
+    - generic [ref=e228]:
+      - heading "andre-walk-track-v1" [level=3] [ref=e229]
+      - paragraph [ref=e230]: 9aa9664b-005e-411a-9cce-428118809a56 · 11/13/2026, 3:06:01 AM
+      - paragraph [ref=e231]: "Latest readings: CPU 10.4% · RAM 46% · process 6091.2 MiB · GPU 100% · CPU 91 °C · GPU 89 °C"
+      - paragraph [ref=e232]: Conditioning / encoding has the largest observed phase time (33.7 s). Compare one controlled change with the same seed, references and cache policy.
+      - paragraph [ref=e233]: Linked settings remain unresolved unless explicit runtime metadata provides them.
+      - generic [ref=e234]:
+        - link "Export benchmark" [ref=e235] [cursor=pointer]:
+          - /url: /workflow_monitor/export/9aa9664b-005e-411a-9cce-428118809a56/benchmark
+        - link "Export summary" [ref=e236] [cursor=pointer]:
+          - /url: /workflow_monitor/export/9aa9664b-005e-411a-9cce-428118809a56/run
+        - link "Export events" [ref=e237] [cursor=pointer]:
+          - /url: /workflow_monitor/export/9aa9664b-005e-411a-9cce-428118809a56/events
+        - link "Export samples" [ref=e238] [cursor=pointer]:
+          - /url: /workflow_monitor/export/9aa9664b-005e-411a-9cce-428118809a56/samples
+        - button "Delete this recording…" [disabled] [ref=e239]
+    - generic [ref=e240]:
+      - heading "Benchmark evidence" [level=3] [ref=e241]
+      - paragraph [ref=e242]: Capture and reproducibility are separate. 57 linked inputs remain unresolved.
+      - region "Evidence · Coverage" [ref=e243]:
+        - table [ref=e244]:
+          - rowgroup [ref=e245]:
+            - row [ref=e246]:
+              - columnheader "Evidence" [ref=e247]
+              - columnheader "Coverage" [ref=e248]
+          - rowgroup [ref=e249]:
+            - row [ref=e250]:
+              - cell "events" [ref=e251]
+              - cell "partial" [ref=e252]
+            - row [ref=e253]:
+              - cell "resources" [ref=e254]
+              - cell "sampled" [ref=e255]
+            - row [ref=e256]:
+              - cell "resolved inputs" [ref=e257]
+              - cell "incomplete" [ref=e258]
+            - row [ref=e259]:
+              - cell "runtime settings" [ref=e260]
+              - cell "unavailable" [ref=e261]
+            - row [ref=e262]:
+              - cell "input package" [ref=e263]
+              - cell "unavailable" [ref=e264]
+            - row [ref=e265]:
+              - cell "artifact identity" [ref=e266]
+              - cell "unverified" [ref=e267]
+            - row [ref=e268]:
+              - cell "outputs" [ref=e269]
+              - cell "unverified" [ref=e270]
+            - row [ref=e271]:
+              - cell "creative review" [ref=e272]
+              - cell "unrecorded" [ref=e273]
+      - paragraph [ref=e274]: Capture completeness does not establish reproducibility or creative acceptance.
+      - paragraph [ref=e275]: Loaded model content identity remains unverified; runtime package/reference hashes are output attestations.
+      - paragraph [ref=e276]: Output hashes identify files at collection time; declared media metadata is not full-decode validation.
+      - paragraph [ref=e277]: Submitted visual findings are separate from human production acceptance.
+      - paragraph [ref=e278]: Step times cover observed adjacent progress values only; merged or missing steps are not invented.
+      - paragraph [ref=e279]: Times are host observations; GPU resources include other applications and peaks are sampled.
+    - generic [ref=e280]:
+      - heading "Recorded sampler steps" [level=3] [ref=e281]
+      - paragraph [ref=e282]: Each row is one sampler occurrence. Times use adjacent observed steps only; missing steps stay missing. These are host progress times.
+      - region "Node · Steps observed / expected · Coverage · Median / step · Range / step · Duplicate points" [ref=e283]:
+        - table [ref=e284]:
+          - rowgroup [ref=e285]:
+            - row [ref=e286]:
+              - columnheader "Node" [ref=e287]
+              - columnheader "Steps observed / expected" [ref=e288]
+              - columnheader "Coverage" [ref=e289]
+              - columnheader "Median / step" [ref=e290]
+              - columnheader "Range / step" [ref=e291]
+              - columnheader "Duplicate points" [ref=e292]
+          - rowgroup [ref=e293]:
+            - row [ref=e294]:
+              - cell "#157:89" [ref=e295]
+              - cell "1 / 20" [ref=e296]
+              - cell "partial" [ref=e297]
+              - cell "38.76 s" [ref=e298]
+              - cell "38.76 s – 38.76 s" [ref=e299]
+              - cell "0" [ref=e300]
+    - generic [ref=e301]:
+      - heading "Observed phase time" [level=3] [ref=e302]
+      - paragraph [ref=e303]: Overlapping occurrences are combined within each phase; phases may overlap each other. These are host intervals, not GPU kernel timings.
+      - region "Phase · Wall time" [ref=e304]:
+        - table [ref=e305]:
+          - rowgroup [ref=e306]:
+            - row [ref=e307]:
+              - columnheader "Phase" [ref=e308]
+              - columnheader "Wall time" [ref=e309]
+          - rowgroup [ref=e310]:
+            - row [ref=e311]:
+              - cell "Conditioning / encoding" [ref=e312]
+              - cell "33.72 s" [ref=e313]
+            - row [ref=e314]:
+              - cell "Preparation" [ref=e315]
+              - cell "0.85 s" [ref=e316]
+            - row [ref=e317]:
+              - cell "Model setup" [ref=e318]
+              - cell "0.85 s" [ref=e319]
+            - row [ref=e320]:
+              - cell "Unknown / custom" [ref=e321]
+              - cell "0.01 s" [ref=e322]
+            - row [ref=e323]:
+              - cell "Reference selection" [ref=e324]
+              - cell "0.00 s" [ref=e325]
+            - row [ref=e326]:
+              - cell "Scene orchestration" [ref=e327]
+              - cell "0.00 s" [ref=e328]
+    - generic [ref=e329]:
+      - heading "Resource history" [level=3] [ref=e330]
+      - generic [ref=e331]:
+        - generic [ref=e332]: Measurement
+        - combobox "Measurement" [ref=e333]:
+          - option "Host CPU %" [selected]
+          - option "Host RAM %"
+          - option "GPU utilization % · all applications"
+          - option "VRAM MiB · model-management counter"
+          - option "VRAM MiB · NVIDIA device total"
+          - option "ComfyUI process RSS MiB"
+          - option "CPU temperature °C"
+          - option "GPU temperature °C"
+      - img "Host CPU % across recorded samples. Missing samples are gaps." [ref=e335]:
+        - generic [ref=e336]: "0"
+        - generic [ref=e337]: "50"
+        - generic [ref=e338]: "100"
+        - generic [ref=e340]: Host CPU % · 135.6 s observed · requested cadence 2 s · sampled peaks
+      - paragraph [ref=e341]: Showing the latest 68 samples. Gaps stay visible. Device-wide GPU readings include other applications.
+    - generic [ref=e342]:
+      - heading "Latest observed model residency" [level=3] [ref=e343]
+      - region "Model · Dtype · Location · Observed resident / size" [ref=e344]:
+        - table [ref=e345]:
+          - rowgroup [ref=e346]:
+            - row [ref=e347]:
+              - columnheader "Model" [ref=e348]
+              - columnheader "Dtype" [ref=e349]
+              - columnheader "Location" [ref=e350]
+              - columnheader "Observed resident / size" [ref=e351]
+          - rowgroup [ref=e352]:
+            - row [ref=e353]:
+              - cell "minimax_h3_ref2va_pruned_int8_convrot.safetensors" [ref=e354]
+              - cell "bfloat16" [ref=e355]
+              - cell "partial" [ref=e356]
+              - cell "1633.1 MiB / 19996.2 MiB" [ref=e357]
+            - row [ref=e358]:
+              - cell "minimax_h3_video_vae_int8_convrot.safetensors" [ref=e359]
+              - cell "unknown" [ref=e360]
+              - cell "partial" [ref=e361]
+              - cell "0.7 MiB / 2680.7 MiB" [ref=e362]
+      - paragraph [ref=e363]: "Unloaded models last observed by Comfy Dynamic: qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors"
+    - generic [ref=e364]:
+      - heading "Node occurrences" [level=3] [ref=e365]
+      - paragraph [ref=e366]: Latest 33 of 33 observed occurrences · 0 cached nodes. Unobserved nodes are not assumed cached.
+      - region "Node · Phase · Scene · Duration" [ref=e367]:
+        - table [ref=e368]:
+          - rowgroup [ref=e369]:
+            - row [ref=e370]:
+              - columnheader "Node" [ref=e371]
+              - columnheader "Phase" [ref=e372]
+              - columnheader "Scene" [ref=e373]
+              - columnheader "Duration" [ref=e374]
+          - rowgroup [ref=e375]:
+            - row [ref=e376]:
+              - cell [ref=e377]:
+                - button "#138 · PrimitiveString" [ref=e378] [cursor=pointer]
+              - cell "Unknown / custom" [ref=e379]
+              - cell "Unassigned" [ref=e380]
+              - cell "0.00 s" [ref=e381]
+            - row [ref=e382]:
+              - cell [ref=e383]:
+                - button "#148 · DynamicScriptNode" [ref=e384] [cursor=pointer]
+              - cell "Preparation" [ref=e385]
+              - cell "Unassigned" [ref=e386]
+              - cell "0.00 s" [ref=e387]
+            - row [ref=e388]:
+              - cell [ref=e389]:
+                - button "#149 · PreviewAny" [ref=e390] [cursor=pointer]
+              - cell "Unknown / custom" [ref=e391]
+              - cell "Unassigned" [ref=e392]
+              - cell "0.00 s" [ref=e393]
+            - row [ref=e394]:
+              - cell [ref=e395]:
+                - button "#139 · ResolutionSelector" [ref=e396] [cursor=pointer]
+              - cell "Preparation" [ref=e397]
+              - cell "Unassigned" [ref=e398]
+              - cell "0.00 s" [ref=e399]
+            - row [ref=e400]:
+              - cell [ref=e401]:
+                - button "#137 · PrimitiveString" [ref=e402] [cursor=pointer]
+              - cell "Unknown / custom" [ref=e403]
+              - cell "Unassigned" [ref=e404]
+              - cell "0.00 s" [ref=e405]
+            - row [ref=e406]:
+              - cell [ref=e407]:
+                - button "#143 · FantasticSeeds" [ref=e408] [cursor=pointer]
+              - cell "Preparation" [ref=e409]
+              - cell "Unassigned" [ref=e410]
+              - cell "0.00 s" [ref=e411]
+            - row [ref=e412]:
+              - cell [ref=e413]:
+                - button "#145 · PrimitiveFloat" [ref=e414] [cursor=pointer]
+              - cell "Preparation" [ref=e415]
+              - cell "Unassigned" [ref=e416]
+              - cell "0.00 s" [ref=e417]
+            - row [ref=e418]:
+              - cell [ref=e419]:
+                - button "#144 · PrimitiveFloat" [ref=e420] [cursor=pointer]
+              - cell "Preparation" [ref=e421]
+              - cell "Unassigned" [ref=e422]
+              - cell "0.00 s" [ref=e423]
+            - row [ref=e424]:
+              - cell [ref=e425]:
+                - button "#142 · PrimitiveInt" [ref=e426] [cursor=pointer]
+              - cell "Preparation" [ref=e427]
+              - cell "Unassigned" [ref=e428]
+              - cell "0.00 s" [ref=e429]
+            - row [ref=e430]:
+              - cell [ref=e431]:
+                - button "#141 · PrimitiveFloat" [ref=e432] [cursor=pointer]
+              - cell "Preparation" [ref=e433]
+              - cell "Unassigned" [ref=e434]
+              - cell "0.00 s" [ref=e435]
+            - row [ref=e436]:
+              - cell [ref=e437]:
+                - button "#140 · PrimitiveFloat" [ref=e438] [cursor=pointer]
+              - cell "Preparation" [ref=e439]
+              - cell "Unassigned" [ref=e440]
+              - cell "0.00 s" [ref=e441]
+            - row [ref=e442]:
+              - cell [ref=e443]:
+                - button "#155:3 · VAELoader" [ref=e444] [cursor=pointer]
+              - cell "Model setup" [ref=e445]
+              - cell "Unassigned" [ref=e446]
+              - cell "0.00 s" [ref=e447]
+            - row [ref=e448]:
+              - cell [ref=e449]:
+                - button "#155:4 · VAELoader" [ref=e450] [cursor=pointer]
+              - cell "Model setup" [ref=e451]
+              - cell "Unassigned" [ref=e452]
+              - cell "0.00 s" [ref=e453]
+            - row [ref=e454]:
+              - cell [ref=e455]:
+                - button "#158 · H3ProjectHub" [ref=e456] [cursor=pointer]
+              - cell "Scene orchestration" [ref=e457]
+              - cell "Unassigned" [ref=e458]
+              - cell "0.00 s" [ref=e459]
+            - row [ref=e460]:
+              - cell [ref=e461]:
+                - button "#146 · DynamicScriptNode" [ref=e462] [cursor=pointer]
+              - cell "Preparation" [ref=e463]
+              - cell "Unassigned" [ref=e464]
+              - cell "0.00 s" [ref=e465]
+            - row [ref=e466]:
+              - cell [ref=e467]:
+                - button "#147 · PreviewAny" [ref=e468] [cursor=pointer]
+              - cell "Unknown / custom" [ref=e469]
+              - cell "Unassigned" [ref=e470]
+              - cell "0.00 s" [ref=e471]
+            - row [ref=e472]:
+              - cell [ref=e473]:
+                - button "#160 · MiniMaxH3FilenamePrefix" [ref=e474] [cursor=pointer]
+              - cell "Preparation" [ref=e475]
+              - cell "Unassigned" [ref=e476]
+              - cell "0.00 s" [ref=e477]
+            - row [ref=e478]:
+              - cell [ref=e479]:
+                - button "#151 · MiniMaxH3PromptBuilder" [ref=e480] [cursor=pointer]
+              - cell "Preparation" [ref=e481]
+              - cell "Unassigned" [ref=e482]
+              - cell "0.85 s" [ref=e483]
+            - row [ref=e484]:
+              - cell [ref=e485]:
+                - button "#155:2 · CLIPLoader" [ref=e486] [cursor=pointer]
+              - cell "Model setup" [ref=e487]
+              - cell "Unassigned" [ref=e488]
+              - cell "0.75 s" [ref=e489]
+            - row [ref=e490]:
+              - cell [ref=e491]:
+                - button "#155:81 · UNETLoader" [ref=e492] [cursor=pointer]
+              - cell "Model setup" [ref=e493]
+              - cell "Unassigned" [ref=e494]
+              - cell "0.10 s" [ref=e495]
+            - row [ref=e496]:
+              - cell [ref=e497]:
+                - button "#155:5 · FantasticLoraLoaderMulti" [ref=e498] [cursor=pointer]
+              - cell "Model setup" [ref=e499]
+              - cell "Unassigned" [ref=e500]
+              - cell "0.00 s" [ref=e501]
+            - row [ref=e502]:
+              - cell [ref=e503]:
+                - button "#155:7 · MiniMaxH3SigmaShift" [ref=e504] [cursor=pointer]
+              - cell "Model setup" [ref=e505]
+              - cell "Unassigned" [ref=e506]
+              - cell "0.00 s" [ref=e507]
+            - row [ref=e508]:
+              - cell [ref=e509]:
+                - button "#157:87 · BasicScheduler" [ref=e510] [cursor=pointer]
+              - cell "Model setup" [ref=e511]
+              - cell "Unassigned" [ref=e512]
+              - cell "0.00 s" [ref=e513]
+            - row [ref=e514]:
+              - cell [ref=e515]:
+                - button "#157:86 · KSamplerSelect" [ref=e516] [cursor=pointer]
+              - cell "Model setup" [ref=e517]
+              - cell "Unassigned" [ref=e518]
+              - cell "0.00 s" [ref=e519]
+            - row [ref=e520]:
+              - cell [ref=e521]:
+                - button "#157:88 · RandomNoise" [ref=e522] [cursor=pointer]
+              - cell "Model setup" [ref=e523]
+              - cell "Unassigned" [ref=e524]
+              - cell "0.00 s" [ref=e525]
+            - row [ref=e526]:
+              - cell [ref=e527]:
+                - button "#152 · MiniMaxH3RefModStack" [ref=e528] [cursor=pointer]
+              - cell "Reference selection" [ref=e529]
+              - cell "Unassigned" [ref=e530]
+              - cell "0.00 s" [ref=e531]
+            - row [ref=e532]:
+              - cell [ref=e533]:
+                - button "#150 · MiniMaxH3MediaLoader" [ref=e534] [cursor=pointer]
+              - cell "Reference selection" [ref=e535]
+              - cell "Unassigned" [ref=e536]
+              - cell "0.00 s" [ref=e537]
+            - row [ref=e538]:
+              - cell [ref=e539]:
+                - button "#153 · MiniMaxH3FantasticReferenceMap" [ref=e540] [cursor=pointer]
+              - cell "Reference selection" [ref=e541]
+              - cell "Unassigned" [ref=e542]
+              - cell "0.00 s" [ref=e543]
+            - row [ref=e544]:
+              - cell [ref=e545]:
+                - button "#154 · PreviewAny" [ref=e546] [cursor=pointer]
+              - cell "Unknown / custom" [ref=e547]
+              - cell "Unassigned" [ref=e548]
+              - cell "0.00 s" [ref=e549]
+            - row [ref=e550]:
+              - cell [ref=e551]:
+                - button "#156:82 · MiniMaxH3FantasticRefModTextEncode" [ref=e552] [cursor=pointer]
+              - cell "Conditioning / encoding" [ref=e553]
+              - cell "Unassigned" [ref=e554]
+              - cell "33.72 s" [ref=e555]
+            - row [ref=e556]:
+              - cell [ref=e557]:
+                - button "#156:83 · H3Context" [ref=e558] [cursor=pointer]
+              - cell "Conditioning / encoding" [ref=e559]
+              - cell "Unassigned" [ref=e560]
+              - cell "0.00 s" [ref=e561]
+            - row [ref=e562]:
+              - cell [ref=e563]:
+                - button "#157:85 · BasicGuider" [ref=e564] [cursor=pointer]
+              - cell "Model setup" [ref=e565]
+              - cell "Unassigned" [ref=e566]
+              - cell "0.00 s" [ref=e567]
+            - row [ref=e568]:
+              - cell [ref=e569]:
+                - button "#157:89 · SamplerCustomAdvanced" [ref=e570] [cursor=pointer]
+              - cell "Sampling" [ref=e571]
+              - cell "Unassigned" [ref=e572]
+              - cell "Incomplete" [ref=e573]
+    - generic [ref=e574]:
+      - heading "Captured settings and provenance" [level=3] [ref=e575]
+      - region "Node / input · Configured value" [ref=e576]:
+        - table [ref=e577]:
+          - rowgroup [ref=e578]:
+            - row [ref=e579]:
+              - columnheader "Node / input" [ref=e580]
+              - columnheader "Configured value" [ref=e581]
+          - rowgroup [ref=e582]:
+            - row [ref=e583]:
+              - cell "#137 · value" [ref=e584]
+              - cell "Digest 4d0deea13453" [ref=e585]
+            - row [ref=e586]:
+              - cell "#138 · value" [ref=e587]
+              - cell "Digest 00ed4db9cd08" [ref=e588]
+            - row [ref=e589]:
+              - cell "#140 · value" [ref=e590]
+              - cell "6" [ref=e591]
+            - row [ref=e592]:
+              - cell "#141 · value" [ref=e593]
+              - cell "24" [ref=e594]
+            - row [ref=e595]:
+              - cell "#142 · value" [ref=e596]
+              - cell "20" [ref=e597]
+            - row [ref=e598]:
+              - cell "#143 · seed" [ref=e599]
+              - 'cell "Linked from #148 · output 5" [ref=e600]'
+            - row [ref=e601]:
+              - cell "#144 · value" [ref=e602]
+              - cell "12" [ref=e603]
+            - row [ref=e604]:
+              - cell "#145 · value" [ref=e605]
+              - cell "3" [ref=e606]
+            - row [ref=e607]:
+              - cell "#146 · code" [ref=e608]
+              - cell "Digest bce06e7e6642" [ref=e609]
+            - row [ref=e610]:
+              - cell "#146 · input_0" [ref=e611]
+              - 'cell "Linked from #137 · output 0" [ref=e612]'
+            - row [ref=e613]:
+              - cell "#146 · input_1" [ref=e614]
+              - 'cell "Linked from #138 · output 0" [ref=e615]'
+            - row [ref=e616]:
+              - cell "#146 · input_2" [ref=e617]
+              - 'cell "Linked from #139 · output 0" [ref=e618]'
+            - row [ref=e619]:
+              - cell "#146 · input_3" [ref=e620]
+              - 'cell "Linked from #139 · output 1" [ref=e621]'
+            - row [ref=e622]:
+              - cell "#146 · input_4" [ref=e623]
+              - 'cell "Linked from #140 · output 0" [ref=e624]'
+            - row [ref=e625]:
+              - cell "#146 · input_5" [ref=e626]
+              - 'cell "Linked from #141 · output 0" [ref=e627]'
+            - row [ref=e628]:
+              - cell "#146 · input_6" [ref=e629]
+              - 'cell "Linked from #142 · output 0" [ref=e630]'
+            - row [ref=e631]:
+              - cell "#146 · input_7" [ref=e632]
+              - 'cell "Linked from #144 · output 0" [ref=e633]'
+            - row [ref=e634]:
+              - cell "#146 · input_8" [ref=e635]
+              - 'cell "Linked from #145 · output 0" [ref=e636]'
+            - row [ref=e637]:
+              - cell "#146 · input_9" [ref=e638]
+              - 'cell "Linked from #148 · output 6" [ref=e639]'
+            - row [ref=e640]:
+              - cell "#146 · input_10" [ref=e641]
+              - 'cell "Linked from #158 · output 2" [ref=e642]'
+            - row [ref=e643]:
+              - cell "#146 · input_11" [ref=e644]
+              - 'cell "Linked from #143 · output 0" [ref=e645]'
+            - row [ref=e646]:
+              - cell "#147 · source" [ref=e647]
+              - 'cell "Linked from #146 · output 10" [ref=e648]'
+            - row [ref=e649]:
+              - cell "#148 · code" [ref=e650]
+              - cell "Digest 54e6ad47cc45" [ref=e651]
+            - row [ref=e652]:
+              - cell "#148 · input_0" [ref=e653]
+              - 'cell "Linked from #138 · output 0" [ref=e654]'
+            - row [ref=e655]:
+              - cell "#149 · source" [ref=e656]
+              - 'cell "Linked from #148 · output 7" [ref=e657]'
+            - row [ref=e658]:
+              - cell "#150 · media_state" [ref=e659]
+              - 'cell "Linked from #148 · output 3" [ref=e660]'
+            - row [ref=e661]:
+              - cell "#151 · prompt_text" [ref=e662]
+              - 'cell "Linked from #148 · output 1" [ref=e663]'
+            - row [ref=e664]:
+              - cell "#151 · builder_state" [ref=e665]
+              - 'cell "Linked from #148 · output 2" [ref=e666]'
+            - row [ref=e667]:
+              - cell "#151 · references" [ref=e668]
+              - 'cell "Linked from #150 · output 0" [ref=e669]'
+            - row [ref=e670]:
+              - cell "#151 · mods" [ref=e671]
+              - 'cell "Linked from #152 · output 0" [ref=e672]'
+            - row [ref=e673]:
+              - cell "#152 · stack_state" [ref=e674]
+              - 'cell "Linked from #148 · output 4" [ref=e675]'
+            - row [ref=e676]:
+              - cell "#153 · mods" [ref=e677]
+              - 'cell "Linked from #151 · output 20" [ref=e678]'
+            - row [ref=e679]:
+              - cell "#153 · references" [ref=e680]
+              - 'cell "Linked from #151 · output 19" [ref=e681]'
+            - row [ref=e682]:
+              - cell "#154 · source" [ref=e683]
+              - 'cell "Linked from #153 · output 0" [ref=e684]'
+            - row [ref=e685]:
+              - cell "#158 · project_name" [ref=e686]
+              - 'cell "Linked from #137 · output 0" [ref=e687]'
+            - row [ref=e688]:
+              - cell "#158 · vae" [ref=e689]
+              - 'cell "Linked from #155:3 · output 0" [ref=e690]'
+            - row [ref=e691]:
+              - cell "#158 · audio_vae" [ref=e692]
+              - 'cell "Linked from #155:4 · output 0" [ref=e693]'
+            - row [ref=e694]:
+              - cell "#158 · width" [ref=e695]
+              - 'cell "Linked from #139 · output 0" [ref=e696]'
+            - row [ref=e697]:
+              - cell "#158 · height" [ref=e698]
+              - 'cell "Linked from #139 · output 1" [ref=e699]'
+            - row [ref=e700]:
+              - cell "#160 · filename" [ref=e701]
+              - 'cell "Linked from #146 · output 2" [ref=e702]'
+            - row [ref=e703]:
+              - cell "#161 · fps" [ref=e704]
+              - 'cell "Linked from #146 · output 6" [ref=e705]'
+            - row [ref=e706]:
+              - cell "#161 · images" [ref=e707]
+              - 'cell "Linked from #157:8 · output 0" [ref=e708]'
+            - row [ref=e709]:
+              - cell "#162 · filename_prefix" [ref=e710]
+              - 'cell "Linked from #160 · output 0" [ref=e711]'
+            - row [ref=e712]:
+              - cell "#162 · video" [ref=e713]
+              - 'cell "Linked from #161 · output 0" [ref=e714]'
+            - row [ref=e715]:
+              - cell "#155:81 · unet_name" [ref=e716]
+              - cell "minimax_h3_ref2va_pruned_int8_convrot.safetensors" [ref=e717]
+            - row [ref=e718]:
+              - cell "#155:81 · weight_dtype" [ref=e719]
+              - cell "default" [ref=e720]
+            - row [ref=e721]:
+              - cell "#155:2 · clip_name" [ref=e722]
+              - cell "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors" [ref=e723]
+            - row [ref=e724]:
+              - cell "#155:2 · type" [ref=e725]
+              - cell "minimax" [ref=e726]
+            - row [ref=e727]:
+              - cell "#155:2 · device" [ref=e728]
+              - cell "default" [ref=e729]
+            - row [ref=e730]:
+              - cell "#155:3 · vae_name" [ref=e731]
+              - cell "minimax_h3_video_vae_int8_convrot.safetensors" [ref=e732]
+            - row [ref=e733]:
+              - cell "#155:4 · vae_name" [ref=e734]
+              - cell "minimax_h3_audio_vae_fp32.safetensors" [ref=e735]
+            - row [ref=e736]:
+              - cell "#155:5 · lora_data" [ref=e737]
+              - cell "Digest fc1e96ac6e4c" [ref=e738]
+            - row [ref=e739]:
+              - cell "#155:5 · model" [ref=e740]
+              - 'cell "Linked from #155:81 · output 0" [ref=e741]'
+            - row [ref=e742]:
+              - cell "#155:5 · clip" [ref=e743]
+              - 'cell "Linked from #155:2 · output 0" [ref=e744]'
+            - row [ref=e745]:
+              - cell "#155:6 · lora_data" [ref=e746]
+              - cell "Digest a83cf2e35a8d" [ref=e747]
+            - row [ref=e748]:
+              - cell "#155:6 · lora_stack" [ref=e749]
+              - 'cell "Linked from #155:5 · output 2" [ref=e750]'
+            - row [ref=e751]:
+              - cell "#155:7 · shift_video" [ref=e752]
+              - 'cell "Linked from #144 · output 0" [ref=e753]'
+            - row [ref=e754]:
+              - cell "#155:7 · shift_audio" [ref=e755]
+              - 'cell "Linked from #145 · output 0" [ref=e756]'
+            - row [ref=e757]:
+              - cell "#155:7 · model" [ref=e758]
+              - 'cell "Linked from #155:5 · output 0" [ref=e759]'
+            - row [ref=e760]:
+              - cell "#156:82 · prompt" [ref=e761]
+              - 'cell "Linked from #151 · output 0" [ref=e762]'
+            - row [ref=e763]:
+              - cell "#156:82 · width" [ref=e764]
+              - 'cell "Linked from #146 · output 3" [ref=e765]'
+            - row [ref=e766]:
+              - cell "#156:82 · height" [ref=e767]
+              - 'cell "Linked from #146 · output 4" [ref=e768]'
+            - row [ref=e769]:
+              - cell "#156:82 · length" [ref=e770]
+              - 'cell "Linked from #146 · output 5" [ref=e771]'
+            - row [ref=e772]:
+              - cell "#156:82 · ref_image_size" [ref=e773]
+              - cell "match" [ref=e774]
+            - row [ref=e775]:
+              - cell "#156:82 · reference_fps" [ref=e776]
+              - cell "24" [ref=e777]
+            - row [ref=e778]:
+              - cell "#156:82 · max_total_tokens" [ref=e779]
+              - cell "0" [ref=e780]
+            - row [ref=e781]:
+              - cell "#156:82 · stack_pictures" [ref=e782]
+              - cell "up to N" [ref=e783]
+            - row [ref=e784]:
+              - cell "#156:82 · stack_pictures_n" [ref=e785]
+              - cell "4" [ref=e786]
+            - row [ref=e787]:
+              - cell "#156:82 · clip" [ref=e788]
+              - 'cell "Linked from #155:5 · output 1" [ref=e789]'
+            - row [ref=e790]:
+              - cell "#156:82 · mods" [ref=e791]
+              - 'cell "Linked from #151 · output 20" [ref=e792]'
+            - row [ref=e793]:
+              - cell "#156:82 · references" [ref=e794]
+              - 'cell "Linked from #151 · output 19" [ref=e795]'
+            - row [ref=e796]:
+              - cell "#156:82 · vae" [ref=e797]
+              - 'cell "Linked from #155:3 · output 0" [ref=e798]'
+            - row [ref=e799]:
+              - cell "#156:83 · encode_mode" [ref=e800]
+              - cell "video" [ref=e801]
+            - row [ref=e802]:
+              - cell "#156:83 · crop" [ref=e803]
+              - cell "disabled" [ref=e804]
+            - row [ref=e805]:
+              - cell "#156:83 · conditioning" [ref=e806]
+              - 'cell "Linked from #156:82 · output 0" [ref=e807]'
+            - row [ref=e808]:
+              - cell "#156:83 · latent" [ref=e809]
+              - 'cell "Linked from #156:82 · output 2" [ref=e810]'
+            - row [ref=e811]:
+              - cell "#156:83 · enabled" [ref=e812]
+              - 'cell "Linked from #146 · output 13" [ref=e813]'
+            - row [ref=e814]:
+              - cell "#156:83 · context_latent" [ref=e815]
+              - 'cell "Linked from #158 · output 1" [ref=e816]'
+            - row [ref=e817]:
+              - cell "#157:85 · model" [ref=e818]
+              - 'cell "Linked from #155:7 · output 0" [ref=e819]'
+            - row [ref=e820]:
+              - cell "#157:85 · conditioning" [ref=e821]
+              - 'cell "Linked from #156:83 · output 0" [ref=e822]'
+            - row [ref=e823]:
+              - cell "#157:86 · sampler_name" [ref=e824]
+              - cell "sa_solver" [ref=e825]
+            - row [ref=e826]:
+              - cell "#157:87 · scheduler" [ref=e827]
+              - cell "beta" [ref=e828]
+            - row [ref=e829]:
+              - cell "#157:87 · steps" [ref=e830]
+              - 'cell "Linked from #146 · output 7" [ref=e831]'
+            - row [ref=e832]:
+              - cell "#157:87 · denoise" [ref=e833]
+              - cell "1" [ref=e834]
+            - row [ref=e835]:
+              - cell "#157:87 · model" [ref=e836]
+              - 'cell "Linked from #155:7 · output 0" [ref=e837]'
+            - row [ref=e838]:
+              - cell "#157:88 · noise_seed" [ref=e839]
+              - 'cell "Linked from #143 · output 0" [ref=e840]'
+            - row [ref=e841]:
+              - cell "#157:89 · noise" [ref=e842]
+              - 'cell "Linked from #157:88 · output 0" [ref=e843]'
+            - row [ref=e844]:
+              - cell "#157:89 · guider" [ref=e845]
+              - 'cell "Linked from #157:85 · output 0" [ref=e846]'
+            - row [ref=e847]:
+              - cell "#157:89 · sampler" [ref=e848]
+              - 'cell "Linked from #157:86 · output 0" [ref=e849]'
+            - row [ref=e850]:
+              - cell "#157:89 · sigmas" [ref=e851]
+              - 'cell "Linked from #157:87 · output 0" [ref=e852]'
+            - row [ref=e853]:
+              - cell "#157:89 · latent_image" [ref=e854]
+              - 'cell "Linked from #156:83 · output 2" [ref=e855]'
+            - row [ref=e856]:
+              - cell "#157:90 · samples" [ref=e857]
+              - 'cell "Linked from #157:89 · output 0" [ref=e858]'
+            - row [ref=e859]:
+              - cell "#157:90 · vae" [ref=e860]
+              - 'cell "Linked from #155:3 · output 0" [ref=e861]'
+            - row [ref=e862]:
+              - cell "#157:8 · trim_frames" [ref=e863]
+              - 'cell "Linked from #156:83 · output 1" [ref=e864]'
+            - row [ref=e865]:
+              - cell "#157:8 · fps" [ref=e866]
+              - 'cell "Linked from #146 · output 6" [ref=e867]'
+            - row [ref=e868]:
+              - cell "#157:8 · images" [ref=e869]
+              - 'cell "Linked from #157:90 · output 0" [ref=e870]'
