@@ -124,6 +124,23 @@ def check_custom_nodes(root, manifest):
     active = discover_custom_nodes(root)
     expected_by_root = {}
 
+    install_dir = root / "custom_nodes"
+    for installed_path in sorted(install_dir.iterdir()) if install_dir.is_dir() else []:
+        if installed_path.name == "__pycache__" or installed_path.name.endswith(".disabled"):
+            continue
+        if not (installed_path / "__init__.py").is_file():
+            continue
+        git_root = _git(installed_path.resolve(), "rev-parse", "--show-toplevel")
+        if git_root and Path(git_root).resolve() != root:
+            continue
+        relative = _relative_path(root, installed_path)
+        if _git(root, "ls-files", "--error-unmatch", "--", f"{relative}/__init__.py") is None:
+            findings.append(f"UNVERSIONED NODE PACK: {relative}")
+            continue
+        status = _git(root, "status", "--porcelain=v1", "--untracked-files=all", "--", relative) or ""
+        for line in status.splitlines():
+            findings.append(f"DIRTY PARENT NODE PACK: {relative}: {line}")
+
     for entry in entries:
         expected_path = (root / entry["path"]).resolve()
         actual_git_root = _git(expected_path, "rev-parse", "--show-toplevel") if expected_path.exists() else None

@@ -189,3 +189,28 @@ def test_disabled_repository_is_not_active(tmp_path):
 
     assert count == 0
     assert findings == []
+
+
+def test_copied_node_pack_cannot_silently_pass(tmp_path):
+    root = make_repository(tmp_path, "comfyui")
+    plugin = root / "custom_nodes/copied"
+    plugin.mkdir(parents=True)
+    (plugin / "__init__.py").write_text("NODE_CLASS_MAPPINGS = {}\n")
+
+    _, findings = check(root, {"schema_version": 1, "repositories": []})
+
+    assert "UNVERSIONED NODE PACK: custom_nodes/copied" in findings
+
+
+def test_parent_tracked_node_pack_is_allowed_but_dirty_files_are_reported(tmp_path):
+    root = make_repository(tmp_path, "comfyui")
+    plugin = root / "custom_nodes/owned"
+    plugin.mkdir(parents=True)
+    (plugin / "__init__.py").write_text("NODE_CLASS_MAPPINGS = {}\n")
+    git(root, "add", "custom_nodes/owned")
+    git(root, "commit", "-q", "-m", "add owned pack")
+    manifest = {"schema_version": 1, "repositories": []}
+    assert check(root, manifest)[1] == []
+
+    (plugin / "__init__.py").write_text("NODE_CLASS_MAPPINGS = {'changed': None}\n")
+    assert any(finding.startswith("DIRTY PARENT NODE PACK:") for finding in check(root, manifest)[1])
