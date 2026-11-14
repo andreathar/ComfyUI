@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import math
 from pathlib import Path
 import subprocess
 import time
@@ -102,14 +103,16 @@ def resources(snapshot, min_free_ram_bytes=0, min_free_vram_bytes=0):
     if snapshot.get('conflicting_export') is not False:
         errors.append('Conflicting GPU export status is active or unknown')
     for field in ('free_ram_bytes', 'free_vram_bytes'):
-        if not isinstance(snapshot.get(field), (int, float)) or snapshot[field] <= 0:
+        if not isinstance(snapshot.get(field), (int, float)) or not math.isfinite(snapshot[field]) or snapshot[field] <= 0:
             errors.append(f'{field} is unknown or exhausted')
     min_ram = max(min_free_ram_bytes, snapshot.get('min_free_ram_bytes', 0) or 0)
     min_vram = max(min_free_vram_bytes, snapshot.get('min_free_vram_bytes', 0) or 0)
     if isinstance(snapshot.get('free_ram_bytes'), (int, float)) and snapshot['free_ram_bytes'] > 0 and snapshot['free_ram_bytes'] < min_ram:
         errors.append(f"free_ram_bytes ({snapshot['free_ram_bytes']}) is below required minimum ({min_ram})")
     usable_vram = snapshot.get('usable_comfy_vram_bytes', snapshot.get('free_vram_bytes'))
-    if isinstance(usable_vram, (int, float)) and snapshot.get('free_vram_bytes', 0) > 0 and usable_vram < min_vram:
+    if not isinstance(usable_vram, (int, float)) or not math.isfinite(usable_vram) or usable_vram <= 0:
+        errors.append('usable_comfy_vram_bytes is unknown or exhausted')
+    elif usable_vram < min_vram:
         errors.append(f'usable_comfy_vram_bytes ({usable_vram}) is below required minimum ({min_vram})')
     foreign = snapshot.get('foreign_gpu_processes')
     if foreign:

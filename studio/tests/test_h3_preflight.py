@@ -36,6 +36,18 @@ class PreflightTests(unittest.TestCase):
         self.assertFalse(result['ready'])
         self.assertEqual(result['errors'], ['Conflicting GPU export status is active or unknown'])
 
+    def test_invalid_memory_observations_cannot_qualify_dispatch(self):
+        for field in ('free_ram_bytes', 'free_vram_bytes', 'usable_comfy_vram_bytes'):
+            for value in (None, float('nan'), float('inf'), 'unknown'):
+                with self.subTest(field=field, value=value):
+                    snapshot = {'running': 0, 'pending': 0, 'conflicting_export': False,
+                                'observed_at': time.time(), 'free_ram_bytes': 20 * 2**30,
+                                'free_vram_bytes': 4 * 2**30, 'usable_comfy_vram_bytes': 4 * 2**30}
+                    snapshot[field] = value
+                    result = preflight.resources(snapshot)
+                    self.assertFalse(result['ready'])
+                    self.assertTrue(any(field in error for error in result['errors']))
+
     def test_foreign_gpu_process_and_thermal_ceiling_block_dispatch(self):
         result = preflight.resources({
             'running': 0, 'pending': 0, 'free_ram_bytes': 20 * 2**30, 'free_vram_bytes': 1 * 2**30,

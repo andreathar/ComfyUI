@@ -6,6 +6,7 @@ import sys
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import h3_loop
@@ -45,6 +46,19 @@ class LoopContractTests(unittest.TestCase):
 
     def test_bundle_driven_silent_contract(self):
         self.assertEqual(h3_loop_run.check_graph(self.bundle, self.graph), [])
+
+    def test_replacement_rejects_same_run_before_acquiring_locks(self):
+        with patch.object(h3_loop_run, '_locked_run', side_effect=AssertionError('must reject before locking')):
+            with self.assertRaisesRegex(ValueError, 'different runs'):
+                h3_loop_run.assemble_replacement('/tmp/run', '/tmp/run/.', 'shot', 'replacement', '/tmp/delivery', '/tmp/output')
+
+    def test_replacement_lock_order_does_not_depend_on_argument_order(self):
+        for base, replacement in [('/tmp/run-a', '/tmp/run-b'), ('/tmp/run-b', '/tmp/run-a')]:
+            with patch.object(h3_loop_run, '_locked_run') as lock:
+                lock.return_value.__enter__.return_value = {'status': 'prepared'}
+                with self.assertRaisesRegex(ValueError, 'technical-pass'):
+                    h3_loop_run.assemble_replacement(base, replacement, 'shot', 'replacement', '/tmp/delivery', '/tmp/output')
+                self.assertEqual([call.args[0] for call in lock.call_args_list], [Path('/tmp/run-a'), Path('/tmp/run-b')])
 
     def test_stale_dimensions_and_wrong_script_fail(self):
         self.graph['33']['inputs']['width'] = 608
@@ -482,7 +496,7 @@ class CompletionTests(RunRecordFixture, unittest.TestCase):
                                    'status': {'completed': True, 'status_str': 'success', 'messages': []},
                                    'outputs': {'40': {'images': [dict(filename='draft.mp4', subfolder=patch_bundle['output_subfolder'], type='output')]}}}}
         h3_loop_run.reconcile(patch_dir, p_hist, self.output)
-        rep_dest = self.root / 'delivery_v2'
+        rep_dest = self.root / "director's projects" / 'delivery_v2'
         doc = h3_loop_run.assemble_replacement(self.path, patch_dir, 'MSG_S001_SH02', 'silent_test_v2', rep_dest, self.output)
         self.assertEqual(doc['shots'][0]['sha256'], base_before['output']['segments'][0]['segment_sha256'])
         self.assertEqual(doc['shots'][1]['sha256'], seg['segment_sha256'])

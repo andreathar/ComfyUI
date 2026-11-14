@@ -502,7 +502,12 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
     if not re.fullmatch(r'[A-Za-z0-9_-]+', run_name) or '..' in destination.parts or destination.is_symlink():
         raise ValueError('invalid replacement run_name or destination')
     destination = destination.resolve()
-    with _locked_run(base_run_path) as base_state, _locked_run(patch_run_path) as patch_state:
+    base_run_path, patch_run_path = Path(base_run_path).resolve(), Path(patch_run_path).resolve()
+    if base_run_path == patch_run_path:
+        raise ValueError('replacement requires different runs')
+    first_path, second_path = sorted((base_run_path, patch_run_path))
+    with _locked_run(first_path) as first_state, _locked_run(second_path) as second_state:
+        base_state, patch_state = (first_state, second_state) if first_path == base_run_path else (second_state, first_state)
         for label, st in (('base', base_state), ('patch', patch_state)):
             if st['status'] not in ('review_pending', 'approved') or st.get('partial') is not False or not st.get('output'):
                 raise ValueError(f'{label} run requires a complete technical-pass record')
@@ -588,7 +593,7 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
             'segments': merged_segments,
         }
         concat_tmp = destination / '.concat.txt.tmp'
-        concat_tmp.write_text(''.join(f"file '{(destination / rel).as_posix()}'\n" for _, rel, _ in expected_shots), encoding='utf-8')
+        concat_tmp.write_text(''.join(f"file '{rel}'\n" for _, rel, _ in expected_shots), encoding='utf-8')
         film_tmp = destination / f'.{film_name}.tmp.mp4'
         try:
             subprocess.run([
