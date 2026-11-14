@@ -47,17 +47,3 @@ def plan_frames(duration_s, fps, transition="cut", chain_active=False, context_l
         "delivered_s": delivered / fps_f,
         "raw_s": raw / fps_f,
     }
-
-
-def format_summary(project_name, shot_tag, width, height, plan, steps, shift_video, shift_audio, transition="cut"):
-    mode = "continue" if plan["continuing"] else "cut"
-    return (
-        f"Project: {project_name} · Shot: {shot_tag} · Transition: {transition} ({mode})\n"
-        f"Canvas: {width}×{height} (16:9 multiple-of-32) · "
-        f"raw {plan['raw_frames']}f / delivered {plan['delivered_frames']}f "
-        f"({plan['delivered_s']:.3f}s @ {plan['fps']:g} fps)"
-        + (f" · trim {plan['trim_frames']}" if plan["trim_frames"] else "")
-        + "\n"
-        f"Schedule: {int(steps)} steps · sa_solver / beta · "
-        f"shifts {float(shift_video):g}/{float(shift_audio):g} · CK int8 attention"
-    )

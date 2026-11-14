@@ -419,11 +419,12 @@ else:
 mode = "continue" if continuing else "cut"
 summary = (
     f"Project: {project_name} · Shot: {shot_tag} · Transition: {transition} ({mode})\\n"
-    f"Canvas: {width}×{height} (16:9 multiple-of-32) · "
+    f"Canvas: {width}×{height} · "
     f"raw {raw}f / delivered {delivered}f ({delivered / fps_f:.3f}s @ {fps_f:g} fps)"
     + (f" · trim {trim}" if trim else "")
     + "\\n"
-    f"Schedule: {int(steps)} steps · sa_solver / beta · shifts {float(shift_video):g}/{float(shift_audio):g} · CK int8 attention"
+    f"Sampling controls: {int(steps)} steps · shifts {float(shift_video):g}/{float(shift_audio):g}\\n"
+    "Sampler / scheduler / attention: not observed by controls."
 )
 outputs[:] = [
     str(project_name), str(shot_tag), int(width), int(height), int(raw), int(round(fps_f)),
