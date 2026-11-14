@@ -24,16 +24,18 @@ Use these rules with AGENTS.md and STACK_OWNERSHIP.md. Tool installation, a larg
 
 ### Working access today
 
-The current MCP connection uses an empty experimental cross-host cache. Follow the required MCP discovery first; if it returns no projects, use the existing installed CLI to query the populated VS Code store without changing any live service:
+The production store now has a separate index for the parent and all 14 canonical component Git roots. Read [graph-indexes.json](graph-indexes.json) for exact discovered project identifiers and install aliases; do not infer names. Codex's configured next connection now uses the same installed binary as VS Code. Already-running MCP sessions may still use the old empty cross-host store until their host reconnects them. Discover projects first; use this verified CLI fallback if the current MCP remains empty:
 
 ```bash
 /home/athar/.local/bin/codebase-memory-mcp cli list_projects --detail stats
-/home/athar/.local/bin/codebase-memory-mcp cli index_status --project mnt-data-Projects_SSD-ComfyUI --verbose
-/home/athar/.local/bin/codebase-memory-mcp cli check_index_coverage --project mnt-data-Projects_SSD-ComfyUI --paths '["comfy/model_patcher.py"]'
-/home/athar/.local/bin/codebase-memory-mcp cli search_graph --project mnt-data-Projects_SSD-ComfyUI --name-pattern '^ModelPatcherDynamic$'
+/home/athar/.local/bin/codebase-memory-mcp cli index_status --project mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui_dynamic --verbose
+/home/athar/.local/bin/codebase-memory-mcp cli check_index_coverage --project mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui_dynamic --paths '["core/control_panel.py","js/control_panel.js"]'
+/home/athar/.local/bin/codebase-memory-mcp cli search_graph --project mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui_dynamic --name-pattern '^register_monitor_routes$'
 ```
 
-The installed CLI returns the actual parent symbol at `comfy/model_patcher.py:1786`. It does not make nested packs indexed. Native MCP alignment is a separate controlled client/cache transition; current documentation requires closing active CBM sessions before changing canonical cache roots.
+A parent-only query still excludes the independent packs; select the component's own project. CLI-created component indexes are not automatically watched by another project's session. After source changes, refresh only the owning index and recheck its actual HEAD and file coverage. Do not repeat the whole stack on every turn: the Spark full index alone took 56 seconds and dominated the sampled 6.1 GiB aggregate CBM RSS peak.
+
+See [GRAPH_ROLLOUT.md](GRAPH_ROLLOUT.md) for representative acceptance evidence, partial parses and explicit cross-owner relationships. Automatic cross-repository linking did not return a result in the bounded probe; the source-backed boundary map remains authoritative. Preserve the existing stores and active clients; do not force-restart shared daemons to make a session's tools refresh.
 
 ## CodeRabbit rules — when reviewing changes
 
@@ -61,22 +63,22 @@ The installed CLI returns the actual parent symbol at `comfy/model_patcher.py:17
 
 ### Explicit instructions for local CodeRabbit reviews
 
-Installed CLI0.9.5 advertises `--config <files...>` for additional instructions. From the **owning repository**, a committed review can use:
+Installed CLI 0.9.5 advertises `--config <files...>` for additional instructions. From the **owning repository**, a committed review can use:
 
 ```bash
 /home/athar/.local/bin/coderabbit review --agent --committed --base-commit <verified-base-sha> --config /mnt/data/Projects_SSD/ComfyUI/.codex/CODE_REVIEW_GUIDANCE.md
 ```
 
-Replace the base placeholder with the reviewed owner-specific SHA. This is a documented invocation template, not a review already run. Read and retain any existing owner instructions too. The Markdown brief supplies shared integration guidance; it does not configure hosted reviews or replace a component's YAML. This allows immediate scoped CLI use without blindly copying YAML into14repositories.
+Replace the base placeholder with the reviewed owner-specific SHA. This is a documented invocation template, not a review already run. Read and retain any existing owner instructions too. The Markdown brief supplies shared integration guidance; it does not configure hosted reviews or replace a component's YAML. This allows immediate scoped CLI use without blindly copying YAML into 14 repositories.
 
 ### Configuration policy
 
-The parent already has an assertive `.coderabbit.yaml` with AGENTS.md enforcement and path rules. Preserve it. None of the14component roots currently has a root CodeRabbit configuration; this does not establish absence of hosted defaults.
+The parent already has an assertive `.coderabbit.yaml` with AGENTS.md enforcement and path rules. Preserve it. None of the 14 component roots currently has a root CodeRabbit configuration; this does not establish absence of hosted defaults.
 
 Use the official CLI configuration workflow to inspect, generate/preview and validate any proposed repository setting. Do not hand-edit/copy YAML, overwrite component conventions or imply parent configuration is inherited across Git roots. Rollout proposals must show exact per-owner changes before applying; hosted activation/publishing is separate. If the CLI cannot edit the desired path guidance, use its supported interactive wizard or record the gap rather than inventing a config writer.
 
-## Evidence and limits (November14)
+## Evidence and limits (November 14)
 
-See `artifacts/agent-tooling-readiness/`: default store has3projects/729,008nodes, including ComfyUI624,393nodes/1,541file nodes. Most parent entities are variable nodes; count is not coverage quality. Exact checks exclude custom-node subtrees and install symlinks, `.codex/repos`, and `.codex/worktrees`. Cross-repository analysis reports `never_run`. Parent metadata matches a922d15f1; refresh before the next edit.
+The initial assessment is preserved in `artifacts/agent-tooling-readiness/`. The completed indexing evidence is in `artifacts/graph-rollout/`: 17 projects exist in the production store (15 stack owners plus 2 other projects), with representative exact-file/symbol/relationship/HEAD checks for all 15 stack owners. Parent and four component indexes retain parser gaps; a successful representative probe is not whole-repository completeness. The exact files and ranges are recorded in owner-verification.json.
 
-CodeRabbit extension0.26.2 and CLI0.9.5 are present; CLI auth reports authenticated and parent configuration validates with protocol2. No cloud code review or YAML modification was performed for this assessment. Code Review Graph's cross-repository registry is empty; its existing parent graph is a different, supplementary data source.
+CodeRabbit extension 0.26.2 and CLI 0.9.5 were verified; CLI auth reports authenticated and parent configuration validates with protocol 2. No cloud code review or YAML modification was needed for this operational rollout. Code Review Graph remains a different supplementary data source; no second stack-wide graph build was started.
