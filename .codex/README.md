@@ -87,12 +87,20 @@ To change a maintained plugin, work in its own checkout, run its focused tests,
 commit and push its maintained branch, then update and commit its lock entry in
 ComfyUI. Verify the pushed SHA before updating the lock. Do not use a parent
 commit or a Manager update as a substitute for committing plugin changes.
-All 15 active custom-node repositories are now pinned, including the formerly
+All 14 active custom-node repositories are pinned, including the formerly
 copied packs. Swarm nodes use a clean detached worktree at the pinned revision;
 the separate Swarm application's unfinished work remains untouched. Spark's
 installed registry distribution is preserved under its repository's
 `studio-package/`; the install link points there, not to the upstream root.
 See `STABILIZATION.md` for validation and remaining acceptance limits.
+
+LC Vision was intentionally removed by the user; its lock entries were removed
+on November 14. Do not restore it from the historical stabilization inventory.
+The production goal is to consolidate the required extensions into an integrated,
+highly monitored workflow that uses this PC's resources efficiently. Assess an
+extension's role in saved workflows, dependencies, monitoring and measured resource
+cost before proposing additions or removals. Keep component changes in their
+own repositories and preserve the parent lock's reproducibility checks.
 
 ## Recreate the verified Python environment
 

@@ -11,7 +11,6 @@
     "custom_nodes/ComfyUI-H3-NativeAudioLock": ".",
     "custom_nodes/ComfyUI-H3-Project-Suite": ".",
     "custom_nodes/ComfyUI_LC123_nodes": ".",
-    "custom_nodes/ComfyUI_LC_Vision_nodes": ".",
     "custom_nodes/comfyui-manager": ".",
     "custom_nodes/comfyui-minimaxh3-contex-loop": ".",
     "custom_nodes/comfyui-websocket-reconnect-fix": ".",
@@ -59,7 +58,7 @@
     {
       "path": ".codex/worktrees/workflow-monitor-brain",
       "origin": "https://github.com/andreathar/ComfyUI-Workflow-Monitor-Brain.git",
-      "head": "8693d17273f14c092511e06253298d58750c20e0",
+      "head": "7930e6a18b264eb5c9ac1b5d4cd91420e723b0ab",
       "tag": null,
       "installed_paths": [
         "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
@@ -99,15 +98,6 @@
       "tag": null,
       "installed_paths": [
         "custom_nodes/ComfyUI_LC123_nodes"
-      ]
-    },
-    {
-      "path": "custom_nodes/ComfyUI_LC_Vision_nodes",
-      "origin": "https://github.com/lonecatone23/ComfyUI_LC_Vision_nodes.git",
-      "head": "4b1de5a9048d95a9e8c41d7871790d275ea95ba6",
-      "tag": null,
-      "installed_paths": [
-        "custom_nodes/ComfyUI_LC_Vision_nodes"
       ]
     },
     {
