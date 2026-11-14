@@ -150,7 +150,8 @@ def main():
     refs = CATALOGUE / "references"
     write_text(refs / "qualification.json", json.dumps({"model_files": files, "model_scan_errors": errors,
         "workflows": qualified}, indent=2) + "\n")
-    write_csv(refs / "models.csv", [{**item, "search_roots": " | ".join(item["search_roots"])} for item in files],
+    write_csv(refs / "models.csv", [{"path": item["path"], "filename": item["filename"], "bytes": item["bytes"],
+                                   "search_roots": " | ".join(item["search_roots"])} for item in files],
               ["path", "filename", "bytes", "search_roots"])
     write_csv(refs / "test-queue.csv", [{"id": item["workflow_id"], "title": item["title"],
         "family_estimate": item["family_estimate"], "disposition": item["disposition"],

@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from workflow_catalogue import (Image, REPORT_FILES, describe_graph, extension_sources, graph_kind,
+from workflow_catalogue import (Image, REPORT_FILES, candidates, describe_graph, extension_sources, graph_kind,
                                 local_schemas, payloads, scan, write_report)
 
 if Image is not None:
@@ -24,6 +24,19 @@ def api(model="weights.gguf"):
 
 
 class CatalogueTests(unittest.TestCase):
+    def test_special_file_symlink_is_not_a_candidate(self):
+        path = self.root / 'example.json'
+        path.symlink_to('/dev/zero')
+        self.assertNotIn(path, list(candidates(self.root, self.output, [])))
+
+    def test_deep_json_is_reported_without_aborting_scan(self):
+        path = self.root / 'user/default/workflows/deep.json'
+        path.parent.mkdir(parents=True)
+        path.write_text('[[0]]')
+        with patch('workflow_catalogue.json.loads', side_effect=RecursionError('nested JSON')):
+            report = scan(self.root, self.output)
+        self.assertEqual(report['sources'][0]['status'], 'parse_or_read_error')
+
     @unittest.skipIf(Image is None, 'Pillow unavailable')
     def test_jpeg_named_png_does_not_abort_catalogue(self):
         path = self.root / 'user/default/workflows/not-png.png'

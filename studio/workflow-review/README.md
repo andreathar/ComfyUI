@@ -42,7 +42,7 @@ Schema reconciliation: `{"endpoint": "http://127.0.0.1:8188/object_info", "node_
 ## Regenerate
 
 ```sh
-.venv/bin/python -m unittest discover -s studio -p 'test_workflow_catalogue.py' -v
+PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p 'test_workflow_catalogue.py' -v
 .venv/bin/python studio/workflow_catalogue.py
 # Optional read-only local schema snapshot (failure leaves availability unknown):
 .venv/bin/python studio/workflow_catalogue.py --port 8188

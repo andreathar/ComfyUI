@@ -13,7 +13,8 @@ class QualificationTests(unittest.TestCase):
             root = Path(temp)
             catalogue = root / 'studio/workflow-review'
             catalogue.mkdir(parents=True)
-            (root / 'models').mkdir()
+            (root / 'models/checkpoints').mkdir(parents=True)
+            (root / 'models/checkpoints/example.safetensors').write_bytes(b'model')
             alias = {'extension': 'pack', 'relative': 'custom_nodes/pack/example graph.json',
                      'absolute': str(root / 'custom_nodes/pack/example graph.json'), 'pointer': '$'}
             workflow = {'id': 'wf-1', 'title': 'test', 'node_types': [], 'aliases': [alias],
@@ -25,6 +26,7 @@ class QualificationTests(unittest.TestCase):
             text = (catalogue / 'references/extensions.md').read_text()
             self.assertIn('../../../custom_nodes/pack/example%20graph.json', text)
             self.assertNotIn(str(root), text)
+            self.assertIn('example.safetensors', (catalogue / 'references/models.csv').read_text())
 
     def test_nested_symlinks_aliases_and_cycles_are_discovered(self):
         with tempfile.TemporaryDirectory() as temp:
