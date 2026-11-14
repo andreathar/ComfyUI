@@ -1,15 +1,17 @@
-import os
 import base64
-import json
-import time
-import logging
-import folder_paths
 import glob
-import comfy.utils
+import json
+import logging
+import os
+import time
+from io import BytesIO
+
 from aiohttp import web
 from PIL import Image
-from io import BytesIO
-from folder_paths import map_legacy, filter_files_extensions, filter_files_content_types
+
+import comfy.utils
+import folder_paths
+from folder_paths import filter_files_content_types, filter_files_extensions, map_legacy
 
 
 class ModelFileManager:
