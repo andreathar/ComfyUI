@@ -4,6 +4,13 @@ This folder holds Codex configuration and workstation-specific operations. The
 root `AGENTS.md` remains the authority for upstream engineering rules. Start
 with [SETUP_PLAN.md](SETUP_PLAN.md) for decisions, outstanding work, and evidence.
 
+## Integrated stack and visible browser
+
+Read [STACK_OWNERSHIP.md](STACK_OWNERSHIP.md) for component responsibilities,
+including native DynamicVRAM and LC123 global hooks that saved-node counts miss.
+Use [BROWSER_ACCESS.md](BROWSER_ACCESS.md) for the shared visible Playwright CLI
+session, existing MCP configuration, and host-specific verification limits.
+
 ## Argon Studio reference frames
 
 The local Argon checkout now includes a manual reference-frame handoff:
