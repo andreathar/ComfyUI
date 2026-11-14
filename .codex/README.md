@@ -46,8 +46,8 @@ plugins, publish SemVer tags from that plugin repository. The tracked
 canonical repository path and active install paths for each distinct Git root.
 Symlinked install paths that share a repository are listed together; unrelated
 worktrees are not included unless an active `custom_nodes/` entry points to
-them. The lock covers independent Git checkouts, not copied node directories
-without their own Git repository.
+them. The lock pins independent Git checkouts. The checker also rejects copied node
+packs with no tracked entry point and reports dirty parent-owned node packs.
 
 Make and commit plugin changes in the plugin repository first. After committing,
 update that repository's lock entry to its new HEAD (and release tag when
@@ -84,8 +84,42 @@ To change a maintained plugin, work in its own checkout, run its focused tests,
 commit and push its maintained branch, then update and commit its lock entry in
 ComfyUI. Verify the pushed SHA before updating the lock. Do not use a parent
 commit or a Manager update as a substitute for committing plugin changes.
-The November stabilization is an integration candidate, not a release: copied
-packs, dependency conflicts and live runtime acceptance still need resolution.
+All 15 active custom-node repositories are now pinned, including the formerly
+copied packs. Swarm nodes use a clean detached worktree at the pinned revision;
+the separate Swarm application's unfinished work remains untouched. Spark's
+installed registry distribution is preserved under its repository's
+`studio-package/`; the install link points there, not to the upstream root.
+See `STABILIZATION.md` for validation and remaining acceptance limits.
+
+## Recreate the verified Python environment
+
+The November 13 snapshot preserves the installed CUDA PyTorch, torchaudio,
+torchvision, Comfy Kitchen and aimdo builds. Transformers/Hub and associated
+packages were resolved together; all 498 installed distributions pass
+`uv pip check`. Do not restore the earlier Transformers 4.x snapshot over this
+environment or install incompatible optional applications into the shared venv.
+
+Run from this checkout after creating `.venv` with the documented Python version:
+
+```bash
+.venv/bin/python .codex/restore_runtime_wheel.py
+uv pip install --python .venv/bin/python --torch-backend cu130 --link-mode copy -r .codex/requirements.lock.txt
+uv pip check --python .venv/bin/python
+.venv/bin/python .codex/check_custom_nodes.py
+```
+
+The explicit wheel helper downloads only the pinned Spark software release,
+verifies archive and wheel SHA-256 values, and restores the matching local
+wheel. It never downloads models. The llama.cpp wheel uses its original
+publisher's immutable release URL and verified digest instead of a vanished
+temporary path. Runtime snapshots are platform-specific, not portable locks.
+
+Unused incompatible MoviePy, Qwen-TTS, Decord, NuVu and the overlapping ONNX GPU
+distribution were removed after their package files were archived. CPU ONNX
+Runtime supplies the required shared module. The stale Realtime installation
+and unused vulnerable PyPDF2 were also archived and removed. Use separate
+environments if those optional applications are needed again. Recovery files
+are under ignored `.codex/artifacts/stabilization-followup/`.
 
 ## Local references
 

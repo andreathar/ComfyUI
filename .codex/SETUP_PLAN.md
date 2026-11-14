@@ -387,3 +387,15 @@ Evidence: `.codex/artifacts/claude-node-before.json`, `claude-node-after.json`,
 `claude-node-before.png`, `claude-node-repaired.png`, and
 `manager-after-node-repair.png`. The process record identifies the replacement
 instance. The previous launcher and log are retained under artifacts.
+
+
+## Studio stabilization update — 2026-11-13
+
+The older installation snapshots above are historical. Current recovery and
+validation are documented in `README.md` and `STABILIZATION.md`. The updated
+Python snapshot passes dependency checking (498 distributions); all 15 active
+custom-node repositories match the integration lock. The existing CUDA stack
+was retained, and the original SD15 model completed a fresh live smoke run.
+The unused incompatible optional packages were archived before removal.
+Browser interaction remains unverified because the browser access host is
+unavailable; two upstream medium advisories have no published fixed version.

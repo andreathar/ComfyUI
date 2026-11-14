@@ -30,6 +30,9 @@ uv.lock
 !.codex/README.md
 !.codex/custom_nodes.lock.json
 !.codex/check_custom_nodes.py
+!.codex/restore_runtime_wheel.py
+!.codex/test_restore_runtime_wheel.py
+!.codex/STABILIZATION.md
 .github/
 .ruff_cache/
 .pytest_cache/

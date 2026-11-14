@@ -2,7 +2,34 @@
   "schema_version": 1,
   "repositories": [
     {
-      "path": "../SwarmUI/SwarmUI",
+      "path": ".codex/repos/agent-panel",
+      "origin": "https://github.com/andreathar/comfyui-mcp-panel.git",
+      "head": "cbadda173d3dd9e75ec53da395bb18e85de00f40",
+      "tag": "v0.15.184",
+      "installed_paths": [
+        "custom_nodes/comfyui-agent-panel"
+      ]
+    },
+    {
+      "path": ".codex/repos/fantastic-loras",
+      "origin": "https://github.com/andreathar/comfyui_fantastic-loras.git",
+      "head": "c0acd42f597ad20b900bc3fe4243aeec4eed2951",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-fantastic-loras"
+      ]
+    },
+    {
+      "path": ".codex/repos/spark-h3",
+      "origin": "https://github.com/andreathar/Spark-H3.git",
+      "head": "ad528128d4740851d0c10136d476cf8cb403f81d",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-spark-h3"
+      ]
+    },
+    {
+      "path": ".codex/worktrees/swarm-nodes",
       "origin": "https://github.com/mcmonkeyprojects/SwarmUI",
       "head": "d347f3061ce9aa19e0d3950e5189415022de6659",
       "tag": null,
@@ -27,6 +54,15 @@
       "tag": null,
       "installed_paths": [
         "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI-H3-NativeAudioLock",
+      "origin": "https://github.com/andreathar/ComfyUI-H3-NativeAudioLock.git",
+      "head": "6dbf2dd11ebf8774d840527eaa962cd599b3a779",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-H3-NativeAudioLock"
       ]
     },
     {
@@ -58,8 +94,8 @@
     },
     {
       "path": "custom_nodes/comfyui-manager",
-      "origin": "https://github.com/ltdrdata/ComfyUI-Manager",
-      "head": "15e49ea544a4b20627c2eec01341843e8c4b6d49",
+      "origin": "https://github.com/andreathar/ComfyUI-Manager.git",
+      "head": "78db9bb759683df12265de04fc8b1d041e7f10e0",
       "tag": null,
       "installed_paths": [
         "custom_nodes/comfyui-manager"
