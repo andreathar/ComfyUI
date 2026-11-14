@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "repositories": [
+    {
+      "path": "../SwarmUI/SwarmUI",
+      "origin": "https://github.com/mcmonkeyprojects/SwarmUI",
+      "head": "d347f3061ce9aa19e0d3950e5189415022de6659",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/SwarmComfyCommon",
+        "custom_nodes/SwarmComfyExtra"
+      ]
+    },
+    {
+      "path": ".codex/worktrees/workflow-monitor-brain",
+      "origin": null,
+      "head": "6d98239354716153451817bfd131d9494a8b725b",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "origin": "https://github.com/Adudeguyman/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "head": "22e719fe89336c628383363182a4da3cb58d4f9b",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI-H3-Project-Suite",
+      "origin": "https://github.com/Adudeguyman/ComfyUI-H3-Project-Suite.git",
+      "head": "aebd298ec4a28a20aa4d21415ca0ff84c24860fd",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-H3-Project-Suite"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI_LC123_nodes",
+      "origin": "https://github.com/lonecatone23/ComfyUI_LC123_nodes.git",
+      "head": "4358590c88bf4788f0e1d24f39f1f2e4b493970b",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI_LC123_nodes"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI_LC_Vision_nodes",
+      "origin": "https://github.com/lonecatone23/ComfyUI_LC_Vision_nodes.git",
+      "head": "4b1de5a9048d95a9e8c41d7871790d275ea95ba6",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI_LC_Vision_nodes"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui-manager",
+      "origin": "https://github.com/ltdrdata/ComfyUI-Manager",
+      "head": "15e49ea544a4b20627c2eec01341843e8c4b6d49",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-manager"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui-minimaxh3-contex-loop",
+      "origin": "https://github.com/ethanfel/ComfyUI-MiniMaxH3-Context-Loop.git",
+      "head": "43afeffcc570beb5f7382593e79e4b211c7e02f6",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-minimaxh3-contex-loop"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui-websocket-reconnect-fix",
+      "origin": "https://github.com/D3voz/comfyui-websocket-reconnect-fix.git",
+      "head": "12b5fdf38e8bdbf8a560b9196561244bf65621f4",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-websocket-reconnect-fix"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui_dynamic",
+      "origin": "https://github.com/inkbottle-9/comfyui_dynamic.git",
+      "head": "a07e8f8468b0e320db5f71e959c084414b5f26d6",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui_dynamic"
+      ]
+    },
+    {
+      "path": "custom_nodes/hermes-nodes",
+      "origin": "https://github.com/Lannister34/ComfyUI-HermesNodes",
+      "head": "950306092d7f8017b985d0ca7d91beddb6642c9d",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/hermes-nodes"
+      ]
+    }
+  ]
+}

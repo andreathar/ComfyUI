@@ -25,7 +25,11 @@ filtered-openapi.yaml
 uv.lock
 .comfy_environment
 /previews/
-.codex/
+!.codex/
+.codex/*
+!.codex/README.md
+!.codex/custom_nodes.lock.json
+!.codex/check_custom_nodes.py
 .github/
 .ruff_cache/
 .pytest_cache/

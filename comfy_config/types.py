@@ -1,6 +1,7 @@
+from typing import List, Optional
+
 from pydantic import BaseModel, Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import List, Optional
 
 # IMPORTANT: The type definitions specified in pyproject.toml for custom nodes
 # must remain synchronized with the corresponding files in the https://github.com/Comfy-Org/comfy-cli/blob/main/comfy_cli/registry/types.py.

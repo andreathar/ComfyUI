@@ -37,6 +37,41 @@ was added by this handoff.
   temporary; explicit interpreter paths work in terminals, IDEs, and agents.
 - No Node installation/build is required to run the packaged ComfyUI frontend.
 
+## Version the installed custom-node stack
+
+Each custom-node Git repository keeps its own branches, commits and release
+history; the ComfyUI root does not absorb plugin history. For maintained
+plugins, publish SemVer tags from that plugin repository. The tracked
+`.codex/custom_nodes.lock.json` records the committed HEAD, configured origin,
+canonical repository path and active install paths for each distinct Git root.
+Symlinked install paths that share a repository are listed together; unrelated
+worktrees are not included unless an active `custom_nodes/` entry points to
+them. The lock covers independent Git checkouts, not copied node directories
+without their own Git repository.
+
+Make and commit plugin changes in the plugin repository first. After committing,
+update that repository's lock entry to its new HEAD (and release tag when
+applicable), origin and install paths. Do not treat the lock as a snapshot of
+uncommitted files: the checker reports tracked and untracked changes, missing
+or extra active repositories, path/origin mismatches and HEAD drift. An absent
+origin is reported and is never repaired automatically.
+
+Run the check from the ComfyUI root:
+
+```bash
+.venv/bin/python .codex/check_custom_nodes.py
+```
+
+The checker uses only Python's standard library and local Git metadata. It does
+not fetch, install, or modify repositories; a non-zero result means the current
+stack is not an exact match for the committed lock. The initial lock records
+the current committed HEADs only, so the existing dirty work is intentionally
+reported as non-reproducible rather than captured or committed by this workflow.
+
+Keep `.codex/requirements.lock.txt` as the separate snapshot of Python package
+versions. It does not version custom-node Git repositories or replace their
+independent histories.
+
 ## Local references
 
 These locations were verified on this workstation on 2026-10-24. Check that
