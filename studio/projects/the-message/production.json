@@ -45,6 +45,13 @@
       "voice": "MSG-VOX-ANDRE"
     }
   ],
+  "voices": [
+    {
+      "id": "MSG-VOX-ANDRE",
+      "name": "Andre_Athar",
+      "description": "Natural voice from the approved reference"
+    }
+  ],
   "locations": [
     {
       "id": "MSG-LOC-APARTMENT",

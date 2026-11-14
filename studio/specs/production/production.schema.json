@@ -18,7 +18,7 @@
         "aspect": { "enum": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"] },
         "fps": { "enum": [24, 25, 30] },
         "language": { "type": "string", "default": "en" },
-        "source_text": { "type": "string", "description": "The user's dictated/free text, verbatim. Every scene and shot points back into it via script_ref." }
+        "source_text": { "type": "string", "description": "The full canonical script: initial dictation verbatim, then explicit script edits only. Incremental technical requests do not replace it. Every scene and shot points into this full text via script_ref." }
       }
     },
     "style_bible": {
@@ -38,6 +38,7 @@
     "locations": { "type": "array", "items": { "$ref": "#/$defs/location" } },
     "props": { "type": "array", "items": { "$ref": "#/$defs/prop" } },
     "motions": { "type": "array", "items": { "$ref": "#/$defs/motion" } },
+    "voices": { "type": "array", "items": { "$ref": "#/$defs/voice" } },
     "scenes": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/scene" } },
     "shots": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/shot" } },
     "tasks": { "type": "array", "items": { "$ref": "#/$defs/task" }, "description": "Derived by tooling from banks + shots; do not hand-write." },
@@ -106,6 +107,18 @@
       "type": "object",
       "additionalProperties": false,
       "properties": { "kling_element": { "type": "string" }, "higgsfield_element": { "type": "string" }, "higgsfield_voice": { "type": "string" } }
+    },
+    "voice": {
+      "type": "object",
+      "required": ["id", "name", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/entity_id" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "refs": { "$ref": "#/$defs/refs" },
+        "platform_ids": { "$ref": "#/$defs/platform_ids" }
+      }
     },
     "location": {
       "type": "object",

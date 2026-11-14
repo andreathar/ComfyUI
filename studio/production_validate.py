@@ -21,7 +21,7 @@ def check(doc):
 
     code = doc["project"]["code"]
     text_len = len(doc["project"]["source_text"])
-    banks = {kind: {e["id"] for e in doc.get(kind, [])} for kind in ("characters", "locations", "props", "motions")}
+    banks = {kind: {e["id"] for e in doc.get(kind, [])} for kind in ("characters", "locations", "props", "motions", "voices")}
     everything = set().union(*banks.values())
     scenes = {s["id"]: s for s in doc["scenes"]}
 
@@ -34,14 +34,15 @@ def check(doc):
             problems.append(f"{where}: script_ref {ref['start']}-{ref['end']} is outside source_text (length {text_len})")
 
     for kind, entities in (("characters", doc["characters"]), ("locations", doc["locations"]),
-                           ("props", doc.get("props", [])), ("motions", doc.get("motions", []))):
+                           ("props", doc.get("props", [])), ("motions", doc.get("motions", [])),
+                           ("voices", doc.get("voices", []))):
         ids = [e["id"] for e in entities]
         for dup in {i for i in ids if ids.count(i) > 1}:
             problems.append(f"{kind}: duplicate id {dup}")
         for i in ids:
             if not i.startswith(code + "-"):
                 problems.append(f"{kind}: {i} does not start with project code {code}-")
-    kind_of = {"characters": "CHR", "locations": "LOC", "props": "PRP", "motions": "MOT"}
+    kind_of = {"characters": "CHR", "locations": "LOC", "props": "PRP", "motions": "MOT", "voices": "VOX"}
     for kind, tag in kind_of.items():
         for i in banks[kind]:
             if f"-{tag}-" not in i:
@@ -51,6 +52,8 @@ def check(doc):
         voice = c.get("voice")
         if voice and "-VOX-" not in voice:
             problems.append(f"{c['id']}: voice {voice} must be a VOX id")
+        if voice:
+            need(voice, "voices", c['id'])
 
     numbers = [s["number"] for s in doc["scenes"]]
     if numbers != list(range(1, len(numbers) + 1)):

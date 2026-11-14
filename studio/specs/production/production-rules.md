@@ -5,8 +5,8 @@ document. Items marked **[USER]** are defaults I invented; replace them with the
 
 ## 0. Process (in order; never skip ahead)
 
-1. Copy the dictation verbatim into `project.source_text`. Never paraphrase it there.
-2. Extract banks: characters, locations, props, motions. Ask about anything missing that a shot will need
+1. On initial creation, copy the full dictation verbatim into `project.source_text`. On revision, preserve that full script and apply only explicit script edits; technical shot edits leave it unchanged. Never replace it with the incremental edit request. Recompute affected `script_ref` offsets against the full revised script; ask when an edit is ambiguous.
+2. Extract banks: characters, voices, locations, props, motions. Ask about anything missing that a shot will need
    (voice for a speaking character, wardrobe, driving clip for complex motion).
 3. Split into scenes, then shots. Every scene/shot carries `script_ref` offsets into the source text.
 4. Validate against the schema. Fix and re-run until it passes; do not hand back invalid JSON.

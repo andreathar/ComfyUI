@@ -45,6 +45,17 @@ class ProductionValidateTests(unittest.TestCase):
     def test_speaker_without_voice(self):
         self.assertProblem(self.broken(lambda d: d["shots"][0].update(dialogue=[{"character": "DEMO-CHR-MAIN", "line": "Hi"}])), "no voice")
 
+    def test_voice_bank_and_character_reference(self):
+        doc = copy.deepcopy(EXAMPLE)
+        doc['voices'] = [{'id': 'DEMO-VOX-MAIN', 'name': 'Main voice', 'description': 'Soft and measured'}]
+        doc['characters'][0]['voice'] = 'DEMO-VOX-MAIN'
+        self.assertEqual(pv.check(doc), [])
+        doc['characters'][0]['voice'] = 'DEMO-VOX-MISSING'
+        self.assertProblem(pv.check(doc), 'not in voices')
+        doc['characters'][0]['voice'] = 'DEMO-VOX-MAIN'
+        doc['voices'].append(dict(doc['voices'][0]))
+        self.assertProblem(pv.check(doc), 'duplicate')
+
     def test_complex_motion_needs_motion_entity(self):
         self.assertProblem(self.broken(lambda d: d["shots"][0].update(complexity="complex-motion")), "needs a motion")
 

@@ -26,6 +26,7 @@ class RecipeTests(unittest.TestCase):
         self.doc['shots'][0].pop('target')
         self.doc['shots'][0]['duration_s'] = 2
         self.doc['characters'][0]['voice'] = 'DEMO-VOX-MAIN'
+        self.doc['voices'] = [{'id': 'DEMO-VOX-MAIN', 'name': 'Main voice', 'description': 'Test voice reference'}]
         self.doc['shots'][0]['dialogue'] = [{'character': 'DEMO-CHR-MAIN', 'line': 'Not again.'}]
         self.assets = {}
         for key, kind, role, owner in [('actor', 'video', 'identity', 'DEMO-CHR-MAIN'), ('room', 'picture', 'location', 'DEMO-LOC-STREET'), ('voice', 'audio', 'voice', 'DEMO-VOX-MAIN')]:
