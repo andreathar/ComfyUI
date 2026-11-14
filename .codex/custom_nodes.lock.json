@@ -13,8 +13,8 @@
     },
     {
       "path": ".codex/worktrees/workflow-monitor-brain",
-      "origin": null,
-      "head": "6d98239354716153451817bfd131d9494a8b725b",
+      "origin": "https://github.com/andreathar/ComfyUI-Workflow-Monitor-Brain.git",
+      "head": "8693d17273f14c092511e06253298d58750c20e0",
       "tag": null,
       "installed_paths": [
         "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
@@ -22,8 +22,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
-      "origin": "https://github.com/Adudeguyman/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
-      "head": "22e719fe89336c628383363182a4da3cb58d4f9b",
+      "origin": "https://github.com/andreathar/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder.git",
+      "head": "a4c07bac5173b8d27b463dc2082e9cba98c09fcb",
       "tag": null,
       "installed_paths": [
         "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder"
@@ -31,8 +31,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-H3-Project-Suite",
-      "origin": "https://github.com/Adudeguyman/ComfyUI-H3-Project-Suite.git",
-      "head": "aebd298ec4a28a20aa4d21415ca0ff84c24860fd",
+      "origin": "https://github.com/andreathar/ComfyUI-H3-Project-Suite.git",
+      "head": "e8584fd0dcbe07f430bba956dc79fd823f5c8d01",
       "tag": null,
       "installed_paths": [
         "custom_nodes/ComfyUI-H3-Project-Suite"
@@ -67,8 +67,8 @@
     },
     {
       "path": "custom_nodes/comfyui-minimaxh3-contex-loop",
-      "origin": "https://github.com/ethanfel/ComfyUI-MiniMaxH3-Context-Loop.git",
-      "head": "43afeffcc570beb5f7382593e79e4b211c7e02f6",
+      "origin": "https://github.com/andreathar/ComfyUI-MiniMaxH3-Context-Loop.git",
+      "head": "9b63462dc5af5800a74c0b5dde90ea20704ee641",
       "tag": null,
       "installed_paths": [
         "custom_nodes/comfyui-minimaxh3-contex-loop"
@@ -85,8 +85,8 @@
     },
     {
       "path": "custom_nodes/comfyui_dynamic",
-      "origin": "https://github.com/inkbottle-9/comfyui_dynamic.git",
-      "head": "a07e8f8468b0e320db5f71e959c084414b5f26d6",
+      "origin": "https://github.com/andreathar/comfyui_dynamic.git",
+      "head": "21802e54f4364a679888e154d24985b96aaae26d",
       "tag": null,
       "installed_paths": [
         "custom_nodes/comfyui_dynamic"

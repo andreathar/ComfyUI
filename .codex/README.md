@@ -72,6 +72,21 @@ Keep `.codex/requirements.lock.txt` as the separate snapshot of Python package
 versions. It does not version custom-node Git repositories or replace their
 independent histories.
 
+The maintained studio repositories use `andreathar` origins and the integration
+branch `studio/stabilization-20261113`. Original sources remain as `upstream`
+remotes. Project Suite, PromptBuilder and Dynamic are GitHub forks. Context Loop
+is a private standalone repository preserving its upstream history: GitHub puts
+it and Project Suite in the same fork network and allows only one fork per
+account. Workflow Monitor Brain is also private; access to these repositories
+requires authentication. The lock pins commits, not the upstream default branch.
+
+To change a maintained plugin, work in its own checkout, run its focused tests,
+commit and push its maintained branch, then update and commit its lock entry in
+ComfyUI. Verify the pushed SHA before updating the lock. Do not use a parent
+commit or a Manager update as a substitute for committing plugin changes.
+The November stabilization is an integration candidate, not a release: copied
+packs, dependency conflicts and live runtime acceptance still need resolution.
+
 ## Local references
 
 These locations were verified on this workstation on 2026-10-24. Check that
