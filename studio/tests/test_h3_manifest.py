@@ -174,6 +174,7 @@ class ManifestTests(unittest.TestCase):
         key = self.run_check()['conditioning_key']
         self.manifest['graph']['7']['inputs']['stack_pictures_n'] = 4
         self.assertNotEqual(key, self.run_check()['conditioning_key'])
+        key = self.run_check()['conditioning_key']
         inputs = self.manifest['graph']['4']['inputs']
         items = json.loads(inputs['media_state'])
         items.reverse()

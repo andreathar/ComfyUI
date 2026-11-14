@@ -260,6 +260,22 @@ class MediaTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'padding does not repeat'):
             self.run_check()
 
+    def test_native16_source_exact_copy_preserves_low_bits(self):
+        self.result[0, 0, 0, 0] += 1
+        original = self.result.copy()
+        working = np.concatenate([original, np.repeat(original[-1:], 2, axis=0)])
+        video(self.root / 'original.mkv', original, native16=True)
+        video(self.root / 'working.mkv', working, native16=True)
+        self.write_final()
+        for role in ('original', 'working', 'final'):
+            self.update(role)
+        self.assertEqual(self.run_check()['final']['changed_protected_pixels'], 0)
+        self.result[0, 0, 0, 0] -= 1
+        self.write_final()
+        self.update('final')
+        with self.assertRaisesRegex(ValueError, 'changed 1 protected pixels'):
+            self.run_check()
+
     def test_true_audio_start_delay_rejected(self):
         path = self.root / 'delayed.mkv'
         subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(self.root / 'result.mkv'),

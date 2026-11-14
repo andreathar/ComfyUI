@@ -15,10 +15,11 @@ from h3_manifest import file_digest
 
 
 class Video:
-    def __init__(self, path, count, fps, size=None, native16=False, silent_lossless=False, native_pixels=False):
+    def __init__(self, path, count, fps, size=None, native16=False, silent_lossless=False, native_pixels=False, rgb16=False):
         self.path, self.expected_count, self.fps = path, count, Fraction(fps)
         self.size, self.native16, self.silent_lossless = size, native16, silent_lossless
         self.native_pixels = native_pixels
+        self.rgb16 = native16 or rgb16
         self.count = 0
 
     def __iter__(self):
@@ -49,8 +50,10 @@ class Video:
                     # RGB0/BGR0's fourth byte is padding, not pixel data.
                     fmt = 'rgb24' if frame.format.name in {'rgb0', 'bgr0'} else frame.format.name
                     yield frame.format.name, frame.to_ndarray(format=fmt)
+                elif self.rgb16 and max(component.bits for component in frame.format.components) <= 8:
+                    yield frame.to_ndarray(format='rgb24', **kwargs).astype(np.uint16) * 257
                 else:
-                    yield frame.to_ndarray(format='rgba64le' if self.native16 else 'rgb24', **kwargs)
+                    yield frame.to_ndarray(format='rgba64le' if self.rgb16 else 'rgb24', **kwargs)
             if self.count != self.expected_count:
                 raise ValueError(f'{self.path}: decoded {self.count} frames, expected {self.expected_count}')
 
@@ -172,7 +175,7 @@ def check(contract, root):
                               'Guard agreement is not segmentation/occlusion correctness.',
                               'No likeness, facial-performance, lip-sync or full-motion quality approval.']}
     if 'final' in paths:
-        source_frames = Video(paths['working'], working, fps, size=(width, height))
+        source_frames = Video(paths['working'], working, fps, size=(width, height), rgb16=True)
         final_frames = Video(paths['final'], delivered, fps, native16=True)
         protected = changed = maximum = 0
         regions = {'feather_pixels': 0, 'opaque_edit_pixels': 0, 'changed_edit_pixels': 0}
@@ -183,7 +186,7 @@ def check(contract, root):
                 raise ValueError(f'final shape/count differs at delivery frame {i}')
             if not np.all(final[:, :, 3] == 65535):
                 raise ValueError(f'final alpha must be opaque at delivery frame {i}')
-            error = np.abs(final[:, :, :3].astype(np.int32) - reference.astype(np.int32) * 257)
+            error = np.abs(final[:, :, :3].astype(np.int32) - reference[:, :, :3].astype(np.int32))
             outside = guards[i] == 0
             edited = ~outside
             changed_pixels = error.max(axis=2) != 0

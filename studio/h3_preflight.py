@@ -7,7 +7,9 @@ from pathlib import Path
 import subprocess
 import time
 import os
+import re
 import urllib.request
+import urllib.parse
 
 import yaml
 
@@ -127,6 +129,8 @@ def resources(snapshot, min_free_ram_bytes=0, min_free_vram_bytes=0):
 
 
 def capture_snapshot(server='http://127.0.0.1:8188', min_free_ram_bytes=10 * 2**30, min_free_vram_bytes=4 * 2**30):
+    endpoint = urllib.parse.urlsplit(server)
+    server_port = str(endpoint.port or (443 if endpoint.scheme == 'https' else 80))
     with urllib.request.urlopen(server.rstrip('/') + '/queue', timeout=10) as response:
         queue = json.load(response)
     meminfo = {}
@@ -145,6 +149,19 @@ def capture_snapshot(server='http://127.0.0.1:8188', min_free_ram_bytes=10 * 2**
         ['nvidia-smi', '--query-compute-apps=pid,process_name,used_gpu_memory', '--format=csv,noheader,nounits'],
         capture_output=True, text=True, check=True,
     ).stdout.strip()
+    listener_pids = set()
+    if endpoint.hostname in {'localhost', '127.0.0.1', '::1'}:
+        listeners = subprocess.run(['ss', '-H', '-ltnp', f'sport = :{server_port}'],
+                                   capture_output=True, text=True, check=True, timeout=10).stdout
+        hosts = {'0.0.0.0', '*', '[::]'}
+        hosts.update({'127.0.0.1', '[::1]'} if endpoint.hostname == 'localhost' else
+                     {'[::1]' if endpoint.hostname == '::1' else '127.0.0.1'})
+        for line in listeners.splitlines():
+            columns = line.split()
+            if len(columns) >= 5 and columns[3].rsplit(':', 1)[0] in hosts:
+                listener_pids.update(re.findall(r'\bpid=(\d+),', line))
+        if len(listener_pids) != 1:
+            listener_pids.clear()
     comfy_mib = 0
     foreign = []
     for line in apps_out.splitlines():
@@ -152,16 +169,16 @@ def capture_snapshot(server='http://127.0.0.1:8188', min_free_ram_bytes=10 * 2**
             continue
         pid_text, name, used_text = [part.strip() for part in line.split(',', 2)]
         used_mib = int(used_text) if used_text.isdigit() else 0
-        cmdline = Path(f'/proc/{pid_text}/cmdline').read_text(errors='ignore').replace('\x00', ' ') if Path(f'/proc/{pid_text}/cmdline').is_file() else ''
-        if 'main.py' in cmdline and '8188' in cmdline:
+        if pid_text in listener_pids:
             comfy_mib += used_mib
         elif used_mib > 0:
             foreign.append(f'{Path(name).name}(pid={pid_text},{used_mib}MiB)')
     free_vram_bytes = free_mib * 2**20
+    queue_valid = isinstance(queue, dict) and all(isinstance(queue.get(field), list) for field in ('queue_running', 'queue_pending'))
     return {
         'observed_at': time.time(),
-        'running': len(queue.get('queue_running', [])),
-        'pending': len(queue.get('queue_pending', [])),
+        'running': len(queue['queue_running']) if queue_valid else None,
+        'pending': len(queue['queue_pending']) if queue_valid else None,
         'conflicting_export': bool(foreign),
         'free_ram_bytes': meminfo.get('MemAvailable', meminfo.get('MemFree', 0)),
         'free_vram_bytes': free_vram_bytes,

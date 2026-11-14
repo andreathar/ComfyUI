@@ -562,12 +562,26 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
         total_frames = sum(s['frames'] for s in merged_shots)
         film_name = f'{run_name}.mp4'
         index_path = destination / 'index.json'
+        base_identity = {'run_name': base_state['bundle']['run_name'], 'prompt_id': base_state['prompt_id'], 'film_sha256': base_state['output']['sha256']}
+        replacement_identity = {
+            'shot_id': shot_id,
+            'patch_run_name': patch_state['bundle']['run_name'],
+            'patch_prompt_id': patch_state['prompt_id'],
+            'previous_revision': base_state['output']['manifest']['segments'][target_pos]['revision'],
+            'new_revision': patch_state['output']['manifest']['segments'][0]['revision'],
+        }
         if destination.exists():
             if index_path.is_file():
                 existing = film.read_json(index_path)
-                if existing.get('bundle_fingerprint') == merged_bundle['fingerprint']:
+                if (existing.get('bundle_fingerprint') == merged_bundle['fingerprint'] and
+                        existing.get('base_run') == base_identity and existing.get('replacement') == replacement_identity and
+                        existing.get('shots') == [entry for _, _, entry in expected_shots]):
                     film_dst = destination / film_name
                     if film_dst.is_file() and h3.file_hash(film_dst) == existing['delivery']['film_sha256']:
+                        for _, rel_shot, entry in expected_shots:
+                            shot_dst = destination / rel_shot
+                            if not shot_dst.is_file() or h3.file_hash(shot_dst) != entry['sha256']:
+                                raise ValueError(f'existing published shot hash mismatch: {rel_shot}')
                         return existing
             if any(destination.iterdir()):
                 raise ValueError('replacement destination already exists with different content')
@@ -615,14 +629,8 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
             'schema_version': 1,
             'run_name': run_name,
             'bundle_fingerprint': merged_bundle['fingerprint'],
-            'base_run': {'run_name': base_state['bundle']['run_name'], 'prompt_id': base_state['prompt_id'], 'film_sha256': base_state['output']['sha256']},
-            'replacement': {
-                'shot_id': shot_id,
-                'patch_run_name': patch_state['bundle']['run_name'],
-                'patch_prompt_id': patch_state['prompt_id'],
-                'previous_revision': base_state['output']['manifest']['segments'][target_pos]['revision'],
-                'new_revision': patch_state['output']['manifest']['segments'][0]['revision'],
-            },
+            'base_run': base_identity,
+            'replacement': replacement_identity,
             'technical_status': 'passed',
             'creative_status': 'review_pending',
             'delivery': {

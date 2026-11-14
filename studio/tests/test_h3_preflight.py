@@ -2,6 +2,9 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+import io
+import types
 import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -10,6 +13,24 @@ import h3_recipe as h3
 
 
 class PreflightTests(unittest.TestCase):
+    def test_snapshot_uses_listener_pid_and_keeps_unknown_queue_state(self):
+        def command(args, **kwargs):
+            if args[0] == 'ss':
+                self.assertEqual(args[-1], 'sport = :8190')
+                output = 'LISTEN 0 128 127.0.0.1:8190 0.0.0.0:* users:(("python",pid=123,fd=5))'
+            elif '--query-gpu=memory.free,memory.total,temperature.gpu' in args:
+                output = '4000, 6000, 40'
+            else:
+                output = '123, python, 1000\n456, python, 500'
+            return types.SimpleNamespace(stdout=output)
+
+        with patch.object(preflight.urllib.request, 'urlopen', return_value=io.BytesIO(b'{}')), patch.object(preflight.subprocess, 'run', side_effect=command):
+            result = preflight.capture_snapshot('http://127.0.0.1:8190')
+        self.assertEqual(result['foreign_gpu_processes'], ['python(pid=456,500MiB)'])
+        self.assertEqual(result['usable_comfy_vram_bytes'], 5000 * 2**20)
+        self.assertIsNone(result['running'])
+        self.assertIsNone(result['pending'])
+
     def test_missing_weights_and_nodes_are_distinct(self):
         with tempfile.TemporaryDirectory() as root:
             result = preflight.check(Path(root), {'diffusion_models': {'path': 'missing', 'size_bytes': 1, 'mtime_ns': 0, 'sha256': 'x'}}, {}, {'UNETLoader'})

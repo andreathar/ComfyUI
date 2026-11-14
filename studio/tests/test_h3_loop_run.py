@@ -502,3 +502,14 @@ class CompletionTests(RunRecordFixture, unittest.TestCase):
         self.assertEqual(doc['shots'][1]['sha256'], seg['segment_sha256'])
         self.assertEqual(self.read(self.path)['output']['sha256'], base_before['output']['sha256'])
         self.assertEqual(h3_loop_run.assemble_replacement(self.path, patch_dir, 'MSG_S001_SH02', 'silent_test_v2', rep_dest, self.output), doc)
+        new_patch = self.root / 'new_patch_revision'
+        new_patch.mkdir()
+        state = self.read(patch_dir)
+        state['prompt_id'] = 'new-prompt'
+        state['output']['manifest']['segments'][0]['revision'] = 'new-revision'
+        (new_patch / 'run.json').write_text(json.dumps(state))
+        with self.assertRaisesRegex(ValueError, 'different content'):
+            h3_loop_run.assemble_replacement(self.path, new_patch, 'MSG_S001_SH02', 'silent_test_v2', rep_dest, self.output)
+        (rep_dest / doc['shots'][0]['friendly_file']).write_bytes(b'corrupt')
+        with self.assertRaisesRegex(ValueError, 'published shot hash mismatch'):
+            h3_loop_run.assemble_replacement(self.path, patch_dir, 'MSG_S001_SH02', 'silent_test_v2', rep_dest, self.output)
