@@ -1,14 +1,31 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import ast
+import json
 import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from master_studio_compiler import align_h3_frames, format_summary, plan_frames
+from master_studio_compiler import align_h3_frames, format_summary, plan_frames, with_runtime_report
 
 
 class MasterStudioCompilerTests(unittest.TestCase):
+    def test_runtime_report_preserves_every_generation_output(self):
+        source = Path(__file__).resolve().parents[1] / 'build_master_movie_studio_workflow.py'
+        tree = ast.parse(source.read_text())
+        code = next(ast.literal_eval(node.value) for node in tree.body if isinstance(node, ast.Assign)
+                    and isinstance(node.value, ast.Constant) and any(isinstance(t, ast.Name) and t.id == 'VARS_CODE' for t in node.targets))
+        for transition, chain in [('cut', True), ('continue', True), ('continue', False)]:
+            before = {'inputs': ['P', 'MSG_A', 832, 480, 3, 24, 20, 12, 3, transition, chain], 'outputs': []}
+            after = {'inputs': before['inputs'][:], 'outputs': []}
+            exec(code, before); exec(with_runtime_report(code), after)
+            self.assertEqual(before['outputs'][:9] + before['outputs'][10:], after['outputs'][:9] + after['outputs'][10:])
+            report = json.loads(after['outputs'][9])
+            self.assertEqual(report['summary'], before['outputs'][9])
+            self.assertEqual(report['values']['raw_frames'], after['outputs'][4])
+            self.assertEqual(report['values']['delivered_frames'], after['outputs'][10])
+            self.assertEqual(report['values']['fps'], after['outputs'][5])
+
     def test_generated_controls_use_the_delivered_integer_fps_consistently(self):
         source = Path(__file__).resolve().parents[1] / 'build_master_movie_studio_workflow.py'
         tree = ast.parse(source.read_text())

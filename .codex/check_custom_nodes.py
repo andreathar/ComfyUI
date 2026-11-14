@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 LOCK_PATH = Path(".codex/custom_nodes.lock.json")
 
 
@@ -32,7 +32,7 @@ def _relative_path(root, path):
     return Path(os.path.relpath(str(path), str(root))).as_posix()
 
 
-def _repository_metadata(root, path, installed_paths):
+def _repository_metadata(root, path, install_sources):
     remotes = _git(path, "remote") or ""
     origin = _git(path, "remote", "get-url", "origin") if "origin" in remotes.splitlines() else None
     status = _git(path, "status", "--porcelain=v1", "--untracked-files=all") or ""
@@ -42,7 +42,8 @@ def _repository_metadata(root, path, installed_paths):
         "origin": origin,
         "head": _git(path, "rev-parse", "HEAD"),
         "tag": _git(path, "describe", "--exact-match", "--tags", "HEAD"),
-        "installed_paths": sorted(installed_paths),
+        "installed_paths": sorted(install_sources),
+        "install_sources": dict(sorted(install_sources.items())),
         "dirty": status.splitlines(),
     }
 
@@ -64,7 +65,9 @@ def discover_custom_nodes(root):
         git_root = Path(git_root).resolve()
         if git_root == root:
             continue
-        roots.setdefault(git_root, []).append(_relative_path(root, installed_path))
+        installed_relative = _relative_path(root, installed_path)
+        source_relative = _relative_path(git_root, installed_path.resolve())
+        roots.setdefault(git_root, {})[installed_relative] = source_relative
 
     return {
         path: _repository_metadata(root, path, installed_paths)
@@ -75,11 +78,19 @@ def discover_custom_nodes(root):
 def _valid_entries(manifest, findings):
     if not isinstance(manifest, dict) or manifest.get("schema_version") != SCHEMA_VERSION:
         findings.append(f"INVALID LOCK: expected schema_version {SCHEMA_VERSION}")
-        return []
+        return [], {}
     entries = manifest.get("repositories")
     if not isinstance(entries, list):
         findings.append("INVALID LOCK: repositories must be a list")
-        return []
+        return [], {}
+
+    install_sources = manifest.get("install_sources")
+    if not isinstance(install_sources, dict) or not all(
+        isinstance(path, str) and path and isinstance(source, str) and source and not Path(source).is_absolute()
+        for path, source in install_sources.items()
+    ):
+        findings.append("INVALID LOCK: install_sources must map install paths to relative source directories")
+        install_sources = {}
 
     valid = []
     seen_paths = set()
@@ -113,14 +124,19 @@ def _valid_entries(manifest, findings):
             continue
         seen_paths.add(path)
         valid.append(entry)
-    return valid
+    expected_installs = {path for entry in valid for path in entry["installed_paths"]}
+    for path in sorted(expected_installs - install_sources.keys()):
+        findings.append(f"INVALID LOCK: install_sources has no source directory for {path}")
+    for path in sorted(install_sources.keys() - expected_installs):
+        findings.append(f"INVALID LOCK: install_sources has an unknown install path {path}")
+    return valid, install_sources
 
 
 def check_custom_nodes(root, manifest):
     """Return (active repository count, findings) without changing Git state."""
     root = Path(root).resolve()
     findings = []
-    entries = _valid_entries(manifest, findings)
+    entries, install_sources = _valid_entries(manifest, findings)
     active = discover_custom_nodes(root)
     expected_by_root = {}
 
@@ -128,18 +144,19 @@ def check_custom_nodes(root, manifest):
     for installed_path in sorted(install_dir.iterdir()) if install_dir.is_dir() else []:
         if installed_path.name == "__pycache__" or installed_path.name.endswith(".disabled"):
             continue
-        if not (installed_path / "__init__.py").is_file():
-            continue
         git_root = _git(installed_path.resolve(), "rev-parse", "--show-toplevel")
         if git_root and Path(git_root).resolve() != root:
             continue
         relative = _relative_path(root, installed_path)
         if _git(root, "ls-files", "--error-unmatch", "--", f"{relative}/__init__.py") is None:
-            findings.append(f"UNVERSIONED NODE PACK: {relative}")
+            if (installed_path / "__init__.py").is_file():
+                findings.append(f"UNVERSIONED NODE PACK: {relative}")
             continue
         status = _git(root, "status", "--porcelain=v1", "--untracked-files=all", "--", relative) or ""
         for line in status.splitlines():
             findings.append(f"DIRTY PARENT NODE PACK: {relative}: {line}")
+        if not (installed_path / "__init__.py").is_file():
+            findings.append(f"MISSING NODE INITIALIZER: {relative}/__init__.py")
 
     for entry in entries:
         expected_path = (root / entry["path"]).resolve()
@@ -181,6 +198,13 @@ def check_custom_nodes(root, manifest):
             findings.append(f"MISSING INSTALLED PATH: {missing}")
         for extra in sorted(actual_installs - expected_installs):
             findings.append(f"UNLOCKED ACTIVE PATH: {extra} uses {repository['path']}")
+        for installed_path in sorted(expected_installs & actual_installs):
+            expected_source = install_sources.get(installed_path)
+            actual_source = repository["install_sources"][installed_path]
+            if expected_source != actual_source:
+                findings.append(
+                    f"SOURCE PATH MISMATCH: {installed_path} locked={expected_source!r} actual={actual_source!r}"
+                )
 
     for path, repository in active.items():
         if path not in expected_by_root:

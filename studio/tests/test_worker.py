@@ -214,8 +214,10 @@ class WorkerTests(unittest.TestCase):
         status = self.run_it(path, "http://127.0.0.1:9")
         self.assertEqual(status["state"], "failed")
         self.assertEqual(status["error"], "ComfyUI unreachable at 127.0.0.1:9")
-        _, bad = make_job(self.project, version=3)
-        bad.rename(bad.with_name("cf-20261030-091200-ff00.json"))
+        _, bad = make_job(self.project, version=3, id="cf-20261030-091200-ff00")
+        status = self.run_it(bad)
+        self.assertEqual(status["state"], "failed")
+        self.assertEqual(status["error"], "unsupported job version: 3")
         self.assertEqual(self.server.graphs, [])
 
     def test_partial_failure_keeps_first_output(self):

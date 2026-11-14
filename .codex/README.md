@@ -44,6 +44,9 @@ history; the ComfyUI root does not absorb plugin history. For maintained
 plugins, publish SemVer tags from that plugin repository. The tracked
 `.codex/custom_nodes.lock.json` records the committed HEAD, configured origin,
 canonical repository path and active install paths for each distinct Git root.
+Its `install_sources` map records each installed path's resolved source
+directory relative to that Git root, distinguishing multiple node packs in a
+shared checkout.
 Symlinked install paths that share a repository are listed together; unrelated
 worktrees are not included unless an active `custom_nodes/` entry points to
 them. The lock pins independent Git checkouts. The checker also rejects copied node

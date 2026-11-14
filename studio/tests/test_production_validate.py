@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import production_validate as pv
 
 EXAMPLE = json.loads((pv.SPEC / "example.production.json").read_text())
@@ -26,6 +26,10 @@ class ProductionValidateTests(unittest.TestCase):
         for lighting in ({'quality': 'soft'}, {'mood': 'tense'}):
             self.assertEqual(self.broken(lambda d: d['shots'][0].update(lighting=lighting)), [])
         self.assertProblem(self.broken(lambda d: d['style_bible'].update(lighting_default={'mood': 'tense'})), 'lighting_default')
+
+    def test_shot_lighting_override_rejects_non_override_fields(self):
+        self.assertProblem(self.broken(lambda d: d['shots'][0].update(
+            lighting={'quality': 'soft', 'key': 'window left', 'time_of_day': 'day'})), 'shots/0/lighting')
 
     def test_schema_violation_is_reported_with_path(self):
         self.assertProblem(self.broken(lambda d: d["shots"][0].update(lens="20mm")), "shots/0/lens")

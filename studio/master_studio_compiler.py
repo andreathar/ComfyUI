@@ -1,5 +1,17 @@
 """Master Movie Studio frame / transition planning (CPU-pure)."""
 
+SETTINGS_REPORT_CODE = '''import json
+summary = json.dumps({'schema': 'workflow-monitor.runtime.v1', 'kind': 'settings', 'summary': summary,
+                     'values': {'width': int(width), 'height': int(height), 'raw_frames': int(raw),
+                                'delivered_frames': int(delivered), 'fps': int(round(fps_f)), 'steps': int(steps),
+                                'shift_video': float(shift_video), 'shift_audio': float(shift_audio),
+                                'transition': mode, 'continuing': bool(continuing)}}, ensure_ascii=False, indent=2)
+'''
+
+
+def with_runtime_report(code):
+    return code.replace('outputs[:] =', SETTINGS_REPORT_CODE + '\noutputs[:] =', 1)
+
 CONTEXT_LENGTH = 22
 
 

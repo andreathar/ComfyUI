@@ -1,5 +1,23 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "install_sources": {
+    "custom_nodes/comfyui-agent-panel": ".",
+    "custom_nodes/comfyui-fantastic-loras": ".",
+    "custom_nodes/comfyui-spark-h3": "studio-package",
+    "custom_nodes/SwarmComfyCommon": "src/BuiltinExtensions/ComfyUIBackend/ExtraNodes/SwarmComfyCommon",
+    "custom_nodes/SwarmComfyExtra": "src/BuiltinExtensions/ComfyUIBackend/ExtraNodes/SwarmComfyExtra",
+    "custom_nodes/ComfyUI-Workflow-Monitor-Brain": ".",
+    "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder": ".",
+    "custom_nodes/ComfyUI-H3-NativeAudioLock": ".",
+    "custom_nodes/ComfyUI-H3-Project-Suite": ".",
+    "custom_nodes/ComfyUI_LC123_nodes": ".",
+    "custom_nodes/ComfyUI_LC_Vision_nodes": ".",
+    "custom_nodes/comfyui-manager": ".",
+    "custom_nodes/comfyui-minimaxh3-contex-loop": ".",
+    "custom_nodes/comfyui-websocket-reconnect-fix": ".",
+    "custom_nodes/comfyui_dynamic": ".",
+    "custom_nodes/hermes-nodes": "."
+  },
   "repositories": [
     {
       "path": ".codex/repos/agent-panel",

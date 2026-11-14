@@ -203,13 +203,10 @@
           "properties": { "type": { "enum": ["static", "pan", "tilt", "dolly-in", "dolly-out", "track", "handheld", "crane", "orbit", "zoom", "whip-pan"] },
                           "speed": { "enum": ["slow", "medium", "fast"] }, "note": { "type": "string" } } },
         "lens": { "$ref": "#/$defs/lens" },
-        "lighting": { "anyOf": [
-          { "$ref": "#/$defs/lighting" },
-          { "type": "object", "additionalProperties": false, "properties": {
-            "quality": { "$ref": "#/$defs/lighting/properties/quality" },
-            "mood": { "$ref": "#/$defs/lighting/properties/mood" }
-          } }
-        ] },
+        "lighting": { "type": "object", "additionalProperties": false, "properties": {
+          "quality": { "$ref": "#/$defs/lighting/properties/quality" },
+          "mood": { "$ref": "#/$defs/lighting/properties/mood" }
+        } },
         "subject": { "type": "string" },
         "action": { "type": "string", "description": "Observable action only, present tense, no interior states." },
         "characters": { "type": "array", "items": { "$ref": "#/$defs/entity_id" } },

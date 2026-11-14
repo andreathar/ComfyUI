@@ -12,6 +12,7 @@ import urllib.request
 from pathlib import Path
 
 from master_studio_package import live_resolver_code, resolve_shot_package
+from master_studio_compiler import with_runtime_report
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "user/default/workflows/06 - Learning Production/The Message - Master Movie Studio.json"
@@ -430,6 +431,7 @@ outputs[:] = [
 ]
 """
 
+VARS_CODE = with_runtime_report(VARS_CODE)
 PKG_CODE = live_resolver_code()
 
 guide = """## The Message · Master Movie Studio (RTX 3060 6 GB)
