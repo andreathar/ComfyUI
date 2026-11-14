@@ -37,7 +37,7 @@ The exact config-only backup location and before/after Playwright stanza are rec
 
 - Google Chrome exists under the stable `current` path above. `google-chrome` and `chromium-browser` on PATH both resolve through the same Chrome wrapper; their names do not establish a separate Chromium installation.
 - `playwright-cli` works in the current agent environment. Host PATH remains owned by pathman. No browser download, PATH edit or shell-startup repair was needed.
-- November14: `comfy-visible` successfully launched headed, loaded ComfyUI, opened Agent Panel via a real UI click and captured its rendered panel. Dynamic's live resource panel is visible too. Agent Panel showed disconnected in this fresh profile; no assistant session was launched and no existing session was migrated.
+- November14: the person confirmed the window is visible and requested it remain open. `comfy-visible` successfully launched headed, loaded ComfyUI, opened Agent Panel via a real UI click and captured its rendered panel. Dynamic's live resource panel is visible too. Agent Panel showed disconnected in this fresh profile; no assistant session was launched and no existing session was migrated.
 - Existing Playwright MCP failed at the missing `/opt/google/chrome/chrome`; corrected config awaits client reconnect and live verification.
 - CUA/editor bridge reported `The browser access host is unavailable`. That connector remains unavailable; no conclusion about a specific VS Code preview defect follows from it.
 - Other agent hosts can use the CLI if they have this same local filesystem, display and tool access. Their native MCP connections and remote/headless environments have not been individually certified. Do not claim “all agents verified” from one session.
