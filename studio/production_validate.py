@@ -7,7 +7,7 @@ import sys
 
 import jsonschema
 
-SPEC = Path(__file__).resolve().parent.parent / ".claude/specs/production"
+SPEC = Path(__file__).resolve().parent / "specs/production"
 SCHEMA = SPEC / "production.schema.json"
 
 

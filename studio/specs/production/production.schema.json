@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "production.schema.json",
+  "title": "Production document (canonical)",
+  "description": "Single source of truth for one film/episode. Banks first, then scenes/shots referencing banks by id. Fountain/FDX are import/export views only. See production-rules.md.",
+  "type": "object",
+  "required": ["schema_version", "project", "style_bible", "characters", "locations", "scenes", "shots"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "project": {
+      "type": "object",
+      "required": ["code", "title", "aspect", "fps", "source_text"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "string", "pattern": "^[A-Z0-9]{2,8}$" },
+        "title": { "type": "string" },
+        "aspect": { "enum": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"] },
+        "fps": { "enum": [24, 25, 30] },
+        "language": { "type": "string", "default": "en" },
+        "source_text": { "type": "string", "description": "The user's dictated/free text, verbatim. Every scene and shot points back into it via script_ref." }
+      }
+    },
+    "style_bible": {
+      "type": "object",
+      "required": ["look", "palette", "lens_default", "lighting_default"],
+      "additionalProperties": false,
+      "properties": {
+        "look": { "type": "string", "description": "One-sentence visual identity." },
+        "palette": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "lens_default": { "$ref": "#/$defs/lens" },
+        "lighting_default": { "$ref": "#/$defs/lighting" },
+        "camera_rules": { "type": "array", "items": { "type": "string" }, "description": "Project camera rules, free text, in addition to production-rules.md." },
+        "negative_prompt": { "type": "string" }
+      }
+    },
+    "characters": { "type": "array", "items": { "$ref": "#/$defs/character" } },
+    "locations": { "type": "array", "items": { "$ref": "#/$defs/location" } },
+    "props": { "type": "array", "items": { "$ref": "#/$defs/prop" } },
+    "motions": { "type": "array", "items": { "$ref": "#/$defs/motion" } },
+    "scenes": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/scene" } },
+    "shots": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/shot" } },
+    "tasks": { "type": "array", "items": { "$ref": "#/$defs/task" }, "description": "Derived by tooling from banks + shots; do not hand-write." },
+    "continuity_checks": { "type": "array", "items": { "$ref": "#/$defs/continuity_check" } }
+  },
+  "$defs": {
+    "entity_id": { "type": "string", "maxLength": 32, "pattern": "^[A-Z0-9]{2,8}-(CHR|LOC|PRP|VOX|MOT)-[A-Z0-9]+(-[A-Z0-9]+)*$", "description": "<PROJ>-<KIND>-<SLUG>, <=32 chars (Higgsfield element limit; not renamable)." },
+    "shot_id": { "type": "string", "pattern": "^[A-Z0-9]{2,8}_S[0-9]{3}_SH[0-9]{2}$" },
+    "scene_id": { "type": "string", "pattern": "^[A-Z0-9]{2,8}_S[0-9]{3}$" },
+    "platform": { "enum": ["kl", "hf", "cf", "cl"] },
+    "script_ref": {
+      "type": "object",
+      "required": ["start", "end"],
+      "additionalProperties": false,
+      "properties": { "start": { "type": "integer", "minimum": 0 }, "end": { "type": "integer", "minimum": 0 } },
+      "description": "Character offsets [start,end) into project.source_text."
+    },
+    "lens": { "enum": ["14mm", "24mm", "35mm", "50mm", "85mm", "135mm", "macro"] },
+    "lighting": {
+      "type": "object",
+      "required": ["key", "quality", "time_of_day"],
+      "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string", "description": "Key light direction/source, e.g. 'window left, soft'." },
+        "quality": { "enum": ["soft", "hard", "mixed"] },
+        "time_of_day": { "enum": ["dawn", "day", "golden-hour", "dusk", "night", "interior-artificial"] },
+        "color_temp_k": { "type": "integer", "minimum": 1500, "maximum": 10000 },
+        "mood": { "type": "string" }
+      }
+    },
+    "refs": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^refs/(CHR|LOC|PRP|VOX|MOT)/[A-Z0-9-]+/[A-Z0-9-]+_[0-9]{2}(_(sheet|angle[0-9]|voice))?\\.[a-z0-9]+$" }
+    },
+    "character": {
+      "type": "object",
+      "required": ["id", "name", "persona", "appearance", "wardrobe"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/entity_id" },
+        "name": { "type": "string" },
+        "persona": {
+          "type": "object",
+          "required": ["summary", "demeanor", "speech"],
+          "additionalProperties": false,
+          "properties": {
+            "summary": { "type": "string" },
+            "demeanor": { "type": "string", "description": "How they carry themselves/move; drives action wording." },
+            "speech": { "type": "string", "description": "Voice quality, accent, pace." },
+            "rules": { "type": "array", "items": { "type": "string" }, "description": "Hard persona rules from the user, e.g. 'never smiles on camera'." }
+          }
+        },
+        "appearance": { "type": "string", "description": "Fixed identity description reused verbatim in every prompt." },
+        "wardrobe": {
+          "type": "array", "minItems": 1,
+          "items": { "type": "object", "required": ["id", "description"], "additionalProperties": false,
+            "properties": { "id": { "type": "string" }, "description": { "type": "string" } } }
+        },
+        "refs": { "$ref": "#/$defs/refs" },
+        "voice": { "$ref": "#/$defs/entity_id", "description": "VOX entity id." },
+        "soul_id": { "type": "string" },
+        "platform_ids": { "$ref": "#/$defs/platform_ids" }
+      }
+    },
+    "platform_ids": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": { "kling_element": { "type": "string" }, "higgsfield_element": { "type": "string" }, "higgsfield_voice": { "type": "string" } }
+    },
+    "location": {
+      "type": "object",
+      "required": ["id", "name", "kind", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/entity_id" },
+        "name": { "type": "string" },
+        "kind": { "enum": ["INT", "EXT", "INT/EXT"] },
+        "description": { "type": "string" },
+        "lighting": { "$ref": "#/$defs/lighting" },
+        "geography": { "type": "string", "description": "Layout/screen-direction notes for continuity (where door, window, sun are)." },
+        "refs": { "$ref": "#/$defs/refs" },
+        "platform_ids": { "$ref": "#/$defs/platform_ids" }
+      }
+    },
+    "prop": {
+      "type": "object",
+      "required": ["id", "name", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/entity_id" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "refs": { "$ref": "#/$defs/refs" },
+        "platform_ids": { "$ref": "#/$defs/platform_ids" }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "required": ["id", "name", "source_video", "direction"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/entity_id" },
+        "name": { "type": "string" },
+        "source_video": { "type": "string", "description": "Path to the user's phone-filmed driving clip." },
+        "duration_s": { "type": "number" },
+        "direction": { "enum": ["image_direction", "motion_direction"], "description": "Kling motion_control motionDirection mode." },
+        "saved_motion_id": { "type": "string" }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "required": ["id", "number", "slug", "location", "time", "summary", "characters", "script_ref"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/scene_id" },
+        "number": { "type": "integer", "minimum": 1 },
+        "slug": { "type": "string", "description": "Heading line, e.g. 'INT. KITCHEN - NIGHT'." },
+        "location": { "$ref": "#/$defs/entity_id" },
+        "time": { "enum": ["dawn", "day", "golden-hour", "dusk", "night"] },
+        "summary": { "type": "string" },
+        "characters": { "type": "array", "items": { "$ref": "#/$defs/entity_id" } },
+        "props": { "type": "array", "items": { "$ref": "#/$defs/entity_id" } },
+        "lighting": { "$ref": "#/$defs/lighting" },
+        "wardrobe": { "type": "object", "additionalProperties": { "type": "string" }, "description": "character id -> wardrobe id for this scene." },
+        "script_ref": { "$ref": "#/$defs/script_ref" }
+      }
+    },
+    "dialogue": {
+      "type": "object",
+      "required": ["character", "line"],
+      "additionalProperties": false,
+      "properties": {
+        "character": { "$ref": "#/$defs/entity_id" },
+        "line": { "type": "string" },
+        "delivery": { "type": "string" },
+        "start_s": { "type": "number", "minimum": 0 }
+      }
+    },
+    "shot": {
+      "type": "object",
+      "required": ["id", "scene", "purpose", "shot_size", "angle", "camera_move", "lens", "subject", "action", "characters", "location", "duration_s", "script_ref"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/shot_id" },
+        "scene": { "$ref": "#/$defs/scene_id" },
+        "purpose": { "enum": ["establishing", "master", "medium", "close-up", "insert", "reaction", "over-shoulder", "pov", "transition"] },
+        "shot_size": { "enum": ["extreme-wide", "wide", "full", "medium-wide", "medium", "medium-close", "close-up", "extreme-close-up"] },
+        "angle": { "enum": ["eye-level", "low", "high", "overhead", "dutch", "worms-eye"] },
+        "camera_move": { "type": "object", "required": ["type"], "additionalProperties": false,
+          "properties": { "type": { "enum": ["static", "pan", "tilt", "dolly-in", "dolly-out", "track", "handheld", "crane", "orbit", "zoom", "whip-pan"] },
+                          "speed": { "enum": ["slow", "medium", "fast"] }, "note": { "type": "string" } } },
+        "lens": { "$ref": "#/$defs/lens" },
+        "lighting": { "anyOf": [
+          { "$ref": "#/$defs/lighting" },
+          { "type": "object", "additionalProperties": false, "properties": {
+            "quality": { "$ref": "#/$defs/lighting/properties/quality" },
+            "mood": { "$ref": "#/$defs/lighting/properties/mood" }
+          } }
+        ] },
+        "subject": { "type": "string" },
+        "action": { "type": "string", "description": "Observable action only, present tense, no interior states." },
+        "characters": { "type": "array", "items": { "$ref": "#/$defs/entity_id" } },
+        "location": { "$ref": "#/$defs/entity_id" },
+        "props": { "type": "array", "items": { "$ref": "#/$defs/entity_id" } },
+        "motion": { "$ref": "#/$defs/entity_id", "description": "MOT entity when action needs a driving clip." },
+        "dialogue": { "type": "array", "items": { "$ref": "#/$defs/dialogue" } },
+        "sfx": { "type": "array", "items": { "type": "string" } },
+        "duration_s": { "type": "number", "minimum": 1, "maximum": 30 },
+        "complexity": { "enum": ["simple", "complex-motion"], "description": "complex-motion routes to Genjutsu/Kling motion control." },
+        "start_frame": { "type": "string" },
+        "end_frame": { "type": "string" },
+        "refs": { "$ref": "#/$defs/refs" },
+        "prompt": { "type": "string", "description": "Rendered by tooling in the fixed order from production-rules.md; not hand-written." },
+        "negative_prompt": { "type": "string" },
+        "target": { "enum": ["kling-v4-omni", "kling-v4-i2v", "kling-v3-turbo", "kling-motion-control", "hf-seedance-2-5", "hf-genjutsu-motion", "hf-genjutsu-replace", "hf-soul-2", "hf-soul-cinematic", "comfy-klein", "comfy-zimage"] },
+        "draft": { "type": "boolean" },
+        "resolution": { "enum": ["480p", "720p", "1080p", "4k"] },
+        "script_ref": { "$ref": "#/$defs/script_ref" },
+        "generation": { "type": "array", "description": "One record per attempt.",
+          "items": { "type": "object", "required": ["take", "platform", "model", "status"], "additionalProperties": false,
+            "properties": { "take": { "type": "string" }, "platform": { "$ref": "#/$defs/platform" }, "model": { "type": "string" },
+              "seed": { "type": "integer" }, "job_id": { "type": "string" }, "cost_credits": { "type": "number" },
+              "status": { "enum": ["queued", "needs-approval", "running", "done", "failed"] }, "approved": { "type": "boolean" } } } }
+      }
+    },
+    "task": {
+      "type": "object",
+      "required": ["id", "type", "platform", "subject", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Z0-9_-]+~[A-Z]+~(kl|hf|cf|cl)$" },
+        "type": { "enum": ["VOICE", "CHARSHEET", "LOCIMG", "PROPIMG", "STARTFRAME", "ENDFRAME", "KEYFRAME", "VIDEO", "MOTION", "DIALOGUE", "LIPSYNC", "EDIT"] },
+        "platform": { "$ref": "#/$defs/platform" },
+        "subject": { "type": "string", "description": "Entity or shot id." },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "paid": { "type": "boolean" },
+        "estimate_credits": { "type": "number" },
+        "status": { "enum": ["pending", "needs-approval", "queued", "running", "done", "failed"] }
+      }
+    },
+    "continuity_check": {
+      "type": "object",
+      "required": ["subject", "check", "result"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": { "type": "string" },
+        "check": { "enum": ["identity", "wardrobe", "screen-direction", "lighting", "props", "location-geography", "timeline"] },
+        "result": { "enum": ["pass", "warn", "fail"] },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

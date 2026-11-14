@@ -22,6 +22,11 @@ class ProductionValidateTests(unittest.TestCase):
     def test_example_is_valid(self):
         self.assertEqual(pv.check(EXAMPLE), [])
 
+    def test_partial_shot_lighting_is_valid_but_defaults_remain_complete(self):
+        for lighting in ({'quality': 'soft'}, {'mood': 'tense'}):
+            self.assertEqual(self.broken(lambda d: d['shots'][0].update(lighting=lighting)), [])
+        self.assertProblem(self.broken(lambda d: d['style_bible'].update(lighting_default={'mood': 'tense'})), 'lighting_default')
+
     def test_schema_violation_is_reported_with_path(self):
         self.assertProblem(self.broken(lambda d: d["shots"][0].update(lens="20mm")), "shots/0/lens")
 

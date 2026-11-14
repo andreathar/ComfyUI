@@ -177,6 +177,9 @@ def verify_server_sources(pid):
     command = (proc / "cmdline").read_bytes().split(b"\0")
     if b"main.py" not in command or b"8188" not in command:
         raise ValueError("Expected explicit local ComfyUI main.py --port 8188 process")
+    storage_flags = {b"--input-directory", b"--output-directory", b"--temp-directory", b"--base-directory"}
+    if any(argument.split(b"=", 1)[0] in storage_flags for argument in command):
+        raise ValueError("Utility review does not support server storage directory overrides")
     boot = next(int(line.split()[1]) for line in Path("/proc/stat").read_text().splitlines() if line.startswith("btime "))
     ticks = int((proc / "stat").read_text().rsplit(")", 1)[1].split()[19])
     started = boot + ticks / os.sysconf("SC_CLK_TCK")

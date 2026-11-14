@@ -24,6 +24,14 @@ def api(model="weights.gguf"):
 
 
 class CatalogueTests(unittest.TestCase):
+    @unittest.skipIf(Image is None, 'Pillow unavailable')
+    def test_jpeg_named_png_does_not_abort_catalogue(self):
+        path = self.root / 'user/default/workflows/not-png.png'
+        path.parent.mkdir(parents=True)
+        Image.new('RGB', (2, 2)).save(path, format='JPEG')
+        report = scan(self.root, self.output)
+        self.assertEqual(report['sources'][0]['status'], 'parse_or_read_error')
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

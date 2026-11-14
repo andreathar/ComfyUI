@@ -304,6 +304,8 @@ def scan(root, output, schemas=None):
                         source["status"] = "uninspected_png_pillow_unavailable"
                         continue
                     with Image.open(path) as image:
+                        if image.format != 'PNG':
+                            raise ValueError('Expected PNG content for workflow metadata')
                         metadata = dict(image.text)
                     values = []
                     for key in ("workflow", "prompt"):

@@ -6,10 +6,18 @@ from unittest.mock import patch
 
 from PIL import Image
 
-from review_utilities import collect_outputs, execute, prompts
+from review_utilities import collect_outputs, execute, prompts, verify_server_sources
 
 
 class UtilityTests(unittest.TestCase):
+    def test_preflight_rejects_server_storage_overrides(self):
+        for flag in ('--input-directory', '--output-directory', '--temp-directory', '--base-directory'):
+            for option in (flag + '\0/elsewhere', flag + '=/elsewhere'):
+                with self.subTest(option=option), patch('review_utilities.Path.resolve', return_value=Path('/checkout')), \
+                        patch('review_utilities.Path.read_bytes', return_value=('python\0main.py\0--port\08188\0' + option).encode()):
+                    with self.assertRaisesRegex(ValueError, 'storage directory overrides'):
+                        verify_server_sources(0)
+
     def test_prompts_are_model_free_and_use_only_reviewed_nodes(self):
         graphs = prompts("a.png", "b.png")
         self.assertEqual(len(graphs), 6)

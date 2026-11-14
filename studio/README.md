@@ -71,7 +71,7 @@ Start the server with `.codex/launch.sh`, then:
 ```bash
 .venv/bin/python studio/shot.py studio/shots/argon-demo-s01.json --dry-run
 .venv/bin/python studio/shot.py studio/shots/argon-demo-s01.json --only 020
-.venv/bin/python -m unittest discover -s studio -p test_shot.py
+PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p test_shot.py
 ```
 
 The PNG keeps ComfyUI's native `prompt` metadata for Argon; the sidecar adds
@@ -90,7 +90,7 @@ absolute. Use only trusted local manifests: the checker reads their declared fil
 
 ```bash
 .venv/bin/python studio/h3_manifest.py <manifest.json> [--root /path/to/ComfyUI]
-.venv/bin/python -m unittest discover -s studio -p test_h3_manifest.py
+PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p test_h3_manifest.py
 ```
 
 This supports the direct Fantastic REF-mode, picture-plus-masked-video encode
@@ -110,7 +110,7 @@ It uses the compositor's PyAV resize path and native RGB16, not lossy MP4/RGB8.
 
 ```bash
 .venv/bin/python studio/h3_media_validate.py <contract.json> [--root /path/to/ComfyUI]
-.venv/bin/python -m unittest discover -s studio -p test_h3_media_validate.py
+PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p test_h3_media_validate.py
 ```
 
 The version-1 contract contains `source` expectations (`delivery_frames`,
@@ -133,7 +133,7 @@ design is `.claude/specs/2026-10-30-comfyui-worker-design.md`.
 
 ```bash
 .venv/bin/python studio/worker.py --project /path/to/openreel-project [--once] [--server http://127.0.0.1:8188]
-.venv/bin/python -m unittest discover -s studio -p test_worker.py
+PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p test_worker.py
 ```
 
 - One job at a time, oldest first; a job with a status file is never re-run.
@@ -157,3 +157,14 @@ design is `.claude/specs/2026-10-30-comfyui-worker-design.md`.
 Use one ref for close-ups and three for profile or wide shots. References fix identity, not
 expression or wardrobe, so describe those in the prompt. Models come from catalogue profile
 `flux2-klein-4b` (`.codex/models.json`).
+
+## Offline regression checks
+
+Run the full studio suite from the ComfyUI root:
+
+```bash
+.venv/bin/python -m pytest studio/tests -q
+```
+
+Production validation and prompt generation use the versioned files in
+`studio/specs/production/`. Keep those runtime resources with the studio code.

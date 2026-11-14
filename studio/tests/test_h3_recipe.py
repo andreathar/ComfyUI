@@ -13,6 +13,11 @@ import film
 
 
 class RecipeTests(unittest.TestCase):
+    def test_partial_lighting_override_inherits_the_scene_key(self):
+        self.doc['shots'][0]['lighting'] = {'quality': 'soft'}
+        out = self.compile()
+        self.assertIn('Lighting: neon sign, side, soft.', out['builder_state']['ref']['styleLine'])
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)

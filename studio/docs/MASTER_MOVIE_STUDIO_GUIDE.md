@@ -32,7 +32,8 @@ Guide companion review: [`MASTER_MOVIE_STUDIO_REVIEW.md`](MASTER_MOVIE_STUDIO_RE
 ## Transition policy
 
 - Package defaults in `studio/projects/the-message/silent-proof-v001/shot_transitions.json` are all **`cut`**.
-- `continue` arms H3 Context only when Hub `chain_active` is true, and inflates raw length by 22 so delivered duration matches the request.
+- `continue` arms H3 Context only when Hub `chain_active` is true and adds 22 overlap frames before H3 frame-grid rounding. A 3-second request at 24 FPS samples 107 frames, trims 22, and delivers 85 (about 3.542 seconds). Check the raw/delivered summary for the actual duration.
+- Project Save uses integer FPS. The generated controls round FPS before computing frame counts and display that same playback rate.
 - Do not rely on “any approved predecessor continues automatically.”
 
 ## Out of scope until later

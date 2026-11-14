@@ -264,7 +264,7 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
         delivery = line.get('delivery', 'naturally and clearly')
         channel = 'in off-screen voiceover, with lips closed' if mode == 'generated_voiceover' else 'on screen, with synchronized speech'
         dialogue.append(f"{characters[cid]['name']} ({speakers[cid]}) says once {channel}, {delivery}: <d>[{doc['project'].get('language', 'en')}] {line['line']}</d>")
-    lighting = shot.get('lighting', scene.get('lighting', doc['style_bible']['lighting_default']))
+    lighting = {**scene.get('lighting', doc['style_bible']['lighting_default']), **shot.get('lighting', {})}
     move = shot['camera_move']
     layout_description = {
         'composition': f'Environment: {environment}, primary camera layout from {location}.',

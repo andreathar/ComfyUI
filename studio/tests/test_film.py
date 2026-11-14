@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import subprocess
 import time
 
@@ -12,6 +13,15 @@ import h3_graph
 
 
 class TakeTests(unittest.TestCase):
+    def test_prepare_cli_uses_selected_output_namespace(self):
+        compiled = {**self.compiled, 'labels': [], 'warnings': []}
+        out = self.root / 'other-takes'
+        with patch('film.preflight_project', return_value={}), patch('film.compile_project', return_value=[compiled]):
+            self.assertEqual(film.main(['prepare', str(self.root), '--out', str(out), '--attempt', 'tk001',
+                                       '--output-namespace', 'Second_Film']), 0)
+        take = film.read_take(out / compiled['shot_id'] / 'tk001')
+        self.assertEqual(take['output_namespace'], 'Second_Film')
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
@@ -168,7 +178,10 @@ class TakeTests(unittest.TestCase):
             film.assembly_inputs(edit)
 
     def test_run_resumes_without_resubmitting_uncertain_job(self):
-        run = film.plan_run([self.take], self.root / 'run.json', self.root / 'draft.mp4')
+        run = self.root / 'run.json'
+        self.assertEqual(film.main(['plan-run', str(run), '--take', str(self.take),
+                                    '--draft-output', str(self.root / 'draft.mp4')]), 0)
+        self.assertEqual(film.main(['run-status', str(run)]), 0)
         self.assertEqual(film.run_status(run)['action'], 'render')
         film.mark_submitting(self.take)
         self.assertEqual(film.run_status(run)['action'], 'reconcile_submission')
@@ -191,7 +204,10 @@ class TakeTests(unittest.TestCase):
                      'sha256': film.h3.file_hash(video), **info})
         film.write_json(self.take / 'take.json', state)
         edit = [{'take': str(self.take), 'in_frame': 0, 'out_frame': 6}]
-        out = film.assemble(edit, self.root / 'silent-draft.mp4', draft=True)
+        out = self.root / 'silent-draft.mp4'
+        edit_path = self.root / 'edit.json'
+        film.write_json(edit_path, edit)
+        self.assertEqual(film.main(['assemble', str(edit_path), '--out', str(out), '--draft']), 0)
         self.assertEqual(film.probe_video(out), info)
         self.assertIsNone(film.read_take(self.take)['review'])
         with self.assertRaisesRegex(ValueError, 'approved'):

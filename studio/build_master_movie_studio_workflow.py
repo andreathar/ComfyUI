@@ -403,7 +403,7 @@ subgraph_5 = make_subgraph(
 VARS_CODE = """project_name, shot_tag, width, height, duration_s, fps, steps, shift_video, shift_audio, transition, chain_active = inputs
 width = max(32, round(int(width) / 32) * 32)
 height = max(32, round(int(height) / 32) * 32)
-fps_f = float(fps)
+fps_f = float(round(float(fps)))
 req = max(5, round(float(duration_s) * fps_f))
 ctx = 22
 continuing = str(transition).strip().lower() == "continue" and bool(chain_active)

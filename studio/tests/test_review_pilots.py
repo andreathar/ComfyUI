@@ -1,11 +1,44 @@
 import unittest
+import hashlib
+import json
+from pathlib import Path
+import tempfile
 from copy import deepcopy
 from unittest.mock import patch
 
-from review_pilots import cancel, convert
+from review_pilots import cancel, convert, run
 
 
 class PilotConversionTests(unittest.TestCase):
+    def test_receipt_failure_after_submission_cancels_owned_prompt(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / 'user/default/workflows/test.json'
+            source.parent.mkdir(parents=True)
+            source.write_text(json.dumps(self.graph))
+            calls = []
+            def request(path, body=None):
+                calls.append((path, body))
+                if path == '/object_info':
+                    return self.schemas
+                if path == '/queue':
+                    return {'queue_running': [], 'queue_pending': []}
+                return {}
+            original = Path.write_text
+            def write(path, text, *args, **kwargs):
+                if path.name == 'result.json' and json.loads(text)['status'] == 'queued':
+                    raise OSError('disk full')
+                return original(path, text, *args, **kwargs)
+            with patch('review_pilots.ROOT', root), patch('review_pilots.PILOTS', {'test': 'test.json'}), \
+                    patch('review_pilots.REVIEWED_HASHES', {'test': hashlib.sha256(source.read_bytes()).hexdigest()}), \
+                    patch('review_pilots.request', side_effect=request), \
+                    patch('review_pilots.resources', return_value={'ram_available': 20 * 1024**3, 'temperature_c': 50, 'gpu_utilization': 0}), \
+                    patch.object(Path, 'write_text', write):
+                folder = run('test', True, root / 'results', 60)
+            receipt = json.loads((folder / 'result.json').read_text())
+            self.assertEqual(receipt['status'], 'monitor_error')
+            self.assertIn(('/api/jobs/' + receipt['prompt_id'] + '/cancel', {}), calls)
+
     def setUp(self):
         self.schemas = {
             "CLIPTextEncode": {"input": {"required": {"text": ["STRING", {}]}}},

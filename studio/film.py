@@ -352,6 +352,7 @@ def main(argv=None):
         if name == 'prepare':
             command.add_argument('--out', type=Path, required=True)
             command.add_argument('--attempt', required=True)
+            command.add_argument('--output-namespace', default='The_Message')
     command = sub.add_parser('submitting')
     command.add_argument('take', type=Path)
     command = sub.add_parser('preflight')
@@ -376,6 +377,13 @@ def main(argv=None):
     command = sub.add_parser('assemble')
     command.add_argument('edit', type=Path)
     command.add_argument('--out', type=Path, required=True)
+    command.add_argument('--draft', action='store_true')
+    command = sub.add_parser('plan-run')
+    command.add_argument('run', type=Path)
+    command.add_argument('--take', type=Path, action='append', required=True)
+    command.add_argument('--draft-output', type=Path, required=True)
+    command = sub.add_parser('run-status')
+    command.add_argument('run', type=Path)
     command = sub.add_parser('assemble-run')
     command.add_argument('run', type=Path)
     args = parser.parse_args(argv)
@@ -390,7 +398,7 @@ def main(argv=None):
         for shot in shots:
             result = {'shot': shot['shot_id'], 'fingerprint': shot['fingerprint'], 'labels': shot['labels'], 'warnings': shot['warnings']}
             if args.command == 'prepare':
-                result['take'] = str(prepare(args.out, shot, args.attempt))
+                result['take'] = str(prepare(args.out, shot, args.attempt, args.output_namespace))
             print(json.dumps(result))
     elif args.command == 'submitting':
         mark_submitting(args.take)
@@ -404,7 +412,11 @@ def main(argv=None):
     elif args.command == 'review':
         review(args.take, args.decision == 'approve', args.reviewer, args.note)
     elif args.command == 'assemble':
-        print(assemble(read_json(args.edit), args.out))
+        print(assemble(read_json(args.edit), args.out, draft=args.draft))
+    elif args.command == 'plan-run':
+        print(plan_run(args.take, args.run, args.draft_output))
+    elif args.command == 'run-status':
+        print(json.dumps(run_status(args.run)))
     elif args.command == 'assemble-run':
         status = run_status(args.run)
         if status['action'] == 'assemble_draft':

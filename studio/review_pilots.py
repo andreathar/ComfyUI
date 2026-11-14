@@ -159,8 +159,8 @@ def run(name, execute, destination, max_seconds):
         receipt.write_text(json.dumps(record, indent=2) + "\n")
         raise
     record.update(status="queued", executed=True)
-    receipt.write_text(json.dumps(record, indent=2) + "\n")
     try:
+        receipt.write_text(json.dumps(record, indent=2) + "\n")
         with (folder / "resources.jsonl").open("w") as samples:
             while True:
                 sample = resources()

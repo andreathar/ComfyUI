@@ -8,6 +8,8 @@ from unittest.mock import patch
 import preflight_workflows as preflight
 import workflow_catalogue as catalogue
 
+if catalogue.Image is not None:
+    from PIL.PngImagePlugin import PngInfo
 
 SCHEMAS = {"Loader": {"input": {"required": {"model": [["present.safetensors"]]}}}}
 
@@ -64,8 +66,6 @@ class PreflightTests(unittest.TestCase):
 
     @unittest.skipIf(catalogue.Image is None, "Pillow unavailable")
     def test_png_workflow_prompt_and_nested_wrapper(self):
-        from PIL.PngImagePlugin import PngInfo
-
         path = self.root / "workflow.png"
         metadata = PngInfo()
         metadata.add_text("workflow", json.dumps({"extra": {"workflow": json.dumps(ui())}}))
