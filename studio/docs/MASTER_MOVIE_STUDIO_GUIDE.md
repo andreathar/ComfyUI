@@ -25,7 +25,7 @@ Guide companion review: [`MASTER_MOVIE_STUDIO_REVIEW.md`](MASTER_MOVIE_STUDIO_RE
 1. Set **Var · Project Name** (feeds Hub directly — panel follows this link).
 2. Set **Var · Shot Tag** (`MSG_S001_SH0N`). The **Shot Package Resolver** loads matching prompt, media, RefMod stack, seed, and transition.
 3. Read the **Live Production Plan Summary**: project, shot, transition mode, raw/delivered frames.
-4. Queue. For a **cut**, context stays off even if an approved clip exists. For **continue**, approve the predecessor first, then queue with that shot’s transition=`continue`.
+4. Read the live `/queue` immediately before submission and wait for a coordinated idle window; never interrupt or duplicate active work. Queue. For a **cut**, context stays off even if an approved clip exists. For **continue**, approve the predecessor first, then queue with that shot’s transition=`continue`.
 5. Open project… on Hub → review → Approve before the next continue take.
 6. Monitor Brain records digests for steps/duration/prompt/LoRA under `user/workflow_monitor` (not `user/default/workflow_monitor`).
 
