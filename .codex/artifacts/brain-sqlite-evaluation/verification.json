@@ -1,0 +1,13 @@
+{
+  "brain_commit": "40e316bc1d73f92df82e1db6d0ecdfe7cc45ed0a",
+  "run_source_slots_checked": 114,
+  "existing_source_files_checked": 92,
+  "all_sources_unchanged": true,
+  "saved_workflow_project_files_checked": 78,
+  "graph_head_matches": true,
+  "changed_report_files_fresh": true,
+  "stack_findings": "unrelated dirty skills only",
+  "python_tests": 109,
+  "browser_event_tests": 4,
+  "review": "CodeRabbit completed with zero findings"
+}

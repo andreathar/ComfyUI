@@ -11,6 +11,8 @@ review: it defines repository coverage checks, the working graph access path,
 review scope, evidence gates and tool-specific limits.
 See [RUN_PROVENANCE.md](RUN_PROVENANCE.md) for new-run component/settings capture,
 its validation evidence and completed live activation.
+See [BRAIN_ANALYSIS.md](BRAIN_ANALYSIS.md) for additive report-quality metadata and
+the measured SQLite analysis-index recommendation.
 
 Read [STACK_OWNERSHIP.md](STACK_OWNERSHIP.md) for component responsibilities,
 including native DynamicVRAM and LC123 global hooks that saved-node counts miss.

@@ -16,7 +16,7 @@
       "installed_paths": [
         "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
       ],
-      "head": "d0cf1c48727a46673e3e1ba23787d509e4b6eafb"
+      "head": "40e316bc1d73f92df82e1db6d0ecdfe7cc45ed0a"
     },
     {
       "owner": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
@@ -389,7 +389,7 @@
     {
       "id": "run_attribution",
       "question": "Does a recorded run prove which source revisions and resolved values produced it?",
-      "answer": "New Brain code records one immutable filesystem component-revision/settings snapshot for a newly observed live-queue run. It is implemented, tested and active; a CPU-only monitored prompt verified capture and exports after restart. Source commits/dirty state, configured settings and sampled process policy are distinct from loaded-code identity and executed resolved values, which remain unverified unless runtime evidence supplies them. Historical records are not backfilled; the current stack lock cannot establish their revisions.",
+      "answer": "New Brain code records one immutable filesystem component-revision/settings snapshot for a newly observed live-queue run. It is implemented, tested and active; a CPU-only monitored prompt verified capture and exports after restart. Source commits/dirty state, configured settings and sampled process policy are distinct from loaded-code identity and executed resolved values, which remain unverified unless runtime evidence supplies them. Historical records are not backfilled; the current stack lock cannot establish their revisions. Additive data_quality reporting also checks snapshot digests and exposes evidence gaps; this later report-only update is tested and committed but awaits live activation.",
       "evidence": [
         {
           "owner": ".codex/worktrees/workflow-monitor-brain",
@@ -467,6 +467,17 @@
             {
               "text": "'loaded_code_identity': 'unverified'",
               "line": 144
+            }
+          ]
+        },
+        {
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "file": "workflow_monitor/quality.py",
+          "sha256": "126302abca0cd21964b55f6f04cfe6d2bf02ae77e4ab5766eb7c7f1f9ce5c1f6",
+          "anchors": [
+            {
+              "text": "def data_quality(",
+              "line": 5
             }
           ]
         }
