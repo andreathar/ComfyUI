@@ -25,14 +25,15 @@ Downloading is a user decision. Before any `download`, show the user the
    The folder is the native `models/` category: `checkpoints`, `diffusion_models`,
    `text_encoders`, `vae`, `loras`, `upscale_models`, `controlnet`.
    Review the license it recorded; tell the user if it is non-commercial.
-3. Memory check before choosing: GPU is 6 GiB, RAM is often near full. Prefer
-   fp8 or GGUF builds when a bf16 model exceeds ~8 GB (`ComfyUI-GGUF` is installed;
-   GGUF files go in `unet/`).
+3. Check current free RAM and VRAM before choosing. Select only a format supported
+   by the loader used by the target workflow; do not assume a GGUF loader is
+   installed. The current catalogue places GGUF files in `diffusion_models/`;
+   the downloader recognizes `unet/` only as a legacy fallback for existing files.
 4. After approval: `download <profile>`, then `verify <profile>`.
 5. If the model is meant for shots, add or update its entry in
    `studio/presets.json` (`family`, file names, sampler settings, `catalogue_profile`)
    and a matching `studio/templates/<family>-{t2i,i2i}.json`. Run
-   `.venv/bin/python -m unittest discover -s studio -p test_shot.py`.
+   `PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p test_shot.py`.
 6. Tests for the helper: `.venv/bin/python -m unittest discover -s .codex -p test_model_download.py`.
 
 Interrupted downloads resume from `.part`. A file with the wrong hash is kept

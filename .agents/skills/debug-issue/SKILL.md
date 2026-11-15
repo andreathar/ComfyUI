@@ -5,19 +5,18 @@ description: Systematically debug issues using graph-powered code navigation
 
 ## Debug Issue
 
-Trace a bug through the knowledge graph before reading source.
+Trace a bug through the current Codebase Memory graph before reading source.
 
 ### Steps
 
-1. Call `semantic_search_nodes_tool` to find code related to the issue.
-2. Call `query_graph_tool` with `callers_of` and `callees_of` to trace the call chain in both directions.
-3. Call `get_flow_tool` for the execution path that reaches the suspect code. Its entry point is where the bug is triggered.
-4. Call `detect_changes_tool` to check whether a recent change caused the issue.
-5. Call `get_impact_radius_tool` on the suspect files to see what a fix would affect.
+1. If the project identifier is unknown, call `mcp_codebase-memo_list_projects`; then call `mcp_codebase-memo_get_architecture` before searching.
+2. Use `mcp_codebase-memo_search_graph` to find relevant functions, classes and tests.
+3. Use `mcp_codebase-memo_trace_path` with `direction="inbound"`, `"outbound"` or `"both"` to trace callers and callees from the suspected symbol.
+4. Read the implementation with `mcp_codebase-memo_get_code_snippet`; use `mcp_codebase-memo_search_code` for literal names, dynamic attribute calls or other graph-coverage gaps.
+5. Use `mcp_codebase-memo_detect_changes` to correlate the issue with the current diff, and `mcp_codebase-memo_query_graph` when a multi-hop relationship or test link needs checking.
+6. Confirm the trigger path and reproduce the smallest failing case before proposing a fix. Add or run a regression test for the observed failure.
 
 ## Token Efficiency Rules
-- Call `get_minimal_context_tool(task="<your task>")` before any other graph tool.
-- Pass `detail_level="minimal"` wherever a tool accepts it. Use "standard" only when minimal is not enough.
-- Prefer a targeted `query_graph_tool` call over a broad listing call.
+- Use one targeted graph search first; request broader architecture or graph output only when needed.
 - Budget: about five tool calls and 800 tokens of graph output per task.
 - Read the implementation and its tests before changing code. The graph narrows scope; it does not replace the source.
