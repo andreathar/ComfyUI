@@ -1,0 +1,28 @@
+{
+  "project": "farm-reference-lab",
+  "scene": "refs",
+  "model": "z-image-turbo",
+  "look": "natural",
+  "tags": [
+    "reference-test",
+    "farm",
+    "candidate",
+    "2026-11-15"
+  ],
+  "shots": [
+    {
+      "shot": "farm-courtyard-clean",
+      "aspect": "16x9",
+      "seeds": [
+        151102
+      ],
+      "shot_size": "wide location reference",
+      "camera": "eye-level 35mm view into a spacious open courtyard with clear empty foreground",
+      "subject": "a peaceful rural Brazilian farmhouse courtyard, whitewashed single-story farmhouse with red clay roof and shaded veranda in the left background, dark wooden barn in the right background, low wooden fence and green pasture with distant trees",
+      "action": "still unoccupied architectural setting, empty courtyard",
+      "location": "firm pale earth courtyard with short grass at its edges, completely empty ground throughout the entire foreground and middle distance",
+      "lighting": "soft late-afternoon daylight from camera left, balanced exposure, natural warm colors, distinct architectural edges",
+      "lens": "35mm spherical lens, realistic architecture, no text"
+    }
+  ]
+}

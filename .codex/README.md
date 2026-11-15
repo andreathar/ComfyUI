@@ -5,6 +5,8 @@ root `AGENTS.md` remains the authority for upstream engineering rules. Start
 with [SETUP_PLAN.md](SETUP_PLAN.md) for decisions, outstanding work, and evidence.
 
 See [BRAIN_ANALYSIS.md](BRAIN_ANALYSIS.md) for on-demand SQLite snapshots, evidence reports and human experiment decisions.
+See [FARM_REFERENCE_LAB.md](FARM_REFERENCE_LAB.md) for the verified two-character
+reference test, take provenance checks, browser loading pitfall and advisor gaps.
 
 ## Integrated stack and visible browser
 
@@ -202,7 +204,8 @@ the default; use `--cache-none` separately if recomputation is acceptable.
 The launcher registers native local and partner API nodes so imported API
 templates do not falsely appear to need an unknown node pack. Registration
 does not execute an API workflow; partner calls require account access and
-credits. Run only the local SD 1.5 baseline when testing local generation.
+credits. Use the local SD 1.5 baseline for a basic installation smoke test;
+other production tests use their specifically authorized local workflow.
 Pass `--disable-partner-nodes` explicitly to hide API nodes if desired, but
 expect their templates to report missing nodes. Do not add `--offline` when
 browsing the registry: its CSP blocks the external search provider. For fully
@@ -305,10 +308,10 @@ standard checkpoint loader and needs no custom node packs.
 
 The user approved this 2,132,696,762-byte checkpoint. Its pinned source revision,
 SHA-256 and license are in `.codex/artifacts/model-manifest.json`. The original
-Z-Image workflow is saved separately as **Z-Image Turbo - original pending
-models**; its missing model files were not downloaded. Its selected
-`pixel_space` VAE should also be replaced with the model's documented VAE before
-attempting that workflow.
+Z-Image workflow was saved separately as **Z-Image Turbo - original pending
+models** during setup. That title is historical: installed Z-Image weights were
+used successfully for the November 15 farm references. This does not validate
+the old workflow's `pixel_space` VAE choice; the farm stills use `ae.safetensors`.
 
 Four native GPU runs completed: cold **14.19 s**, warm **8.13 / 7.65 / 6.59 s**.
 These timings apply only to this workflow and the observed busy machine.
@@ -336,11 +339,12 @@ artifact choice, resource budget and generation test.
 
 ### Download models to the configured model folder
 
-This checkout is on `/mnt/data`, but `models/` links to
-`/home/athar/ComfyUI-models` on the system filesystem. Downloads follow that
-existing model folder; no weights are moved. The catalogue's required mount is
-`/`, matching the actual destination. Check free space there before large
-model downloads; free space on `/mnt/data` is not available to this folder.
+As verified on 2026-11-15, `models/` resolves through
+`/home/athar/ComfyUI-models` to `/mnt/data/ComfyUI-models`. The catalogue still
+declares mount `/`; the farm session's read-only downloader plan failed its
+mount-policy check. Existing verified weights were used without downloading.
+Reconcile the catalogue with the actual mount before a future authorized
+download; do not bypass the check or infer storage speed from a folder name.
 
 The standalone downloader uses `.codex/models.json` to map each selected model
 set to exact native filenames and categories. From the project root:
@@ -359,9 +363,10 @@ set to exact native filenames and categories. From the project root:
 .venv/bin/python .codex/model_download.py verify sd15
 ```
 
-For the deferred Z-Image set, `plan z-image-turbo` shows all three destinations.
-When that model set is explicitly selected for use, the corresponding
-`download z-image-turbo` command downloads its 19.27 GiB (20.69 GB) set:
+The Z-Image set was initially deferred and is now installed. Once storage policy
+is reconciled, `plan z-image-turbo` checks its three destinations without a
+download. Any newly requested acquisition still requires authorization; the
+catalogue describes a 19.27 GiB (20.69 GB) set:
 
 | Artifact | Native destination under `models/` |
 | --- | --- |

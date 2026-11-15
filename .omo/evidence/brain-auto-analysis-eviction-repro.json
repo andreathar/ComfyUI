@@ -1,0 +1,6 @@
+{
+  "admitted_count": 33,
+  "retained_count": 32,
+  "first_requested_source_still_on_disk": true,
+  "first_requested_source_retained_for_scheduling": false
+}

@@ -3,6 +3,7 @@ import contextlib
 import io
 from unittest.mock import patch
 
+from brain_index import encoded, decode
 from brain_local_model import ModelResponseError, endpoint, generate, validate_interpretation
 
 PACKET = {'runs': [{'run_id': 'a', 'report': {'phase_seconds': {'Sampling': 2}}, 'resources': {}}]}
@@ -12,6 +13,41 @@ VALID = {'summary': 'Insufficient matched trials.', 'observations': [{'text': 'S
 
 
 class LocalModelTests(unittest.TestCase):
+    def test_advice_must_cite_supplied_production_findings_for_each_reviewed_run(self):
+        review = {'reviewer': 'assistant', 'findings': {'action': 'Head turn order correct.'}}
+        packet = {'runs': [{'run_id': 'a', 'resources': {}, 'report': {
+            'phase_seconds': {'Sampling': 2}, 'visual_reviews': {'f' * 64: review}}}]}
+        with self.assertRaisesRegex(ValueError, 'production findings'):
+            validate_interpretation(VALID, packet)
+        field = '/report/visual_reviews/' + 'f' * 64 + '/findings/action'
+        cited = {**VALID, 'observations': [{'text': 'Assistant reports correct turn order.',
+                 'citations': [{'run_id': 'a', 'field': field}]}]}
+        validate_interpretation(cited, packet)
+        packet['runs'].append({**packet['runs'][0], 'run_id': 'b'})
+        with self.assertRaisesRegex(ValueError, 'production findings'):
+            validate_interpretation(cited, packet)
+
+
+    def test_output_bound_visual_findings_reach_model_and_are_citable(self):
+        review = {'reviewer': 'assistant', 'findings': {'temporal': 'Envelope lifts without contact.'},
+                  'basis': 'submitted assessment; not production acceptance'}
+        packet = {'runs': [{'run_id': 'a', 'resources': {}, 'report': {
+            'phase_seconds': {'Sampling': 2}, 'visual_reviews': {'a' * 64: review}}}]}
+        field = '/report/visual_reviews/' + 'a' * 64 + '/findings/temporal'
+        interpretation = {**VALID, 'observations': [{'text': 'Reviewer observed prop instability.',
+                          'citations': [{'run_id': 'a', 'field': field}]}]}
+        responses = [{'queue_running': [], 'queue_pending': []}, {'status': 'ok'},
+                     {'data': [{'id': 'test', 'object': 'model'}]},
+                     {'queue_running': [], 'queue_pending': []},
+                     {'model': 'test', 'choices': [{'finish_reason': 'stop',
+                         'message': {'content': encoded(interpretation)}}]}]
+        with patch('brain_local_model.request_json', side_effect=responses) as request:
+            result = generate(packet, 'http://127.0.0.1:9931', 'test', runtime='llama.cpp')
+        sent = decode(request.call_args_list[-1].args[2]['messages'][1]['content'])
+        self.assertEqual(sent['runs'][0]['report']['visual_reviews']['a' * 64], review)
+        self.assertNotIn('visual_reviews', sent['omitted_from_model_view'])
+        self.assertEqual(result['interpretation'], interpretation)
+
     def test_only_literal_loopback_without_redirect_targets(self):
         for url in ('https://example.com', 'http://127.0.0.1.evil:1234', 'http://user@localhost:1234',
                     'http://localhost:1234/v1', 'http://localhost:1234?x=1'):
@@ -148,7 +184,7 @@ class LocalHTTPTests(unittest.TestCase):
                     result = generate(PACKET, origin, 'test', comfy_origin=origin, runtime=runtime)
                     self.assertEqual(result['interpretation'], VALID)
                     self.assertEqual(calls[:-1], paths)
-                    self.assertEqual(calls[-1][1]['max_tokens'], 1024)
+                    self.assertEqual(calls[-1][1]['max_tokens'], 2048 if runtime == 'llama.cpp' else 1024)
                     self.assertNotIn('tools', calls[-1][1])
             with self.assertRaisesRegex(ValueError, 'redirects'):
                 request_json(origin, '/redirect')

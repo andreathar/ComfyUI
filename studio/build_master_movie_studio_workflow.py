@@ -11,7 +11,7 @@ import json
 import urllib.request
 from pathlib import Path
 
-from master_studio_package import live_resolver_code, resolve_shot_package
+from master_studio_package import PROMPT_FILES, live_resolver_code, resolve_shot_package
 from master_studio_compiler import with_runtime_report
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -527,6 +527,8 @@ n28 = build_std_node(28, "PreviewAny", [480, -220], [360, 120], {}, title="Resol
 
 n21 = build_std_node(21, "MiniMaxH3MediaLoader", [80, 100], [360, 220], {"media_state": media_state}, title="Fantastic H3 Media Loader (from package)")
 n22 = build_std_node(22, "MiniMaxH3PromptBuilder", [480, 100], [420, 360], {"prompt_text": prompt_text, "builder_state": builder_state}, title="Fantastic H3 Prompt Builder (from package)")
+n22['properties']['prompt_library_source'] = {
+    'selector_node': 11, 'entries': {key: Path(value).stem for key, value in PROMPT_FILES.items()}}
 n23 = build_std_node(23, "MiniMaxH3RefModStack", [80, 360], [360, 220], {"stack_state": stack_state}, title="Fantastic H3 RefMod Stack (from package)")
 n24 = build_std_node(24, "MiniMaxH3FantasticReferenceMap", [480, 500], [360, 120], {}, title="Fantastic H3 Reference Map (CPU)")
 n25 = build_std_node(25, "PreviewAny", [480, 660], [360, 180], {}, title="Reference Map Preview")

@@ -17,6 +17,61 @@ The read API provides bounded status/gap filters (at most 100 rows), sample-reso
 
 Reports are saved to `analysis/reports/UUID/` with `packet.json`, `report.json`, and `report.md`. The packet records generation, analyzer and source hashes, observed metrics, evidence gaps and differing fields. Reports distinguish outcomes and coverage from intended experimental interventions. The first selected run is only the comparison reference; selecting it does not adopt it as a production baseline. Historical records currently do not establish a qualified model ranking or a cooling-effect claim.
 
+Record observed filmmaking defects through Brain's existing `/workflow_monitor/review`
+endpoint, bound to the collected output SHA-256 and attributed to `assistant` or
+`human`. Local-model reports include these findings as untrusted observations;
+the model has not viewed the video. Rebuild the index and request a new report
+after adding reviews. Automatic completion reports precede later visual review
+and remain immutable snapshots of the evidence available at that time.
+
+Wait for an active automatic analysis attempt to finish before adding a visual
+review; mutating source evidence during inference can invalidate publication.
+Then save the assessment through the review endpoint, rebuild the index and
+request a new report. Keep both reports and identify which includes the review.
+
+### Timing validity and production relevance
+
+Derived benchmark/SQLite reports now expose `phase_timing_coverage` per phase.
+A phase with any unfinished, incomplete or invalid interval has a NULL total;
+a stored duration without interval evidence is also unavailable. Closed interval
+timing remains usable as an observation even when individual progress steps are
+missing. This does not establish complete event capture or fair comparison.
+Raw recordings and older reports retain their original values unchanged.
+
+For the v002 farm replay, Ref2VA Sampling remains 718.3011 seconds, but its
+Saving/assembly phase is incomplete. Turbo Sampling is NULL instead of the
+misleading 0.6472-second fragment. Report tables expose coverage and label
+admitted wall time as including queue wait. Do not treat it as render time.
+
+The advisor is instructed to lead with supplied action/camera/framing/identity/
+temporal findings, attribute them to the reviewer, and propose a controlled
+production test or closer inspection of existing frames. Decode only verifies
+file integrity. Validation now rejects an interpretation that omits citations
+to production findings for any run that supplies them; a notes citation cannot
+substitute for supplied production findings. Citation coverage does not verify the prose or
+ensure that a proposed test is sensible. Inspect `model.model_view` and
+`model.interpretation` separately. Failure is recorded without an automatic retry.
+
+Fresh CLI and native analysis-worker processes load the corrected report code
+from disk. An incomplete Sampling total no longer meets the automatic worker's
+successful-observed-sampling condition, so it receives a deterministic report.
+The currently running ComfyUI server retains its imported comparison/export code
+until a guarded restart. No restart or single-run raw-panel rewrite was performed.
+The plugin worktree and parent changes remain separate; the committed stack lock
+does not capture uncommitted changes.
+
+Take-level input/decode receipts and external thermal evidence are still not
+automatically consumed by Brain qualification. SQLite remains the rebuildable
+query layer. See [repair evidence](artifacts/brain-timing-advice-20261115/PLAN.md)
+and the [farm confirmation](artifacts/farm-confirmation-v002-20261115/REPORT.md).
+
+The November 15 repair replay verified both runs' visual citations and correct
+handling of missing sampling time. The first 1024-token attempt truncated; the
+2048-token llama.cpp allowance completed. Its prose still mis-cited one camera
+finding and proposed decoding/rerendering to establish identity and flicker.
+Those recommendations were rejected in the operator assessment, not applied.
+See [repair result](artifacts/brain-timing-advice-20261115/RESULT.md).
+
 ## Existing Brain quality report
 
 Brain's active `workflow-monitor.quality.v1` report checks source snapshot digests, dirty/unknown owners, unresolved scalar parameters and missing runtime, sampling, model, output, review and thermal evidence. Multiple scene attestations remain distinct. A matching digest proves internal consistency, not the running server's loaded code. Historical records are not rewritten; quality gaps are not generation failures or a quality score.
@@ -55,7 +110,7 @@ Before inference, check available RAM/VRAM, temperatures and other GPU consumers
   --endpoint http://127.0.0.1:1234 --model qwen3.5-4b
 ```
 
-HTTP targets are literal loopback origins, proxies are disabled and redirects refused. Requests are bounded to 64 KiB of evidence and 1024 output tokens; responses to 256 KiB and a 120-second socket timeout. The model receives a compact view omitting source-file manifests and full provenance; the full packet is retained, and the model-view hash is saved. Reasoning is requested off for brief reports, but runtime compliance must be verified. The model has no SQL, shell, tools or write access. A completed model response must identify the requested model, match the report schema and cite existing run IDs and fields. This checks structural validity, not the truth of the prose. No unsupported recommendation is promoted to a human decision.
+HTTP targets are literal loopback origins, proxies are disabled and redirects refused. Requests are bounded to 64 KiB of evidence and 2048 output tokens for llama.cpp (1024 for the historical LM Studio bridge); responses to 256 KiB and a 120-second socket timeout. The model receives a compact view omitting source-file manifests and full provenance; the full packet is retained, and the model-view hash is saved. Reasoning is requested off for brief reports, but runtime compliance must be verified. The model has no SQL, shell, tools or write access. A completed model response must identify the requested model, match the report schema and cite existing run IDs and fields. This checks structural validity, not the truth of the prose. No unsupported recommendation is promoted to a human decision.
 
 Failed calls are recorded separately under `analysis/failed_reports/` and never become successful reports. Reports save the model inventory observation, response model, packet/template/schema hashes, usage and elapsed time. Model filenames/IDs are not weight-content hashes. The exact loaded weights, runtime binary and causal performance remain unverified. Raw report data can include project metadata; all analysis/model traffic in this adapter remains local.
 

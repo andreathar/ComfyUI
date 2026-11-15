@@ -12,6 +12,28 @@ uv venv, native ComfyUI model directories and execution behavior, and a small
 Codex configuration with an explicit foreground launch command. Host PATH stays
 owned by pathman; user-level Codex/MCP settings remain inherited.
 
+## Production follow-up — 2026-11-15
+
+The installation snapshots below are dated evidence. The
+[farm reference lab](FARM_REFERENCE_LAB.md) now verifies local Z-Image reference
+creation, a two-character H3 shot, exact take/Suite/Brain reconciliation and
+complete playback in the shared visible browser. The older browser-unavailable
+and Z-Image-uninstalled notes do not describe this later test.
+
+The farm used existing weights and the restored runtime; it did not replace the
+SD15 baseline or establish a speed/model improvement. GPU peak was 90°C with
+thermal slowdown observed separately. Recheck resources and queue before reuse.
+The downloader's required mount still disagrees with the resolved model store;
+see [README.md](README.md) before any future authorized acquisition.
+
+Brain/SQLite recorded the visual findings and delivered them to the local model,
+but its advice ignored the production questions. Pending work is to connect
+existing take/decode/reference-token receipts into qualification and check that
+recommendations address visual findings. Generic Master project selection is
+also not implemented; the farm used a separately frozen package. No database
+replacement, further render, hardware tuning or model change follows from this
+documentation update.
+
 ## Verified starting point — 2026-10-24
 
 | Item | Evidence and implication |

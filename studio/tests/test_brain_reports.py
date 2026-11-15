@@ -8,6 +8,25 @@ from brain_reports import evidence_packet, save_report, create_experiment, recor
 
 
 class ReportTests(unittest.TestCase):
+    def test_incomplete_phase_stays_null_through_sqlite_and_packet(self):
+        path = self.source / self.rid / 'run.json'
+        run = json.loads(path.read_text())
+        run.update(phase_seconds={'Sampling': .6472}, intervals=[
+            {'phase': 'Sampling', 'node': 's', 'display_node': 's', 'session': 'a',
+             'start': 1, 'end': None, 'incomplete': True},
+            {'phase': 'Sampling', 'node': 's', 'display_node': 's', 'session': 'a',
+             'start': 10, 'end': 10.6472, 'incomplete': False}])
+        path.write_text(json.dumps(run))
+        before = path.read_bytes()
+        build_index(self.source, self.analysis)
+        with AnalysisIndex(self.analysis) as index:
+            packet = evidence_packet(index, [self.rid])
+        report = packet['runs'][0]['report']
+        self.assertIsNone(report['phase_seconds']['Sampling'])
+        self.assertEqual(report['phase_timing_coverage']['Sampling'], 'incomplete')
+        self.assertEqual(path.read_bytes(), before)
+
+
     setUp = test_brain_analysis.IndexTests.setUp
     add_run = test_brain_analysis.IndexTests.add_run
 

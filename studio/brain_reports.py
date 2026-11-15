@@ -10,9 +10,11 @@ from brain_index import decode, encoded, run_id, safe_numbers, sha, sync_directo
 MAX_PACKET_BYTES = 64 * 1024
 REPORT_FIELDS = ('status', 'coverage', 'data_quality', 'index_quality_gaps', 'resolved_primitive_inputs',
                  'runtime_evidence', 'runtime_settings', 'configured_models', 'generation_fingerprint',
-                 'admitted_wall_seconds', 'phase_seconds', 'samplers', 'cached_nodes', 'sample_count',
+                 'admitted_wall_seconds', 'phase_seconds', 'phase_timing_coverage', 'samplers', 'cached_nodes', 'sample_count',
                  'peaks', 'output_evidence', 'visual_reviews', 'provenance')
 RULES = ['Unknown is not zero. Sampled peaks are not continuous measurements.',
+         'Null phase totals are unusable; phase_timing_coverage explains missing or incomplete intervals.',
+         'Admitted wall time includes queue wait and must not be called render execution time.',
          'Configured inputs and native output attestations have different evidence strength.',
          'Matching parameters alone does not prove fair comparison, reproducibility or causality.',
          'Historical source snapshots do not prove the code loaded by the running server.',
@@ -89,13 +91,23 @@ def save_report(analysis, packet, model_result=None):
               'benchmark_qualified': False, 'human_review': 'pending', 'model': model_result}
     lines = ['# Brain evidence report', '', 'Evidence packet SHA-256: `' + result['packet_sha256'] + '`', '',
              'These observations are not a qualified benchmark or a production adoption decision.', '',
-             '| Run | Status | Wall seconds | Stored samples | GPU peak °C |',
+             '| Run | Status | Admitted seconds (includes queue wait) | Stored samples | GPU peak °C |',
              '|---|---|---:|---:|---:|']
     for run in packet['runs']:
         report = run['report']
         values = [run['run_id'], report['status'], report['admitted_wall_seconds'], run['resources']['stored_sample_count'],
                   run['resources']['gpu_temperature_max_c']]
         lines.append('| ' + ' | '.join('unknown' if v is None else str(v) for v in values) + ' |')
+    lines += ['', '## Phase timing', '', '| Run | Phase | Seconds | Coverage |', '|---|---|---:|---|']
+    for run in packet['runs']:
+        report = run['report']
+        for phase, seconds in report.get('phase_seconds', {}).items():
+            coverage = (report.get('phase_timing_coverage') or {}).get(phase, 'unavailable')
+            lines.append('| ' + ' | '.join((run['run_id'], phase, 'unknown' if seconds is None else str(seconds), coverage)) + ' |')
+    lines += ['', '## Submitted visual findings', '', 'Reviewer observations, not model vision or production acceptance.']
+    for run in packet['runs']:
+        lines += ['', '`' + run['run_id'] + '`', '```json',
+                  encoded(run['report'].get('visual_reviews') or {}).replace('`', '\\u0060'), '```']
     lines += ['', '## Evidence gaps', '']
     for run in packet['runs']:
         lines.append('- `' + run['run_id'] + '`: ' + ', '.join(run['report']['index_quality_gaps']))
