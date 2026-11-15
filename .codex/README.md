@@ -10,7 +10,7 @@ Read [AGENT_TOOLING.md](AGENT_TOOLING.md) before graph investigation or CodeRabb
 review: it defines repository coverage checks, the working graph access path,
 review scope, evidence gates and tool-specific limits.
 See [RUN_PROVENANCE.md](RUN_PROVENANCE.md) for new-run component/settings capture,
-its validation evidence and the pending live activation.
+its validation evidence and completed live activation.
 
 Read [STACK_OWNERSHIP.md](STACK_OWNERSHIP.md) for component responsibilities,
 including native DynamicVRAM and LC123 global hooks that saved-node counts miss.
@@ -182,8 +182,8 @@ the script are passed to ComfyUI, for example `bash .codex/launch.sh --cache-non
 when memory pressure makes recomputation preferable to caching.
 
 The setup session left a background instance running. Its PID, cwd and log are
-recorded in `.codex/artifacts/server-process.json`; the log is
-`.codex/artifacts/comfyui-current.log`. Before stopping that instance, verify
+recorded in `.codex/artifacts/server-process.json`; use its `log` field for the
+current log. Before stopping that instance, verify
 its live PID/cwd/command against the record and confirm the queue is empty,
 then send SIGINT only to that process. Do not launch a duplicate on 8188.
 

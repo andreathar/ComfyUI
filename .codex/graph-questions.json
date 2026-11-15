@@ -389,7 +389,7 @@
     {
       "id": "run_attribution",
       "question": "Does a recorded run prove which source revisions and resolved values produced it?",
-      "answer": "New Brain code records one immutable filesystem component-revision/settings snapshot for a newly observed live-queue run. It is implemented and tested but not yet activated in the running server. Source commits/dirty state, configured settings and sampled process policy are distinct from loaded-code identity and executed resolved values, which remain unverified unless runtime evidence supplies them. Historical records are not backfilled; the current stack lock cannot establish their revisions.",
+      "answer": "New Brain code records one immutable filesystem component-revision/settings snapshot for a newly observed live-queue run. It is implemented, tested and active; a CPU-only monitored prompt verified capture and exports after restart. Source commits/dirty state, configured settings and sampled process policy are distinct from loaded-code identity and executed resolved values, which remain unverified unless runtime evidence supplies them. Historical records are not backfilled; the current stack lock cannot establish their revisions.",
       "evidence": [
         {
           "owner": ".codex/worktrees/workflow-monitor-brain",

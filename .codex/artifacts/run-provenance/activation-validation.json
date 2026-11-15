@@ -1,0 +1,26 @@
+{
+  "prompt_id": "e3ead456-950b-4b5e-840a-e51e3f4e4751",
+  "run_status": "succeeded",
+  "provenance_status": "collected",
+  "capture_seconds": 0.11731743812561035,
+  "snapshot_sha256": "59171a7cacd5ce1031a473915c12f43d78c8044242c07f738aaed38580e71153",
+  "owners": 15,
+  "source_coverage": "complete",
+  "dirty_owners": [
+    ".",
+    ".codex/repos/spark-h3",
+    ".codex/worktrees/swarm-nodes"
+  ],
+  "event_coverage": "complete",
+  "resource_coverage": "sampled",
+  "samples": 5,
+  "exports_preserve_provenance": true,
+  "benchmark_qualified": false,
+  "historical_and_saved_files_preserved": 115,
+  "queue": {
+    "queue_running": [],
+    "queue_pending": []
+  },
+  "new_pid": 546006,
+  "checked_at": 1794702607.667458
+}

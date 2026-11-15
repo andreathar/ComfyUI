@@ -1,6 +1,6 @@
 # New-run provenance implementation result
 
-Implemented and committed locally in Brain as `d0cf1c48727a46673e3e1ba23787d509e4b6eafb`. Parent integration pins that exact revision. Live activation is pending; ComfyUI has not been restarted and no media or test prompt has been submitted.
+Implemented and committed locally in Brain as `d0cf1c48727a46673e3e1ba23787d509e4b6eafb`. Parent integration pins that exact revision. Activation subsequently passed; see [ACTIVATION.md](ACTIVATION.md). The implementation-stage evidence below predates that authorized restart.
 
 ## Behavior
 
@@ -22,6 +22,8 @@ Metadata collection is serialized off the event loop with bounded Git time, cand
 
 ComfyUI remained PID 37847 with canonical flags and an empty queue; the visible browser session was preserved. No model loading, GPU generation, database migration, host PATH change, shared daemon restart, push or merge occurred.
 
-## Pending activation
+## Activation follow-up
 
 [activation-plan.md](activation-plan.md) and [activation-cpu-prompt.json](activation-cpu-prompt.json) specify the guarded canonical restart and a five-second CPU-only monitored prompt using existing nodes. Preserve the unsaved movie canvas, verify a real down/up cycle and browser reconnection, then validate a new live record and exports. This integration check does not establish generation performance or creative quality.
+
+The person approved activation in Inbox message `msg_01M7E9NTCCW4EX0YDY387PQQBH`. The guarded restart and single prepared CPU-only prompt completed successfully; the original canvas and historical/saved files remain unchanged.

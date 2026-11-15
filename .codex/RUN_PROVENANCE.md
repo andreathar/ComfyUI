@@ -1,6 +1,6 @@
 # New-run source and settings provenance
 
-Brain now captures one local source/settings snapshot for a newly observed live-queue run. This change is implemented and tested; activation in the already-running ComfyUI process requires a guarded restart. Historical runs are not backfilled.
+Brain now captures one local source/settings snapshot for a newly observed live-queue run. This change is implemented, tested and active after the authorized canonical restart. Historical runs are not backfilled.
 
 ## Recorded evidence
 
@@ -24,6 +24,8 @@ The read-only real-filesystem and isolated CPU observer checks found 15 owners (
 
 Evidence is in `artifacts/run-provenance/`: failing-first tests, Python/browser-event suite logs, filesystem snapshot, isolated CPU observer persistence/export smoke, review output and preservation hashes. See [RESULT.md](artifacts/run-provenance/RESULT.md) there for final commits and review disposition.
 
-Activation must preserve the visible unsaved movie canvas. Recheck the queue, RAM/VRAM and exact port owner; stop only the verified ComfyUI process with SIGINT, then launch through `.codex/launch.sh` with canonical flags. Verify backend readiness, browser reconnection and the new collector before submitting any media job. A small CPU-only monitored prompt can validate live capture separately from model/generation acceptance if authorized. Reloading the browser alone does not activate changed Python modules.
+Live activation passed on November 14 local time: a five-second CPU-only prompt captured 15 owners in 117 ms, with complete browser events and five resource samples. Both JSON exports preserved the snapshot and digest. See [ACTIVATION.md](artifacts/run-provenance/ACTIVATION.md). This is integration evidence, not an under-load or generation benchmark.
+
+Future activation must preserve the visible unsaved movie canvas. Recheck the queue, RAM/VRAM and exact port owner; stop only the verified ComfyUI process with SIGINT, then launch through `.codex/launch.sh` with canonical flags. Verify backend readiness, browser reconnection and the new collector before submitting any media job. A small CPU-only monitored prompt can validate live capture separately from model/generation acceptance if authorized. Reloading the browser alone does not activate changed Python modules.
 
 After changing Brain source, update its own Git commit first, then its parent lock entry and source hashes in `graph-questions.json`. The graph query evaluation is a historical baseline; new source evidence does not rewrite its earlier results. Preserve unrelated edits in `.agents/skills/`.

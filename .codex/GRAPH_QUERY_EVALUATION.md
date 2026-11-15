@@ -60,4 +60,4 @@ Five focused harness checks covered successful responses, tool-reported errors, 
 
 ## Follow-up: new-run provenance
 
-The source revision gap led to the bounded Brain collector described in [RUN_PROVENANCE.md](RUN_PROVENANCE.md). Its implementation is tested; live activation is pending. The source hashes in `graph-questions.json` track the updated implementation. The measurements and historical-run observations above remain the original evaluation, not validation of the new collector.
+The source revision gap led to the bounded Brain collector described in [RUN_PROVENANCE.md](RUN_PROVENANCE.md). Its implementation is tested and live CPU-only activation is verified in [ACTIVATION.md](artifacts/run-provenance/ACTIVATION.md). The source hashes in `graph-questions.json` track the updated implementation. The measurements and historical-run observations above remain the original evaluation, not validation of the new collector.
