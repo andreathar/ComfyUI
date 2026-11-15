@@ -42,8 +42,10 @@ def evidence_packet(index, ids):
                 differences.append({'run_id': candidate['run_id'], 'field': key,
                                     'baseline_present': key in baseline, 'candidate_present': key in fields,
                                     'baseline': baseline.get(key), 'candidate': fields.get(key)})
+    generation = {k: v for k, v in index.metadata.items() if k != 'skipped'}
+    generation['skipped_count'] = len(index.metadata.get('skipped', []))
     packet = safe_numbers({'schema': 'brain-evidence.v1', 'generated_at': time.time(),
-                          'generation': index.metadata, 'runs': runs, 'differences': differences,
+                          'generation': generation, 'runs': runs, 'differences': differences,
                           'benchmark_qualified': False, 'rules': RULES})
     if len(encoded(packet).encode()) > MAX_PACKET_BYTES:
         raise ValueError('Evidence packet exceeds 64 KiB; select fewer runs')
@@ -144,8 +146,13 @@ def record_decision(analysis, experiment_id, decision, reviewer, rationale):
              'decision': decision, 'reviewer': reviewer, 'rationale': rationale,
              'effect': 'Recorded human decision only; no workflow or baseline configuration changed'}
     path = folder / ('decision-' + str(uuid4()) + '.json')
-    write_json(path, value)
-    sync_directory(folder)
+    pending = folder / ('.' + path.name)
+    try:
+        write_json(pending, value)
+        pending.rename(path)
+        sync_directory(folder)
+    finally:
+        pending.unlink(missing_ok=True)
     return path
 
 

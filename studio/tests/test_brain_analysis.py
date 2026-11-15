@@ -114,3 +114,16 @@ class IndexTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class MalformedScalarTests(unittest.TestCase):
+    setUp = IndexTests.setUp
+    add_run = IndexTests.add_run
+    def test_malformed_label_skips_only_its_run(self):
+        bad = self.add_run()
+        path = self.source / bad / 'run.json'
+        value = json.loads(path.read_text())
+        value['label'] = {'invalid': 'scalar'}
+        path.write_text(json.dumps(value))
+        result = build_index(self.source, self.analysis)
+        self.assertEqual(result['run_count'], 1)
+        self.assertEqual(result['skipped'][0]['run_id'], bad)

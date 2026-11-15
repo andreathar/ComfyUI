@@ -127,6 +127,12 @@ def number(value):
     return value if isinstance(value, (float, int)) and not isinstance(value, bool) and math.isfinite(value) else None
 
 
+def scalar(value):
+    if value is not None and not isinstance(value, (str, int, float)):
+        raise ValueError('Expected a scalar metadata field')
+    return value
+
+
 SQL = '''
 PRAGMA foreign_keys=ON;
 CREATE TABLE metadata(value TEXT NOT NULL);
@@ -159,11 +165,11 @@ def import_run(connection, folder, report_fn):
     if run['status'] not in TERMINAL:
         raise ValueError('Run is active or has unsupported status')
     connection.execute('INSERT INTO runs VALUES (?,?,?,?,?,?,?,?)',
-                       (rid, run['status'], run.get('label'), number(run.get('created')), None, 0, 0, '{}'))
+                       (rid, run['status'], scalar(run.get('label')), number(run.get('created')), None, 0, 0, '{}'))
     recent = collections.deque(maxlen=10000)
     event_count = sample_count = 0
     for event in json_lines(folder / 'events.jsonl'):
-        connection.execute('INSERT INTO events VALUES (?,?,?,?)', (rid, event_count, event.get('type'), encoded(safe_numbers(event))))
+        connection.execute('INSERT INTO events VALUES (?,?,?,?)', (rid, event_count, scalar(event.get('type')), encoded(safe_numbers(event))))
         recent.append(event)
         event_count += 1
     for sample in json_lines(folder / 'samples.jsonl'):
@@ -195,7 +201,7 @@ def import_run(connection, folder, report_fn):
     provenance = run.get('provenance') or {}
     for component in provenance.get('snapshot', {}).get('components', []):
         connection.execute('INSERT INTO components VALUES (?,?,?,?)',
-                           (rid, component['root'], component.get('commit'), component.get('dirty')))
+                           (rid, scalar(component['root']), scalar(component.get('commit')), scalar(component.get('dirty'))))
     if identities(folder) != before:
         raise ValueError('Source changed during import')
     connection.executemany('INSERT INTO sources VALUES (?,?,?)', ((rid, name, encoded(value)) for name, value in before.items()))

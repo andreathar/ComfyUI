@@ -47,3 +47,29 @@ class ReportTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class PublicationTests(unittest.TestCase):
+    setUp = ReportTests.setUp
+    add_run = ReportTests.add_run
+    def test_irrelevant_skipped_runs_do_not_overflow_selected_packet(self):
+        build_index(self.source, self.analysis)
+        with AnalysisIndex(self.analysis) as index:
+            index.metadata['skipped'] = [{'run_id': str(i), 'reason': 'x' * 300} for i in range(1000)]
+            packet = evidence_packet(index, [self.rid])
+        self.assertEqual(packet['generation']['skipped_count'], 1000)
+        self.assertNotIn('skipped', packet['generation'])
+
+    def test_failed_decision_write_leaves_no_published_file(self):
+        from brain_reports import save_bundle
+        from brain_index import sha
+        packet = {'runs': [], 'test': True}
+        folder = save_bundle(self.analysis, 'experiments', {
+            'experiment.json': {'packet_sha256': sha(packet)}, 'packet.json': packet})
+        def partial(path, value):
+            path.write_text('{partial')
+            raise OSError('disk full')
+        with patch('brain_reports.write_json', side_effect=partial):
+            with self.assertRaises(OSError):
+                record_decision(self.analysis, folder.name, 'inconclusive', 'athar', 'test')
+        self.assertEqual(list(folder.glob('decision-*.json')), [])
+        self.assertEqual(sorted(p.name for p in folder.iterdir()), ['experiment.json', 'packet.json'])

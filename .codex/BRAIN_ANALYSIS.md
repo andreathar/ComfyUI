@@ -40,6 +40,12 @@ Experiment records pin the packet and its hash. Each decision is a new immutable
 
 ## Local model interpretation
 
+The dedicated Qwen3.5 9B llama.cpp deployment is documented in
+[BRAIN_LLAMA.md](BRAIN_LLAMA.md). Select `--runtime llama.cpp` with the explicit
+loopback endpoint and model alias. It uses `/health` and `/v1/models` instead
+of LM Studio's inventory API, and allows a 600-second CPU inference timeout.
+The LM Studio-specific behavior and earlier tests below remain historical.
+
 The first adapter targets the existing LM Studio OpenAI-compatible endpoint. It is a test bridge; the preferred future deployment is a dedicated llama.cpp runtime with an explicit model, context, offload and lifecycle configuration. This batch does not install or configure that runtime.
 
 Before inference, check available RAM/VRAM, temperatures and other GPU consumers; prevent concurrent ComfyUI/Argon generation operationally. The adapter checks the ComfyUI queue twice, refuses another loaded LM Studio text model, and requires the selected model to be already loaded unless the caller explicitly passes `--allow-load`. It cannot reserve the GPU or prevent a human from starting a render after those checks. It does not start a model server, download weights or unload another application's model.
@@ -69,10 +75,20 @@ The user loaded `qwen3.5-4b` in LM Studio and authorized the test. Its inventory
 
 A smaller 933-input-token request with `reasoning: "off"` returned `finish_reason: length` after 1024 completion tokens in its reasoning stream, with no finished report. The adapter rejected it. No successful local-model analysis is claimed. This resembles the [LM Studio structured-output reasoning issue](https://github.com/lmstudio-ai/lmstudio-bug-tracker/issues/1773), but local observations, not that issue's version assumptions, establish this failure. No automatic retries or runtime setting changes were made after those two bounded tests.
 
-The dedicated standalone binary resolves to `/home/athar/.local/opt/llama.cpp/build/bin/llama-server`; it has not been started for Brain. A separate runtime rollout should pin the executable and GGUF hash, verify the supported template/thinking flags, explicitly bound context/KV cache/offload, and define queue-aware start/stop ownership. Do not repurpose LM Studio's internal authenticated backend or stop the shared Hermes router.
+At that check, the standalone binary had not been started for Brain. The subsequent dedicated deployment in [BRAIN_LLAMA.md](BRAIN_LLAMA.md) pins the executable and GGUF hashes, bounds context/caches/offload, disables thinking and provides queue-aware startup. Do not repurpose LM Studio's internal authenticated backend or stop the shared Hermes router.
 
 ## Delivery verification
 
 The production index imported 38 runs, 5,525 events and 9,932 samples. Direct-source status counts, sample counts and temperature aggregates match SQL; integrity and foreign-key checks pass. All 114 original source slots and 78 saved workflow/project files match their prior hashes. Eighteen focused tests pass with both unittest and Studio's pytest configuration.
 
 CodeRabbit attempted the seven new source/test files and returned `review_completed` with `outcome: failed`, zero findings and all seven files unreviewed. This is unavailable external review, not a clean review. Native inspection and test evidence remain separate. See `artifacts/brain-analysis-index/verification.json`, `tests.txt`, `coderabbit-result.json`, and `live-model-verification.json`.
+
+## Automatic follow-up analysis
+
+Enable `analyze_when_finished` on Workflow Monitor Brain to request a separate **Brain — Analyze completed run** native queue job. It waits for terminal evidence/provenance, three seconds of stable source files and an empty render queue. Later renders wait while analysis runs. The dedicated CPU llama.cpp runtime must already be running; nothing starts or downloads models automatically.
+
+A succeeded run with observed Sampling time receives local-model interpretation. Cached, failed and runs without observed sampling receive deterministic evidence summaries. Neither policy selects a baseline or changes workflow settings. Incomplete evidence remains visible.
+
+The original render keeps its own success/failure status. In Brain's existing report panel, refresh the run to see the analysis attempt and **Open advisory analysis** link. Attempts/logs live in `user/workflow_monitor/analysis/jobs/`; immutable report packets remain in `analysis/reports/`. Cancellation disconnects the owned worker and holds the native queue until the dedicated llama.cpp slot reports idle. If the runtime becomes unreachable during cleanup, the queue remains held until it can confirm idle; restore that same runtime to finish cleanup.
+
+Waiting requests are durable and resume after restart, including records evicted from the monitor cache. Once claimed for enqueue, attempts are never retried implicitly after cancellation, restart or failure; those need an explicit manual analysis prompt. A restarting server waits for the dedicated runtime to be idle before accepting new work if an analyzing attempt was interrupted. To retry or analyze an older recording, run **Brain — Analyze completed run** alone in a separate workflow with its source run UUID. Do not insert it inside a generating graph. The toggle defaults off and existing saved workflows are not rewritten.

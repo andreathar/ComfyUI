@@ -49,6 +49,48 @@ class LocalModelTests(unittest.TestCase):
         self.assertEqual(caught.exception.details['content_characters'], [0])
         self.assertEqual(caught.exception.details['finish_reasons'], ['length'])
 
+    def test_llamacpp_uses_loaded_inventory_and_disables_thinking(self):
+        from brain_index import encoded
+        responses = [{'queue_running': [], 'queue_pending': []}, {'status': 'ok'},
+                     {'data': [{'id': 'brain-qwen35-9b', 'object': 'model'}]},
+                     {'queue_running': [], 'queue_pending': []},
+                     {'model': 'brain-qwen35-9b', 'choices': [{'finish_reason': 'stop',
+                         'message': {'content': encoded(VALID)}}]}]
+        packet = {'runs': [*PACKET['runs'], {'run_id': 'b', 'report': {'other': 3}, 'resources': {}}]}
+        with patch('brain_local_model.request_json', side_effect=responses) as request:
+            result = generate(packet, 'http://127.0.0.1:9931', 'brain-qwen35-9b', runtime='llama.cpp')
+        self.assertEqual(result['runtime'], 'llama.cpp')
+        self.assertEqual(result['interpretation'], VALID)
+        self.assertEqual([c.args[1] for c in request.call_args_list],
+                         ['/queue', '/health', '/v1/models', '/queue', '/v1/chat/completions'])
+        call = request.call_args_list[-1]
+        self.assertEqual(call.args[2]['chat_template_kwargs'], {'enable_thinking': False})
+        citations = call.args[2]['response_format']['json_schema']['schema']['properties']['observations']['items']['properties']['citations']['items']
+        branch = citations['anyOf'][0]['properties']
+        self.assertEqual(branch['run_id']['enum'], ['a'])
+        self.assertIn('/report/phase_seconds/Sampling', branch['field']['enum'])
+        self.assertNotIn('/report/other', branch['field']['enum'])
+        other = citations['anyOf'][1]['properties']
+        self.assertEqual(other['run_id']['enum'], ['b'])
+        self.assertIn('/report/other', other['field']['enum'])
+        self.assertEqual(call.kwargs['timeout'], 600)
+        self.assertNotIn('tools', call.args[2])
+
+    def test_llamacpp_rejects_wrong_loaded_model_before_inference(self):
+        responses = [{'queue_running': [], 'queue_pending': []}, {'status': 'ok'},
+                     {'data': [{'id': 'other'}]}]
+        with patch('brain_local_model.request_json', side_effect=responses) as request:
+            with self.assertRaisesRegex(ValueError, 'unavailable'):
+                generate(PACKET, 'http://127.0.0.1:9931', 'brain-qwen35-9b', runtime='llama.cpp')
+        self.assertEqual(request.call_count, 3)
+
+    def test_llamacpp_loading_health_blocks_inference(self):
+        responses = [{'queue_running': [], 'queue_pending': []}, {'status': 'loading model'}]
+        with patch('brain_local_model.request_json', side_effect=responses) as request:
+            with self.assertRaisesRegex(ValueError, 'ready'):
+                generate(PACKET, 'http://127.0.0.1:9931', 'brain-qwen35-9b', runtime='llama.cpp')
+        self.assertEqual(request.call_count, 2)
+
     def test_cli_rejects_credentials_without_recording_or_echoing_them(self):
         from brain_analysis import main
         output = io.StringIO()
@@ -77,8 +119,12 @@ class LocalHTTPTests(unittest.TestCase):
                     self.send_header('Location', 'http://example.com/')
                     self.end_headers()
                     return
-                payload = {'queue_running': [], 'queue_pending': []} if self.path == '/queue' else {
-                    'data': [{'id': 'test', 'type': 'llm', 'state': 'loaded'}]}
+                if self.path == '/queue':
+                    payload = {'queue_running': [], 'queue_pending': []}
+                elif self.path == '/health':
+                    payload = {'status': 'ok'}
+                else:
+                    payload = {'data': [{'id': 'test', 'type': 'llm', 'state': 'loaded'}]}
                 self.send_response(200)
                 self.end_headers()
                 self.wfile.write(json.dumps(payload).encode())
@@ -95,11 +141,15 @@ class LocalHTTPTests(unittest.TestCase):
         thread.start()
         origin = 'http://127.0.0.1:' + str(server.server_port)
         try:
-            result = generate(PACKET, origin, 'test', comfy_origin=origin)
-            self.assertEqual(result['interpretation'], VALID)
-            self.assertEqual(calls[:3], ['/queue', '/api/v0/models', '/queue'])
-            self.assertEqual(calls[3][1]['max_tokens'], 1024)
-            self.assertNotIn('tools', calls[3][1])
+            for runtime, paths in (('LM Studio', ['/queue', '/api/v0/models', '/queue']),
+                                   ('llama.cpp', ['/queue', '/health', '/v1/models', '/queue'])):
+                with self.subTest(runtime=runtime):
+                    calls.clear()
+                    result = generate(PACKET, origin, 'test', comfy_origin=origin, runtime=runtime)
+                    self.assertEqual(result['interpretation'], VALID)
+                    self.assertEqual(calls[:-1], paths)
+                    self.assertEqual(calls[-1][1]['max_tokens'], 1024)
+                    self.assertNotIn('tools', calls[-1][1])
             with self.assertRaisesRegex(ValueError, 'redirects'):
                 request_json(origin, '/redirect')
         finally:

@@ -22,7 +22,8 @@ def main():
         selected = commands.add_parser(command)
         selected.add_argument('run_ids', nargs='+', help='Baseline first, then candidates; at most six')
         if command == 'report':
-            selected.add_argument('--model', help='Installed LM Studio model; omit for deterministic report')
+            selected.add_argument('--model', help='Installed local model ID; omit for deterministic report')
+            selected.add_argument('--runtime', choices=['LM Studio', 'llama.cpp'], default='LM Studio')
             selected.add_argument('--endpoint', default='http://127.0.0.1:1234')
             selected.add_argument('--allow-load', action='store_true', help='Explicitly allow selected installed model JIT loading')
         else:
@@ -58,7 +59,7 @@ def main():
                                                    args.changed_field, decode(args.controls.read_bytes())))}
                 else:
                     try:
-                        model_result = generate(packet, args.endpoint, args.model, args.allow_load) if args.model else None
+                        model_result = generate(packet, args.endpoint, args.model, args.allow_load, runtime=args.runtime) if args.model else None
                     except (OSError, ValueError) as error:
                         failure = save_failure(args.analysis, packet, args.model, args.endpoint, error,
                                                error.details if isinstance(error, ModelResponseError) else None)
