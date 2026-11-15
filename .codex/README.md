@@ -4,6 +4,8 @@ This folder holds Codex configuration and workstation-specific operations. The
 root `AGENTS.md` remains the authority for upstream engineering rules. Start
 with [SETUP_PLAN.md](SETUP_PLAN.md) for decisions, outstanding work, and evidence.
 
+See [BRAIN_ANALYSIS.md](BRAIN_ANALYSIS.md) for on-demand SQLite snapshots, evidence reports and human experiment decisions.
+
 ## Integrated stack and visible browser
 
 Read [AGENT_TOOLING.md](AGENT_TOOLING.md) before graph investigation or CodeRabbit
