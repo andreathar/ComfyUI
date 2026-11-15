@@ -57,3 +57,7 @@ Five focused harness checks covered successful responses, tool-reported errors, 
 - Before a controlled generation benchmark, capture an immutable component-revision manifest alongside the run/package identity and verify that the recorder retains it. Record effective LC123 settings, attention/offload policy and model identities separately from declared settings. Do not retrofit old runs with guessed values.
 - Investigate RefMod parser support and the four unresolved relationships in the analyzer only when the specific question needs them. Use source evidence immediately; do not reinstall packs or alter ignore rules to inflate graph counts.
 - Revisit database selection only after a concrete workload has a reproducible latency/resource or query-expressiveness failure that cannot be addressed in the current query/index layer. Compare identical data and required answers in a disposable experiment; no migration is justified by this sample.
+
+## Follow-up: new-run provenance
+
+The source revision gap led to the bounded Brain collector described in [RUN_PROVENANCE.md](RUN_PROVENANCE.md). Its implementation is tested; live activation is pending. The source hashes in `graph-questions.json` track the updated implementation. The measurements and historical-run observations above remain the original evaluation, not validation of the new collector.

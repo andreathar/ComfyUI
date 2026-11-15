@@ -58,7 +58,7 @@
     {
       "path": ".codex/worktrees/workflow-monitor-brain",
       "origin": "https://github.com/andreathar/ComfyUI-Workflow-Monitor-Brain.git",
-      "head": "7930e6a18b264eb5c9ac1b5d4cd91420e723b0ab",
+      "head": "d0cf1c48727a46673e3e1ba23787d509e4b6eafb",
       "tag": null,
       "installed_paths": [
         "custom_nodes/ComfyUI-Workflow-Monitor-Brain"

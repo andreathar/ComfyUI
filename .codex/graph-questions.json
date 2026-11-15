@@ -16,7 +16,7 @@
       "installed_paths": [
         "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
       ],
-      "head": "7930e6a18b264eb5c9ac1b5d4cd91420e723b0ab"
+      "head": "d0cf1c48727a46673e3e1ba23787d509e4b6eafb"
     },
     {
       "owner": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
@@ -389,7 +389,7 @@
     {
       "id": "run_attribution",
       "question": "Does a recorded run prove which source revisions and resolved values produced it?",
-      "answer": "Brain records prompt/workflow identity, fingerprints, configured primitive literals, unresolved links and environment package versions. Its environment capture does not record all component Git SHAs. A present-day stack lock cannot establish historical run revisions. Use existing immutable package/run evidence where available; otherwise provenance remains unknown.",
+      "answer": "New Brain code records one immutable filesystem component-revision/settings snapshot for a newly observed live-queue run. It is implemented and tested but not yet activated in the running server. Source commits/dirty state, configured settings and sampled process policy are distinct from loaded-code identity and executed resolved values, which remain unverified unless runtime evidence supplies them. Historical records are not backfilled; the current stack lock cannot establish their revisions.",
       "evidence": [
         {
           "owner": ".codex/worktrees/workflow-monitor-brain",
@@ -413,22 +413,22 @@
         {
           "owner": ".codex/worktrees/workflow-monitor-brain",
           "file": "workflow_monitor/recorder.py",
-          "sha256": "a43ae701e3bd3d3099cd2e179d1627caaa6fe8f6c207d90e5ff64938b925de72",
+          "sha256": "3217a3aeb004c6c11d7a59d850abe610a8951ac1334ca6046deb8d08f9421839",
           "anchors": [
             {
               "text": "self.environment = {",
-              "line": 73
+              "line": 77
             },
             {
               "text": "record.data[\"environment\"] = dict(self.environment)",
-              "line": 136
+              "line": 142
             }
           ]
         },
         {
           "owner": ".codex/worktrees/workflow-monitor-brain",
           "file": "workflow_monitor/integration.py",
-          "sha256": "7bcea105520f24c18e210aeeb45f8caf382a9440290f912430926d2b8a93f1a6",
+          "sha256": "2e755c68a3d2853c410152fbabea43785217717287a3a19082e6b25cf3bb9ffb",
           "anchors": [
             {
               "text": "store = RunStore(Path(user_root) / \"workflow_monitor\" / \"runs\")",
@@ -452,6 +452,21 @@
             {
               "text": "if kind == 'prompt_review':",
               "line": 25
+            }
+          ]
+        },
+        {
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "file": "workflow_monitor/provenance.py",
+          "sha256": "1b4f4e1706eef836674d8072e87810750ac51db995228953688b4a295b21beeb",
+          "anchors": [
+            {
+              "text": "def capture_provenance(",
+              "line": 86
+            },
+            {
+              "text": "'loaded_code_identity': 'unverified'",
+              "line": 144
             }
           ]
         }
@@ -630,7 +645,8 @@
         "Join by prompt_id and explicit workflow identity",
         "Verify package and prompt-review hashes",
         "Distinguish configured primitives from executed runtime reports",
-        "Missing component revision manifest remains unknown; never substitute current lock"
+        "Missing component revision manifest remains unknown; never substitute current lock",
+        "For new-run provenance, verify capture status/window, source coverage and dirty state; never equate filesystem commits with loaded bytes or configured settings with executed values"
       ]
     }
   ]

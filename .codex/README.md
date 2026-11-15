@@ -9,6 +9,8 @@ with [SETUP_PLAN.md](SETUP_PLAN.md) for decisions, outstanding work, and evidenc
 Read [AGENT_TOOLING.md](AGENT_TOOLING.md) before graph investigation or CodeRabbit
 review: it defines repository coverage checks, the working graph access path,
 review scope, evidence gates and tool-specific limits.
+See [RUN_PROVENANCE.md](RUN_PROVENANCE.md) for new-run component/settings capture,
+its validation evidence and the pending live activation.
 
 Read [STACK_OWNERSHIP.md](STACK_OWNERSHIP.md) for component responsibilities,
 including native DynamicVRAM and LC123 global hooks that saved-node counts miss.
