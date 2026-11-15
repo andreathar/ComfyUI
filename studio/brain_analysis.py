@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 from brain_index import AnalysisIndex, DEFAULT_ANALYSIS, DEFAULT_SOURCE, build_index, decode, encoded
-from brain_local_model import ModelResponseError, generate
+from brain_local_model import ModelResponseError, endpoint, generate
 from brain_reports import create_experiment, evidence_packet, record_decision, save_failure, save_report
 
 
@@ -35,6 +35,11 @@ def main():
     decision.add_argument('--reviewer', required=True)
     decision.add_argument('--rationale', required=True)
     args = parser.parse_args()
+    if args.command == 'report' and args.model:
+        try:
+            args.endpoint = endpoint(args.endpoint)
+        except ValueError:
+            parser.error('Use an explicit HTTP loopback endpoint without credentials or paths')
     if args.command == 'index':
         result = build_index(args.source, args.analysis)
     elif args.command == 'decision':

@@ -73,6 +73,6 @@ The dedicated standalone binary resolves to `/home/athar/.local/opt/llama.cpp/bu
 
 ## Delivery verification
 
-The production index imported 38 runs, 5,525 events and 9,932 samples. Direct-source status counts, sample counts and temperature aggregates match SQL; integrity and foreign-key checks pass. All 114 original source slots and 78 saved workflow/project files match their prior hashes. Seventeen focused tests pass with both unittest and Studio's pytest configuration.
+The production index imported 38 runs, 5,525 events and 9,932 samples. Direct-source status counts, sample counts and temperature aggregates match SQL; integrity and foreign-key checks pass. All 114 original source slots and 78 saved workflow/project files match their prior hashes. Eighteen focused tests pass with both unittest and Studio's pytest configuration.
 
 CodeRabbit attempted the seven new source/test files and returned `review_completed` with `outcome: failed`, zero findings and all seven files unreviewed. This is unavailable external review, not a clean review. Native inspection and test evidence remain separate. See `artifacts/brain-analysis-index/verification.json`, `tests.txt`, `coderabbit-result.json`, and `live-model-verification.json`.

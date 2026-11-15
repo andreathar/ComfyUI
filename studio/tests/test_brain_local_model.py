@@ -1,4 +1,6 @@
 import unittest
+import contextlib
+import io
 from unittest.mock import patch
 
 from brain_local_model import ModelResponseError, endpoint, generate, validate_interpretation
@@ -46,6 +48,16 @@ class LocalModelTests(unittest.TestCase):
                 generate(PACKET, 'http://127.0.0.1:1234', 'test')
         self.assertEqual(caught.exception.details['content_characters'], [0])
         self.assertEqual(caught.exception.details['finish_reasons'], ['length'])
+
+    def test_cli_rejects_credentials_without_recording_or_echoing_them(self):
+        from brain_analysis import main
+        output = io.StringIO()
+        argv = ['brain_analysis', 'report', 'unused', '--model', 'test', '--endpoint', 'http://user:private@localhost:1234']
+        with patch('sys.argv', argv), contextlib.redirect_stderr(output), patch('brain_analysis.AnalysisIndex') as index:
+            with self.assertRaises(SystemExit):
+                main()
+        self.assertNotIn('private', output.getvalue())
+        index.assert_not_called()
 
 
 class LocalHTTPTests(unittest.TestCase):
