@@ -1,6 +1,6 @@
 # Brain data quality and analysis storage
 
-Brain's additive `data_quality` report (`workflow-monitor.quality.v1`) is implemented and tested in its owning repository; live activation awaits the guarded restart. It is present in newly generated benchmark JSON and comparison JSON/CSV. Raw historical records are not rewritten.
+Brain's additive `data_quality` report (`workflow-monitor.quality.v1`) is implemented, tested and active after the authorized guarded restart. It is present in newly generated benchmark JSON and comparison JSON/CSV. Raw historical records are not rewritten.
 
 The report checks provenance snapshot digest integrity, marks dirty/unknown source owners, separates unresolved parameters identified by the existing scalar-name allowlist from other links, and reports absent runtime, sampling, model, output, review and thermal evidence. Other links may also carry scalars outside that allowlist. Multiple settings attestations remain distinct. A digest match establishes internal consistency, not independently attested loaded code. Evidence gaps are not generation failures or a quality score; `benchmark_qualified` remains false.
 
@@ -12,4 +12,6 @@ Before production adoption, implement freshness/stable-snapshot import, exact de
 
 ## Activation check
 
-After authorization, preserve the open unsaved canvas, verify the empty queue and exact process, restart through `.codex/launch.sh` and observe browser reconnection. Retrieve the existing CPU smoke run `e3ead456-950b-4b5e-840a-e51e3f4e4751`: verify its benchmark/export and comparison contain matching `data_quality`, its valid recorded provenance digest remains valid and `benchmark_qualified` remains false. Its source revisions must remain those captured at execution, not today's checkout. Verify one historical run with absent provenance remains unavailable. No new prompt or model loading is needed. Preserve historical run/workflow hashes.
+Live activation passed: existing-run detail, benchmark JSON and comparison JSON/CSV expose matching quality metadata; all original source hashes and saved workflow/project files are unchanged. See [ACTIVATION.md](artifacts/brain-sqlite-evaluation/ACTIVATION.md).
+
+For future activation, preserve the open unsaved canvas, verify the empty queue and exact process, restart through `.codex/launch.sh` and observe browser reconnection. Retrieve the existing CPU smoke run `e3ead456-950b-4b5e-840a-e51e3f4e4751`: verify its benchmark/export and comparison contain matching `data_quality`, its valid recorded provenance digest remains valid and `benchmark_qualified` remains false. Its source revisions must remain those captured at execution, not today's checkout. Verify one historical run with absent provenance remains unavailable. No new prompt or model loading is needed. Preserve historical run/workflow hashes.

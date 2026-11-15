@@ -1,0 +1,22 @@
+{
+  "new_pid": 683283,
+  "old_pid": 546006,
+  "brain_source_commit": "40e316bc1d73f92df82e1db6d0ecdfe7cc45ed0a",
+  "live_quality_schema": "workflow-monitor.quality.v1",
+  "json_csv_detail_parity": true,
+  "checked_run_ids": [
+    "e3ead456-950b-4b5e-840a-e51e3f4e4751",
+    "60dd87b2-e8bd-400e-b565-5958effbf5c9"
+  ],
+  "original_smoke_brain_revision_preserved": "d0cf1c48727a46673e3e1ba23787d509e4b6eafb",
+  "historical_provenance_still_unavailable": true,
+  "original_source_hashes_preserved": true,
+  "saved_workflow_project_files_preserved": 78,
+  "queue": {
+    "queue_running": [],
+    "queue_pending": []
+  },
+  "new_prompt_submitted": false,
+  "model_loaded": false,
+  "checked_at": 1794704260.693919
+}
