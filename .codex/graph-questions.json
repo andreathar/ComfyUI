@@ -1,0 +1,637 @@
+{
+  "schema": 1,
+  "scope": "Seven critical production questions; not exhaustive stack coverage or runtime acceptance.",
+  "owners": [
+    {
+      "owner": ".",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI",
+      "project": "mnt-data-Projects_SSD-ComfyUI",
+      "installed_paths": [],
+      "head": "a423004c106fbc2dbbf3a48f7f8b3d4c6903155a"
+    },
+    {
+      "owner": ".codex/worktrees/workflow-monitor-brain",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/.codex/worktrees/workflow-monitor-brain",
+      "project": "mnt-data-Projects_SSD-ComfyUI-.codex-worktrees-workflow-monitor-brain",
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
+      ],
+      "head": "7930e6a18b264eb5c9ac1b5d4cd91420e723b0ab"
+    },
+    {
+      "owner": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder"
+      ],
+      "head": "a4c07bac5173b8d27b463dc2082e9cba98c09fcb"
+    },
+    {
+      "owner": "custom_nodes/ComfyUI_LC123_nodes",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/ComfyUI_LC123_nodes",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-ComfyUI_LC123_nodes",
+      "installed_paths": [
+        "custom_nodes/ComfyUI_LC123_nodes"
+      ],
+      "head": "4358590c88bf4788f0e1d24f39f1f2e4b493970b"
+    },
+    {
+      "owner": "custom_nodes/comfyui-minimaxh3-contex-loop",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-minimaxh3-contex-loop",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui-minimaxh3-contex-loop",
+      "installed_paths": [
+        "custom_nodes/comfyui-minimaxh3-contex-loop"
+      ],
+      "head": "9b63462dc5af5800a74c0b5dde90ea20704ee641"
+    },
+    {
+      "owner": "custom_nodes/comfyui_dynamic",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui_dynamic",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui_dynamic",
+      "installed_paths": [
+        "custom_nodes/comfyui_dynamic"
+      ],
+      "head": "21802e54f4364a679888e154d24985b96aaae26d"
+    }
+  ],
+  "questions": [
+    {
+      "id": "memory_owners",
+      "question": "Which sampled owners request model unloading, and which layer performs it?",
+      "answer": "Core owns native unloading. Dynamic requests bulk cleanup; LC123 unloads qualifying text encoders; Context Loop retires DynamicVRAM stage models and requests native cleanup. This is a critical-path sample, not an exhaustive inventory of all packs.",
+      "evidence": [
+        {
+          "owner": ".",
+          "file": "comfy/model_management.py",
+          "sha256": "41e89e3fc871ae19981cf87eb25d354e1fcd4164d720af8369aacda5c54d0358",
+          "anchors": [
+            {
+              "text": "def unload_all_models(",
+              "line": 2171
+            }
+          ]
+        },
+        {
+          "owner": "custom_nodes/comfyui_dynamic",
+          "file": "core/control_panel.py",
+          "sha256": "0feca18d2fb7872a601ffbe2fda1935cfd3365a69df55da0836545a6fc8a937f",
+          "anchors": [
+            {
+              "text": "def _cleanup_vram(",
+              "line": 624
+            },
+            {
+              "text": "mm.unload_all_models()",
+              "line": 636
+            }
+          ]
+        },
+        {
+          "owner": "custom_nodes/ComfyUI_LC123_nodes",
+          "file": "lc_free_text_encoder.py",
+          "sha256": "fbf3e5e2139e0026baffb91283a16241cb42bb8a7e44d85efa9ae79b19f98854",
+          "anchors": [
+            {
+              "text": "def free_text_encoders(",
+              "line": 49
+            },
+            {
+              "text": "lm.model_unload()",
+              "line": 60
+            }
+          ]
+        },
+        {
+          "owner": "custom_nodes/comfyui-minimaxh3-contex-loop",
+          "file": "selflift_runtime/memory.py",
+          "sha256": "7fd196a87b40b9e2c18fa3ce7d39a06c0bffa38fb072146708974152df9f7ed0",
+          "anchors": [
+            {
+              "text": "def release_stage_models(",
+              "line": 32
+            },
+            {
+              "text": "loaded.model_unload()",
+              "line": 67
+            }
+          ]
+        }
+      ],
+      "queries": [
+        {
+          "id": "native_unload_callers",
+          "owner": ".",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'unload_all_models' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "execution.py",
+            "main.py"
+          ]
+        },
+        {
+          "id": "dynamic_native_unload",
+          "owner": "custom_nodes/comfyui_dynamic",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'unload_all_models' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "_cleanup_vram"
+          ]
+        },
+        {
+          "id": "lc_encoder_owner",
+          "owner": "custom_nodes/ComfyUI_LC123_nodes",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f) WHERE f.name IN ['free_text_encoders'] RETURN f.qualified_name, f.file_path LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "free_text_encoders"
+          ]
+        },
+        {
+          "id": "loop_release_owner",
+          "owner": "custom_nodes/comfyui-minimaxh3-contex-loop",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f) WHERE f.name IN ['release_stage_models'] RETURN f.qualified_name, f.file_path LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "release_stage_models"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "global_hooks",
+      "question": "Can LC123 affect sampling without an LC node in the workflow?",
+      "answer": "Yes. Package import loads FastCancel then FreeTextEncoder; both wrap CFGGuider.outer_sample, and FastCancel installs block pre-hooks. Source order is known, but effective order across all runtime wrappers requires live evidence.",
+      "evidence": [
+        {
+          "owner": "custom_nodes/ComfyUI_LC123_nodes",
+          "file": "__init__.py",
+          "sha256": "bf669a5e0461755641b4e2bfd38d41c9d274a6ee2734b99801e5f3fb525939b5",
+          "anchors": [
+            {
+              "text": "_load(\"lc_fast_cancel\")",
+              "line": 49
+            },
+            {
+              "text": "_load(\"lc_free_text_encoder\")",
+              "line": 51
+            }
+          ]
+        },
+        {
+          "owner": "custom_nodes/ComfyUI_LC123_nodes",
+          "file": "lc_free_text_encoder.py",
+          "sha256": "fbf3e5e2139e0026baffb91283a16241cb42bb8a7e44d85efa9ae79b19f98854",
+          "anchors": [
+            {
+              "text": "comfy.samplers.CFGGuider.outer_sample = _outer_sample",
+              "line": 85
+            }
+          ]
+        },
+        {
+          "owner": "custom_nodes/ComfyUI_LC123_nodes",
+          "file": "lc_fast_cancel.py",
+          "sha256": "fe937c7553932eaae54f1078dc1cbd8f24e004fb99f1896c589cba63ff197f9f",
+          "anchors": [
+            {
+              "text": "block.register_forward_pre_hook(_check)",
+              "line": 75
+            },
+            {
+              "text": "comfy.samplers.CFGGuider.outer_sample = _outer_sample",
+              "line": 96
+            }
+          ]
+        }
+      ],
+      "queries": [
+        {
+          "id": "encoder_hook_call",
+          "owner": "custom_nodes/ComfyUI_LC123_nodes",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'free_text_encoders' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "_outer_sample"
+          ]
+        },
+        {
+          "id": "lc_native_wrapper_edge",
+          "owner": "custom_nodes/ComfyUI_LC123_nodes",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE f.name = '_outer_sample' AND g.name = 'outer_sample' RETURN f.qualified_name, g.qualified_name LIMIT 20",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "CFGGuider.outer_sample"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dynamic_brain",
+      "question": "How does Brain obtain Dynamic resource samples, and what must be checked when that contract changes?",
+      "answer": "Dynamic.get_snapshot supplies samples; Brain.DynamicProvider.snapshot discovers the loaded control_panel module through sys.modules and passes its result to normalize_snapshot. Check provider discovery, required time/devices fields, optional model values, normalization, recorder ingestion and UI unknown-value handling.",
+      "evidence": [
+        {
+          "owner": "custom_nodes/comfyui_dynamic",
+          "file": "core/control_panel.py",
+          "sha256": "0feca18d2fb7872a601ffbe2fda1935cfd3365a69df55da0836545a6fc8a937f",
+          "anchors": [
+            {
+              "text": "def get_snapshot(",
+              "line": 590
+            }
+          ]
+        },
+        {
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "file": "workflow_monitor/provider.py",
+          "sha256": "b8a2359be4dba5fe21147063dfcb144b1bcf53bd281ba0cfc9e09f6c6446342a",
+          "anchors": [
+            {
+              "text": "for module in tuple(sys.modules.values()):",
+              "line": 46
+            },
+            {
+              "text": "return normalize_snapshot(self.module.get_snapshot())",
+              "line": 56
+            },
+            {
+              "text": "raise ValueError(\"Comfy Dynamic returned an unsupported snapshot\")",
+              "line": 9
+            }
+          ]
+        }
+      ],
+      "queries": [
+        {
+          "id": "dynamic_snapshot_symbol",
+          "owner": "custom_nodes/comfyui_dynamic",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f) WHERE f.name IN ['get_snapshot'] RETURN f.qualified_name, f.file_path LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "get_snapshot"
+          ]
+        },
+        {
+          "id": "brain_snapshot_normalizer",
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'normalize_snapshot' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "DynamicProvider.snapshot"
+          ]
+        },
+        {
+          "id": "brain_dynamic_call_edge",
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'get_snapshot' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "DynamicProvider.snapshot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scene_cleanup",
+      "question": "What changes between off, unload_models and fresh_scene at a scene boundary?",
+      "answer": "Off returns immediately. Active cleanup retires unshared DynamicVRAM models before native unloading. Fresh_scene additionally requests execution-cache eviction, collection and pinned-page release. These are source semantics, not a new memory benchmark.",
+      "evidence": [
+        {
+          "owner": "custom_nodes/comfyui-minimaxh3-contex-loop",
+          "file": "chain_nodes.py",
+          "sha256": "208f04e19c5e32f3badcb64aa6114773abb9ecca15ab26b1d8f77d40b0ba4168",
+          "anchors": [
+            {
+              "text": "def _release_loop_boundary_resources(",
+              "line": 20724
+            },
+            {
+              "text": "if resolved == \"off\":",
+              "line": 20746
+            },
+            {
+              "text": "result[\"dynamic_models\"] = release_stage_models(",
+              "line": 20762
+            },
+            {
+              "text": "if resolved == \"fresh_scene\":",
+              "line": 20766
+            },
+            {
+              "text": "model_management.unload_all_models()",
+              "line": 20806
+            }
+          ]
+        },
+        {
+          "owner": "custom_nodes/comfyui-minimaxh3-contex-loop",
+          "file": "selflift_runtime/memory.py",
+          "sha256": "7fd196a87b40b9e2c18fa3ce7d39a06c0bffa38fb072146708974152df9f7ed0",
+          "anchors": [
+            {
+              "text": "torch.cuda.synchronize(device)",
+              "line": 60
+            },
+            {
+              "text": "mm.throw_exception_if_processing_interrupted()",
+              "line": 39
+            },
+            {
+              "text": "loaded.model_unload()",
+              "line": 67
+            }
+          ]
+        }
+      ],
+      "queries": [
+        {
+          "id": "scene_release_call",
+          "owner": "custom_nodes/comfyui-minimaxh3-contex-loop",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'release_stage_models' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "_release_loop_boundary_resources"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "run_attribution",
+      "question": "Does a recorded run prove which source revisions and resolved values produced it?",
+      "answer": "Brain records prompt/workflow identity, fingerprints, configured primitive literals, unresolved links and environment package versions. Its environment capture does not record all component Git SHAs. A present-day stack lock cannot establish historical run revisions. Use existing immutable package/run evidence where available; otherwise provenance remains unknown.",
+      "evidence": [
+        {
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "file": "workflow_monitor/model.py",
+          "sha256": "1fe8fbb157d20a2fce4fb7d2c5ecc8443caa53ee67e1b8ffc92ecaace56d593d",
+          "anchors": [
+            {
+              "text": "def capture_prompt(",
+              "line": 81
+            },
+            {
+              "text": "\"structure_fingerprint\": digest(structure)",
+              "line": 131
+            },
+            {
+              "text": "\"unresolved\":",
+              "line": 134
+            }
+          ]
+        },
+        {
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "file": "workflow_monitor/recorder.py",
+          "sha256": "a43ae701e3bd3d3099cd2e179d1627caaa6fe8f6c207d90e5ff64938b925de72",
+          "anchors": [
+            {
+              "text": "self.environment = {",
+              "line": 73
+            },
+            {
+              "text": "record.data[\"environment\"] = dict(self.environment)",
+              "line": 136
+            }
+          ]
+        },
+        {
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "file": "workflow_monitor/integration.py",
+          "sha256": "7bcea105520f24c18e210aeeb45f8caf382a9440290f912430926d2b8a93f1a6",
+          "anchors": [
+            {
+              "text": "store = RunStore(Path(user_root) / \"workflow_monitor\" / \"runs\")",
+              "line": 54
+            }
+          ]
+        },
+        {
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "file": "workflow_monitor/evidence.py",
+          "sha256": "8d73e1e667efab55825b2d0c8621ae70ba64486061e082eff35848deeb538288",
+          "anchors": [
+            {
+              "text": "SCHEMA = \"workflow-monitor.runtime.v1\"",
+              "line": 12
+            },
+            {
+              "text": "if kind == \"input_package\":",
+              "line": 77
+            },
+            {
+              "text": "if kind == 'prompt_review':",
+              "line": 25
+            }
+          ]
+        }
+      ],
+      "queries": [
+        {
+          "id": "record_capture_call",
+          "owner": ".codex/worktrees/workflow-monitor-brain",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'capture_prompt' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "Recorder.admit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "safe_cleanup",
+      "question": "Does no incoming CALLS edge establish that interrupt_if_running is unused?",
+      "answer": "No. server.py invokes it through self.prompt_queue. Negative graph results cannot authorize deletion; check raw callers, runtime registration and file coverage.",
+      "evidence": [
+        {
+          "owner": ".",
+          "file": "server.py",
+          "sha256": "653ae3d658c7ece2a8d32eb1b5d390b6e4216b94264d682e8e4ad0a0c1b29e16",
+          "anchors": [
+            {
+              "text": "return self.prompt_queue.interrupt_if_running(prompt_id)",
+              "line": 1057
+            },
+            {
+              "text": "if self.prompt_queue.interrupt_if_running(prompt_id):",
+              "line": 1281
+            }
+          ]
+        },
+        {
+          "owner": ".",
+          "file": "execution.py",
+          "sha256": "4fa82de8dd76192fc6ce1a7c95e085d2c31a64d9e47f2ce3b44d0a86c2d68684",
+          "anchors": [
+            {
+              "text": "def interrupt_if_running(",
+              "line": 1380
+            }
+          ]
+        }
+      ],
+      "queries": [
+        {
+          "id": "interrupt_symbol",
+          "owner": ".",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f) WHERE f.name IN ['interrupt_if_running'] RETURN f.qualified_name, f.file_path LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "interrupt_if_running"
+          ]
+        },
+        {
+          "id": "interrupt_instance_call",
+          "owner": ".",
+          "tool": "query_graph",
+          "arguments": {
+            "query": "MATCH (f)-[:CALLS]->(g) WHERE g.name = 'interrupt_if_running' RETURN f.qualified_name, f.file_path, g.qualified_name LIMIT 50",
+            "format": "json"
+          },
+          "required_row_fragments": [
+            "server.py"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parser_coverage",
+      "question": "Is the RefMod frontend fully represented in the graph?",
+      "answer": "No: inspect exact file coverage. A partial parse limits graph conclusions even when the repository index is ready.",
+      "evidence": [
+        {
+          "owner": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+          "file": "web/refmodstack.js",
+          "sha256": "38f79f3cf4d9322e3e5e089c2329ee437c7a1df9877519224874688c9133ad96",
+          "anchors": [
+            {
+              "text": "import",
+              "line": 7
+            }
+          ]
+        }
+      ],
+      "queries": [
+        {
+          "id": "refmod_coverage",
+          "owner": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+          "tool": "check_index_coverage",
+          "arguments": {
+            "paths": [
+              "web/refmodstack.js"
+            ],
+            "diagnostics": "full",
+            "format": "json"
+          },
+          "required_row_fragments": []
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "dynamic_native_cleanup",
+      "caller": "custom_nodes/comfyui_dynamic",
+      "provider": ".",
+      "contract": "Native model registry and unload_all_models",
+      "question": "memory_owners",
+      "evidence_basis": "source",
+      "checks": [
+        "Verify queue guard before unload",
+        "Compare panel loaded/resident bytes with native state",
+        "Verify cleanup with partial residency under a separately controlled workload"
+      ]
+    },
+    {
+      "id": "lc_sampling_hooks",
+      "caller": "custom_nodes/ComfyUI_LC123_nodes",
+      "provider": ".",
+      "contract": "CFGGuider.outer_sample wrapper and block pre-hooks",
+      "question": "global_hooks",
+      "evidence_basis": "source",
+      "checks": [
+        "Check effective settings and defaults",
+        "Inspect runtime wrapper order",
+        "Measure cancellation and text-encoder unloading with fixed inputs"
+      ]
+    },
+    {
+      "id": "brain_dynamic_snapshot",
+      "caller": ".codex/worktrees/workflow-monitor-brain",
+      "provider": "custom_nodes/comfyui_dynamic",
+      "contract": "get_snapshot -> normalize_snapshot via runtime module discovery",
+      "question": "dynamic_brain",
+      "evidence_basis": "source",
+      "checks": [
+        "Provider discovery still finds installed Dynamic module",
+        "time is finite and devices is a list",
+        "Absent optional model/resource values remain unknown",
+        "Recorder and UI retain units and attribution"
+      ]
+    },
+    {
+      "id": "context_native_retirement",
+      "caller": "custom_nodes/comfyui-minimaxh3-contex-loop",
+      "provider": ".",
+      "contract": "DynamicVRAM model retirement then optional cache/pin cleanup",
+      "question": "scene_cleanup",
+      "evidence_basis": "source",
+      "checks": [
+        "Cancellation is honored before detach",
+        "Unshared models retire before cache eviction",
+        "Off/unload_models/fresh_scene policies retain their distinct semantics",
+        "Check RAM and VRAM across consecutive scenes"
+      ]
+    },
+    {
+      "id": "studio_monitor_evidence",
+      "caller": ".",
+      "provider": ".codex/worktrees/workflow-monitor-brain",
+      "contract": "workflow-monitor.runtime.v1 prompt_review and input_package records",
+      "question": "run_attribution",
+      "evidence_basis": "source and sampled historical run metadata",
+      "checks": [
+        "Join by prompt_id and explicit workflow identity",
+        "Verify package and prompt-review hashes",
+        "Distinguish configured primitives from executed runtime reports",
+        "Missing component revision manifest remains unknown; never substitute current lock"
+      ]
+    }
+  ]
+}

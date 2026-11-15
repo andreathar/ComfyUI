@@ -37,6 +37,10 @@ A parent-only query still excludes the independent packs; select the component's
 
 See [GRAPH_ROLLOUT.md](GRAPH_ROLLOUT.md) for representative acceptance evidence, partial parses and explicit cross-owner relationships. Automatic cross-repository linking did not return a result in the bounded probe; the source-backed boundary map remains authoritative. Preserve the existing stores and active clients; do not force-restart shared daemons to make a session's tools refresh.
 
+## Production question checks
+
+Use [graph-questions.json](graph-questions.json) for the seven verified production questions and five source-backed owner boundaries. See [GRAPH_QUERY_EVALUATION.md](GRAPH_QUERY_EVALUATION.md) for measured results and the repeatable `.codex/evaluate_graph_queries.py` command. Query the owning graph, then verify the corresponding source hash/anchors and coverage; inspect unresolved relationships explicitly. An exit-zero diagnostic is not a complete graph, and a present-day stack lock is not historical run provenance.
+
 ## CodeRabbit rules — when reviewing changes
 
 1. Use CodeRabbit for substantive behavior changes and before publishing component changes. Use focused tests and native review for small documentation/configuration corrections; do not spend a remote review just to prove a CLI works.
