@@ -6,12 +6,9 @@ import math
 from pathlib import Path
 import subprocess
 import time
-import os
 import re
 import urllib.request
 import urllib.parse
-
-import yaml
 
 import h3_graph
 import h3_recipe as h3
@@ -20,33 +17,7 @@ import h3_recipe as h3
 def resolve_model(workspace, role):
     workspace = Path(workspace).resolve()
     category = 'vae' if role.endswith('_vae') else role
-    folders = {'diffusion_models': ['unet', 'diffusion_models'], 'text_encoders': ['text_encoders', 'clip'], 'vae': ['vae']}
-    paths = [workspace / 'models' / name for name in folders[category]]
-    config = workspace / 'extra_model_paths.yaml'
-    if config.is_file():
-        for group in (yaml.safe_load(config.read_text()) or {}).values():
-            if not group:
-                continue
-            base = group.get('base_path', str(workspace))
-            base = Path(os.path.expandvars(os.path.expanduser(base)))
-            if not base.is_absolute():
-                base = workspace / base
-            for key, value in group.items():
-                mapped = {'unet': 'diffusion_models', 'clip': 'text_encoders'}.get(key, key)
-                if mapped != category:
-                    continue
-                for folder in value.splitlines():
-                    if not folder:
-                        continue
-                    path = Path(os.path.normpath(base / folder))
-                    if path in paths:
-                        if not group.get('is_default'):
-                            continue
-                        paths.remove(path)
-                    if group.get('is_default'):
-                        paths.insert(0, path)
-                    else:
-                        paths.append(path)
+    paths = h3.model_folders(workspace, category)
     filename = h3.DIAGNOSTIC['models'][role]
     return next((path / filename for path in paths if (path / filename).is_file()), paths[0] / filename)
 
@@ -81,7 +52,7 @@ def check(workspace, models, assets, registered_nodes=None, rehash=False):
         path = h3.asset_path(workspace, asset)
         if not path.is_file() or h3.file_hash(path) != asset['sha256']:
             errors.append(f'{key}: asset missing or hash changed')
-        if asset.get('approved') is not True:
+        if asset.get('input_use_authorized', asset.get('approved')) is not True:
             errors.append(f'{key}: asset approval required')
     if registered_nodes is None:
         warnings.append('Live node registration not checked; this is file preflight only.')

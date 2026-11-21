@@ -43,14 +43,31 @@ Saving/assembly phase is incomplete. Turbo Sampling is NULL instead of the
 misleading 0.6472-second fragment. Report tables expose coverage and label
 admitted wall time as including queue wait. Do not treat it as render time.
 
-The advisor is instructed to lead with supplied action/camera/framing/identity/
-temporal findings, attribute them to the reviewer, and propose a controlled
-production test or closer inspection of existing frames. Decode only verifies
-file integrity. Validation now rejects an interpretation that omits citations
-to production findings for any run that supplies them; a notes citation cannot
-substitute for supplied production findings. Citation coverage does not verify the prose or
-ensure that a proposed test is sensible. Inspect `model.model_view` and
-`model.interpretation` separately. Failure is recorded without an automatic retry.
+The advisor explains measured model/parameter comparisons against an explicit
+production objective. Python calculates differences and plots charts. Visual
+judgments remain attributed reviewer evidence; the model is not required to
+make visual observations or diagnose images. It may suggest at most one
+controlled next experiment, naming the changed parameter, controls and success
+criterion. Citation validation checks field existence, not semantic truth.
+
+Use the objective-led comparison command with a native `/history` export to
+separate execution duration from admitted time:
+
+```sh
+.venv/bin/python studio/brain_comparison.py RUN_A RUN_B \
+  --objective 'Reduce three-second motion draft time while retaining reviewer-accepted action' \
+  --history /absolute/path/history.json
+```
+
+This creates an immutable `analysis/comparisons/UUID/` bundle with SVG charts,
+CSV metrics, parameter differences, attributed reviews, matched native timestamps
+and the evidence packet. The bundle stores a digest of the supplied history export,
+not its raw prompts or unrelated runs. Timings require a matching generation
+fingerprint and successful status in both sources. Omit history to show execution time as unavailable. History
+exports are supplied evidence, not authenticated runtime attestations. Add
+`--model brain-qwen35-9b` for an optional explanation from the existing CPU
+llama.cpp server. No objective means no invented production goal in automatic
+reports. Charts require the already-installed matplotlib; no dependency was added.
 
 Fresh CLI and native analysis-worker processes load the corrected report code
 from disk. An incomplete Sampling total no longer meets the automatic worker's

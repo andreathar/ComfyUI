@@ -102,7 +102,7 @@ def check(doc):
         for d in sh.get("dialogue", []):
             if d["character"] not in sh["characters"]:
                 problems.append(f"{where}: dialogue by {d['character']}, who is not in the shot")
-            elif not speakers[d["character"]].get("voice"):
+            elif d["character"] in speakers and not speakers[d["character"]].get("voice"):
                 problems.append(f"{where}: {d['character']} speaks but has no voice (VOX) entity")
         for ref in sh.get("refs", []):
             owner = ref.split("/")[2]

@@ -38,6 +38,7 @@ uv.lock
 .ruff_cache/
 .pytest_cache/
 .playwright-cli*
+/.copilot/model-catalog-cache.json
 .zed/
 # Local browser automation settings
 .playwright/

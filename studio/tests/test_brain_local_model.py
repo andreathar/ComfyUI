@@ -13,20 +13,15 @@ VALID = {'summary': 'Insufficient matched trials.', 'observations': [{'text': 'S
 
 
 class LocalModelTests(unittest.TestCase):
-    def test_advice_must_cite_supplied_production_findings_for_each_reviewed_run(self):
-        review = {'reviewer': 'assistant', 'findings': {'action': 'Head turn order correct.'}}
+    def test_performance_advice_does_not_require_visual_judgment(self):
         packet = {'runs': [{'run_id': 'a', 'resources': {}, 'report': {
-            'phase_seconds': {'Sampling': 2}, 'visual_reviews': {'f' * 64: review}}}]}
-        with self.assertRaisesRegex(ValueError, 'production findings'):
-            validate_interpretation(VALID, packet)
-        field = '/report/visual_reviews/' + 'f' * 64 + '/findings/action'
-        cited = {**VALID, 'observations': [{'text': 'Assistant reports correct turn order.',
-                 'citations': [{'run_id': 'a', 'field': field}]}]}
-        validate_interpretation(cited, packet)
-        packet['runs'].append({**packet['runs'][0], 'run_id': 'b'})
-        with self.assertRaisesRegex(ValueError, 'production findings'):
-            validate_interpretation(cited, packet)
+            'phase_seconds': {'Sampling': 2}, 'visual_reviews': {'f' * 64: {
+                'reviewer': 'assistant', 'findings': {'action': 'Head turn order correct.'}}}}}]}
+        validate_interpretation(VALID, packet)
 
+    def test_advisor_cannot_propose_multiple_experiments(self):
+        with self.assertRaises(ValueError):
+            validate_interpretation({**VALID, 'proposed_tests': ['Change steps', 'Change model']}, PACKET)
 
     def test_output_bound_visual_findings_reach_model_and_are_citable(self):
         review = {'reviewer': 'assistant', 'findings': {'temporal': 'Envelope lifts without contact.'},

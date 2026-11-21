@@ -1,4 +1,4 @@
-# ComfyUI review — start here
+# ComfyUI workflow review — November 9–10, 2026 snapshot
 
 ## Current direction: organize ComfyUI itself
 
@@ -83,7 +83,7 @@ Original evidence: `.codex/artifacts/workflow-review-pilots/<UTC timestamp>-<pil
 
 Six source-reviewed, model-free tests produced expected backend results: iTools text return, RMBG image/mask previews, RMBG stitching (1024×512), iTools text overlay, VHS two-frame GIF assembly, and LC123 full desaturation. They use bounded local image fixtures and are constructed reductions of example graphs—not executions of the complete original examples. Both GIF frames were independently decoded and confirmed distinct; both preview PNGs were separately decoded. The RGB fixture's empty mask is 64×64, so this does not test segmentation accuracy.
 
-**Provenance limitation:** the server PID 677706 started at 2026-11-09 15:38:49 UTC, before four reviewed iTools files were modified at about 16:11:26 UTC. The observed iTools backend contracts are real, but loaded-code/source correspondence is uncertain. `studio/review_utilities.py` now checks expected schema providers and refuses execution when reviewed source mtimes are newer than the explicitly identified server. These are consistency checks, not bytecode attestation. An attempted repeat was refused before submission; no restart was performed. A controlled-restart decision is waiting in the Inbox.
+**Provenance limitation:** the server PID 677706 started at 2026-11-09 15:38:49 UTC, before four reviewed iTools files were modified at about 16:11:26 UTC. The observed iTools backend contracts are real, but loaded-code/source correspondence is uncertain. `studio/review_utilities.py` now checks expected schema providers and refuses execution when reviewed source mtimes are newer than the explicitly identified server. These are consistency checks, not bytecode attestation. Earlier in this snapshot, a controlled restart was still pending. The November 10 continuation above records the authorized restart and revalidation.
 
 Avoid blindly running apparently model-free examples: RMBG can auto-download segmentation models; its URL loaders can access the network; Canvas explicitly clears device caches; full iTools examples include sampling. Exact reviewed source paths and reduced prompts are retained with receipts.
 
@@ -113,11 +113,11 @@ Run from `/mnt/data/Projects_SSD/ComfyUI`:
 .venv/bin/python studio/workflow_catalogue.py --port 8188
 .venv/bin/python studio/qualify_workflows.py
 .venv/bin/python studio/preflight_workflows.py
-.venv/bin/python -m unittest discover -s studio -p 'test_*.py'
+.venv/bin/python -m pytest -q studio
 # Preflight only; does not queue:
 .venv/bin/python studio/review_pilots.py sd15
 # Explicit execution, only after checking current RAM and queue:
 .venv/bin/python studio/review_pilots.py sd15 --run
 ```
 
-The catalogue writes its generated indexes on refresh; it never executes workflows. Model/download and extension-change decisions are separate from this authorization.
+This is a historical qualification snapshot; some original paths have since moved. These commands refresh generated files in place by default. If you need a current inventory, use `workflow_catalogue.py --output <new-directory>` rather than overwriting the snapshot; the qualification and preflight scripts still target the default directory. Model/download and extension-change decisions are separate.

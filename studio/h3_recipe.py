@@ -46,10 +46,10 @@ def model_folders(root, category):
         for key, value in group.items():
             if {'unet': 'diffusion_models', 'clip': 'text_encoders'}.get(key, key) != category:
                 continue
-            for folder in value.splitlines():
-                if not folder.strip():
+            for folder in value.split('\n'):
+                if not folder:
                     continue
-                path = Path(os.path.normpath(base / folder.strip()))
+                path = Path(os.path.normpath(base / folder))
                 if path in paths:
                     if not group.get('is_default'):
                         continue

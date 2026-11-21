@@ -129,7 +129,9 @@ def prepare(root, graph, workflow, package):
 
 
 def verify_inputs(path, state):
-    if file_hash(Path(path) / 'prompt.json') != state['prompt_sha256']:
+    path = Path(path)
+    if (file_hash(path / 'prompt.json') != state['prompt_sha256']
+            or digest(read_json(path / 'package.json')) != state['package_revision']):
         raise ValueError('Prepared inputs changed; prepare a new take')
 
 

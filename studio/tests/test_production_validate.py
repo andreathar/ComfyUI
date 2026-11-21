@@ -19,6 +19,14 @@ class ProductionValidateTests(unittest.TestCase):
     def assertProblem(self, problems, text):
         self.assertTrue(any(text in p for p in problems), f"{text!r} not in {problems}")
 
+    def test_undeclared_speaker_listed_in_scene_and_shot_is_reported(self):
+        def edit(doc):
+            speaker = 'DEMO-CHR-UNKNOWN'
+            doc['scenes'][0]['characters'].append(speaker)
+            doc['shots'][0]['characters'].append(speaker)
+            doc['shots'][0]['dialogue'] = [{'character': speaker, 'line': 'Hi'}]
+        self.assertProblem(self.broken(edit), 'DEMO-CHR-UNKNOWN')
+
     def test_example_is_valid(self):
         self.assertEqual(pv.check(EXAMPLE), [])
 

@@ -70,6 +70,11 @@ serialized by the browser. Large-integer preflight validation is not implemented
 
 ## Reference and camera feature tests
 
+Use [Reference strategy](REFERENCE_STRATEGY.md) to choose separate references,
+a composed first frame, or first-and-last frames for the selected model.
+Strategy tests establish reusable preparation rules; do not keep tuning an
+individual shot after that question is answered.
+
 Without a script, write observable targets rather than judging dramatic meaning:
 which character stands where, starting/ending gaze and expression, framing, and
 camera movement. Give each reference one explicit role; identity-only reuse must

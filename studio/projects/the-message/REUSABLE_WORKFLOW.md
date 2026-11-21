@@ -101,5 +101,5 @@ Their registration is verified; integration into this template remains untested.
 This is repeatable data-driven preparation and a live template. Applying edits
 still uses the panel agent; there is no single-click shot selector or unattended
 batch runner yet. The resumable run manifest now supports draft assembly after
-technical checks without approving its takes. See `studio/FILM_AUTOMATION.md`.
+technical checks without approving its takes. See the [film automation guide](../../docs/FILM_AUTOMATION.md).
 Runtime validation and creative acceptance remain separate.

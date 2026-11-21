@@ -15,6 +15,19 @@ local ComfyUI server. Local to this fork; upstream has no `studio/` folder.
 | Per-image tags and provenance | same path, `.json` sidecar |
 | Project index (one line per image) | `output/refs/<project>/index.jsonl` |
 
+## Start here
+
+- [Film preparation and take tracking](docs/FILM_AUTOMATION.md) and [Context Loop run records](docs/H3_LOOP_RUN.md) cover the two execution paths.
+- [Master Movie Studio](docs/MASTER_MOVIE_STUDIO_GUIDE.md) covers the current visible production canvas.
+- [Review agent instructions](docs/STUDIO_REVIEW_AGENT.md) define the pre-tuning review scope and verification gates.
+- [Workflow review](workflow-review/START_HERE.md) is a dated qualification/evidence collection, not an active project or training corpus.
+
+## Local reference intake
+
+Use [Local reference intake with Hermes and Qwen](docs/LOCAL_ASSET_WORKER.md)
+for read-only inventory, optional local image classification, and reviewed copies
+into `input/refs/<project>/`. It does not rename existing workflow inputs.
+
 ## Workflow health
 
 After saving or changing a workflow, refresh the local report with ComfyUI running:

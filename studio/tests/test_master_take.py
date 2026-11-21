@@ -129,7 +129,13 @@ class MasterTakeTests(unittest.TestCase):
             # Prepared record minimal fixture, hashes are independently computed.
             prompt = b'{}'
             (root/'prompt.json').write_bytes(prompt)
-            (root/'take.json').write_text(json.dumps({'status': 'prepared', 'prompt_sha256': hashlib.sha256(prompt).hexdigest()}))
+            takes.write_json(root/'package.json', {})
+            (root/'take.json').write_text(json.dumps({'status': 'prepared', 'prompt_sha256': hashlib.sha256(prompt).hexdigest(),
+                                                     'package_revision': takes.digest({})}))
+            takes.write_json(root/'package.json', {'changed': True})
+            with self.assertRaisesRegex(ValueError, 'Prepared inputs changed'):
+                takes.mark_submitting(root)
+            takes.write_json(root/'package.json', {})
             takes.mark_submitting(root)
             with self.assertRaises(ValueError): takes.mark_submitting(root)
             takes.bind(root, 'uuid-1')
@@ -176,7 +182,8 @@ class MasterTakeTests(unittest.TestCase):
             brain = root/'brain/run-1'
             brain.mkdir(parents=True)
             (brain/'run.json').write_text('{}')
-            takes.write_json(take/'take.json', {'status': 'submitted', 'prompt_id': 'run-1',
+            takes.write_json(take/'package.json', {})
+            takes.write_json(take/'take.json', {'status': 'submitted', 'prompt_id': 'run-1', 'package_revision': takes.digest({}),
                 'prompt_sha256': takes.file_hash(take/'prompt.json'), 'output_prefix': 'The_Message/shots/S1/tk001/video'})
             record = {'status': {'completed': True, 'status_str': 'success'}, 'prompt': [0, 'run-1', graph],
                       'outputs': {'64': {'images': [{'type': 'output', 'subfolder': 'The_Message/shots/S1/tk001', 'filename': video.name}]}}}
@@ -209,7 +216,8 @@ class MasterTakeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             take = Path(tmp)
             takes.write_json(take/'prompt.json', {})
-            takes.write_json(take/'take.json', {'status': 'submitted', 'prompt_id': 'run-1',
+            takes.write_json(take/'package.json', {})
+            takes.write_json(take/'take.json', {'status': 'submitted', 'prompt_id': 'run-1', 'package_revision': takes.digest({}),
                 'prompt_sha256': takes.file_hash(take/'prompt.json')})
             history = {'run-1': {'status': {'completed': False, 'status_str': 'error'}}}
             state = takes.reconcile(take, history, take/'output', 'Film', take/'brain')

@@ -61,7 +61,7 @@ def analyzer_identity():
     return {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
 
 
-def analyzer():
+def analyzer_package():
     identity = analyzer_identity()
     name = '_studio_brain_' + sha(identity)
     if name not in sys.modules:
@@ -69,10 +69,23 @@ def analyzer():
         package = importlib.util.module_from_spec(spec)
         sys.modules[name] = package
         spec.loader.exec_module(package)
+    return name, identity
+
+
+def analyzer():
+    name, identity = analyzer_package()
     module = importlib.import_module(name + '.benchmark')
     if analyzer_identity() != identity:
         raise ValueError('Brain analyzer changed while loading')
     return module.benchmark_report, identity
+
+
+def history_fingerprint(prompt, extra, targets):
+    name, identity = analyzer_package()
+    module = importlib.import_module(name + '.model')
+    if analyzer_identity() != identity:
+        raise ValueError('Brain analyzer changed while loading')
+    return module.capture_prompt(prompt, extra, targets)['generation_fingerprint']
 
 
 def file_identity(path):

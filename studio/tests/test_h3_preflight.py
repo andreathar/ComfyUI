@@ -37,6 +37,19 @@ class PreflightTests(unittest.TestCase):
             self.assertTrue(any('weight missing' in e for e in result['errors']))
             self.assertTrue(any('node unavailable' in e for e in result['errors']))
 
+    def test_input_authorization_takes_precedence_over_creative_approval(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / 'asset.png'
+            source.write_bytes(b'fixture')
+            asset = {'path': source.name, 'sha256': h3.file_hash(source)}
+            for flags, blocked in (({'approved': False, 'input_use_authorized': True}, False),
+                                   ({'approved': True, 'input_use_authorized': False}, True),
+                                   ({'approved': True}, False)):
+                with self.subTest(flags=flags):
+                    result = preflight.check(root, {}, {'ref': {**asset, **flags}})
+                    self.assertEqual(any('approval required' in e for e in result['errors']), blocked)
+
     def test_changed_model_stamp_requires_rehash(self):
         with tempfile.TemporaryDirectory() as root:
             relative = 'models/diffusion_models/' + h3.DIAGNOSTIC['models']['diffusion_models']
@@ -107,6 +120,23 @@ class PreflightTests(unittest.TestCase):
             record = {'path': relative, 'size_bytes': stat.st_size, 'mtime_ns': stat.st_mtime_ns, 'sha256': h3.file_hash(original), 'resolver_config_sha256': h3.file_hash(config)}
             result = preflight.check(root, {'diffusion_models': record}, {}, None, rehash=True)
             self.assertTrue(any('model hash mismatch' in e for e in result['errors']))
+
+    def test_resolve_model_uses_model_folders(self):
+        with tempfile.TemporaryDirectory() as root:
+            root = Path(root)
+            name = h3.DIAGNOSTIC['models']['diffusion_models']
+            hot = root / 'hot/diffusion_models ' / name
+            hot.parent.mkdir(parents=True)
+            hot.write_bytes(b'external')
+            wrong = hot.parent.with_name('diffusion_models') / name
+            wrong.parent.mkdir()
+            wrong.write_bytes(b'wrong normalized copy')
+            config = root / 'extra_model_paths.yaml'
+            config.write_text('hot:\n  base_path: hot\n  is_default: true\n  unet: "diffusion_models "\n')
+            folders = h3.model_folders(root, 'diffusion_models')
+            self.assertIn(hot.parent, folders)
+            resolved = preflight.resolve_model(root, 'diffusion_models')
+            self.assertEqual(resolved, hot)
 
 
 if __name__ == '__main__':

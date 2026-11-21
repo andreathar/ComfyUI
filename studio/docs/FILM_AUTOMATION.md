@@ -1,6 +1,6 @@
 # Local film preparation and take tracking
 
-The separate [Automated Draft workflow](projects/the-message/AUTOMATED_DRAFT.md)
+The separate [Automated Draft workflow](../projects/the-message/AUTOMATED_DRAFT.md)
 uses `h3_loop.py` to export compiled shots to installed Context Loop and Comfy
 Dynamic nodes. Its two-shot generation/checkpoint/assembly test passed. The
 single-take tracking protocol below remains a separate execution path.
@@ -9,9 +9,22 @@ For bundle-driven silent runs, use the [Context Loop run-record protocol](H3_LOO
 `film.py` compiles the existing canonical production document into Fantastic H3
 shot proposals. It never queues a render or invokes a text provider. The panel
 agent applies the prepared edits to the visible working-copy workflow and owns
-the queue operation. Existing `production_generate.py` remains the optional
-script breakdown tool; its provider selection is explicit and may incur cost.
-The current assistant can also produce the same validated document directly.
+the queue operation. `production_generate.py` is the optional local Qwen script
+breakdown tool; it never sends the script to a cloud provider. The document must
+pass the same validator whether it was produced by Qwen or authored by hand.
+
+```sh
+unset PYTHONPATH PYTHONHOME
+.venv/bin/python studio/production_generate.py script.txt \
+  --out production.json --log production-worker.log
+```
+
+Use `--existing production.json` with a separate edit request for a revision.
+The full source stays unchanged unless `--revised-script` supplies a complete
+replacement. Write to a new output and log path. Keep the script and outputs
+local; stop ComfyUI and leave GPU headroom before invoking the worker. See the
+[local worker guide](LOCAL_ASSET_WORKER.md) for runtime requirements. Keep drafts
+small enough for the 16K context; an incomplete model reply never publishes JSON.
 
 The included project is `studio/projects/the-message`. Its short script was
 reconstructed from the two existing scene prompts, not recovered from an original

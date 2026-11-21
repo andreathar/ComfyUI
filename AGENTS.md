@@ -450,6 +450,11 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 
 ## Learned User Preferences
 
+- Reference tests must establish reusable model-specific preparation practices;
+  use `studio/docs/REFERENCE_STRATEGY.md`. Stop once the strategy question is
+  answered. Do not drift into repeated per-shot gesture, expression or pixel-level
+  tuning unless the user explicitly asks to finish that shot.
+
 - For production work, read `.codex/README.md` and the Master Studio guide in
   `studio/docs/MASTER_MOVIE_STUDIO_GUIDE.md`; keep dated machine measurements,
   runtime details and experiment evidence in `.codex`, not in agent rules.
