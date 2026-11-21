@@ -1,0 +1,100 @@
+{
+  "1": {
+    "class_type": "AtharScriptAgentNode",
+    "inputs": {
+      "story_script": "INT. NIGHT MARKET - RAIN - 00:00:12\nKael (30s, worn leather jacket, scar over left brow) steps under a flickering neon awning holding a brass compass. Wide establishing shot, slow dolly-in, moody cyan and amber lighting, rain hiss and distant vendor voices. Close-up on Kael's tense expression: \"They said the compass wouldn't tick until midnight.\"",
+      "model_endpoint": "http://127.0.0.1:1234/v1/chat/completions",
+      "model_name": "qwen2.5-coder-14b-instruct",
+      "project_prefix": "MidnightCompass"
+    }
+  },
+  "2": {
+    "class_type": "AtharNamingRegistryNode",
+    "inputs": {
+      "structured_script_json": ["1", 0],
+      "date_stamp": "20261121",
+      "character_prefix": "CHAR",
+      "prop_prefix": "PROP",
+      "location_prefix": "LOC",
+      "version_tag": "v01"
+    }
+  },
+  "3": {
+    "class_type": "AtharReferenceTurnaroundNode",
+    "inputs": {
+      "naming_registry_json": ["2", 0],
+      "subject_type": "character",
+      "subject_id": "CHAR_Kael_01",
+      "angles_csv": "front,three_quarter,side",
+      "width": 1536,
+      "height": 512,
+      "steps": 28,
+      "cfg": 3.5,
+      "seed": 420101
+    }
+  },
+  "4": {
+    "class_type": "AtharReferenceTurnaroundNode",
+    "inputs": {
+      "naming_registry_json": ["2", 0],
+      "subject_type": "prop",
+      "subject_id": "PROP_BrassCompass_01",
+      "angles_csv": "front,three_quarter,side",
+      "width": 1536,
+      "height": 512,
+      "steps": 24,
+      "cfg": 3.5,
+      "seed": 420102
+    }
+  },
+  "5": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["3", 0],
+      "filename_prefix": "20261121_MidnightCompass_REF_CHAR_Kael_01_3Angles_v01"
+    }
+  },
+  "6": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["4", 0],
+      "filename_prefix": "20261121_MidnightCompass_REF_PROP_BrassCompass_01_3Angles_v01"
+    }
+  },
+  "7": {
+    "class_type": "AtharShotPromptBuilderNode",
+    "inputs": {
+      "structured_script_json": ["1", 0],
+      "naming_registry_json": ["2", 0],
+      "shot_index": 0,
+      "shot_size": "medium_close_up",
+      "facial_expression": "tense focus, jaw slightly clenched, eyes locked forward",
+      "camera_movement": "slow push-in dolly",
+      "lighting_setup": "low-key cyan rim light with warm amber practical neon fill",
+      "dialogue_line": "They said the compass wouldn't tick until midnight.",
+      "audio_cue": "steady rain on metal awning, faint night market chatter",
+      "duration_seconds": 4.0
+    }
+  },
+  "8": {
+    "class_type": "AtharVideoGenNode",
+    "inputs": {
+      "prompt_text": ["7", 0],
+      "character_ref_sheet": ["3", 0],
+      "prop_ref_sheet": ["4", 0],
+      "duration_seconds": ["7", 1],
+      "fps": 24,
+      "width": 1280,
+      "height": 720,
+      "seed": 88001,
+      "continuity_mode": "first_shot_anchor"
+    }
+  },
+  "9": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["8", 0],
+      "filename_prefix": "20261121_MidnightCompass_SHOT_SC01_SH01_v01"
+    }
+  }
+}

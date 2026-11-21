@@ -1,0 +1,108 @@
+---
+references:
+  - "File: /studio/asset_intake.py"
+  - "File: /studio/asset_vision.py"
+  - "File: /studio/brain_comparison.py"
+  - "File: /studio/brain_index.py"
+  - "File: /studio/brain_local_model.py"
+  - "File: /studio/h3_preflight.py"
+  - "File: /studio/h3_recipe.py"
+  - "File: /studio/master_take.py"
+  - "File: /studio/production_generate.py"
+  - "File: /studio/production_validate.py"
+  - "File: /studio/tests/test_asset_intake.py"
+  - "File: /studio/tests/test_asset_vision.py"
+  - "File: /studio/tests/test_brain_comparison.py"
+  - "File: /studio/tests/test_brain_local_model.py"
+  - "File: /studio/tests/test_e2e_pipeline.py"
+  - "File: /studio/tests/test_h3_preflight.py"
+  - "File: /studio/tests/test_master_take.py"
+  - "File: /studio/tests/test_production_generate.py"
+  - "File: /studio/tests/test_production_validate.py"
+generationTime: 2026-11-21T08:01:07.373Z
+---
+flowchart TD
+    subgraph Intake["Asset intake and vision"]
+        I0["asset_intake CLI"] --> I1{"Command"}
+        I1 -->|Scan| I2["Read and inspect inbox files"]
+        I2 --> I3["Inventory: ready, duplicate, or unreadable"]
+        I1 -->|Plan| I4["Validate assignments and create approved plan"]
+        I1 -->|Preview| I5["Create sanitized thumbnails and review HTML"]
+        I1 -->|Apply| I6{"Approval digest and selection valid"}
+        I6 -->|No| IX["Reject request"]
+        I6 -->|Yes| I7["Recheck source and image"]
+        I7 --> I8["No-clobber verified copy"]
+        I8 --> I9["Return copy receipt"]
+
+        V0["asset_vision CLI"] --> V1["Select ready inventory items"]
+        V1 --> V2["Create sanitized thumbnails"]
+        V2 --> V3{"Capacity available and ComfyUI stopped"}
+        V3 -->|No| VX["Abort classification"]
+        V3 -->|Yes| V4["Launch authenticated local model server"]
+        V4 --> V5["Classify each still with bounded retry"]
+        V5 --> V6["Validate structured response and emit report"]
+    end
+
+    subgraph Production["Production document generation and validation"]
+        P0["production_generate CLI"] --> P1["Build prompt from script and rules"]
+        P1 --> P2["Local model completion"]
+        P2 --> P3["Parse JSON and validate document"]
+        P3 --> P4{"Valid and source text unchanged"}
+        P4 -->|No| P5{"Retry limit reached"}
+        P5 -->|No| P6["Send validation problems for correction"]
+        P6 --> P2
+        P5 -->|Yes| P7["Return questions or problems"]
+        P4 -->|Yes| P8["Write production document"]
+        P3 -.-> P9["production_validate: schema then cross-reference checks"]
+    end
+
+    subgraph H3["H3 shot preparation"]
+        H0["compile_shot"] --> H1["Validate production and shot bindings"]
+        H1 --> H2["Check approved assets, hashes, roles, and recipe"]
+        H2 --> H3a["Build prompt, reference state, and warnings"]
+        H3a --> H4["h3_graph compiles workflow graph"]
+        H4 --> H5["Preflight checks model pins, assets, nodes, and resources"]
+        H5 --> H6["film prepares frozen take"]
+    end
+
+    subgraph Take["Master Studio take lifecycle"]
+        T0["master_take prepare"] --> T1["Verify workflow wiring and frozen seed"]
+        T1 --> T2["Freeze package, prompt, and take metadata"]
+        T2 --> T3["Mark submitting and bind prompt ID"]
+        T3 --> T4["Collect native history and reconcile outputs"]
+        T4 --> T5{"History and outputs match frozen take"}
+        T5 -->|No| TX["Reject or mark failed"]
+        T5 -->|Yes| T6["Record output and request human review"]
+        T6 --> T7["Review verdicts and output hash"]
+    end
+
+    subgraph Brain["Brain indexing and comparison"]
+        B0["brain_index build_index"] --> B1["Hash and import stable terminal run records"]
+        B1 --> B2["Analyze records and build SQLite generation"]
+        B2 --> B3["Validate and atomically publish index"]
+        B3 --> B4["AnalysisIndex reads evidence"]
+        B4 --> B5["brain_comparison matches native history timing"]
+        B5 --> B6["Calculate comparison and render charts"]
+        B6 --> B7{"Optional local-model explanation"}
+        B7 -->|Yes| B8["Check loopback model and idle queue"]
+        B8 --> B9["Validate bounded response and citations"]
+        B7 -->|No| B10["Save comparison bundle"]
+        B9 --> B10
+        B6 --> B10
+    end
+
+    subgraph Tests["Test coverage"]
+        Q1["Asset intake and vision tests"]
+        Q2["Production generation and validation tests"]
+        Q3["H3 preflight and end-to-end pipeline tests"]
+        Q4["Master take lifecycle tests"]
+        Q5["Brain comparison and local-model tests"]
+    end
+
+    Q1 -.-> I2
+    Q1 -.-> V5
+    Q2 -.-> P3
+    Q3 -.-> H5
+    Q4 -.-> T4
+    Q5 -.-> B5
+    Q5 -.-> B9

@@ -72,11 +72,11 @@ def classify(port, key, asset_id, png):
     return observation(asset_id, json.loads(choice['message']['content']))
 
 
-def launch_args(engine, model, projector, port, key_file):
+def launch_args(engine, model, projector, port, key_file, *, context=16384):
     return [str(engine), '--host', '127.0.0.1', '--port', str(port), '--api-key-file', str(key_file),
             '--no-ui', '--jinja', '--model', str(model), '--alias', MODEL,
             *(['--mmproj', str(projector)] if projector is not None else []),
-            '--ctx-size', '16384', '--parallel', '1', '--fit', 'on', '--load-mode', 'dio',
+            '--ctx-size', str(context), '--parallel', '1', '--fit', 'on', '--load-mode', 'dio',
             '--cache-type-k', 'q8_0', '--cache-type-v', 'q8_0', '--flash-attn', 'on',
             '--spec-type', 'draft-mtp', '--spec-draft-n-max', '2', '--backend-sampling',
             '--spec-draft-backend-sampling', '--cache-ram', '0', '--reasoning', 'off']
@@ -124,7 +124,7 @@ def owns_listener(pid, port):
 
 
 @contextmanager
-def local_server(engine, model, projector, log):
+def local_server(engine, model, projector, log, *, context=16384):
     STUDIO_CACHE.mkdir(mode=0o700, parents=True, exist_ok=True)
     with (STUDIO_CACHE / 'asset-vision.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -137,7 +137,7 @@ def local_server(engine, model, projector, log):
             with socket.socket() as reserve:
                 reserve.bind(('127.0.0.1', 0))
                 port = reserve.getsockname()[1]
-            cmd = launch_args(engine, model, projector, port, key_file)
+            cmd = launch_args(engine, model, projector, port, key_file, context=context)
             env = {name: value for name, value in os.environ.items() if name in ('PATH', 'HOME', 'LANG', 'LC_ALL', 'LD_LIBRARY_PATH', 'CUDA_VISIBLE_DEVICES')}
             with subprocess.Popen(cmd, env=env, stdin=subprocess.DEVNULL, stdout=log, stderr=log) as process:
                 try:
@@ -191,7 +191,7 @@ def main():
             path = path.resolve(strict=True)
             info = path.stat()
             artifacts[label] = {'path': str(path), 'bytes': info.st_size, 'mtime_ns': info.st_mtime_ns}
-        with args.log.open('x') as log, local_server(args.engine, args.model, args.projector, log) as (port, key, pid):
+        with args.log.open('x') as log, local_server(args.engine, args.model, args.projector, log, context=4096) as (port, key, pid):
             failed = False
             for item, sha256, pixels in images:
                 check_comfyui()

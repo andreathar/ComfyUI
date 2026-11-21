@@ -13,4 +13,4 @@ Return only material findings: severity, `path:line`, observed behavior, impact,
 
 ## CodeRabbit
 
-Use the existing root `.coderabbit.yaml` and the scope/privacy rules in `.codex/AGENT_TOOLING.md`. Pass this file as additional instructions with `--config` when using the CLI. Do not review a dirty mixed worktree with `--include-untracked` indiscriminately; isolate explicitly selected code and tests, check the diff for private data and secrets, and confirm a completed review before reporting its result. The local reviewer can use the same brief without transmitting source.
+Use the existing root `.coderabbit.yaml` and follow the [CLI review procedure](../../.codex/AGENT_TOOLING.md#explicit-instructions-for-local-coderabbit-reviews). Pass this file as an extra `--config` file only when its Studio-specific checks are relevant. Isolate the intended code and tests before any remote review; don't send project media or manifests. A local reviewer can use the same brief without transmitting source.
