@@ -1,0 +1,3 @@
+shot_id,scene_id,action,camera,requested_seconds,planned_seconds,start,end,duration_frames,gap_before_frames,fps,start_image,end_image,review_status
+SBR1_S001_SH01,SBR1_S001,Ada lifts the blue envelope.,static,3,3,0,72,72,0,24,,,missing_frames
+SBR1_S001_SH02,SBR1_S001,Ada places the envelope on the table.,static,3,3,72,144,72,0,24,,,missing_frames

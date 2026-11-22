@@ -17,14 +17,11 @@ Follow `<rules>` exactly. Produce a single JSON object that validates against `<
 
 Procedure:
 1. For a new document, put the full dictation unchanged in `project.source_text`. When revising `<existing>`, preserve its full source text unless `<revised_script>` supplies the complete replacement. Copy that replacement unchanged. The edit request is not the script. Ask via `questions` if a requested script edit has no replacement text.
-2. Build the banks (characters, voices, locations, props, motions) from what the dictation states. Where a field the
-   rules require is not stated (voice, wardrobe, lighting, a driving clip), do not invent it: set the document
-   aside and return instead a JSON object `{"questions": [{"about": "<id or field>", "ask": "<short question>"}]}`.
+2. Build the banks (characters, voices, locations, props, motions) from the supplied facts. A brief supplied appearance is enough for a draft; do not demand precise age, build, or facial features. Do not infer missing identity details. Omit optional details not supplied, and use the stated neutral defaults for technical choices. Ask only if the missing fact blocks a usable scaffold (for example, required wardrobe or a voice for authored dialogue). In that case return `{"questions": [{"about": "<id or field>", "ask": "<short question>"}]}` instead of a document.
 3. Split into scenes, then shots. Cover each scene as the camera rules say. Every scene and shot gets `script_ref`
    offsets into the full canonical `project.source_text`. Recompute affected offsets after script edits.
 4. Use only ids that exist in your banks. Use the naming grammar for every id.
-5. Describe actions as observable events. Do not add story, characters or dialogue the dictation lacks. If a
-   shot needs something the dictation does not give, ask via `questions` instead.
+5. Describe actions as observable events. Do not add story, characters or dialogue the dictation lacks. Leave casting, expression detail and final shot direction to the filmmaker.
 6. Leave `prompt`, `tasks` and `generation` out; tooling fills them.
 
 When `<existing>` is present, change only what the dictation edit requires and keep every existing id stable.

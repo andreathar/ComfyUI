@@ -1,8 +1,22 @@
 # Studio Production Bootstrap
 
-**Status:** implementation plan. No node installed, project created, or render queued.
+**Status:** local Qwen plus deterministic scaffold creation passed for one silent scene on the Empty Platform fixture. Brain-monitored references and two reconciled Rainy Street Master/Suite takes passed separately, as did two portable Builder drafts. This is [technical pilot evidence](../../.codex/artifacts/rainy-street-pilot/RESULT.md), not creative approval or a single integrated run from Qwen's proposal to delivery. The V3 adapter, generic project selector and local-agent project management remain open. No existing production project was changed.
 
 **Decision:** add one V3 node, **Studio Production Bootstrap** (`StudioProductionBootstrap`, category `Studio/Production`), as the front door to a film. It previews a story breakdown and, on a separately approved run, creates the project scaffold. It does not generate media. Reuse Studio’s production validator, reference intake, Prompt Builder, H3/Hub, take tracking, and Brain; don’t install the five example nodes. The supplied Python returns hard-coded story data and blank tensors, not real generation.
+
+## v1 scope: prepare the project; the user directs it
+
+1. **Propose a base structure.** Local Qwen turns the supplied story into a draft of locations, characters, and scenes/shots. Each shot specifies who, where, one visible action, framing, camera movement (static if unspecified), rough duration, and required reference roles. Preserve the source verbatim. Ask only when an unknown fact prevents a useful proposal; label optional creative choices as suggestions.
+2. **Review the reference list.** The user chooses which existing references to use or requests candidate stills for missing roles. Keep identity, wardrobe, location, props and composed frames distinct. Never substitute a generated face for a named person's reference. A missing or unapproved identity stays missing; do not fill it in silently.
+3. **Open in the existing workflow.** Deterministic Studio code validates IDs, destinations and files; binds approved references to the Builder's actual inputs and labels; and preserves `[Shot 1]` and `<Subject 1>`. The user edits shots, selects the recipe/LoRA/RefMods, and initiates generation. Brain records what actually ran; the local agent can summarize missing inputs and receipts without granting approval. No automatic rendering, take selection or creative scoring.
+
+The **Andre Athar lab is separate** and opt-in. It uses the explicitly selected Andre Athar references for user-led facial consistency, expression and later dialogue/lip-sync tests. Rainy Street intentionally used a generated stand-in and is evidence for pipeline handoffs only, not for Andre's likeness. Keep these lab tests out of the bootstrap release gate.
+
+### Bound the local model's work
+
+Do not ask the worker to write the expanded production schema for the initial draft. Have it return only the story facts and shot choices that need interpretation: entity and scene associations, one action per shot, and genuinely blocking questions. Studio retains the source text, allocates IDs, applies the selected technical defaults, and validates the expanded document. Do not ask Qwen to echo the script, produce filesystem paths, assign assets or write review records. Keep the existing full-document path for revisions until the compact draft is verified.
+
+The `--outline` path supports one silent scene, up to four shots. Offline clarification, malformed JSON and invalid source excerpts emitted no files. The [bounded live retest](../../.codex/artifacts/local-qwen-bootstrap-qualification/RESULT.md) then produced a valid two-shot document, which Studio expanded into a verified scratch scaffold. Keep this scope until broader stories are tested.
 
 ## What the operator provides
 
@@ -69,8 +83,17 @@ In the preview, show an ordered **Location → Scene → Shot** checklist and a 
 ### Inline hints and frame choices
 
 - Use short hints beside the controls, not extra required fields. **Shot**: “One visible action per clip. Start with `[Shot 1]`.” **Subject**: “Choose an existing character or prop. The Builder inserts `<Subject 1>` and binds the selected reference.” **Camera**: “Pick one movement, or keep it static.” `Camera` is a UI label, not a new `[Camera]` token; use the existing Builder insertion control. Keep the numeric spacing and bracket types used by the Builder, and do not confuse `[Shot 1]` inside a clip prompt with the project’s stable shot ID.
-- **First frame — What should the shot open on?** For a planned action, default to proposing a composed still that establishes the actual framing, pose and prop placement. Keep the separate identity/wardrobe/location/prop stills in the reference bank. Bind the approved composed still to the selected FL2VA recipe’s actual `first_frame` input; an ordinary REF picture is not that input.
+- **First frame — What should the shot open on?** Optional. Propose a composed still only when the shot needs a specific opening pose or composition. Keep the separate identity/wardrobe/location/prop stills in the reference bank. Bind the approved composed still to the selected FL2VA recipe’s actual `first_frame` input; an ordinary REF picture is not that input.
 - **End frame — Does the shot have to land on a specific pose or composition?** Optional, off by default. Show it only for an endpoint-capable recipe; bind it to `last_frame` when explicitly selected. Check it against the first frame for continuity and intended changes. An end-frame constraint is not a guarantee of the motion between them. It is also not automatically the next clip’s start frame or an approved Hub continuation tail.
 - Show `not needed`, `missing`, `candidate`, or `approved for input` for each applicable frame slot. Before rendering, show which file and role reach the actual inputs. Reuse the [reference strategy](../docs/REFERENCE_STRATEGY.md): the kitchen test improved object continuity with a composed first frame but missed the intended low lift; first-plus-last is supported, not proven better in a controlled comparison.
 
-**Done for v1:** the user can turn a short story into an approved, non-overwriting project scaffold, see what references and decisions are missing, and open it in Master Studio without touching The Message. Rendering still requires a separate explicit action and approval gates.
+**Done for v1:** one real local-Qwen run turns a short story into a valid, editable proposal; the user can approve and create the scaffold, select references, then open two correctly bound, editable shots in the existing Builder without touching The Message. A Brain-backed test render checks the handoff, not creative quality. Rendering still requires a separate explicit user action.
+
+## Two-shot pilot completion gate
+
+| Stage | Required handoff | Proof |
+|---|---|---|
+| Local story proposal → Bootstrap | Authoritative source, validated entities/scene/shot IDs, reviewed proposal digest | Source bytes match, no-clobber publish and idempotent replay. Passed on the live isolated Qwen Empty Platform fixture. |
+| Reference generation → Reference intake | Candidate PNG, named role, native prompt ID and Brain receipt | Decode and hash the bytes, review the image, then bind only approved inputs. Scratch location and identity/wardrobe receipts passed; these are not production approvals. |
+| Master Studio → Project Suite | Two distinct frozen cut takes with matching shot/package selection, Builder state and effective Reference Map | Native history matches each prompt; clips decode and duration matches the recipe; Suite output identity and both Brain runs reconcile. Review the two cuts together. |
+| Local agent → operator | Read progress, blockers, reference receipts and take evidence by project/scene/shot; propose next actions | Real local-agent session retrieves both takes and distinguishes candidate, technical pass and human approval. No independent promotion, destructive edits or cloud fallback. |

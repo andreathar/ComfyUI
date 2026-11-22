@@ -9,9 +9,10 @@ import subprocess
 import sys
 
 if __package__:
-    from . import production_validate as pv
+    from . import production_outline, production_validate as pv
     from .asset_vision import MODEL as DEFAULT_MODEL, MODEL_HOME, check_comfyui, http, local_server, owns_listener
 else:
+    import production_outline
     import production_validate as pv
     from asset_vision import MODEL as DEFAULT_MODEL, MODEL_HOME, check_comfyui, http, local_server, owns_listener
 
@@ -49,15 +50,15 @@ def extract_json(text):
         raise GenerateError(f"model reply is not valid JSON: {error}") from error
 
 
-def local_completion(port, key, pid, system, messages, model):
+def local_completion(port, key, pid, system, messages, model, *, max_tokens=4096, timeout=1800):
     check_comfyui()
     if not owns_listener(pid, port):
         raise GenerateError('The isolated model no longer owns its listener')
     reply = http(port, '/v1/chat/completions', key, {
         'model': model, 'messages': [{'role': 'system', 'content': system}, *messages],
-        'response_format': {'type': 'json_object'}, 'temperature': 0, 'max_tokens': 4096,
+        'response_format': {'type': 'json_object'}, 'temperature': 0, 'max_tokens': max_tokens,
         'chat_template_kwargs': {'enable_thinking': False},
-    }, timeout=1800)
+    }, timeout=timeout)
     if reply.get('model') != model:
         raise GenerateError('Unexpected local model')
     try:
@@ -68,6 +69,15 @@ def local_completion(port, key, pid, system, messages, model):
     except (KeyError, IndexError, TypeError) as error:
         raise GenerateError('Invalid local completion response') from error
     return content
+
+
+def generate_outline(source, backend, *, code, title, style_bible='', model=DEFAULT_MODEL):
+    message = json.dumps({'story': source, 'brief': style_bible}, ensure_ascii=False)
+    reply = backend(production_outline.SYSTEM, [{'role': 'user', 'content': message}], model)
+    try:
+        return production_outline.expand(json.loads(reply), source, code, title)
+    except ValueError as error:
+        return {'problems': [str(error)]}
 
 
 def generate(dictation, backend, model=DEFAULT_MODEL, style_bible="", existing="", revised_script=None):
@@ -120,19 +130,30 @@ def main(argv=None):
     parser.add_argument("--style", type=Path, help="Project style bible / settings text file")
     parser.add_argument("--existing", type=Path, help="Current production JSON to revise")
     parser.add_argument("--revised-script", type=Path, help="Complete replacement source text for a revision")
+    parser.add_argument('--outline', action='store_true', help='Compact draft mode for a single silent scene')
+    parser.add_argument('--project-code', help='Project code for --outline')
+    parser.add_argument('--title', help='Project title for --outline')
     args = parser.parse_args(argv)
     if args.revised_script and not args.existing:
         parser.error("--revised-script requires --existing")
+    if args.outline and (args.existing or not args.project_code or not args.title):
+        parser.error('--outline requires --project-code and --title, without --existing')
+    if not args.outline and (args.project_code or args.title):
+        parser.error('--project-code and --title require --outline')
     if args.out.exists():
         print(f"Refusing to overwrite {args.out}", file=sys.stderr)
         return 2
-    dictation = args.dictation.read_text()
+    dictation = args.dictation.read_bytes().decode('utf-8') if args.outline else args.dictation.read_text()
     style = args.style.read_text() if args.style else ''
     existing = args.existing.read_text() if args.existing else ''
     revised = args.revised_script.read_text() if args.revised_script else None
     with args.log.open('x') as log, local_server(args.engine, MODEL_HOME / f'{DEFAULT_MODEL}.gguf', None, log) as (port, key, pid):
-        result = generate(dictation, partial(local_completion, port, key, pid),
-                          style_bible=style, existing=existing, revised_script=revised)
+        backend = partial(local_completion, port, key, pid)
+        if args.outline:
+            result = generate_outline(dictation, partial(backend, max_tokens=768, timeout=360),
+                                      code=args.project_code, title=args.title, style_bible=style)
+        else:
+            result = generate(dictation, backend, style_bible=style, existing=existing, revised_script=revised)
     if "document" in result:
         with args.out.open('x') as stream:
             stream.write(json.dumps(result['document'], indent=2) + '\n')

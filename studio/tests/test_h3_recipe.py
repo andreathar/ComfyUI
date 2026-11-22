@@ -96,6 +96,21 @@ class RecipeTests(unittest.TestCase):
         self.assertIn('primary camera layout from <Picture 2>', out['prompt_text'])
         self.assertIn('as shown in <Picture 1>', out['prompt_text'])
 
+    def test_identity_still_is_numbered_as_media_not_a_refmod(self):
+        self.silent()
+        path = self.root / 'input/portrait.png'
+        path.write_bytes(b'portrait')
+        self.assets['actor'].update(path='input/portrait.png', sha256=h3.file_hash(path),
+                                    kind='picture', selection={'file': 'portrait.png [input]', 'kind': 'picture'})
+        out = self.compile()
+        self.assertEqual(out['labels'], {'room': '<Picture 1>', 'actor': '<Picture 2>'})
+        self.assertIn('facial identity is shown in <Picture 2>', out['prompt_text'])
+        self.assertEqual(out['media_state'][1]['file'], 'portrait.png [input]')
+        self.assertEqual(out['stack_state']['picks'], [])
+        self.assets['actor']['approved'] = False
+        with self.assertRaisesRegex(ValueError, 'asset is not approved'):
+            self.compile()
+
     def test_silent_contract_rejects_voice_and_unused_identity(self):
         self.silent()
         self.binding['assets'].append('voice')

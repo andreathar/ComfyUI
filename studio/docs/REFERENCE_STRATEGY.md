@@ -45,6 +45,38 @@ rejections solely for quality-oriented recommendations.
 - **H3 RefMods:** derived, model-specific cached conditioning. Keep their original media; do not treat the safetensors file as a portable reference or a trained identity LoRA. Extra encoded frames can add cost without useful information.
 - **Other models:** use their own reference adapter and documented limits. Do not copy H3 labels, RefMods, limits or prompt templates into another model family by assumption.
 
+## H3 RefMod efficiency rule
+
+Use the lightest approved reference that passes the shot's identity check. For
+Andre Athar, start with one clean face still; add one complementary view only
+for a demonstrated angle failure. Keep the existing video RefMod as the
+comparison baseline, not an automatic input. For a reusable compact RefMod,
+encode only the selected stills at a practical face crop and size. Keep those
+source files, crop and order, and record the derived file, recipe and actual
+latent token count. Keep voice and motion separate; a silent likeness test needs
+neither. Never substitute a generated face for an approved named identity.
+
+Start at weight 1. Increasing weight above 1 adds copies; reducing a positive
+strength softens the reference without shrinking it. `stack_pictures` changes
+which stack pictures the text encoder sees, not the saved generator latents.
+`max_total_tokens` rejects expensive RefMods; it does not compress them or cap
+ordinary media. Reduce generator reference cost at preparation time: remove
+redundant material, crop and size usefully, or shorten a clip to the distinct
+motion it is meant to supply. Don't change these variables together when
+testing which one helped.
+
+The operator confirmed one still preserves Andre's likeness through the tested
+small head turn. Use it as the starting rule for comparable shots, not as a
+guarantee for larger turns or profiles. Eye movement and expression refinements
+belong to final creative work, not this reference test.
+
+If a later shot has a specific angle failure, compare the same still against
+that still plus one approved complementary view. Keep recipe, seed, action,
+framing and other references fixed. Record generator reference tokens,
+prompt/vision tokens, sampling and wall time, and peak memory separately in
+Brain. Expression and lip sync remain separate user-led tests, not gates for
+the scaffold.
+
 ## Evidence and stopping rule
 
 Our local tests support a composed first frame as the preferred starting point

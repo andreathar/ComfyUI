@@ -1,0 +1,1941 @@
+- generic [ref=e1]:
+  - main [ref=e9]:
+    - generic [ref=e11]:
+      - text: .. .. ..
+      - generic:
+        - generic [ref=e13]:
+          - tablist [ref=e16]:
+            - tab "Unsaved Workflow" [ref=e11985] [cursor=pointer]
+            - tab "The Message - Master Movie Studio" [ref=e11986] [cursor=pointer]
+            - tab "The Message - Visual Shot Authoring" [ref=e11987] [cursor=pointer]
+            - tab "The Message - Holistic Production Workbench" [selected] [ref=e11988] [cursor=pointer]
+          - button "Create a new blank workflow" [ref=e11989] [cursor=pointer]:
+            - generic [ref=e23]: 
+          - button "Login" [ref=e11990] [cursor=pointer]
+        - generic:
+          - generic:
+            - navigation [ref=e28]:
+              - generic [ref=e29]:
+                - generic [ref=e30]:
+                  - button "Menu" [ref=e11991] [cursor=pointer]
+                  - button "Job History" [ref=e11992] [cursor=pointer]
+                  - button "Assets (a)" [ref=e11993] [cursor=pointer]
+                  - button "Node Library (n)" [ref=e11994] [cursor=pointer]
+                  - button "Model Library (m)" [ref=e11995] [cursor=pointer]
+                  - button "Workflows (w)" [ref=e11996] [cursor=pointer]
+                  - button "Apps" [ref=e11997] [cursor=pointer]
+                  - button "ComfyUI Agent Panel — your agent session's window into this graph" [ref=e11998] [cursor=pointer]:
+                    - generic [ref=e59]: 
+                  - button "Templates" [ref=e11999] [cursor=pointer]
+                - generic [ref=e67]:
+                  - button "Help Center" [ref=e12000] [cursor=pointer]:
+                    - generic [ref=e69]: 
+                  - button "Toggle Bottom Panel" [ref=e12001] [cursor=pointer]
+                  - button "Keyboard Shortcuts (Ctrl + Shift + k)" [ref=e12002] [cursor=pointer]
+                  - button "Settings (Ctrl + ,)" [ref=e12003] [cursor=pointer]
+            - generic:
+              - generic:
+                - complementary "Sidebar" [ref=e12004]:
+                  - generic [ref=e6553]:
+                    - generic [ref=e6554]:
+                      - generic [ref=e6555]:
+                        - generic "Workflows" [ref=e12005]
+                        - generic [ref=e6558]:
+                          - button "Refresh" [ref=e12006] [cursor=pointer]
+                          - button "Close sidebar" [ref=e12007] [cursor=pointer]
+                      - combobox "Search" [ref=e12008]
+                    - generic [ref=e6571]:
+                      - generic [ref=e6572]:
+                        - generic [ref=e6573]: Browse
+                        - separator [ref=e6574]
+                      - tree [ref=e6575]:
+                        - treeitem "06 - Learning Production" [expanded] [level=1] [ref=e12009] [cursor=pointer]:
+                          - button [aria-hidden] [ref=e6577]
+                          - generic [ref=e6579]:
+                            - generic [ref=e6580]: 
+                            - generic [ref=e6584]:
+                              - generic [ref=e6585]: 06 - Learning Production
+                              - generic [ref=e6587]: "28"
+                        - treeitem "The Message - Andre Action Camera Tests - Brain v2 Recovery" [level=2] [ref=e12010] [cursor=pointer]:
+                          - generic [ref=e6760]:
+                            - generic [ref=e6761]: 
+                            - generic [ref=e6764]:
+                              - generic [ref=e6765]: The Message - Andre Action Camera Tests - Brain v2 Recovery
+                              - button "Bookmark" [ref=e12011]:
+                                - generic [ref=e6770]: 
+                        - treeitem "The Message - Andre Action Camera Tests" [level=2] [ref=e12012] [cursor=pointer]:
+                          - generic [ref=e6773]:
+                            - generic [ref=e6774]: 
+                            - generic [ref=e6777]:
+                              - generic [ref=e6778]: The Message - Andre Action Camera Tests
+                              - button "Bookmark" [ref=e12013]:
+                                - generic [ref=e6783]: 
+                        - treeitem "The Message - Andre Character Example 56f" [level=2] [ref=e12014] [cursor=pointer]:
+                          - generic [ref=e6786]:
+                            - generic [ref=e6787]: 
+                            - generic [ref=e6790]:
+                              - generic [ref=e6791]: The Message - Andre Character Example 56f
+                              - button "Bookmark" [ref=e12015]:
+                                - generic [ref=e6796]: 
+                        - treeitem "The Message - Andre Complex Motion Tests" [level=2] [ref=e12016] [cursor=pointer]:
+                          - generic [ref=e6799]:
+                            - generic [ref=e6800]: 
+                            - generic [ref=e6803]:
+                              - generic [ref=e6804]: The Message - Andre Complex Motion Tests
+                              - button "Bookmark" [ref=e12017]:
+                                - generic [ref=e6809]: 
+                        - treeitem "The Message - Automated Draft" [level=2] [ref=e12018] [cursor=pointer]:
+                          - generic [ref=e6812]:
+                            - generic [ref=e6813]: 
+                            - generic [ref=e6816]:
+                              - generic [ref=e6817]: The Message - Automated Draft
+                              - button "Bookmark" [ref=e12019]:
+                                - generic [ref=e6822]: 
+                        - treeitem "The Message - Automated Draft.json.metadata" [level=2] [ref=e12020] [cursor=pointer]:
+                          - generic [ref=e6825]:
+                            - generic [ref=e6826]: 
+                            - generic [ref=e6829]:
+                              - generic [ref=e6830]: The Message - Automated Draft.json.metadata
+                              - button "Bookmark" [ref=e12021]:
+                                - generic [ref=e6835]: 
+                        - treeitem "The Message - Brain Evidence CPU Smoke" [level=2] [ref=e12022] [cursor=pointer]:
+                          - generic [ref=e6838]:
+                            - generic [ref=e6839]: 
+                            - generic [ref=e6842]:
+                              - generic [ref=e6843]: The Message - Brain Evidence CPU Smoke
+                              - button "Bookmark" [ref=e12023]:
+                                - generic [ref=e6848]: 
+                        - treeitem "The Message - Camera Reference Tests - Brain v2 Recovery" [level=2] [ref=e12024] [cursor=pointer]:
+                          - generic [ref=e6851]:
+                            - generic [ref=e6852]: 
+                            - generic [ref=e6855]:
+                              - generic [ref=e6856]: The Message - Camera Reference Tests - Brain v2 Recovery
+                              - button "Bookmark" [ref=e12025]:
+                                - generic [ref=e6861]: 
+                        - treeitem "The Message - Camera Reference Tests" [level=2] [ref=e12026] [cursor=pointer]:
+                          - generic [ref=e6864]:
+                            - generic [ref=e6865]: 
+                            - generic [ref=e6868]:
+                              - generic [ref=e6869]: The Message - Camera Reference Tests
+                              - button "Bookmark" [ref=e12027]:
+                                - generic [ref=e6874]: 
+                        - treeitem "The Message - Holistic Production Workbench" [active] [level=2] [selected] [ref=e12028] [cursor=pointer]:
+                          - generic [ref=e6877]:
+                            - generic [ref=e6878]: 
+                            - generic [ref=e6881]:
+                              - generic [ref=e6882]: The Message - Holistic Production Workbench
+                              - button "Bookmark" [ref=e12029]:
+                                - generic [ref=e6887]: 
+                        - treeitem "The Message - Master Movie Studio" [level=2] [ref=e12030] [cursor=pointer]:
+                          - generic [ref=e6890]:
+                            - generic [ref=e6891]: 
+                            - generic [ref=e6894]:
+                              - generic [ref=e6895]: The Message - Master Movie Studio
+                              - button "Bookmark" [ref=e12031]:
+                                - generic [ref=e6900]: 
+                        - treeitem "The Message - Reference Preparation" [level=2] [ref=e12032] [cursor=pointer]:
+                          - generic [ref=e6903]:
+                            - generic [ref=e6904]: 
+                            - generic [ref=e6907]:
+                              - generic [ref=e6908]: The Message - Reference Preparation
+                              - button "Bookmark" [ref=e12033]:
+                                - generic [ref=e6913]: 
+                        - treeitem "The Message - Reference Preparation.json.metadata" [level=2] [ref=e12034] [cursor=pointer]:
+                          - generic [ref=e6916]:
+                            - generic [ref=e6917]: 
+                            - generic [ref=e6920]:
+                              - generic [ref=e6921]: The Message - Reference Preparation.json.metadata
+                              - button "Bookmark" [ref=e12035]:
+                                - generic [ref=e6926]: 
+                        - treeitem "The Message - Shot 03 Insert 73f - Monitored" [level=2] [ref=e12036] [cursor=pointer]:
+                          - generic [ref=e6929]:
+                            - generic [ref=e6930]: 
+                            - generic [ref=e6933]:
+                              - generic [ref=e6934]: The Message - Shot 03 Insert 73f - Monitored
+                              - button "Bookmark" [ref=e12037]:
+                                - generic [ref=e6939]: 
+                        - treeitem "The Message - Shot 03 Insert 73f - Monitored.json.metadata" [level=2] [ref=e12038] [cursor=pointer]:
+                          - generic [ref=e6942]:
+                            - generic [ref=e6943]: 
+                            - generic [ref=e6946]:
+                              - generic [ref=e6947]: The Message - Shot 03 Insert 73f - Monitored.json.metadata
+                              - button "Bookmark" [ref=e12039]:
+                                - generic [ref=e6952]: 
+                        - treeitem "The Message - Shot 04 Reaction 73f - Monitored" [level=2] [ref=e12040] [cursor=pointer]:
+                          - generic [ref=e6955]:
+                            - generic [ref=e6956]: 
+                            - generic [ref=e6959]:
+                              - generic [ref=e6960]: The Message - Shot 04 Reaction 73f - Monitored
+                              - button "Bookmark" [ref=e12041]:
+                                - generic [ref=e6965]: 
+                        - treeitem "The Message - Shot 04 Reaction 73f - Monitored.json.metadata" [level=2] [ref=e12042] [cursor=pointer]:
+                          - generic [ref=e6968]:
+                            - generic [ref=e6969]: 
+                            - generic [ref=e6972]:
+                              - generic [ref=e6973]: The Message - Shot 04 Reaction 73f - Monitored.json.metadata
+                              - button "Bookmark" [ref=e12043]:
+                                - generic [ref=e6978]: 
+                        - treeitem "The Message - Shot Template" [level=2] [ref=e12044] [cursor=pointer]:
+                          - generic [ref=e6981]:
+                            - generic [ref=e6982]: 
+                            - generic [ref=e6985]:
+                              - generic [ref=e6986]: The Message - Shot Template
+                              - button "Bookmark" [ref=e12045]:
+                                - generic [ref=e6991]: 
+                        - treeitem "The Message - Shot Template.json.metadata" [level=2] [ref=e12046] [cursor=pointer]:
+                          - generic [ref=e6994]:
+                            - generic [ref=e6995]: 
+                            - generic [ref=e6998]:
+                              - generic [ref=e6999]: The Message - Shot Template.json.metadata
+                              - button "Bookmark" [ref=e12047]:
+                                - generic [ref=e7004]: 
+                        - treeitem "The Message - Silent Film Production" [level=2] [ref=e12048] [cursor=pointer]:
+                          - generic [ref=e7007]:
+                            - generic [ref=e7008]: 
+                            - generic [ref=e7011]:
+                              - generic [ref=e7012]: The Message - Silent Film Production
+                              - button "Bookmark" [ref=e12049]:
+                                - generic [ref=e7017]: 
+                        - treeitem "The Message - Silent Film Production.json.metadata" [level=2] [ref=e12050] [cursor=pointer]:
+                          - generic [ref=e7020]:
+                            - generic [ref=e7021]: 
+                            - generic [ref=e7024]:
+                              - generic [ref=e7025]: The Message - Silent Film Production.json.metadata
+                              - button "Bookmark" [ref=e12051]:
+                                - generic [ref=e7030]: 
+                        - treeitem "The Message - Stress Pilot 56f - Monitor draft" [level=2] [ref=e12052] [cursor=pointer]:
+                          - generic [ref=e7033]:
+                            - generic [ref=e7034]: 
+                            - generic [ref=e7037]:
+                              - generic [ref=e7038]: The Message - Stress Pilot 56f - Monitor draft
+                              - button "Bookmark" [ref=e12053]:
+                                - generic [ref=e7043]: 
+                        - treeitem "The Message - Stress Pilot 56f - Monitor draft.json.metadata" [level=2] [ref=e12054] [cursor=pointer]:
+                          - generic [ref=e7046]:
+                            - generic [ref=e7047]: 
+                            - generic [ref=e7050]:
+                              - generic [ref=e7051]: The Message - Stress Pilot 56f - Monitor draft.json.metadata
+                              - button "Bookmark" [ref=e12055]:
+                                - generic [ref=e7056]: 
+                        - treeitem "The Message - Stress Pilot 56f" [level=2] [ref=e12056] [cursor=pointer]:
+                          - generic [ref=e7059]:
+                            - generic [ref=e7060]: 
+                            - generic [ref=e7063]:
+                              - generic [ref=e7064]: The Message - Stress Pilot 56f
+                              - button "Bookmark" [ref=e12057]:
+                                - generic [ref=e7069]: 
+                        - treeitem "The Message - Stress Pilot 56f.json.metadata" [level=2] [ref=e12058] [cursor=pointer]:
+                          - generic [ref=e7072]:
+                            - generic [ref=e7073]: 
+                            - generic [ref=e7076]:
+                              - generic [ref=e7077]: The Message - Stress Pilot 56f.json.metadata
+                              - button "Bookmark" [ref=e12059]:
+                                - generic [ref=e7082]: 
+                        - treeitem "The Message - Stress Pilot 73f - Monitored" [level=2] [ref=e12060] [cursor=pointer]:
+                          - generic [ref=e7085]:
+                            - generic [ref=e7086]: 
+                            - generic [ref=e7089]:
+                              - generic [ref=e7090]: The Message - Stress Pilot 73f - Monitored
+                              - button "Bookmark" [ref=e12061]:
+                                - generic [ref=e7095]: 
+                        - treeitem "The Message - Stress Pilot 73f - Monitored.json.metadata" [level=2] [ref=e12062] [cursor=pointer]:
+                          - generic [ref=e7098]:
+                            - generic [ref=e7099]: 
+                            - generic [ref=e7102]:
+                              - generic [ref=e7103]: The Message - Stress Pilot 73f - Monitored.json.metadata
+                              - button "Bookmark" [ref=e12063]:
+                                - generic [ref=e7108]: 
+                        - treeitem "The Message - Visual Shot Authoring" [level=2] [ref=e12064] [cursor=pointer]:
+                          - generic [ref=e7111]:
+                            - generic [ref=e7112]: 
+                            - generic [ref=e7115]:
+                              - generic [ref=e7116]: The Message - Visual Shot Authoring
+                              - button "Bookmark" [ref=e12065]:
+                                - generic [ref=e7121]: 
+                        - treeitem "Balanced SD15 - RTX 3060" [level=1] [ref=e12066] [cursor=pointer]:
+                          - generic [ref=e6590]:
+                            - generic [ref=e6591]: 
+                            - generic [ref=e6594]:
+                              - generic [ref=e6595]: Balanced SD15 - RTX 3060
+                              - button "Bookmark" [ref=e12067]:
+                                - generic [ref=e6600]: 
+                        - treeitem "Farm Benchmark v001 - 01_ref_12steps" [level=1] [ref=e12068] [cursor=pointer]:
+                          - generic [ref=e6603]:
+                            - generic [ref=e6604]: 
+                            - generic [ref=e6607]:
+                              - generic [ref=e6608]: Farm Benchmark v001 - 01_ref_12steps
+                              - button "Bookmark" [ref=e12069]:
+                                - generic [ref=e6613]: 
+                        - treeitem "Farm Benchmark v001 - 02_ref_20steps_cache" [level=1] [ref=e12070] [cursor=pointer]:
+                          - generic [ref=e6616]:
+                            - generic [ref=e6617]: 
+                            - generic [ref=e6620]:
+                              - generic [ref=e6621]: Farm Benchmark v001 - 02_ref_20steps_cache
+                              - button "Bookmark" [ref=e12071]:
+                                - generic [ref=e6626]: 
+                        - treeitem "Farm Benchmark v001 - 03_fl_20steps" [level=1] [ref=e12072] [cursor=pointer]:
+                          - generic [ref=e6629]:
+                            - generic [ref=e6630]: 
+                            - generic [ref=e6633]:
+                              - generic [ref=e6634]: Farm Benchmark v001 - 03_fl_20steps
+                              - button "Bookmark" [ref=e12073]:
+                                - generic [ref=e6639]: 
+                        - treeitem "Farm Benchmark v001 - 04_fl_turbo_8steps" [level=1] [ref=e12074] [cursor=pointer]:
+                          - generic [ref=e6642]:
+                            - generic [ref=e6643]: 
+                            - generic [ref=e6646]:
+                              - generic [ref=e6647]: Farm Benchmark v001 - 04_fl_turbo_8steps
+                              - button "Bookmark" [ref=e12075]:
+                                - generic [ref=e6652]: 
+                        - treeitem "Farm Confirmation v002 - 01_ref_12steps" [level=1] [ref=e12076] [cursor=pointer]:
+                          - generic [ref=e6655]:
+                            - generic [ref=e6656]: 
+                            - generic [ref=e6659]:
+                              - generic [ref=e6660]: Farm Confirmation v002 - 01_ref_12steps
+                              - button "Bookmark" [ref=e12077]:
+                                - generic [ref=e6665]: 
+                        - treeitem "Farm Confirmation v002 - 02_fl_turbo_8steps" [level=1] [ref=e12078] [cursor=pointer]:
+                          - generic [ref=e6668]:
+                            - generic [ref=e6669]: 
+                            - generic [ref=e6672]:
+                              - generic [ref=e6673]: Farm Confirmation v002 - 02_fl_turbo_8steps
+                              - button "Bookmark" [ref=e12079]:
+                                - generic [ref=e6678]: 
+                        - treeitem "Farm Reference Lab - two characters" [level=1] [ref=e12080] [cursor=pointer]:
+                          - generic [ref=e6681]:
+                            - generic [ref=e6682]: 
+                            - generic [ref=e6685]:
+                              - generic [ref=e6686]: Farm Reference Lab - two characters
+                              - button "Bookmark" [ref=e12081]:
+                                - generic [ref=e6691]: 
+                        - treeitem "H3_Face_Refine_Auto_Select" [level=1] [ref=e12082] [cursor=pointer]:
+                          - generic [ref=e6694]:
+                            - generic [ref=e6695]: 
+                            - generic [ref=e6698]:
+                              - generic [ref=e6699]: H3_Face_Refine_Auto_Select
+                              - button "Bookmark" [ref=e12083]:
+                                - generic [ref=e6704]: 
+                        - treeitem "H3_Face_Refine_Auto_Select.json.metadata" [level=1] [ref=e12084] [cursor=pointer]:
+                          - generic [ref=e6707]:
+                            - generic [ref=e6708]: 
+                            - generic [ref=e6711]:
+                              - generic [ref=e6712]: H3_Face_Refine_Auto_Select.json.metadata
+                              - button "Bookmark" [ref=e12085]:
+                                - generic [ref=e6717]: 
+                        - treeitem "Untitled 2026-11-11 06-27-26" [level=1] [ref=e12086] [cursor=pointer]:
+                          - generic [ref=e6720]:
+                            - generic [ref=e6721]: 
+                            - generic [ref=e6724]:
+                              - generic [ref=e6725]: Untitled 2026-11-11 06-27-26
+                              - button "Bookmark" [ref=e12087]:
+                                - generic [ref=e6730]: 
+                        - treeitem "video_minimax_h3_i2v" [level=1] [ref=e12088] [cursor=pointer]:
+                          - generic [ref=e6733]:
+                            - generic [ref=e6734]: 
+                            - generic [ref=e6737]:
+                              - generic [ref=e6738]: video_minimax_h3_i2v
+                              - button "Bookmark" [ref=e12089]:
+                                - generic [ref=e6743]: 
+                        - treeitem "video_minimax_h3_i2v.json.metadata" [level=1] [ref=e12090] [cursor=pointer]:
+                          - generic [ref=e6746]:
+                            - generic [ref=e6747]: 
+                            - generic [ref=e6750]:
+                              - generic [ref=e6751]: video_minimax_h3_i2v.json.metadata
+                              - button "Bookmark" [ref=e12091]:
+                                - generic [ref=e6756]: 
+                - separator [ref=e6757]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - group "Workflow actions" [ref=e12092]:
+                              - generic [ref=e85]:
+                                - button "Enter app mode" [ref=e12093] [cursor=pointer]:
+                                  - generic: App
+                                - button "Graph mode, workflow actions" [ref=e12094] [cursor=pointer]:
+                                  - generic [ref=e93]: Graph
+                            - text: 
+                        - generic [ref=e96]:
+                          - generic [ref=e97]:
+                            - button "Align" [ref=e12095] [cursor=pointer]:
+                              - img "Align"
+                            - generic [ref=e104]:
+                              - generic [ref=e105]: .. .. ..
+                              - generic [ref=e108]:
+                                - generic "Batch Count" [ref=e12096]:
+                                  - generic [ref=e110]:
+                                    - textbox "Batch Count" [ref=e12097]: "1"
+                                    - generic [ref=e112]:
+                                      - button "Increment" [ref=e12098] [cursor=pointer]
+                                      - button "Decrement" [disabled]
+                                - button "Run" [ref=e12099] [cursor=pointer]
+                                - button "Run options" [ref=e12100] [cursor=pointer]
+                              - button "Cancel current run" [disabled]
+                              - button "0 active View active jobs (right-click to clear queue)" [ref=e12101] [cursor=pointer]:
+                                - generic [ref=e118]: 0 active
+                                - generic [ref=e119]: View active jobs (right-click to clear queue)
+                            - button "Extensions" [ref=e12102] [cursor=pointer]
+                            - button "Deploy to Comfy API" [ref=e12103] [cursor=pointer]
+                            - button "Toggle properties panel" [ref=e12104] [cursor=pointer]
+                          - status
+                  - generic:
+                    - generic:
+                      - toolbar "Canvas Toolbar" [ref=e12105]:
+                        - button "Canvas Mode" [ref=e12106] [cursor=pointer]
+                        - button "Fit View (.)" [ref=e12107] [cursor=pointer]
+                        - button "Zoom Controls" [ref=e12108] [cursor=pointer]:
+                          - generic [ref=e137]: 10%
+                        - button "Hide Minimap (ALT + SHIFT + M)" [ref=e12109] [cursor=pointer]
+                        - button "Hide Links" [ref=e12110] [cursor=pointer]
+                      - 'generic "Minimap. Highlighted nodes: 0" [ref=e12111]':
+                        - button "Settings" [ref=e12112] [cursor=pointer]
+                        - button "Close" [ref=e12113] [cursor=pointer]
+                        - separator [ref=e151]
+                    - text: 
+      - generic:
+        - generic [ref=e9239]:
+          - generic [ref=e9240]:
+            - generic [ref=e9244]:
+              - button [ref=e9246] [cursor=pointer]
+              - generic [ref=e9248]: Production workbench · start here
+            - generic "text" [ref=e12114]:
+              - heading "The Message · Holistic Production Workbench" [level=2] [ref=e12115]
+              - list [ref=e9260]:
+                - listitem [ref=e9261]: Film Plan owns the shared bible, dimensions, default duration/steps/base seed and six structured shot prompts. Scene Editor and Studio edit this same plan. Native per-shot overrides win over defaults.
+                - listitem [ref=e9262]: "Shared reference catalogue owns assets once and binds them by shot ID. Use {{asset-alias}} in shot text. The engine resolves aliases from Fantastic's actual map. LoRA preset A is empty; all shots use Base."
+                - listitem [ref=e9263]: "Engine controls expose shot range, sampler and review. Start with one shot. Review enabled means approve/retry/stop with no timeout. Exact frames follow H3's 17k+5 grid: 3 seconds gives 73 frames."
+                - listitem [ref=e9264]: "Run only CPU preflight #31 to inspect the selected shot's final prompt/map. Normal film execution records resources with Monitor Brain. Measurements do not judge creative quality."
+                - listitem [ref=e9265]: "Optional purple/brown modules are muted: Fantastic draft authoring, Project Suite manual continuation, manifest recovery and encode loading. They are separate tools, not extra automatic renders."
+              - paragraph [ref=e9266]: "Fresh destination: The_Message/workbench/v001. Change run_name/output_subfolder together for another experiment. Reference and LoRA changes affect resume fingerprint; change run_name for model/preset revisions. Candidate assets remain pending human selection."
+          - button "Resize from bottom-right corner" [ref=e12116]
+          - button "Resize from top-right corner" [ref=e12117]
+          - button "Resize from bottom-left corner" [ref=e12118]
+          - button "Resize from top-left corner" [ref=e12119]
+        - generic [ref=e9279]:
+          - generic [ref=e9280]:
+            - generic [ref=e9284]:
+              - button [ref=e9286] [cursor=pointer]
+              - generic [ref=e9288]: Independent scenes · silent delivery
+            - generic [ref=e9291]:
+              - generic [ref=e9292]:
+                - generic [ref=e9293]: lip_sync_options
+                - generic [ref=e9301]:
+                  - generic [ref=e9302]: chain_policy
+                  - generic [ref=e9307]: status
+              - generic [ref=e9312]:
+                - generic [ref=e9320]:
+                  - generic [ref=e9321]: Scene continuity
+                  - generic [ref=e9325]:
+                    - combobox "Scene continuity" [ref=e12120] [cursor=pointer]:
+                      - generic [ref=e9327]: Independent scenes
+                    - button [aria-hidden] [ref=e9328] [cursor=pointer]
+                - generic [ref=e9337]:
+                  - generic [ref=e9338]: Audio profile
+                  - generic [ref=e9342]:
+                    - combobox "Audio profile" [ref=e12121] [cursor=pointer]:
+                      - generic [ref=e9344]: No final audio
+                    - button [aria-hidden] [ref=e9345] [cursor=pointer]
+              - generic [ref=e9347]: comfyui-minimaxh3-contex-loop
+          - button "Resize from bottom-right corner" [ref=e12122]
+          - button "Resize from top-right corner" [ref=e12123]
+          - button "Resize from bottom-left corner" [ref=e12124]
+          - button "Resize from top-left corner" [ref=e12125]
+        - generic [ref=e9362]:
+          - generic [ref=e9363]:
+            - generic [ref=e9367]:
+              - button [ref=e9369] [cursor=pointer]
+              - generic [ref=e9371]: Film Plan · shared bible + scenes + shots
+            - generic [ref=e9374]:
+              - generic [ref=e9375]:
+                - generic [ref=e9376]:
+                  - generic [ref=e9377]: chain_policy
+                  - generic [ref=e9383]: plan_json_input
+                  - generic [ref=e9390]: project_assets
+                - generic [ref=e9397]:
+                  - generic [ref=e9398]: plan
+                  - generic [ref=e9403]: summary
+                  - generic [ref=e9408]: clip_count
+                  - generic [ref=e9413]: width
+                  - generic [ref=e9418]: height
+                  - generic [ref=e9423]: video_blend_frames
+              - generic [ref=e9428]:
+                - generic "generation_fingerprint" [ref=e12126]
+                - generic "Build an ordered MiniMax H3 scene plan. Hover individual controls for wiring, timing, and formatting guidance." [ref=e12127]:
+                  - generic [ref=e11219]:
+                    - generic [ref=e11220]: MiniMax H3 Modern Plan
+                    - generic [ref=e11221]:
+                      - button "Hide settings" [ref=e12128] [cursor=pointer]
+                      - button "Open project output folder" [ref=e12129] [cursor=pointer]: Output
+                      - generic [ref=e11227]: 6 scenes · 438 delivered frames · 18.250s
+                  - generic [ref=e11228]:
+                    - generic [ref=e11229]:
+                      - strong [ref=e11230]: Plan settings
+                      - generic [ref=e11231]: Continuity and audio live in Generation Profile.
+                      - generic [ref=e11232]: Generation Profile connected
+                    - generic [ref=e11233]:
+                      - generic [ref=e11234]:
+                        - generic [ref=e11235]: Project
+                        - generic [ref=e11236]:
+                          - generic [ref=e11237]:
+                            - generic [ref=e11238]: Run name
+                            - textbox "Run name" [ref=e12130]: The_Message_Workbench_v001
+                          - generic [ref=e11240]:
+                            - generic [ref=e11241]: Generation fingerprint
+                            - textbox "Generation fingerprint" [disabled] [ref=e12131]
+                      - generic [ref=e11243]:
+                        - generic [ref=e11244]: Canvas & context fitting
+                        - generic [ref=e11245]:
+                          - generic [ref=e11246]:
+                            - generic [ref=e11247]: Width
+                            - spinbutton "Width" [ref=e12132]: "832"
+                          - generic [ref=e11249]:
+                            - generic [ref=e11250]: Height
+                            - spinbutton "Height" [ref=e12133]: "480"
+                          - generic [ref=e11252]:
+                            - generic [ref=e11253]: Context encoding
+                            - combobox "Context encoding" [ref=e12134]:
+                              - option "Video · preserve motion" [selected]
+                              - option "Frames · still anchors"
+                          - generic [ref=e11255]:
+                            - generic [ref=e11256]: Context fit
+                            - combobox "Context fit" [ref=e12135]:
+                              - option "Resize to canvas" [selected]
+                              - option "Preserve ratio + center crop"
+                      - generic [ref=e11258]:
+                        - generic [ref=e11259]: Generation defaults
+                        - generic [ref=e11260]:
+                          - generic [ref=e11261]:
+                            - generic [ref=e11262]: Default seconds
+                            - spinbutton "Default seconds" [ref=e12136]: "3"
+                          - generic [ref=e11264]:
+                            - generic [ref=e11265]: Default steps
+                            - spinbutton "Default steps" [ref=e12137]: "20"
+                          - generic [ref=e11267]:
+                            - generic [ref=e11268]: Base seed
+                            - textbox "Base seed" [ref=e12138]: "11001"
+                      - generic [ref=e11270]:
+                        - generic [ref=e11271]: Delivery
+                        - generic [ref=e11272]:
+                          - generic [ref=e11273]:
+                            - generic [ref=e11274]: Scene MP4 quality (CRF)
+                            - spinbutton "Scene MP4 quality (CRF)" [ref=e12139]: "18"
+                          - generic [ref=e11276]:
+                            - generic [ref=e11277]: Default crossfade frames
+                            - spinbutton "Default crossfade frames" [ref=e12140]: "0"
+                  - generic [ref=e11279]:
+                    - generic [ref=e11280]:
+                      - button "Collapse global prompt" [expanded] [ref=e12141] [cursor=pointer]: ▾
+                      - generic [ref=e11282]: Shared prompt — automatically prepended to every scene
+                    - generic [ref=e11283]:
+                      - textbox "Shared prompt" [ref=e12142]:
+                        - /placeholder: Identity, wardrobe, style and continuity rules shared by every scene…
+                        - text: "Film bible: The Message. Naturalistic live-action photography with restrained contrast. Soft daylight from black-framed cafe windows at camera right. For shots featuring Andre, preserve the identity and wardrobe defined in the shot's subject definitions. Maintain consistent cafe architecture and screen direction. When the note is visible, show exactly one closed cream folded note. Each shot is one continuous locked-tripod take. Silent film: no dialogue, subtitles, captions, logos, added people or music."
+                      - generic [ref=e11286]:
+                        - button "@ Reference" [ref=e12143] [cursor=pointer]
+                        - button "# Dialogue" [ref=e12144] [cursor=pointer]
+                        - generic [ref=e11289]: "Shortcuts: @ reference · # dialogue"
+                  - generic [ref=e11290]:
+                    - button "+ Add scene" [ref=e12145] [cursor=pointer]
+                    - button "Show advanced" [ref=e12146] [cursor=pointer]
+                    - button "Collapse all" [ref=e12147] [cursor=pointer]
+                    - button "Expand all" [ref=e12148] [cursor=pointer]
+                    - button "Scroll to bottom" [ref=e12149] [cursor=pointer]: ↓ Scroll to bottom
+                    - button "Raw JSON" [ref=e12150] [cursor=pointer]
+                  - generic [ref=e11297]:
+                    - generic [ref=e11298]:
+                      - generic [ref=e11299]:
+                        - button "Collapse scene 1" [expanded] [ref=e12151] [cursor=pointer]: ▾
+                        - generic "Drag to reorder" [ref=e12152]: ⠿
+                        - textbox "Scene 1 border color" [ref=e12153] [cursor=pointer]: "#6ea8fe"
+                        - generic [ref=e11303]: Scene 1
+                        - textbox "Stable scene ID used in checkpoint filenames and resume validation. Keep it unique and avoid changing it after rendering." [ref=e12154]:
+                          - /placeholder: clip_0001
+                          - text: MSG_S001_SH01
+                        - generic "Generation starts at delivered frame 0. The incoming assembly boundary blends 0 frame(s)." [ref=e12155]: 73 raw / 73 delivered · 3.042s
+                        - button "↑" [disabled] [ref=e12156]
+                        - button "↓" [ref=e12157] [cursor=pointer]
+                        - button "Duplicate" [ref=e12158] [cursor=pointer]
+                        - button "Delete" [ref=e12159] [cursor=pointer]
+                      - generic [ref=e11310]:
+                        - generic [ref=e11311]:
+                          - combobox "Choose whether this scene inherits the plan duration, requests seconds that are rounded up, or specifies an exact H3-valid frame count." [ref=e12160]:
+                            - option "Plan default" [selected]
+                            - option "Seconds"
+                            - option "Exact frames"
+                          - spinbutton "Disabled because this scene inherits the Plan node default duration." [disabled] [ref=e12161]
+                          - generic [ref=e11314]: Uses the Plan node default.
+                        - generic [ref=e11315]:
+                          - generic [ref=e11316]: Basic prompt (plain language, optimized separately)
+                          - textbox "Basic prompt (plain language, optimized separately)" [ref=e12162]:
+                            - /placeholder: Optional plain-language scene idea, not H3-formatted. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                        - generic [ref=e11318]:
+                          - generic [ref=e11319]: Scene prompt (optional with shared prompt)
+                          - textbox "Scene prompt (optional with shared prompt)" [ref=e12163]:
+                            - /placeholder: Optional with a shared prompt; otherwise describe this scene…
+                            - text: "subject_definitions: <Subject 1> is the environment shown in {{cafe-counter-wide-v1}}: {{var:cafe_environment}} summary: [reference generation] In <Subject 1>, The empty cafe remains still in daylight. retention_analysis: <Subject 1> (appears in [Shot 1]): partially_preserved - Preserve architecture, furniture and lighting; use the primary picture for camera layout. detailed_description: Apply the shared film bible for photography and lighting. [Shot 1] One continuous wide shot, eye-level, 24mm lens. Camera: static. Environment: <Subject 1>, primary camera layout from {{cafe-counter-wide-v1}}. The empty cafe remains still in daylight. Keep visible in the same frame: espresso counter left; windows right; round table. No people, faces or hands visible. Locked tripod. One continuous shot. No zoom or cut inside the shot. No subtitles, captions, logos, dialogue or added people. overall_soundscape: No speech, music or sound effects. non_diegetic_music: N/A"
+                        - generic [ref=e11322]:
+                          - button "@ Reference" [ref=e12164] [cursor=pointer]
+                          - button "# Dialogue" [ref=e12165] [cursor=pointer]
+                          - generic [ref=e11325]: "Shortcuts: @ reference · # dialogue"
+                        - generic [ref=e11326]:
+                          - generic [ref=e11327]: Prompt alternatives
+                          - generic [ref=e11328]:
+                            - combobox "Prompt alternatives New random" [ref=e12166]:
+                              - option "Stable derived" [selected]
+                              - option "Fixed scene seed"
+                              - option "Randomize each queue"
+                            - textbox "This scene derives a stable alternative-choice seed from its scene index and ID." [disabled] [ref=e12167]:
+                              - /placeholder: Scene prompt seed
+                            - button "New random" [disabled] [ref=e12168]
+                        - generic [ref=e11332]:
+                          - generic [ref=e11333]: Scene seed
+                          - generic [ref=e11334]:
+                            - 'textbox "Scene seed New random Use derived Derived seed: 6701652469059688427" [ref=e12169]':
+                              - /placeholder: Blank = stable derived seed
+                            - button "New random" [ref=e12170] [cursor=pointer]
+                            - button "Use derived" [disabled] [ref=e12171]
+                            - generic "Stable result of base_seed 11001, scene 1, and ID MSG_S001_SH01. It will repeat until one of those values changes." [ref=e12172]: "Derived seed: 6701652469059688427"
+                        - generic [ref=e11339]:
+                          - generic [ref=e11340]: Steps override (blank = Plan default)
+                          - spinbutton "Steps override (blank = Plan default)" [ref=e12173]
+                        - generic [ref=e11342]:
+                          - generic [ref=e11343]: Scene LoRA route
+                          - combobox "Scene LoRA route" [ref=e12174]:
+                            - option "Base model" [selected]
+                            - option "LoRA A"
+                        - generic [ref=e11345]:
+                          - generic [ref=e11346]:
+                            - generic [ref=e11347]: Incoming transition
+                            - combobox "Incoming transition" [ref=e12175]:
+                              - option "Inherit Chain Policy · Visual Cut" [selected]
+                              - option "Visual Cut · No carried picture"
+                              - option "Guide · 22-frame RGB continuation"
+                              - option "Hard AV · Protected 39-frame AV prefix"
+                              - option "Soft AV · Hard picture with a short audio release"
+                          - generic [ref=e11349]:
+                            - generic [ref=e11350]: Final assembly crossfade frames
+                            - spinbutton "Final assembly crossfade frames" [ref=e12176]
+                        - generic [ref=e11352]:
+                          - generic [ref=e11353]:
+                            - generic [ref=e11354]: Lip-sync
+                            - combobox "Lip-sync" [ref=e12177]:
+                              - option "Inherit · Off" [selected]
+                              - option "On · vocals drive this scene"
+                              - option "Off · no source-audio guidance"
+                              - option "Custom · advanced audio controls" [disabled]
+                          - generic [ref=e11356]:
+                            - generic [ref=e11357]: Source reference
+                            - combobox "Source reference" [ref=e12178]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · use this source-track window as Ref2VA audio"
+                              - option "Off · no source audio reference"
+                          - generic [ref=e11359]:
+                            - generic [ref=e11360]: Generated continuity
+                            - combobox "Generated continuity" [ref=e12179]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · continue prior generated audio"
+                              - option "Off · generate an independent audio stream"
+                          - generic [ref=e11362]:
+                            - generic [ref=e11363]: Lock source audio
+                            - combobox "Lock source audio" [ref=e12180]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · protect this exact source window"
+                              - option "Off · leave target audio denoisable"
+                    - generic [ref=e11365]:
+                      - generic [ref=e11366]:
+                        - button "Collapse scene 2" [expanded] [ref=e12181] [cursor=pointer]: ▾
+                        - generic "Drag to reorder" [ref=e12182]: ⠿
+                        - textbox "Scene 2 border color" [ref=e12183] [cursor=pointer]: "#ffb86b"
+                        - generic [ref=e11370]: Scene 2
+                        - textbox "Stable scene ID used in checkpoint filenames and resume validation. Keep it unique and avoid changing it after rendering." [ref=e12184]:
+                          - /placeholder: clip_0002
+                          - text: MSG_S001_SH02
+                        - generic "Generation starts at delivered frame 73. The incoming assembly boundary blends 0 frame(s)." [ref=e12185]: 73 raw / 73 delivered · 3.042s
+                        - button "↑" [ref=e12186] [cursor=pointer]
+                        - button "↓" [ref=e12187] [cursor=pointer]
+                        - button "Duplicate" [ref=e12188] [cursor=pointer]
+                        - button "Delete" [ref=e12189] [cursor=pointer]
+                      - generic [ref=e11377]:
+                        - generic [ref=e11378]:
+                          - combobox "Choose whether this scene inherits the plan duration, requests seconds that are rounded up, or specifies an exact H3-valid frame count." [ref=e12190]:
+                            - option "Plan default" [selected]
+                            - option "Seconds"
+                            - option "Exact frames"
+                          - spinbutton "Disabled because this scene inherits the Plan node default duration." [disabled] [ref=e12191]
+                          - generic [ref=e11381]: Uses the Plan node default.
+                        - generic [ref=e11382]:
+                          - generic [ref=e11383]: Basic prompt (plain language, optimized separately)
+                          - textbox "Basic prompt (plain language, optimized separately)" [ref=e12192]:
+                            - /placeholder: Optional plain-language scene idea, not H3-formatted. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                        - generic [ref=e11385]:
+                          - generic [ref=e11386]: Scene prompt (optional with shared prompt)
+                          - textbox "Scene prompt (optional with shared prompt)" [ref=e12193]:
+                            - /placeholder: Optional with a shared prompt; otherwise describe this scene…
+                            - text: "subject_definitions: <Subject 1> is Andre, whose identity is shown in {{andre-identity-video-v1}}. Their name is Andre. <Subject 2> is the environment shown in {{cafe-window-table-v1}}: {{var:cafe_environment}} {{cafe-wardrobe-candidate-v1}} is a wardrobe reference for MSG-CHR-ANDRE. summary: [reference generation] In <Subject 2>, Andre sits at the window table and slowly lowers his gaze toward the note. retention_analysis: <Subject 1> (appears in [Shot 1]): fully_preserved - Preserve facial identity from {{andre-identity-video-v1}}. <Subject 2> (appears in [Shot 1]): partially_preserved - Preserve architecture, furniture and lighting; use the primary picture for camera layout. {{cafe-wardrobe-candidate-v1}} (appears in [Shot 1]): attribute_transfer - Use as wardrobe reference. detailed_description: Apply the shared film bible for photography and lighting. [Shot 1] One continuous medium-wide shot, eye-level, 35mm lens. Camera: static. Environment: <Subject 2>, primary camera layout from {{cafe-window-table-v1}}. <Subject 1> (S1): {{var:andre_description}} Wears {{var:wardrobe_description}} as shown in {{cafe-wardrobe-candidate-v1}}. Andre sits at the window table and slowly lowers his gaze toward the note. Keep visible in the same frame: round table; black-framed windows; one closed cream note flat on the tabletop. Gaze target: the closed cream note on the table. Expression: neutral, lips relaxed and closed. His hands remain clasped still in his lap below the table edge, out of frame. One closed cream note rests untouched near the left side of the tabletop. Locked tripod. One continuous shot. No zoom or cut inside the shot. No subtitles, captions, logos, dialogue or added people. overall_soundscape: No speech, music or sound effects. non_diegetic_music: N/A"
+                        - generic [ref=e11389]:
+                          - button "@ Reference" [ref=e12194] [cursor=pointer]
+                          - button "# Dialogue" [ref=e12195] [cursor=pointer]
+                          - generic [ref=e11392]: "Shortcuts: @ reference · # dialogue"
+                        - generic [ref=e11393]:
+                          - generic [ref=e11394]: Prompt alternatives
+                          - generic [ref=e11395]:
+                            - combobox "Prompt alternatives New random" [ref=e12196]:
+                              - option "Stable derived" [selected]
+                              - option "Fixed scene seed"
+                              - option "Randomize each queue"
+                            - textbox "This scene derives a stable alternative-choice seed from its scene index and ID." [disabled] [ref=e12197]:
+                              - /placeholder: Scene prompt seed
+                            - button "New random" [disabled] [ref=e12198]
+                        - generic [ref=e11399]:
+                          - generic [ref=e11400]: Scene seed
+                          - generic [ref=e11401]:
+                            - 'textbox "Scene seed New random Use derived Derived seed: 5984638824142428336" [ref=e12199]':
+                              - /placeholder: Blank = stable derived seed
+                            - button "New random" [ref=e12200] [cursor=pointer]
+                            - button "Use derived" [disabled] [ref=e12201]
+                            - generic "Stable result of base_seed 11001, scene 2, and ID MSG_S001_SH02. It will repeat until one of those values changes." [ref=e12202]: "Derived seed: 5984638824142428336"
+                        - generic [ref=e11406]:
+                          - generic [ref=e11407]: Steps override (blank = Plan default)
+                          - spinbutton "Steps override (blank = Plan default)" [ref=e12203]
+                        - generic [ref=e11409]:
+                          - generic [ref=e11410]: Scene LoRA route
+                          - combobox "Scene LoRA route" [ref=e12204]:
+                            - option "Base model" [selected]
+                            - option "LoRA A"
+                        - generic [ref=e11412]:
+                          - generic [ref=e11413]:
+                            - generic [ref=e11414]: Incoming transition
+                            - combobox "Incoming transition" [ref=e12205]:
+                              - option "Inherit Chain Policy · Visual Cut" [selected]
+                              - option "Visual Cut · No carried picture"
+                              - option "Guide · 22-frame RGB continuation"
+                              - option "Hard AV · Protected 39-frame AV prefix"
+                              - option "Soft AV · Hard picture with a short audio release"
+                          - generic [ref=e11416]:
+                            - generic [ref=e11417]: Final assembly crossfade frames
+                            - spinbutton "Final assembly crossfade frames" [ref=e12206]
+                        - generic [ref=e11419]:
+                          - generic [ref=e11420]:
+                            - generic [ref=e11421]: Lip-sync
+                            - combobox "Lip-sync" [ref=e12207]:
+                              - option "Inherit · Off" [selected]
+                              - option "On · vocals drive this scene"
+                              - option "Off · no source-audio guidance"
+                              - option "Custom · advanced audio controls" [disabled]
+                          - generic [ref=e11423]:
+                            - generic [ref=e11424]: Source reference
+                            - combobox "Source reference" [ref=e12208]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · use this source-track window as Ref2VA audio"
+                              - option "Off · no source audio reference"
+                          - generic [ref=e11426]:
+                            - generic [ref=e11427]: Generated continuity
+                            - combobox "Generated continuity" [ref=e12209]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · continue prior generated audio"
+                              - option "Off · generate an independent audio stream"
+                          - generic [ref=e11429]:
+                            - generic [ref=e11430]: Lock source audio
+                            - combobox "Lock source audio" [ref=e12210]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · protect this exact source window"
+                              - option "Off · leave target audio denoisable"
+                    - generic [ref=e11432]:
+                      - generic [ref=e11433]:
+                        - button "Collapse scene 3" [expanded] [ref=e12211] [cursor=pointer]: ▾
+                        - generic "Drag to reorder" [ref=e12212]: ⠿
+                        - textbox "Scene 3 border color" [ref=e12213] [cursor=pointer]: "#63d69f"
+                        - generic [ref=e11437]: Scene 3
+                        - textbox "Stable scene ID used in checkpoint filenames and resume validation. Keep it unique and avoid changing it after rendering." [ref=e12214]:
+                          - /placeholder: clip_0003
+                          - text: MSG_S001_SH03
+                        - generic "Generation starts at delivered frame 146. The incoming assembly boundary blends 0 frame(s)." [ref=e12215]: 73 raw / 73 delivered · 3.042s
+                        - button "↑" [ref=e12216] [cursor=pointer]
+                        - button "↓" [ref=e12217] [cursor=pointer]
+                        - button "Duplicate" [ref=e12218] [cursor=pointer]
+                        - button "Delete" [ref=e12219] [cursor=pointer]
+                      - generic [ref=e11444]:
+                        - generic [ref=e11445]:
+                          - combobox "Choose whether this scene inherits the plan duration, requests seconds that are rounded up, or specifies an exact H3-valid frame count." [ref=e12220]:
+                            - option "Plan default" [selected]
+                            - option "Seconds"
+                            - option "Exact frames"
+                          - spinbutton "Disabled because this scene inherits the Plan node default duration." [disabled] [ref=e12221]
+                          - generic [ref=e11448]: Uses the Plan node default.
+                        - generic [ref=e11449]:
+                          - generic [ref=e11450]: Basic prompt (plain language, optimized separately)
+                          - textbox "Basic prompt (plain language, optimized separately)" [ref=e12222]:
+                            - /placeholder: Optional plain-language scene idea, not H3-formatted. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                        - generic [ref=e11452]:
+                          - generic [ref=e11453]: Scene prompt (optional with shared prompt)
+                          - textbox "Scene prompt (optional with shared prompt)" [ref=e12223]:
+                            - /placeholder: Optional with a shared prompt; otherwise describe this scene…
+                            - text: "subject_definitions: <Subject 1> is the environment shown in {{cafe-table-note-insert-v2}}: Tight overhead macro surface of a warm pale oak wooden cafe tabletop in soft natural daylight, with one closed rectangular cream folded paper note resting flat in the upper-left quadrant and empty wood grain filling the rest of the frame. summary: [reference generation] In <Subject 1>, One closed rectangular cream paper note rests completely motionless on the warm oak wooden tabletop surface in tight overhead close-up. retention_analysis: <Subject 1> (appears in [Shot 1]): partially_preserved - Preserve tabletop wood grain, paper fold geometry, close-up camera distance and lighting; Overhead tabletop close-up: preserve the single closed rectangular cream folded note/envelope resting flat in the upper-left quadrant of the warm oak wooden tabletop; keep wood grain and soft directional shadow motionless. detailed_description: Apply the shared film bible for photography and lighting. [Shot 1] One continuous close-up shot, overhead, macro lens. Camera: static. Environment: <Subject 1>, primary camera layout from {{cafe-table-note-insert-v2}}. One closed rectangular cream paper note rests completely motionless on the warm oak wooden tabletop surface in tight overhead close-up. Keep visible in the same frame: one closed folded cream note in upper-left quadrant; warm oak wooden tabletop wood grain filling the entire frame from start to finish. Fixed locked-down macro tabletop insert for the entire duration. Keep the exact close-up tabletop framing of {{cafe-table-note-insert-v2}} from first frame to last frame; never pull out, pan, cut, or reveal chairs, counters, walls, windows or room interior. No people, faces or hands visible. Locked tripod. One continuous shot. No zoom or cut inside the shot. No subtitles, captions, logos, dialogue or added people. overall_soundscape: No speech, music or sound effects. non_diegetic_music: N/A"
+                        - generic [ref=e11456]:
+                          - button "@ Reference" [ref=e12224] [cursor=pointer]
+                          - button "# Dialogue" [ref=e12225] [cursor=pointer]
+                          - generic [ref=e11459]: "Shortcuts: @ reference · # dialogue"
+                        - generic [ref=e11460]:
+                          - generic [ref=e11461]: Prompt alternatives
+                          - generic [ref=e11462]:
+                            - combobox "Prompt alternatives New random" [ref=e12226]:
+                              - option "Stable derived" [selected]
+                              - option "Fixed scene seed"
+                              - option "Randomize each queue"
+                            - textbox "This scene derives a stable alternative-choice seed from its scene index and ID." [disabled] [ref=e12227]:
+                              - /placeholder: Scene prompt seed
+                            - button "New random" [disabled] [ref=e12228]
+                        - generic [ref=e11466]:
+                          - generic [ref=e11467]: Scene seed
+                          - generic [ref=e11468]:
+                            - 'textbox "Scene seed New random Use derived Derived seed: 11126777810548711169" [ref=e12229]':
+                              - /placeholder: Blank = stable derived seed
+                            - button "New random" [ref=e12230] [cursor=pointer]
+                            - button "Use derived" [disabled] [ref=e12231]
+                            - generic "Stable result of base_seed 11001, scene 3, and ID MSG_S001_SH03. It will repeat until one of those values changes." [ref=e12232]: "Derived seed: 11126777810548711169"
+                        - generic [ref=e11473]:
+                          - generic [ref=e11474]: Steps override (blank = Plan default)
+                          - spinbutton "Steps override (blank = Plan default)" [ref=e12233]
+                        - generic [ref=e11476]:
+                          - generic [ref=e11477]: Scene LoRA route
+                          - combobox "Scene LoRA route" [ref=e12234]:
+                            - option "Base model" [selected]
+                            - option "LoRA A"
+                        - generic [ref=e11479]:
+                          - generic [ref=e11480]:
+                            - generic [ref=e11481]: Incoming transition
+                            - combobox "Incoming transition" [ref=e12235]:
+                              - option "Inherit Chain Policy · Visual Cut" [selected]
+                              - option "Visual Cut · No carried picture"
+                              - option "Guide · 22-frame RGB continuation"
+                              - option "Hard AV · Protected 39-frame AV prefix"
+                              - option "Soft AV · Hard picture with a short audio release"
+                          - generic [ref=e11483]:
+                            - generic [ref=e11484]: Final assembly crossfade frames
+                            - spinbutton "Final assembly crossfade frames" [ref=e12236]
+                        - generic [ref=e11486]:
+                          - generic [ref=e11487]:
+                            - generic [ref=e11488]: Lip-sync
+                            - combobox "Lip-sync" [ref=e12237]:
+                              - option "Inherit · Off" [selected]
+                              - option "On · vocals drive this scene"
+                              - option "Off · no source-audio guidance"
+                              - option "Custom · advanced audio controls" [disabled]
+                          - generic [ref=e11490]:
+                            - generic [ref=e11491]: Source reference
+                            - combobox "Source reference" [ref=e12238]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · use this source-track window as Ref2VA audio"
+                              - option "Off · no source audio reference"
+                          - generic [ref=e11493]:
+                            - generic [ref=e11494]: Generated continuity
+                            - combobox "Generated continuity" [ref=e12239]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · continue prior generated audio"
+                              - option "Off · generate an independent audio stream"
+                          - generic [ref=e11496]:
+                            - generic [ref=e11497]: Lock source audio
+                            - combobox "Lock source audio" [ref=e12240]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · protect this exact source window"
+                              - option "Off · leave target audio denoisable"
+                    - generic [ref=e11499]:
+                      - generic [ref=e11500]:
+                        - button "Collapse scene 4" [expanded] [ref=e12241] [cursor=pointer]: ▾
+                        - generic "Drag to reorder" [ref=e12242]: ⠿
+                        - textbox "Scene 4 border color" [ref=e12243] [cursor=pointer]: "#c493ff"
+                        - generic [ref=e11504]: Scene 4
+                        - textbox "Stable scene ID used in checkpoint filenames and resume validation. Keep it unique and avoid changing it after rendering." [ref=e12244]:
+                          - /placeholder: clip_0004
+                          - text: MSG_S001_SH04
+                        - generic "Generation starts at delivered frame 219. The incoming assembly boundary blends 0 frame(s)." [ref=e12245]: 73 raw / 73 delivered · 3.042s
+                        - button "↑" [ref=e12246] [cursor=pointer]
+                        - button "↓" [ref=e12247] [cursor=pointer]
+                        - button "Duplicate" [ref=e12248] [cursor=pointer]
+                        - button "Delete" [ref=e12249] [cursor=pointer]
+                      - generic [ref=e11511]:
+                        - generic [ref=e11512]:
+                          - combobox "Choose whether this scene inherits the plan duration, requests seconds that are rounded up, or specifies an exact H3-valid frame count." [ref=e12250]:
+                            - option "Plan default" [selected]
+                            - option "Seconds"
+                            - option "Exact frames"
+                          - spinbutton "Disabled because this scene inherits the Plan node default duration." [disabled] [ref=e12251]
+                          - generic [ref=e11515]: Uses the Plan node default.
+                        - generic [ref=e11516]:
+                          - generic [ref=e11517]: Basic prompt (plain language, optimized separately)
+                          - textbox "Basic prompt (plain language, optimized separately)" [ref=e12252]:
+                            - /placeholder: Optional plain-language scene idea, not H3-formatted. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                        - generic [ref=e11519]:
+                          - generic [ref=e11520]: Scene prompt (optional with shared prompt)
+                          - textbox "Scene prompt (optional with shared prompt)" [ref=e12253]:
+                            - /placeholder: Optional with a shared prompt; otherwise describe this scene…
+                            - text: "subject_definitions: <Subject 1> is Andre, whose identity is shown in {{andre-identity-video-v1}}. Their name is Andre. <Subject 2> is the environment shown in {{cafe-reaction-v2}}: {{var:cafe_environment}} {{cafe-wardrobe-candidate-v1}} is a wardrobe reference for MSG-CHR-ANDRE. summary: [reference generation] In <Subject 2>, Andre gently raises his gaze toward the window, keeping his lips closed. retention_analysis: <Subject 1> (appears in [Shot 1]): fully_preserved - Preserve facial identity from {{andre-identity-video-v1}}. <Subject 2> (appears in [Shot 1]): partially_preserved - Preserve architecture, furniture and lighting; use the primary picture for camera layout. {{cafe-wardrobe-candidate-v1}} (appears in [Shot 1]): attribute_transfer - Use as wardrobe reference. detailed_description: Apply the shared film bible for photography and lighting. [Shot 1] One continuous medium-close shot, eye-level, 50mm lens. Camera: static. Environment: <Subject 2>, primary camera layout from {{cafe-reaction-v2}}. <Subject 1> (S1): {{var:andre_description}} Wears {{var:wardrobe_description}} as shown in {{cafe-wardrobe-candidate-v1}}. Andre gently raises his gaze toward the window, keeping his lips closed. Keep visible in the same frame: face; black window frame. Gaze target: the window at screen right, off camera. Expression: neutral, lips relaxed and closed. His hands stay resting still in his lap below the lower frame edge. Locked tripod. One continuous shot. No zoom or cut inside the shot. No subtitles, captions, logos, dialogue or added people. overall_soundscape: No speech, music or sound effects. non_diegetic_music: N/A"
+                        - generic [ref=e11523]:
+                          - button "@ Reference" [ref=e12254] [cursor=pointer]
+                          - button "# Dialogue" [ref=e12255] [cursor=pointer]
+                          - generic [ref=e11526]: "Shortcuts: @ reference · # dialogue"
+                        - generic [ref=e11527]:
+                          - generic [ref=e11528]: Prompt alternatives
+                          - generic [ref=e11529]:
+                            - combobox "Prompt alternatives New random" [ref=e12256]:
+                              - option "Stable derived" [selected]
+                              - option "Fixed scene seed"
+                              - option "Randomize each queue"
+                            - textbox "This scene derives a stable alternative-choice seed from its scene index and ID." [disabled] [ref=e12257]:
+                              - /placeholder: Scene prompt seed
+                            - button "New random" [disabled] [ref=e12258]
+                        - generic [ref=e11533]:
+                          - generic [ref=e11534]: Scene seed
+                          - generic [ref=e11535]:
+                            - 'textbox "Scene seed New random Use derived Derived seed: 9328210130580632979" [ref=e12259]':
+                              - /placeholder: Blank = stable derived seed
+                            - button "New random" [ref=e12260] [cursor=pointer]
+                            - button "Use derived" [disabled] [ref=e12261]
+                            - generic "Stable result of base_seed 11001, scene 4, and ID MSG_S001_SH04. It will repeat until one of those values changes." [ref=e12262]: "Derived seed: 9328210130580632979"
+                        - generic [ref=e11540]:
+                          - generic [ref=e11541]: Steps override (blank = Plan default)
+                          - spinbutton "Steps override (blank = Plan default)" [ref=e12263]
+                        - generic [ref=e11543]:
+                          - generic [ref=e11544]: Scene LoRA route
+                          - combobox "Scene LoRA route" [ref=e12264]:
+                            - option "Base model" [selected]
+                            - option "LoRA A"
+                        - generic [ref=e11546]:
+                          - generic [ref=e11547]:
+                            - generic [ref=e11548]: Incoming transition
+                            - combobox "Incoming transition" [ref=e12265]:
+                              - option "Inherit Chain Policy · Visual Cut" [selected]
+                              - option "Visual Cut · No carried picture"
+                              - option "Guide · 22-frame RGB continuation"
+                              - option "Hard AV · Protected 39-frame AV prefix"
+                              - option "Soft AV · Hard picture with a short audio release"
+                          - generic [ref=e11550]:
+                            - generic [ref=e11551]: Final assembly crossfade frames
+                            - spinbutton "Final assembly crossfade frames" [ref=e12266]
+                        - generic [ref=e11553]:
+                          - generic [ref=e11554]:
+                            - generic [ref=e11555]: Lip-sync
+                            - combobox "Lip-sync" [ref=e12267]:
+                              - option "Inherit · Off" [selected]
+                              - option "On · vocals drive this scene"
+                              - option "Off · no source-audio guidance"
+                              - option "Custom · advanced audio controls" [disabled]
+                          - generic [ref=e11557]:
+                            - generic [ref=e11558]: Source reference
+                            - combobox "Source reference" [ref=e12268]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · use this source-track window as Ref2VA audio"
+                              - option "Off · no source audio reference"
+                          - generic [ref=e11560]:
+                            - generic [ref=e11561]: Generated continuity
+                            - combobox "Generated continuity" [ref=e12269]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · continue prior generated audio"
+                              - option "Off · generate an independent audio stream"
+                          - generic [ref=e11563]:
+                            - generic [ref=e11564]: Lock source audio
+                            - combobox "Lock source audio" [ref=e12270]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · protect this exact source window"
+                              - option "Off · leave target audio denoisable"
+                    - generic [ref=e11566]:
+                      - generic [ref=e11567]:
+                        - button "Collapse scene 5" [expanded] [ref=e12271] [cursor=pointer]: ▾
+                        - generic "Drag to reorder" [ref=e12272]: ⠿
+                        - textbox "Scene 5 border color" [ref=e12273] [cursor=pointer]: "#ff7fa6"
+                        - generic [ref=e11571]: Scene 5
+                        - textbox "Stable scene ID used in checkpoint filenames and resume validation. Keep it unique and avoid changing it after rendering." [ref=e12274]:
+                          - /placeholder: clip_0005
+                          - text: MSG_S001_SH05
+                        - generic "Generation starts at delivered frame 292. The incoming assembly boundary blends 0 frame(s)." [ref=e12275]: 73 raw / 73 delivered · 3.042s
+                        - button "↑" [ref=e12276] [cursor=pointer]
+                        - button "↓" [ref=e12277] [cursor=pointer]
+                        - button "Duplicate" [ref=e12278] [cursor=pointer]
+                        - button "Delete" [ref=e12279] [cursor=pointer]
+                      - generic [ref=e11578]:
+                        - generic [ref=e11579]:
+                          - combobox "Choose whether this scene inherits the plan duration, requests seconds that are rounded up, or specifies an exact H3-valid frame count." [ref=e12280]:
+                            - option "Plan default" [selected]
+                            - option "Seconds"
+                            - option "Exact frames"
+                          - spinbutton "Disabled because this scene inherits the Plan node default duration." [disabled] [ref=e12281]
+                          - generic [ref=e11582]: Uses the Plan node default.
+                        - generic [ref=e11583]:
+                          - generic [ref=e11584]: Basic prompt (plain language, optimized separately)
+                          - textbox "Basic prompt (plain language, optimized separately)" [ref=e12282]:
+                            - /placeholder: Optional plain-language scene idea, not H3-formatted. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                        - generic [ref=e11586]:
+                          - generic [ref=e11587]: Scene prompt (optional with shared prompt)
+                          - textbox "Scene prompt (optional with shared prompt)" [ref=e12283]:
+                            - /placeholder: Optional with a shared prompt; otherwise describe this scene…
+                            - text: "subject_definitions: <Subject 1> is Andre, whose identity is shown in {{andre-identity-video-v1}}. Their name is Andre. <Subject 2> is the environment shown in {{cafe-reverse-counter-v1}}: {{var:cafe_environment}} {{cafe-wardrobe-candidate-v1}} is a wardrobe reference for MSG-CHR-ANDRE. summary: [reference generation] In <Subject 2>, Andre remains seated and still with his hands resting in his lap below the table edge, eyes lowered toward one closed cream note lying flat on the table. retention_analysis: <Subject 1> (appears in [Shot 1]): fully_preserved - Preserve facial identity from {{andre-identity-video-v1}}. <Subject 2> (appears in [Shot 1]): partially_preserved - Preserve architecture, furniture and lighting; use the primary picture for camera layout. {{cafe-wardrobe-candidate-v1}} (appears in [Shot 1]): attribute_transfer - Use as wardrobe reference. detailed_description: Apply the shared film bible for photography and lighting. [Shot 1] One continuous medium-wide shot, eye-level, 35mm lens. Camera: static. Environment: <Subject 2>, primary camera layout from {{cafe-reverse-counter-v1}}. <Subject 1> (S1): {{var:andre_description}} Wears {{var:wardrobe_description}} as shown in {{cafe-wardrobe-candidate-v1}}. Andre remains seated and still with his hands resting in his lap below the table edge, eyes lowered toward one closed cream note lying flat on the table. Keep visible in the same frame: espresso counter; round table; one closed cream note flat on the table. Gaze target: the closed cream note on the table, eyes lowered. Expression: neutral, lips relaxed and closed. His hands stay resting still in his lap below the table edge, out of frame, leaving the tabletop clear around the single closed cream note. His eyes stay lowered toward the note. Locked tripod. One continuous shot. No zoom or cut inside the shot. No subtitles, captions, logos, dialogue or added people. overall_soundscape: No speech, music or sound effects. non_diegetic_music: N/A"
+                        - generic [ref=e11590]:
+                          - button "@ Reference" [ref=e12284] [cursor=pointer]
+                          - button "# Dialogue" [ref=e12285] [cursor=pointer]
+                          - generic [ref=e11593]: "Shortcuts: @ reference · # dialogue"
+                        - generic [ref=e11594]:
+                          - generic [ref=e11595]: Prompt alternatives
+                          - generic [ref=e11596]:
+                            - combobox "Prompt alternatives New random" [ref=e12286]:
+                              - option "Stable derived" [selected]
+                              - option "Fixed scene seed"
+                              - option "Randomize each queue"
+                            - textbox "This scene derives a stable alternative-choice seed from its scene index and ID." [disabled] [ref=e12287]:
+                              - /placeholder: Scene prompt seed
+                            - button "New random" [disabled] [ref=e12288]
+                        - generic [ref=e11600]:
+                          - generic [ref=e11601]: Scene seed
+                          - generic [ref=e11602]:
+                            - 'textbox "Scene seed New random Use derived Derived seed: 12510837238326070076" [ref=e12289]':
+                              - /placeholder: Blank = stable derived seed
+                            - button "New random" [ref=e12290] [cursor=pointer]
+                            - button "Use derived" [disabled] [ref=e12291]
+                            - generic "Stable result of base_seed 11001, scene 5, and ID MSG_S001_SH05. It will repeat until one of those values changes." [ref=e12292]: "Derived seed: 12510837238326070076"
+                        - generic [ref=e11607]:
+                          - generic [ref=e11608]: Steps override (blank = Plan default)
+                          - spinbutton "Steps override (blank = Plan default)" [ref=e12293]
+                        - generic [ref=e11610]:
+                          - generic [ref=e11611]: Scene LoRA route
+                          - combobox "Scene LoRA route" [ref=e12294]:
+                            - option "Base model" [selected]
+                            - option "LoRA A"
+                        - generic [ref=e11613]:
+                          - generic [ref=e11614]:
+                            - generic [ref=e11615]: Incoming transition
+                            - combobox "Incoming transition" [ref=e12295]:
+                              - option "Inherit Chain Policy · Visual Cut" [selected]
+                              - option "Visual Cut · No carried picture"
+                              - option "Guide · 22-frame RGB continuation"
+                              - option "Hard AV · Protected 39-frame AV prefix"
+                              - option "Soft AV · Hard picture with a short audio release"
+                          - generic [ref=e11617]:
+                            - generic [ref=e11618]: Final assembly crossfade frames
+                            - spinbutton "Final assembly crossfade frames" [ref=e12296]
+                        - generic [ref=e11620]:
+                          - generic [ref=e11621]:
+                            - generic [ref=e11622]: Lip-sync
+                            - combobox "Lip-sync" [ref=e12297]:
+                              - option "Inherit · Off" [selected]
+                              - option "On · vocals drive this scene"
+                              - option "Off · no source-audio guidance"
+                              - option "Custom · advanced audio controls" [disabled]
+                          - generic [ref=e11624]:
+                            - generic [ref=e11625]: Source reference
+                            - combobox "Source reference" [ref=e12298]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · use this source-track window as Ref2VA audio"
+                              - option "Off · no source audio reference"
+                          - generic [ref=e11627]:
+                            - generic [ref=e11628]: Generated continuity
+                            - combobox "Generated continuity" [ref=e12299]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · continue prior generated audio"
+                              - option "Off · generate an independent audio stream"
+                          - generic [ref=e11630]:
+                            - generic [ref=e11631]: Lock source audio
+                            - combobox "Lock source audio" [ref=e12300]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · protect this exact source window"
+                              - option "Off · leave target audio denoisable"
+                    - generic [ref=e11633]:
+                      - generic [ref=e11634]:
+                        - button "Collapse scene 6" [expanded] [ref=e12301] [cursor=pointer]: ▾
+                        - generic "Drag to reorder" [ref=e12302]: ⠿
+                        - textbox "Scene 6 border color" [ref=e12303] [cursor=pointer]: "#55d6e8"
+                        - generic [ref=e11638]: Scene 6
+                        - textbox "Stable scene ID used in checkpoint filenames and resume validation. Keep it unique and avoid changing it after rendering." [ref=e12304]:
+                          - /placeholder: clip_0006
+                          - text: MSG_S001_SH06
+                        - generic "Generation starts at delivered frame 365. The incoming assembly boundary blends 0 frame(s)." [ref=e12305]: 73 raw / 73 delivered · 3.042s
+                        - button "↑" [ref=e12306] [cursor=pointer]
+                        - button "↓" [disabled] [ref=e12307]
+                        - button "Duplicate" [ref=e12308] [cursor=pointer]
+                        - button "Delete" [ref=e12309] [cursor=pointer]
+                      - generic [ref=e11645]:
+                        - generic [ref=e11646]:
+                          - combobox "Choose whether this scene inherits the plan duration, requests seconds that are rounded up, or specifies an exact H3-valid frame count." [ref=e12310]:
+                            - option "Plan default" [selected]
+                            - option "Seconds"
+                            - option "Exact frames"
+                          - spinbutton "Disabled because this scene inherits the Plan node default duration." [disabled] [ref=e12311]
+                          - generic [ref=e11649]: Uses the Plan node default.
+                        - generic [ref=e11650]:
+                          - generic [ref=e11651]: Basic prompt (plain language, optimized separately)
+                          - textbox "Basic prompt (plain language, optimized separately)" [ref=e12312]:
+                            - /placeholder: Optional plain-language scene idea, not H3-formatted. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                        - generic [ref=e11653]:
+                          - generic [ref=e11654]: Scene prompt (optional with shared prompt)
+                          - textbox "Scene prompt (optional with shared prompt)" [ref=e12313]:
+                            - /placeholder: Optional with a shared prompt; otherwise describe this scene…
+                            - text: "subject_definitions: <Subject 1> is Andre, whose identity is shown in {{andre-identity-video-v1}}. Their name is Andre. <Subject 2> is the environment shown in {{cafe-counter-wide-v1}}: {{var:cafe_environment}} {{cafe-wardrobe-candidate-v1}} is a wardrobe reference for MSG-CHR-ANDRE. summary: [reference generation] In <Subject 2>, Andre remains seated at the window table and makes one slight nod. retention_analysis: <Subject 1> (appears in [Shot 1]): fully_preserved - Preserve facial identity from {{andre-identity-video-v1}}. <Subject 2> (appears in [Shot 1]): partially_preserved - Preserve architecture, furniture and lighting; use the primary picture for camera layout. {{cafe-wardrobe-candidate-v1}} (appears in [Shot 1]): attribute_transfer - Use as wardrobe reference. detailed_description: Apply the shared film bible for photography and lighting. [Shot 1] One continuous wide shot, eye-level, 24mm lens. Camera: static. Environment: <Subject 2>, primary camera layout from {{cafe-counter-wide-v1}}. <Subject 1> (S1): {{var:andre_description}} Wears {{var:wardrobe_description}} as shown in {{cafe-wardrobe-candidate-v1}}. Andre remains seated at the window table and makes one slight nod. Keep visible in the same frame: espresso counter left; windows right; round table. Gaze target: the table. Expression: neutral, lips relaxed and closed. His hands remain still in his lap below the table edge while one closed cream note sits undisturbed on the tabletop. Locked tripod. One continuous shot. No zoom or cut inside the shot. No subtitles, captions, logos, dialogue or added people. overall_soundscape: No speech, music or sound effects. non_diegetic_music: N/A"
+                        - generic [ref=e11657]:
+                          - button "@ Reference" [ref=e12314] [cursor=pointer]
+                          - button "# Dialogue" [ref=e12315] [cursor=pointer]
+                          - generic [ref=e11660]: "Shortcuts: @ reference · # dialogue"
+                        - generic [ref=e11661]:
+                          - generic [ref=e11662]: Prompt alternatives
+                          - generic [ref=e11663]:
+                            - combobox "Prompt alternatives New random" [ref=e12316]:
+                              - option "Stable derived" [selected]
+                              - option "Fixed scene seed"
+                              - option "Randomize each queue"
+                            - textbox "This scene derives a stable alternative-choice seed from its scene index and ID." [disabled] [ref=e12317]:
+                              - /placeholder: Scene prompt seed
+                            - button "New random" [disabled] [ref=e12318]
+                        - generic [ref=e11667]:
+                          - generic [ref=e11668]: Scene seed
+                          - generic [ref=e11669]:
+                            - 'textbox "Scene seed New random Use derived Derived seed: 6143516753549550523" [ref=e12319]':
+                              - /placeholder: Blank = stable derived seed
+                            - button "New random" [ref=e12320] [cursor=pointer]
+                            - button "Use derived" [disabled] [ref=e12321]
+                            - generic "Stable result of base_seed 11001, scene 6, and ID MSG_S001_SH06. It will repeat until one of those values changes." [ref=e12322]: "Derived seed: 6143516753549550523"
+                        - generic [ref=e11674]:
+                          - generic [ref=e11675]: Steps override (blank = Plan default)
+                          - spinbutton "Steps override (blank = Plan default)" [ref=e12323]
+                        - generic [ref=e11677]:
+                          - generic [ref=e11678]: Scene LoRA route
+                          - combobox "Scene LoRA route" [ref=e12324]:
+                            - option "Base model" [selected]
+                            - option "LoRA A"
+                        - generic [ref=e11680]:
+                          - generic [ref=e11681]:
+                            - generic [ref=e11682]: Incoming transition
+                            - combobox "Incoming transition" [ref=e12325]:
+                              - option "Inherit Chain Policy · Visual Cut" [selected]
+                              - option "Visual Cut · No carried picture"
+                              - option "Guide · 22-frame RGB continuation"
+                              - option "Hard AV · Protected 39-frame AV prefix"
+                              - option "Soft AV · Hard picture with a short audio release"
+                          - generic [ref=e11684]:
+                            - generic [ref=e11685]: Final assembly crossfade frames
+                            - spinbutton "Final assembly crossfade frames" [ref=e12326]
+                        - generic [ref=e11687]:
+                          - generic [ref=e11688]:
+                            - generic [ref=e11689]: Lip-sync
+                            - combobox "Lip-sync" [ref=e12327]:
+                              - option "Inherit · Off" [selected]
+                              - option "On · vocals drive this scene"
+                              - option "Off · no source-audio guidance"
+                              - option "Custom · advanced audio controls" [disabled]
+                          - generic [ref=e11691]:
+                            - generic [ref=e11692]: Source reference
+                            - combobox "Source reference" [ref=e12328]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · use this source-track window as Ref2VA audio"
+                              - option "Off · no source audio reference"
+                          - generic [ref=e11694]:
+                            - generic [ref=e11695]: Generated continuity
+                            - combobox "Generated continuity" [ref=e12329]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · continue prior generated audio"
+                              - option "Off · generate an independent audio stream"
+                          - generic [ref=e11697]:
+                            - generic [ref=e11698]: Lock source audio
+                            - combobox "Lock source audio" [ref=e12330]:
+                              - option "Inherit Chain Policy · off" [selected]
+                              - option "On · protect this exact source window"
+                              - option "Off · leave target audio denoisable"
+                  - generic [ref=e11700]:
+                    - generic [ref=e11701]: Edits are serialized into plan_json; connect plan_json_input for an external override.
+                    - 'link "UI inspiration: nkxx188" [ref=e12331] [cursor=pointer]':
+                      - /url: https://github.com/nkxx188/ComfyUI-MiniMaxH3-Easy
+              - generic [ref=e9625]: comfyui-minimaxh3-contex-loop
+          - button "Resize from bottom-right corner" [ref=e12332]
+          - button "Resize from top-right corner" [ref=e12333]
+          - button "Resize from bottom-left corner" [ref=e12334]
+          - button "Resize from top-left corner" [ref=e12335]
+        - generic [ref=e9640]:
+          - generic [ref=e9641]:
+            - generic [ref=e9645]:
+              - button [ref=e9647] [cursor=pointer]
+              - generic [ref=e9649]: Delivery · assembled silent draft
+            - generic [ref=e9652]:
+              - generic [ref=e9653]:
+                - generic [ref=e9654]:
+                  - generic [ref=e9655]: manifest
+                  - generic [ref=e9661]: source_timeline
+                  - generic [ref=e9668]: blend_video_vae
+                - generic [ref=e9675]: video_path
+              - generic [ref=e9681]:
+                - generic [ref=e9689]:
+                  - generic [ref=e9690]: audio_source
+                  - generic [ref=e9694]:
+                    - combobox "audio_source" [ref=e12336] [cursor=pointer]:
+                      - generic [ref=e9696]: none
+                    - button [aria-hidden] [ref=e9697] [cursor=pointer]
+                - generic [ref=e9706]:
+                  - generic [ref=e9707]: filename
+                  - textbox "filename" [ref=e12337]: draft
+                - generic [ref=e9719]:
+                  - generic [ref=e9720]: audio_bitrate
+                  - generic "audio_bitrate" [ref=e12338]:
+                    - button "Decrement" [ref=e12339] [cursor=pointer]
+                    - spinbutton [ref=e9727]: "256"
+                    - button "Increment" [ref=e12340] [cursor=pointer]
+                - generic [ref=e9738]:
+                  - generic [ref=e9739]: copy_to_output
+                  - switch "copy_to_output" [checked] [ref=e12341] [cursor=pointer]
+                - generic [ref=e9751]:
+                  - generic [ref=e9752]: output_subfolder
+                  - textbox "output_subfolder" [ref=e12342]: The_Message/workbench/v001
+                - generic [ref=e9764]:
+                  - generic [ref=e9765]: blend_schedule
+                  - textbox "blend_schedule" [ref=e12343]: plan
+                - generic [ref=e9777]:
+                  - generic [ref=e9778]: boundary_tone_match
+                  - generic [ref=e9782]:
+                    - combobox "boundary_tone_match" [ref=e12344] [cursor=pointer]:
+                      - generic [ref=e9784]: "off"
+                    - button [aria-hidden] [ref=e9785] [cursor=pointer]
+                - generic [ref=e9794]:
+                  - generic [ref=e9795]: color_stabilization
+                  - generic [ref=e9799]:
+                    - combobox "color_stabilization" [ref=e12345] [cursor=pointer]:
+                      - generic [ref=e9801]: "off"
+                    - button [aria-hidden] [ref=e9802] [cursor=pointer]
+                - generic [ref=e9811]:
+                  - generic [ref=e9812]: delete_checkpoints_after_assembly
+                  - switch "delete_checkpoints_after_assembly" [ref=e12346] [cursor=pointer]
+                - generic [ref=e9824]:
+                  - generic [ref=e9825]: generated_audio_join
+                  - generic [ref=e9829]:
+                    - combobox "generated_audio_join" [ref=e12347] [cursor=pointer]:
+                      - generic [ref=e9831]: av_overlap
+                    - button [aria-hidden] [ref=e9832] [cursor=pointer]
+              - generic [ref=e9834]: comfyui-minimaxh3-contex-loop
+          - button "Resize from bottom-right corner" [ref=e12348]
+          - button "Resize from top-right corner" [ref=e12349]
+          - button "Resize from bottom-left corner" [ref=e12350]
+          - button "Resize from top-left corner" [ref=e12351]
+        - generic [ref=e9849]:
+          - generic [ref=e9850]:
+            - generic [ref=e9854]:
+              - button [ref=e9856] [cursor=pointer]
+              - generic [ref=e9858]: CPU preflight · final prompt and reference bindings
+            - generic [ref=e9861]:
+              - generic [ref=e9862]:
+                - generic [ref=e9863]: source
+                - generic [ref=e9870]: STRING
+              - generic [ref=e9876]:
+                - textbox "preview_text" [ref=e12352]
+                - generic [ref=e9887]:
+                  - generic [ref=e9888]: preview_mode
+                  - group [ref=e9891]:
+                    - button "Plain text" [pressed] [ref=e12353] [cursor=pointer]
+                    - button "Markdown" [ref=e12354] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e12355]
+          - button "Resize from top-right corner" [ref=e12356]
+          - button "Resize from bottom-left corner" [ref=e12357]
+          - button "Resize from top-left corner" [ref=e12358]
+        - generic [ref=e9906]:
+          - generic [ref=e9907]:
+            - generic [ref=e9911]:
+              - button [ref=e9913] [cursor=pointer]
+              - generic [ref=e9915]: Workflow Monitor Brain · passive recorder
+            - generic [ref=e9918]:
+              - generic [ref=e9919]:
+                - generic [ref=e9927]:
+                  - generic [ref=e9928]: enabled
+                  - switch "enabled" [checked] [ref=e12359] [cursor=pointer]
+                - generic [ref=e9940]:
+                  - generic [ref=e9941]: run_label
+                  - textbox "run_label" [ref=e12360]: The Message · Holistic Workbench v001
+                - generic [ref=e9953]:
+                  - generic [ref=e9954]: sample_interval
+                  - generic [ref=e9958]:
+                    - combobox "sample_interval" [ref=e12361] [cursor=pointer]:
+                      - generic [ref=e9960]: "2"
+                    - button [aria-hidden] [ref=e9961] [cursor=pointer]
+                - generic [ref=e9970]:
+                  - generic [ref=e9971]: phase_overrides
+                  - textbox "phase_overrides" [ref=e12362]: "{\"22\":\"Preparation\",\"31\":\"Preparation\",\"37\":\"Preparation\",\"39\":\"Preparation\",\"47\":\"Preparation\",\"49\":\"Preparation\",\"62:42\":\"Human review\",\"62:9\":\"Reference selection\",\"62:10\":\"Reference selection\",\"62:46\":\"Preparation\"}"
+                - generic [ref=e9983]:
+                  - generic [ref=e9984]: analyze_when_finished
+                  - switch "analyze_when_finished" [ref=e12363] [cursor=pointer]
+                - generic [ref=e9994]:
+                  - strong [ref=e9995]: Ready to observe
+                  - paragraph [ref=e9996]: Run this workflow to record its phases and existing Comfy Dynamic readings.
+                  - generic [ref=e9997]: Local recording · no wires needed
+                  - button "Open report" [ref=e12364] [cursor=pointer]
+              - generic [ref=e9999]: Workflow-Monitor-Brain
+          - button "Resize from bottom-right corner" [ref=e12365]
+          - button "Resize from top-right corner" [ref=e12366]
+          - button "Resize from bottom-left corner" [ref=e12367]
+          - button "Resize from top-left corner" [ref=e12368]
+        - generic [ref=e10014]:
+          - generic [ref=e10015]:
+            - generic [ref=e10019]:
+              - button [ref=e10021] [cursor=pointer]
+              - generic [ref=e10023]: Shared reference catalogue · bind by shot ID
+            - generic [ref=e10026]:
+              - generic [ref=e10027]: STRING
+              - generic [ref=e10042]:
+                - generic: value
+                - textbox "value" [ref=e12369]:
+                  - /placeholder: ""
+                  - text: "{ \"version\": 1, \"assets\": { \"cafe-counter-wide-v1\": { \"transport\": \"media\", \"selection\": { \"kind\": \"picture\", \"file\": \"minimax_h3/Gemini_Generated_Image.jpeg [input]\", \"name\": \"Gemini_Generated_Image.jpeg\", \"duration\": null, \"width\": 1376, \"height\": 768, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"mmwb6ac142\" }, \"source\": { \"path\": \"input/minimax_h3/Gemini_Generated_Image.jpeg\", \"sha256\": \"a5eefb8e19822e90af1b44009b6982474299a9f7ecbc349a97d16042f93302f5\", \"role\": \"location\", \"owner\": \"MSG-LOC-CAFE\", \"kind\": \"picture\", \"selection\": { \"kind\": \"picture\", \"file\": \"minimax_h3/Gemini_Generated_Image.jpeg [input]\", \"name\": \"Gemini_Generated_Image.jpeg\", \"duration\": null, \"width\": 1376, \"height\": 768, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"mmwb6ac142\" }, \"version\": 1, \"approved\": false, \"approval_evidence\": \"User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.\", \"source\": \"input/minimax_h3/Gemini_Generated_Image.jpeg\", \"instruction\": \"Wide counter view. Preserve the espresso equipment in the left foreground and the window-table area to the right.\", \"quality_status\": \"candidate; human output review pending\", \"input_use_authorized\": true, \"visual_review\": \"pending\" }, \"review_status\": \"candidate; human selection pending\" }, \"cafe-window-table-v1\": { \"transport\": \"media\", \"selection\": { \"kind\": \"picture\", \"file\": \"minimax_h3/Gemini_Generated_Image_1_.jpeg [input]\", \"name\": \"Gemini_Generated_Image (1).jpeg\", \"duration\": null, \"width\": 1376, \"height\": 768, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"mmwb6ac140\" }, \"source\": { \"path\": \"input/minimax_h3/Gemini_Generated_Image_1_.jpeg\", \"sha256\": \"3664fae152459415d32fabb8f7659f858f48f09a44c8e0daee25314124ba887d\", \"role\": \"location\", \"owner\": \"MSG-LOC-CAFE\", \"kind\": \"picture\", \"selection\": { \"kind\": \"picture\", \"file\": \"minimax_h3/Gemini_Generated_Image_1_.jpeg [input]\", \"name\": \"Gemini_Generated_Image (1).jpeg\", \"duration\": null, \"width\": 1376, \"height\": 768, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"mmwb6ac140\" }, \"version\": 1, \"approved\": false, \"approval_evidence\": \"User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.\", \"source\": \"input/minimax_h3/Gemini_Generated_Image_1_.jpeg\", \"instruction\": \"Window-table angle. Preserve the round wooden table, brown leather chairs, concrete walls, plants and black window frames.\", \"quality_status\": \"candidate; human output review pending\", \"input_use_authorized\": true, \"visual_review\": \"pending\" }, \"review_status\": \"candidate; human selection pending\" }, \"cafe-wardrobe-candidate-v1\": { \"transport\": \"media\", \"selection\": { \"kind\": \"picture\", \"file\": \"cafe-take04-candidate-v1.png [input]\", \"name\": \"cafe-take04-candidate-v1.png\", \"width\": 126, \"height\": 126, \"duration\": null, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"cafe-wardrobe-candidate-v1\" }, \"source\": { \"path\": \"input/cafe-take04-candidate-v1.png\", \"sha256\": \"83dbfab0b9171da26b41e71f111946abaa56d021f5025b82a6eb95f4703a128f\", \"role\": \"wardrobe\", \"owner\": \"MSG-CHR-ANDRE\", \"kind\": \"picture\", \"input_use_authorized\": true, \"visual_review\": \"pending\", \"limitations\": \"Low resolution source crop; no added detail or new camera angle.\", \"selection\": { \"kind\": \"picture\", \"file\": \"cafe-take04-candidate-v1.png [input]\", \"name\": \"cafe-take04-candidate-v1.png\", \"width\": 126, \"height\": 126, \"duration\": null, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"cafe-wardrobe-candidate-v1\" }, \"provenance\": { \"source\": \"output/The_Message/references/silent-proof-v001/source-frame_00001_.png\", \"source_sha256\": \"c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2\", \"crop_xywh\": [ 62, 164, 126, 126 ], \"saved_output\": \"output/The_Message/references/silent-proof-v001/wardrobe-candidate_00001_.png\" }, \"wardrobe_id\": \"W1\", \"approved\": false }, \"review_status\": \"candidate; human selection pending\" }, \"andre-identity-video-v1\": { \"transport\": \"refmod\", \"selection\": { \"uid\": 1, \"name\": \"refmod_-Andre_Athar-video_visual\", \"label\": \"andre-identity-video-v1\", \"on\": true, \"preview\": null, \"visual\": { \"file\": \"refmod_-Andre_Athar-video_visual\", \"kind\": \"video\", \"tokens\": 7224, \"mode\": \"weight\", \"w\": 1, \"s\": 1, \"c\": 1, \"embedded_audio_ignored\": false } }, \"map_caption\": \"refmod_-Andre_Athar-video\", \"source\": { \"path\": \"models/refmods/refmod_-Andre_Athar-video_visual.safetensors\", \"sha256\": \"786433e7c8f6c719ad4eaa0d3051cc05c5454eb63217a39b9fe0d57ef6779c06\", \"role\": \"identity\", \"owner\": \"MSG-CHR-ANDRE\", \"kind\": \"video\", \"selection\": { \"file\": \"refmod_-Andre_Athar-video_visual\", \"kind\": \"video\", \"tokens\": 7224, \"mode\": \"weight\", \"w\": 1, \"s\": 1, \"c\": 1, \"embedded_audio_ignored\": false }, \"version\": 1, \"approved\": false, \"approval_evidence\": \"User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.\", \"source\": \"models/refmods/refmod_-Andre_Athar-video_visual.safetensors\", \"instruction\": \"\", \"quality_status\": \"candidate; human output review pending\", \"inspection\": { \"source\": \"video\", \"encoder_frames\": 2, \"encoder_times_s\": [ 0, 0.5 ], \"latent_shape\": [ 1, 24, 7, 86, 48 ], \"tokens\": 7224, \"notes\": \"Two inspected near-frontal frames; stack picture selector does not apply to video-sourced RefMods. Separate new audio deliberately excluded from comparison.\" }, \"input_use_authorized\": true, \"visual_review\": \"pending\" }, \"review_status\": \"existing authorized identity input; creative selection pending\" }, \"cafe-table-note-insert-v2\": { \"transport\": \"media\", \"selection\": { \"kind\": \"picture\", \"file\": \"The_Message/props/folded-note-clean-v2.png [input]\", \"name\": \"folded-note-clean-v2.png\", \"width\": 768, \"height\": 432, \"duration\": null, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"cafe-table-note-insert-v2\" }, \"source\": { \"path\": \"input/The_Message/props/folded-note-clean-v2.png\", \"sha256\": \"61e478415cbdb4e1e712d0018cbfcacee108348462e6053884d8f11b2ef4fc2a\", \"role\": \"location\", \"owner\": \"MSG-LOC-CAFE\", \"kind\": \"picture\", \"input_use_authorized\": true, \"visual_review\": \"pending\", \"limitations\": \"Generated 768x432 tabletop close-up plate; human creative review pending.\", \"instruction\": \"Overhead tabletop close-up: preserve the single closed rectangular cream folded note/envelope resting flat in the upper-left quadrant of the warm oak wooden tabletop; keep wood grain and soft directional shadow motionless.\", \"selection\": { \"kind\": \"picture\", \"file\": \"The_Message/props/folded-note-clean-v2.png [input]\", \"name\": \"folded-note-clean-v2.png\", \"width\": 768, \"height\": 432, \"duration\": null, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"cafe-table-note-insert-v2\" }, \"provenance\": { \"source\": \"output/refs/the-message/s001/folded-letter-tabletop/s001-folded-letter-tabletop_sd15_16x9_s808_00001_.png\", \"source_sha256\": \"61e478415cbdb4e1e712d0018cbfcacee108348462e6053884d8f11b2ef4fc2a\", \"spec\": \"studio/shots/the-message-props.json\", \"scale_cm_approx\": \"14x9 cm folded rectangular note\", \"fold\": \"closed rectangular paper note with triangular top flap, flat crease\", \"orientation\": \"slight counter-clockwise angle, horizontal long axis\", \"table_position\": \"upper-left quadrant of warm oak tabletop, empty wood surface to right\" }, \"approved\": false }, \"review_status\": \"candidate; human selection pending\" }, \"cafe-reaction-v2\": { \"transport\": \"media\", \"selection\": { \"kind\": \"picture\", \"file\": \"the-message-reaction-candidate-v2.png [input]\", \"name\": \"the-message-reaction-candidate-v2.png\", \"width\": 448, \"height\": 258, \"duration\": null, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"cafe-reaction-v2\" }, \"source\": { \"path\": \"input/the-message-reaction-candidate-v2.png\", \"sha256\": \"9013d2942ad8bb03aca624f58895dd27199ca02aef9e1103d9134f7ab9d0288c\", \"role\": \"location\", \"owner\": \"MSG-LOC-CAFE\", \"kind\": \"picture\", \"input_use_authorized\": true, \"visual_review\": \"pending\", \"limitations\": \"448x258 same-camera crop from 608x352 source take; retains window landmark without inventing new detail.\", \"instruction\": \"Medium-close cafe framing: subject seated at left table edge, espresso counter in soft background, black-grid industrial window at right.\", \"selection\": { \"kind\": \"picture\", \"file\": \"the-message-reaction-candidate-v2.png [input]\", \"name\": \"the-message-reaction-candidate-v2.png\", \"width\": 448, \"height\": 258, \"duration\": null, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"cafe-reaction-v2\" }, \"provenance\": { \"source\": \"output/The_Message/references/silent-proof-v001/source-frame_00001_.png\", \"source_sha256\": \"c96eae2735254cbbde0e795c387bea81ff417242ced97ec2c188e9da6eb811d2\", \"crop_xywh\": [ 48, 24, 448, 258 ], \"saved_output\": \"output/The_Message/references/silent-proof-v001/reaction-candidate-v2_00001_.png\" }, \"approved\": false }, \"review_status\": \"candidate; human selection pending\" }, \"cafe-reverse-counter-v1\": { \"transport\": \"media\", \"selection\": { \"kind\": \"picture\", \"file\": \"minimax_h3/Gemini_Generated_Image_2_.jpeg [input]\", \"name\": \"Gemini_Generated_Image (2).jpeg\", \"duration\": null, \"width\": 1376, \"height\": 768, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"mmwb6ac141\" }, \"source\": { \"path\": \"input/minimax_h3/Gemini_Generated_Image_2_.jpeg\", \"sha256\": \"1eb6ec1d24631ce74a3372177c4d9db779c5afb9b3460854de303c94a159eaf4\", \"role\": \"location\", \"owner\": \"MSG-LOC-CAFE\", \"kind\": \"picture\", \"selection\": { \"kind\": \"picture\", \"file\": \"minimax_h3/Gemini_Generated_Image_2_.jpeg [input]\", \"name\": \"Gemini_Generated_Image (2).jpeg\", \"duration\": null, \"width\": 1376, \"height\": 768, \"has_audio\": false, \"audio_mode\": \"off\", \"uid\": \"mmwb6ac141\" }, \"version\": 1, \"approved\": false, \"approval_evidence\": \"User uploaded and explicitly authorized testing these references in this session; approval is for input use, not output likeness or production selection.\", \"source\": \"input/minimax_h3/Gemini_Generated_Image_2_.jpeg\", \"instruction\": \"Reverse view toward the espresso counter, foreground round table, right-side windows and plants.\", \"quality_status\": \"candidate; human output review pending\", \"input_use_authorized\": true, \"visual_review\": \"pending\" }, \"review_status\": \"candidate; human selection pending\" } }, \"shots\": { \"MSG_S001_SH01\": { \"media\": [ \"cafe-counter-wide-v1\" ], \"refmods\": [], \"scene_id\": \"MSG_S001\" }, \"MSG_S001_SH02\": { \"media\": [ \"cafe-window-table-v1\", \"cafe-wardrobe-candidate-v1\" ], \"refmods\": [ \"andre-identity-video-v1\" ], \"scene_id\": \"MSG_S001\" }, \"MSG_S001_SH03\": { \"media\": [ \"cafe-table-note-insert-v2\" ], \"refmods\": [], \"scene_id\": \"MSG_S001\" }, \"MSG_S001_SH04\": { \"media\": [ \"cafe-reaction-v2\", \"cafe-wardrobe-candidate-v1\" ], \"refmods\": [ \"andre-identity-video-v1\" ], \"scene_id\": \"MSG_S001\" }, \"MSG_S001_SH05\": { \"media\": [ \"cafe-reverse-counter-v1\", \"cafe-wardrobe-candidate-v1\" ], \"refmods\": [ \"andre-identity-video-v1\" ], \"scene_id\": \"MSG_S001\" }, \"MSG_S001_SH06\": { \"media\": [ \"cafe-counter-wide-v1\", \"cafe-wardrobe-candidate-v1\" ], \"refmods\": [ \"andre-identity-video-v1\" ], \"scene_id\": \"MSG_S001\" } }, \"variables\": { \"andre_description\": \"Adult man with short brown hair, brown eyes and light stubble; preserve the supplied identity.\", \"wardrobe_description\": \"dark charcoal blazer over a plain light-gray crew-neck shirt\" }, \"scenes\": { \"MSG_S001\": { \"name\": \"Cafe · one closed cream note\", \"variables\": { \"cafe_environment\": \"Industrial cafe with weathered concrete and exposed brick, black steel window frames, espresso counter, round wooden table, brown leather chairs and green plants.\" } } } }"
+          - button "Resize from bottom-right corner" [ref=e12370]
+          - button "Resize from top-right corner" [ref=e12371]
+          - button "Resize from bottom-left corner" [ref=e12372]
+          - button "Resize from top-left corner" [ref=e12373]
+        - generic [ref=e10056]:
+          - generic [ref=e10057]:
+            - generic [ref=e10061]:
+              - button [ref=e10063] [cursor=pointer]
+              - generic [ref=e10065]: Scene and shot editor · writes to Film Plan
+            - generic [ref=e10068]:
+              - generic [ref=e10069]:
+                - generic [ref=e10070]: plan
+                - generic [ref=e10077]: plan
+              - generic "Edit the active scene prompt stored in the connected H3 Chain Plan." [ref=e12374]:
+                - generic [ref=e11703]:
+                  - generic [ref=e11704]: Scene Prompt Editor
+                  - generic [ref=e11705]: Shared prompt active (unchanged)
+                - generic [ref=e11706]:
+                  - button "←" [disabled] [ref=e12375]
+                  - combobox "Jump directly to another scene prompt." [ref=e12376]:
+                    - option "Scene 1 — MSG_S001_SH01" [selected]
+                    - option "Scene 2 — MSG_S001_SH02"
+                    - option "Scene 3 — MSG_S001_SH03"
+                    - option "Scene 4 — MSG_S001_SH04"
+                    - option "Scene 5 — MSG_S001_SH05"
+                    - option "Scene 6 — MSG_S001_SH06"
+                  - button "→" [ref=e12377] [cursor=pointer]
+                  - button "+" [ref=e12378] [cursor=pointer]
+                  - generic [ref=e11711]:
+                    - button "A−" [ref=e12379] [cursor=pointer]
+                    - generic [ref=e11713]: 18px
+                    - button "A+" [ref=e12380] [cursor=pointer]
+                - group [ref=e11715]:
+                  - generic "Basic prompt (plain language)" [ref=e12381] [cursor=pointer]
+                  - textbox "Basic prompt (plain language)" [ref=e12382]:
+                    - /placeholder: Optional plain-language scene idea, kept separate from the H3-formatted prompt below. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                - generic [ref=e11718]:
+                  - combobox "H3 prompt schema" [ref=e12383]:
+                    - option "Auto schema" [selected]
+                    - option "T2VA"
+                    - option "I2VA"
+                    - option "FL2VA"
+                    - option "L2VA"
+                    - option "Ref2VA"
+                  - button "Sections" [ref=e12384] [cursor=pointer]
+                  - button "@ Reference" [ref=e12385] [cursor=pointer]
+                  - button "Dialogue" [ref=e12386] [cursor=pointer]
+                  - button "Rich text" [ref=e12387] [cursor=pointer]
+                  - generic [ref=e11724]: "Alt+←/→ scenes · type @ # < [ ( · Ctrl/Cmd+Space for all"
+                - textbox "This is the actual active scene prompt in the connected H3 Chain Plan." [ref=e12388]:
+                  - generic "H3 section · subject_definitions" [ref=e12389]: "subject_definitions:"
+                  - button "<Subject 1>" [ref=e12390] [cursor=pointer]
+                  - generic "H3 section · summary" [ref=e12391]: "summary:"
+                  - button "<Subject 1>" [ref=e12392] [cursor=pointer]
+                  - generic "H3 section · retention_analysis" [ref=e12393]: "retention_analysis:"
+                  - button "<Subject 1>" [ref=e12394] [cursor=pointer]
+                  - generic "H3 section · detailed_description" [ref=e12395]: "detailed_description:"
+                  - button "<Subject 1>" [ref=e12396] [cursor=pointer]
+                  - generic "H3 section · overall_soundscape" [ref=e12397]: "overall_soundscape:"
+                  - generic "H3 section · non_diegetic_music" [ref=e12398]: "non_diegetic_music:"
+                - generic [ref=e11757]:
+                  - generic [ref=e11758]: Scene 1/6 · MSG_S001_SH01 · 128 words · 970 chars
+                  - generic [ref=e11759]:
+                    - generic [ref=e11760]:
+                      - button "‹" [disabled] [ref=e12399]
+                      - generic [ref=e11762]: Active 1 / 2
+                      - button "›" [ref=e12400] [cursor=pointer]
+                    - group [ref=e11764]:
+                      - generic "History (2)" [ref=e12401] [cursor=pointer]
+                    - generic "This executed revision is active in the Plan and immutable. Typing creates a child draft." [ref=e12402]: Active executed · Nov 12, 2026, 5:36 PM
+                  - generic [ref=e11767]: Synchronized with Plan
+              - generic [ref=e10149]: comfyui-minimaxh3-contex-loop
+          - button "Resize from bottom-right corner" [ref=e12403]
+          - button "Resize from top-right corner" [ref=e12404]
+          - button "Resize from bottom-left corner" [ref=e12405]
+          - button "Resize from top-left corner" [ref=e12406]
+        - generic [ref=e10164]:
+          - generic [ref=e10165]:
+            - generic [ref=e10168]:
+              - generic [ref=e10169]:
+                - button [ref=e10171] [cursor=pointer]
+                - generic [ref=e10173]: OPTIONAL · saved encode loader (sampling recovery)
+              - generic [ref=e10176]: Muted
+            - generic [ref=e10178]:
+              - generic [ref=e10180]:
+                - generic [ref=e10181]: conditioning
+                - generic [ref=e10186]: latent
+              - generic [ref=e10199]:
+                - generic [ref=e10200]: name
+                - textbox "name" [ref=e12407]: h3_stages/shot
+              - generic [ref=e10205]: H3-Project-Suite
+          - button "Resize from bottom-right corner" [ref=e12408]
+          - button "Resize from top-right corner" [ref=e12409]
+          - button "Resize from bottom-left corner" [ref=e12410]
+          - button "Resize from top-left corner" [ref=e12411]
+        - generic [ref=e10220]:
+          - generic [ref=e10221]:
+            - generic [ref=e10225]:
+              - button [ref=e10227] [cursor=pointer]
+              - generic [ref=e10229]: Shared LoRA preset A · exact filenames and strengths
+            - generic [ref=e10232]:
+              - generic [ref=e10233]: STRING
+              - generic [ref=e10248]:
+                - generic: value
+                - textbox "value" [ref=e12412]:
+                  - /placeholder: ""
+                  - text: "{\"loras\":[]}"
+          - button "Resize from bottom-right corner" [ref=e12413]
+          - button "Resize from top-right corner" [ref=e12414]
+          - button "Resize from bottom-left corner" [ref=e12415]
+          - button "Resize from top-left corner" [ref=e12416]
+        - generic [ref=e10262]:
+          - generic [ref=e10263]:
+            - generic [ref=e10267]:
+              - button [ref=e10269] [cursor=pointer]
+              - generic [ref=e10271]: Reference + LoRA preset fingerprint for resume safety
+            - generic [ref=e10274]:
+              - generic [ref=e10275]:
+                - generic [ref=e10276]:
+                  - generic [ref=e10277]: input_0
+                  - generic [ref=e10283]: input_1
+                - generic [ref=e10289]:
+                  - generic [ref=e10290]: exception
+                  - generic [ref=e10295]: output_0
+              - generic [ref=e10300]:
+                - generic [ref=e10305]:
+                  - generic [ref=e10306]: input_ports_count
+                  - generic "input_ports_count" [ref=e12417]:
+                    - button "Decrement" [ref=e12418] [cursor=pointer]
+                    - spinbutton [ref=e10313]: "2"
+                    - button "Increment" [ref=e12419] [cursor=pointer]
+                - generic [ref=e10321]:
+                  - generic [ref=e10322]: output_ports_count
+                  - generic "output_ports_count" [ref=e12420]:
+                    - button "Decrement" [ref=e12421] [cursor=pointer]
+                    - spinbutton [ref=e10329]: "1"
+                    - button "Increment" [ref=e12422] [cursor=pointer]
+                - generic [ref=e10337]:
+                  - generic [ref=e10338]: module_count
+                  - generic "module_count" [ref=e12423]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=e10343]: "0"
+                    - button "Increment" [ref=e12424] [cursor=pointer]
+                - generic [ref=e10354]:
+                  - generic [ref=e10355]: module_name_prefix
+                  - textbox "module_name_prefix" [ref=e12425]: dynamic_module
+                - generic [ref=e10367]:
+                  - generic [ref=e10368]: use_module_cache
+                  - switch "use_module_cache" [ref=e12426] [cursor=pointer]
+                - generic [ref=e10380]:
+                  - generic [ref=e10381]: clear_module_cache
+                  - switch "clear_module_cache" [ref=e12427] [cursor=pointer]
+                - generic [ref=e10393]:
+                  - generic [ref=e10394]: remove_import_restrictions
+                  - switch "remove_import_restrictions" [ref=e12428] [cursor=pointer]
+                - generic [ref=e10406]:
+                  - generic [ref=e10407]: lazy_execution
+                  - switch "lazy_execution" [checked] [ref=e12429] [cursor=pointer]
+                - generic [ref=e10419]:
+                  - generic: code
+                  - textbox "code" [ref=e12430]:
+                    - /placeholder: ""
+                    - text: import hashlib outputs[0] = hashlib.sha256((str(inputs[0]) + '\n' + str(inputs[1])).encode()).hexdigest()
+              - generic [ref=e10421]: comfyui_dynamic
+          - button "Resize from bottom-right corner" [ref=e12431]
+          - button "Resize from top-right corner" [ref=e12432]
+          - button "Resize from bottom-left corner" [ref=e12433]
+          - button "Resize from top-left corner" [ref=e12434]
+        - generic [ref=e10436]:
+          - generic [ref=e10437]:
+            - generic [ref=e10441]:
+              - button [ref=e10443] [cursor=pointer]
+              - generic [ref=e10445]: Editorial overview · chapters / shots / takes (experimental)
+            - generic [ref=e10448]:
+              - generic [ref=e10449]:
+                - generic [ref=e10450]:
+                  - generic [ref=e10451]: plan
+                  - generic [ref=e10458]: source_timeline
+                  - generic [ref=e10465]: tagged_references
+                  - generic [ref=e10472]: chain_policy
+                  - generic [ref=e10479]: project_assets
+                - generic [ref=e10486]:
+                  - generic [ref=e10487]: plan
+                  - generic [ref=e10492]: preflight
+                  - generic [ref=e10497]: ready
+                  - generic [ref=e10502]: status
+                  - generic [ref=e10507]: report_json
+                  - generic [ref=e10512]: plan_summary
+                  - generic [ref=e10517]: clip_count
+                  - generic [ref=e10522]: width
+                  - generic [ref=e10527]: height
+                  - generic [ref=e10532]: video_blend_frames
+              - generic [ref=e10537]:
+                - generic [ref=e10545]:
+                  - generic [ref=e10546]: start_clip
+                  - generic "start_clip" [ref=e12435]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=e10551]: "1"
+                    - button "Increment" [ref=e12436] [cursor=pointer]
+                - generic [ref=e10562]:
+                  - generic [ref=e10563]: scene_range
+                  - textbox "scene_range" [ref=e12437]
+                - 'generic "Timeline Plan editor: use it standalone or synchronize it with a connected H3 Chain Plan." [ref=e12438]':
+                  - generic [ref=e11768]:
+                    - generic [ref=e11769]: MiniMax H3 Plan Studio
+                    - generic [ref=e11770]: linked · The_Message_Workbench_v001
+                  - generic [ref=e11771]:
+                    - button "Save branch" [ref=e12439] [cursor=pointer]
+                    - button "Open project default" [disabled] [ref=e12440]
+                    - button "←" [disabled] [ref=e12441]
+                    - combobox "Editing and generating branch (not the project default)" [ref=e12442]:
+                      - option "Original" [selected]
+                    - button "→" [disabled] [ref=e12443]
+                    - button "+ Empty branch" [ref=e12444] [cursor=pointer]
+                    - button "Fork here" [ref=e12445] [cursor=pointer]
+                    - button "Make project default" [disabled] [ref=e12446]
+                    - generic [ref=e11780]: "Project default: Original"
+                    - button "Reload saved branch" [ref=e12447] [cursor=pointer]
+                    - button "Restore local draft" [ref=e12448] [cursor=pointer]
+                    - button "Refresh branches" [ref=e12449] [cursor=pointer]
+                    - generic [ref=e11784]: Recovery draft saved in this browser.
+                  - generic [ref=e11785]:
+                    - button "+ Scene" [ref=e12450] [cursor=pointer]
+                    - button "+ Chapter" [ref=e12451] [cursor=pointer]
+                    - button "Duplicate" [ref=e12452] [cursor=pointer]
+                    - button "Delete" [ref=e12453] [cursor=pointer]
+                    - button "←" [disabled] [ref=e12454]
+                    - button "→" [ref=e12455] [cursor=pointer]
+                    - button "Scene prompt" [ref=e12456] [cursor=pointer]
+                    - button "Shared prompt" [ref=e12457] [cursor=pointer]
+                    - button "Plan settings" [ref=e12458] [cursor=pointer]
+                    - button "Context" [ref=e12459] [cursor=pointer]
+                    - button "Player" [ref=e12460] [cursor=pointer]
+                    - button "Subtitles" [ref=e12461] [cursor=pointer]
+                    - button "JSON" [ref=e12462] [cursor=pointer]
+                  - generic [ref=e11799]:
+                    - strong [ref=e11800]: 6 scenes
+                    - text: 438 generated frames · 18.250s placed · blank track open to 36.500s0f overlap · 0/6 rendered
+                  - generic [ref=e11801]:
+                    - generic [ref=e11802]:
+                      - strong [ref=e11803]: Timeline
+                      - button "−" [ref=e12463] [cursor=pointer]
+                      - slider "Timeline zoom · Ctrl/Cmd + wheel over the timeline" [ref=e12464]: "1"
+                      - generic [ref=e11806]: 100%
+                      - button "+" [ref=e12465] [cursor=pointer]
+                      - button "Fit" [ref=e12466] [cursor=pointer]
+                    - generic [ref=e11809]:
+                      - generic [ref=e11810]:
+                        - generic [ref=e11811]: TIME
+                        - generic [ref=e11812]: GENERATED
+                        - generic [ref=e11813]: MOTION REF
+                        - generic [ref=e11814]: SOURCE AUDIO
+                        - generic [ref=e11815]: SUBTITLES
+                      - generic [ref=e11817]:
+                        - generic [ref=e11818]:
+                          - generic: 0.000s
+                          - generic: 2.000s
+                          - generic: 4.000s
+                          - generic: 6.000s
+                          - generic: 8.000s
+                          - generic: 10.000s
+                          - generic: 12.000s
+                          - generic: 14.000s
+                          - generic: 16.000s
+                          - generic: 18.000s
+                          - generic: 20.000s
+                          - generic: 22.000s
+                          - generic: 24.000s
+                          - generic: 26.000s
+                          - generic: 28.000s
+                          - generic: 30.000s
+                          - generic: 32.000s
+                          - generic: 34.000s
+                          - generic: 36.000s
+                        - generic [ref=e11819]:
+                          - button "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid. 1. MSG_S001_SH01 0.000s → 3.042s · 73/73f used ⋮⋮ Lock scene" [ref=e12467]:
+                            - generic "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid." [ref=e12468]
+                            - generic [ref=e11822]:
+                              - generic [ref=e11823]: 1. MSG_S001_SH01
+                              - generic [ref=e11824]: 0.000s → 3.042s · 73/73f used
+                            - generic "Drag the clip or its grip to set the editorial start. Empty track space becomes black." [ref=e12469]: ⋮⋮
+                            - button "Lock scene" [ref=e12470] [cursor=pointer]
+                          - button "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid. 2. MSG_S001_SH02 3.042s → 6.083s · 73/73f used ⋮⋮ Lock scene" [ref=e12471]:
+                            - generic "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid." [ref=e12472]
+                            - generic [ref=e11831]:
+                              - generic [ref=e11832]: 2. MSG_S001_SH02
+                              - generic [ref=e11833]: 3.042s → 6.083s · 73/73f used
+                            - generic "Drag the clip or its grip to set the editorial start. Empty track space becomes black." [ref=e12473]: ⋮⋮
+                            - button "Lock scene" [ref=e12474] [cursor=pointer]
+                          - button "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid. 3. MSG_S001_SH03 6.083s → 9.125s · 73/73f used ⋮⋮ Lock scene" [ref=e12475]:
+                            - generic "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid." [ref=e12476]
+                            - generic [ref=e11840]:
+                              - generic [ref=e11841]: 3. MSG_S001_SH03
+                              - generic [ref=e11842]: 6.083s → 9.125s · 73/73f used
+                            - generic "Drag the clip or its grip to set the editorial start. Empty track space becomes black." [ref=e12477]: ⋮⋮
+                            - button "Lock scene" [ref=e12478] [cursor=pointer]
+                          - button "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid. 4. MSG_S001_SH04 9.125s → 12.167s · 73/73f used ⋮⋮ Lock scene" [ref=e12479]:
+                            - generic "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid." [ref=e12480]
+                            - generic [ref=e11849]:
+                              - generic [ref=e11850]: 4. MSG_S001_SH04
+                              - generic [ref=e11851]: 9.125s → 12.167s · 73/73f used
+                            - generic "Drag the clip or its grip to set the editorial start. Empty track space becomes black." [ref=e12481]: ⋮⋮
+                            - button "Lock scene" [ref=e12482] [cursor=pointer]
+                          - button "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid. 5. MSG_S001_SH05 12.167s → 15.208s · 73/73f used ⋮⋮ Lock scene" [ref=e12483]:
+                            - generic "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid." [ref=e12484]
+                            - generic [ref=e11858]:
+                              - generic [ref=e11859]: 5. MSG_S001_SH05
+                              - generic [ref=e11860]: 12.167s → 15.208s · 73/73f used
+                            - generic "Drag the clip or its grip to set the editorial start. Empty track space becomes black." [ref=e12485]: ⋮⋮
+                            - button "Lock scene" [ref=e12486] [cursor=pointer]
+                          - button "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid. 6. MSG_S001_SH06 15.208s → 18.250s · 73/73f used ⋮⋮ Lock scene" [ref=e12487]:
+                            - generic "Drag to set this scene's generated length. It snaps to H3's 17n+5 frame grid." [ref=e12488]
+                            - generic [ref=e11867]:
+                              - generic [ref=e11868]: 6. MSG_S001_SH06
+                              - generic [ref=e11869]: 15.208s → 18.250s · 73/73f used
+                            - generic "Drag the clip or its grip to set the editorial start. Empty track space becomes black." [ref=e12489]: ⋮⋮
+                            - button "Lock scene" [ref=e12490] [cursor=pointer]
+                          - button "OPEN TIMELINE · 18.250s" [ref=e12491] [cursor=pointer]
+                        - generic [ref=e11876]: Queue Plan Studio once to load motion-reference windows.
+                        - generic [ref=e11878]: Queue Plan Studio once to load Source Timeline audio.
+                  - generic [ref=e11882]:
+                    - generic [ref=e11883]:
+                      - strong [ref=e11884]: Scene 1 of 6
+                      - generic [ref=e11885]: 73 raw · 73/73 used · 0f incoming blend · generation 0.000s · editorial 0.000s
+                      - generic [ref=e11886]:
+                        - generic "Raw generation length is on H3's 17n+5 temporal latent grid." [ref=e12492]: 73f = 17×4+5
+                        - 'generic "Experimental only: nearest reported four-frame 17n−3 cut window for generated-to-real joins. This does not change or validate the Plan." [ref=e12493]': cut test 65–68f
+                    - generic [ref=e11889]:
+                      - generic [ref=e11890]:
+                        - generic [ref=e11891]: Scene ID
+                        - textbox "Scene ID" [ref=e12494]: MSG_S001_SH01
+                      - generic [ref=e11893]:
+                        - generic [ref=e11894]: Length
+                        - generic [ref=e11895]:
+                          - combobox "Length" [ref=e12495]:
+                            - option "Plan default" [selected]
+                            - option "Seconds"
+                            - option "Exact frames"
+                          - spinbutton [disabled] [ref=e11897]
+                      - generic [ref=e11898]:
+                        - generic [ref=e11899]: Steps override (blank = Plan default)
+                        - spinbutton "Steps override (blank = Plan default)" [ref=e12496]
+                      - generic [ref=e11901]:
+                        - generic [ref=e11902]: Prompt alternatives
+                        - 'generic "Derive a stable seed from this scene''s index and ID for its {one|two} choices." [ref=e12497]':
+                          - combobox "Prompt alternatives ↻" [ref=e12498]:
+                            - option "Stable derived" [selected]
+                            - option "Fixed scene seed"
+                            - option "Randomize each queue"
+                          - textbox "Prompt seed" [disabled] [ref=e12499]
+                          - button "↻" [disabled] [ref=e12500]
+                      - generic [ref=e11907]:
+                        - generic [ref=e11908]: Seed
+                        - generic [ref=e11909]:
+                          - textbox "Seed ↻" [ref=e12501]:
+                            - /placeholder: Stable derived seed
+                          - button "↻" [ref=e12502] [cursor=pointer]
+                      - generic [ref=e11912]:
+                        - generic [ref=e11913]: LoRA route
+                        - combobox "LoRA route" [ref=e12503]:
+                          - option "Base model" [selected]
+                          - option "LoRA A"
+                      - generic [ref=e11915]:
+                        - generic [ref=e11916]: Timeline lock
+                        - button "Timeline lock" [ref=e12504] [cursor=pointer]: Lock scene
+                      - generic [ref=e11918]:
+                        - generic [ref=e11919]: Editorial start
+                        - generic [ref=e11920]:
+                          - textbox "Editorial start Auto" [ref=e12505]:
+                            - /placeholder: Auto · 0.000s
+                          - button "Auto" [ref=e12506] [cursor=pointer]
+                      - generic [ref=e11923]:
+                        - generic [ref=e11924]: Latent-safe used end
+                        - generic [ref=e11925]:
+                          - combobox "Latent-safe used end Full" [disabled] [ref=e12507]:
+                            - option "0–9f · 0.375s used"
+                            - option "0–18f · 0.750s used"
+                            - option "0–30f · 1.250s used"
+                            - option "0–39f · 1.625s used"
+                            - option "0–51f · 2.125s used"
+                            - option "0–60f · 2.500s used"
+                            - option "0–69f · 2.875s used"
+                            - option "Full · 73f · 3.042s" [selected]
+                          - button "Full" [disabled] [ref=e12508]
+                      - generic [ref=e11928]:
+                        - generic [ref=e11929]: Incoming transition
+                        - combobox "Incoming transition" [ref=e12509]:
+                          - option "Inherit Chain Policy · Visual Cut" [selected]
+                          - option "Visual Cut · No carried picture"
+                          - option "Guide · 22-frame RGB continuation"
+                          - option "Hard AV · Protected 39-frame AV prefix"
+                          - option "Soft AV · Hard picture with a short audio release"
+                      - generic [ref=e11931]:
+                        - generic [ref=e11932]: Final assembly crossfade frames
+                        - spinbutton "Final assembly crossfade frames" [ref=e12510]
+                      - generic [ref=e11934]:
+                        - generic [ref=e11935]: Lip-sync
+                        - combobox "Lip-sync" [ref=e12511]:
+                          - option "Inherit · Off" [selected]
+                          - option "On · vocals drive this scene"
+                          - option "Off · action / no source-audio guidance"
+                          - option "Custom · advanced audio controls" [disabled]
+                      - generic [ref=e11937]:
+                        - generic [ref=e11938]: Lip-sync source · this scene only
+                        - generic [ref=e11939]:
+                          - combobox "Lip-sync source · this scene only Refresh audio" [ref=e12512]:
+                            - option "Inherit project timeline" [selected]
+                          - button "Refresh audio" [ref=e12513] [cursor=pointer]
+                    - generic [ref=e11942]:
+                      - generic [ref=e11943]:
+                        - generic [ref=e11944]: Source reference
+                        - combobox "Source reference" [ref=e12514]:
+                          - option "Inherit Chain Policy · off" [selected]
+                          - option "On · source window as Ref2VA audio"
+                          - option "Off · no source audio reference"
+                      - generic [ref=e11946]:
+                        - generic [ref=e11947]: Generated continuity
+                        - combobox "Generated continuity" [ref=e12515]:
+                          - option "Inherit Chain Policy · off" [selected]
+                          - option "On · continue prior generated audio"
+                          - option "Off · independent generated audio"
+                      - generic [ref=e11949]:
+                        - generic [ref=e11950]: Lock source audio
+                        - combobox "Lock source audio" [ref=e12516]:
+                          - option "Inherit Chain Policy · off" [selected]
+                          - option "On · protect exact source window"
+                          - option "Off · target remains denoisable"
+                    - generic [ref=e11952]:
+                      - tablist "Scene prompt take" [ref=e12517]:
+                        - tab "Original" [selected] [ref=e12518] [cursor=pointer]
+                        - tab "ALT" [ref=e12519] [cursor=pointer]
+                      - tabpanel "Original" [ref=e12520]:
+                        - generic [ref=e11957]:
+                          - text: Basic prompt (plain language)
+                          - textbox "Basic prompt (plain language)" [ref=e12521]:
+                            - /placeholder: Optional plain-language scene idea, kept separate from the H3-formatted scene prompt. Optimize it into the scene prompt from Rich Scene Prompt Editor.
+                        - textbox "Write this scene's action, camera, performance, dialogue, sound, and ending continuity…" [ref=e12522]: "subject_definitions: <Subject 1> is the environment shown in {{cafe-counter-wide-v1}}: {{var:cafe_environment}} summary: [reference generation] In <Subject 1>, The empty cafe remains still in daylight. retention_analysis: <Subject 1> (appears in [Shot 1]): partially_preserved - Preserve architecture, furniture and lighting; use the primary picture for camera layout. detailed_description: Apply the shared film bible for photography and lighting. [Shot 1] One continuous wide shot, eye-level, 24mm lens. Camera: static. Environment: <Subject 1>, primary camera layout from {{cafe-counter-wide-v1}}. The empty cafe remains still in daylight. Keep visible in the same frame: espresso counter left; windows right; round table. No people, faces or hands visible. Locked tripod. One continuous shot. No zoom or cut inside the shot. No subtitles, captions, logos, dialogue or added people. overall_soundscape: No speech, music or sound effects. non_diegetic_music: N/A"
+                        - generic [ref=e11960]:
+                          - button "@ Reference" [ref=e12523] [cursor=pointer]
+                          - button "# Dialogue" [ref=e12524] [cursor=pointer]
+                          - generic [ref=e11963]: Alt+←/→ scenes
+                          - generic [ref=e11964]: Synchronized with Plan
+                        - generic [ref=e11965]:
+                          - button "‹" [disabled] [ref=e12525]
+                          - generic [ref=e11967]: Active 1 / 2
+                          - button "›" [ref=e12526] [cursor=pointer]
+                          - generic "This executed revision is active in the Plan and immutable. Typing creates a child draft." [ref=e12527]: Active executed · Nov 12, 2026, 5:36 PM
+              - generic [ref=e10574]: comfyui-minimaxh3-contex-loop
+          - button "Resize from bottom-right corner" [ref=e12528]
+          - button "Resize from top-right corner" [ref=e12529]
+          - button "Resize from bottom-left corner" [ref=e12530]
+          - button "Resize from top-left corner" [ref=e12531]
+        - generic [ref=e10589]:
+          - generic [ref=e10590]:
+            - generic [ref=e10593]:
+              - generic [ref=e10594]:
+                - button [ref=e10596] [cursor=pointer]
+                - generic [ref=e10598]: OPTIONAL · Project Suite approved-tail continuation
+              - generic [ref=e10601]: Muted
+            - generic [ref=e10603]:
+              - generic [ref=e10605]:
+                - generic [ref=e10606]: vae
+                - generic [ref=e10612]: width
+                - generic [ref=e10619]: height
+                - generic [ref=e10626]: conditioning
+                - generic [ref=e10632]: latent
+                - generic [ref=e10638]: noise
+                - generic [ref=e10644]: sampler
+                - generic [ref=e10650]: sigmas
+                - generic [ref=e10656]: model
+              - generic [ref=e10670]:
+                - generic [ref=e10671]: project_name
+                - textbox "project_name" [ref=e12532]: The_Message_Manual_Workbench_v001
+          - button "Enter subgraph" [ref=e12533] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e12534]
+          - button "Resize from top-right corner" [ref=e12535]
+          - button "Resize from bottom-left corner" [ref=e12536]
+          - button "Resize from top-left corner" [ref=e12537]
+        - generic [ref=e10692]:
+          - generic [ref=e10693]:
+            - generic [ref=e10696]:
+              - generic [ref=e10697]:
+                - button [ref=e10699] [cursor=pointer]
+                - generic [ref=e10701]: OPTIONAL · Fantastic structured prompt authoring
+              - generic [ref=e10704]: Muted
+            - generic [ref=e10708]:
+              - generic [ref=e10709]: references
+              - generic [ref=e10716]: mods
+          - button "Enter subgraph" [ref=e12538] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e12539]
+          - button "Resize from top-right corner" [ref=e12540]
+          - button "Resize from bottom-left corner" [ref=e12541]
+          - button "Resize from top-left corner" [ref=e12542]
+        - generic [ref=e10739]:
+          - generic [ref=e10740]:
+            - generic [ref=e10744]:
+              - button [ref=e10746] [cursor=pointer]
+              - generic [ref=e10748]: Local model presets · Base + optional LoRA A
+            - generic [ref=e10751]:
+              - generic [ref=e10753]:
+                - generic [ref=e10754]: MODEL
+                - generic [ref=e10759]: CLIP
+                - generic [ref=e10764]: VAE
+                - generic [ref=e10769]: MODEL_1
+              - generic [ref=e10774]:
+                - generic "lora_data" [ref=e12543]
+                - generic [ref=e10791]:
+                  - generic [ref=e10792]: unet_name
+                  - generic [ref=e10796]:
+                    - combobox "unet_name" [ref=e12544] [cursor=pointer]:
+                      - generic [ref=e10798]: minimax_h3_ref2va_pruned_int8_convrot.safetensors
+                    - button [aria-hidden] [ref=e10799] [cursor=pointer]
+                - generic [ref=e10808]:
+                  - generic [ref=e10809]: clip_name
+                  - generic [ref=e10813]:
+                    - combobox "clip_name" [ref=e12545] [cursor=pointer]:
+                      - generic [ref=e10815]: qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors
+                    - button [aria-hidden] [ref=e10816] [cursor=pointer]
+                - generic [ref=e10825]:
+                  - generic [ref=e10826]: vae_name
+                  - generic [ref=e10830]:
+                    - combobox "vae_name" [ref=e12546] [cursor=pointer]:
+                      - generic [ref=e10832]: minimax_h3_video_vae_int8_convrot.safetensors
+                    - button [aria-hidden] [ref=e10833] [cursor=pointer]
+                - generic [ref=e10842]:
+                  - generic [ref=e10843]: shift_video
+                  - generic "shift_video" [ref=e12547]:
+                    - button "Decrement" [ref=e12548] [cursor=pointer]
+                    - spinbutton [ref=e10850]: "12.00"
+                    - button "Increment" [ref=e12549] [cursor=pointer]
+                - generic [ref=e10861]:
+                  - generic [ref=e10862]: shift_audio
+                  - generic "shift_audio" [ref=e12550]:
+                    - button "Decrement" [ref=e12551] [cursor=pointer]
+                    - spinbutton [ref=e10869]: "3.00"
+                    - button "Increment" [ref=e12552] [cursor=pointer]
+          - button "Enter subgraph" [ref=e12553] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e12554]
+          - button "Resize from top-right corner" [ref=e12555]
+          - button "Resize from bottom-left corner" [ref=e12556]
+          - button "Resize from top-left corner" [ref=e12557]
+        - generic [ref=e10889]:
+          - generic [ref=e10890]:
+            - generic [ref=e10894]:
+              - button [ref=e10896] [cursor=pointer]
+              - generic [ref=e10898]: Shot engine · select → refs → encode → sample → review → repeat
+            - generic [ref=e10901]:
+              - generic [ref=e10902]:
+                - generic [ref=e10903]:
+                  - generic [ref=e10904]: plan
+                  - generic [ref=e10910]: input_0
+                  - generic [ref=e10916]: clip
+                  - generic [ref=e10922]: vae
+                  - generic [ref=e10928]: base_model
+                  - generic [ref=e10934]: LoRA A
+                  - generic [ref=e10941]: input_3
+                  - generic [ref=e10947]: reference_preset_fingerprint
+                - generic [ref=e10953]:
+                  - generic [ref=e10954]: status
+                  - generic [ref=e10959]: mods
+                  - generic [ref=e10964]: conditioning
+                  - generic [ref=e10969]: latent
+                  - generic [ref=e10974]: SAMPLER
+                  - generic [ref=e10979]: SIGMAS
+                  - generic [ref=e10984]: NOISE
+                  - generic [ref=e10989]: references
+                  - generic [ref=e10994]: manifest
+                  - generic [ref=e10999]: model
+                  - generic [ref=e11004]: output_0
+              - generic [ref=e11009]:
+                - generic [ref=e11017]:
+                  - generic [ref=e11018]: start_clip
+                  - generic "start_clip" [ref=e12558]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=e11023]: "1"
+                    - button "Increment" [ref=e12559] [cursor=pointer]
+                - generic [ref=e11034]:
+                  - generic [ref=e11035]: scene_range
+                  - textbox "scene_range" [ref=e12560]
+                - generic [ref=e11047]:
+                  - generic [ref=e11048]: verify_resume_history
+                  - switch "verify_resume_history" [checked] [ref=e12561] [cursor=pointer]
+                - generic [ref=e11060]:
+                  - generic [ref=e11061]: enabled
+                  - switch "enabled" [checked] [ref=e12562] [cursor=pointer]
+                - generic [ref=e11073]:
+                  - generic [ref=e11074]: auto_continue_timeout_minutes
+                  - generic "auto_continue_timeout_minutes" [ref=e12563]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=e11079]: "0.0"
+                    - button "Increment" [ref=e12564] [cursor=pointer]
+                - generic [ref=e11090]:
+                  - generic [ref=e11091]: sampler_name
+                  - generic [ref=e11095]:
+                    - combobox "sampler_name" [ref=e12565] [cursor=pointer]:
+                      - generic [ref=e11097]: sa_solver
+                    - button [aria-hidden] [ref=e11098] [cursor=pointer]
+                - generic [ref=e11107]:
+                  - generic [ref=e11108]: scheduler
+                  - generic [ref=e11112]:
+                    - combobox "scheduler" [ref=e12566] [cursor=pointer]:
+                      - generic [ref=e11114]: beta
+                    - button [aria-hidden] [ref=e11115] [cursor=pointer]
+                - generic [ref=e11124]:
+                  - generic [ref=e11125]: stack_pictures_n
+                  - generic "stack_pictures_n" [ref=e12567]:
+                    - button "Decrement" [ref=e12568] [cursor=pointer]
+                    - spinbutton [ref=e11132]: "4"
+                    - button "Increment" [ref=e12569] [cursor=pointer]
+          - button "Enter subgraph" [ref=e12570] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e12571]
+          - button "Resize from top-right corner" [ref=e12572]
+          - button "Resize from bottom-left corner" [ref=e12573]
+          - button "Resize from top-left corner" [ref=e12574]
+        - generic [ref=e11152]:
+          - generic [ref=e11153]:
+            - generic [ref=e11156]:
+              - generic [ref=e11157]:
+                - button [ref=e11159] [cursor=pointer]
+                - generic [ref=e11161]: OPTIONAL · manifest recovery and diagnostics
+              - generic [ref=e11164]: Muted
+            - generic [ref=e11168]:
+              - generic [ref=e11169]: plan
+              - generic [ref=e11175]: input_0
+          - button "Enter subgraph" [ref=e12575] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e12576]
+          - button "Resize from top-right corner" [ref=e12577]
+          - button "Resize from bottom-left corner" [ref=e12578]
+          - button "Resize from top-left corner" [ref=e12579]
+    - generic [ref=e845]:
+      - status "Notification"
+      - alert "Notification" [ref=e4686]:
+        - paragraph [ref=e4687]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+        - paragraph [ref=e4688]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+    - alert [aria-hidden] [ref=e4689]: Notification
+    - alert [aria-hidden] [ref=e4690]: Notification
+    - region "Notifications (F8)":
+      - list:
+        - listitem [ref=e4692]:
+          - generic [ref=e4693]:
+            - generic [ref=e4695]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+            - button "Close" [ref=e4696] [cursor=pointer]
+        - listitem [ref=e4698]:
+          - generic [ref=e4699]:
+            - generic [ref=e4701]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+            - button "Close" [ref=e4702] [cursor=pointer]
+    - generic:
+      - generic:
+        - status [ref=e846]
+        - status [ref=e847]
+        - status [ref=e848]
+    - text: 
+  - generic [ref=e850]:
+    - generic [ref=e855]: Control Panel
+    - generic [ref=e857]:
+      - button "?" [ref=e858] [cursor=pointer]
+      - button "Click-through is OFF. Click to let mouse events pass through the panel" [ref=e859] [cursor=pointer]
+      - button "❚❚" [ref=e864] [cursor=pointer]
+      - button "↺" [ref=e865] [cursor=pointer]
+      - button "↗" [ref=e866] [cursor=pointer]
+      - 'button "Vertical maximize: fill page height" [ref=e867] [cursor=pointer]'
+      - button "+" [ref=e1185] [cursor=pointer]

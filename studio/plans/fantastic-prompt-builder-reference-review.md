@@ -1,6 +1,26 @@
 # Fantastic Prompt Builder: reference review for Studio
 
-Evaluation only; no changes to the extension, live canvas or presets. Scope: make the existing Builder easier to use on short, project-bound shots. Keep first/last-frame comparisons for a separate model-specific experiment.
+Scope: make the existing Builder easier to use on short, project-bound shots. The first editor slice is implemented without changing node outputs, saved presets, or the production canvas. Keep first/last-frame comparisons for a separate model-specific experiment.
+
+## Node handoffs and acceptance checks
+
+| Owner | Output and consumer | Acceptance check |
+| --- | --- | --- |
+| Shot package / Hub | Selected project and shot, reviewed asset roles, prompt source and continuation context | Keep selection explicit; do not infer a production role from a filename or promote a reference to the Hub tail. |
+| Fantastic Media Loader | `references: H3_REFS` to the Builder/encode route and Reference Map | Enabled pictures, clips and soundtrack selections must match the reviewed shot. |
+| Fantastic RefMod Stack | `mods: H3_REF_MODS` to the Builder/encode route and Reference Map; `labels: STRING` for stack inspection | Check look/voice, active copies and budget. Stack-only labels are not the final labels when media precedes them. |
+| Fantastic Prompt Builder | `prompt: STRING` and routed `references`/`mods` to Text Encode | Keep `[Shot 1]`, `<Subject 1>` and existing section syntax. Save and reopen the prompt and editor state together; refreshing the panel changes neither. |
+| Fantastic H3 Reference Map | `reference_map: STRING` to Preview Any | Review the evaluated labels with the same bundles that reach Text Encode. The browser panel is a graph preview, not this evaluated output. |
+| Fantastic H3 RefMod Text Encode | `conditioning: CONDITIONING`, `reference_map: STRING`, `latent: LATENT` | Verify encoder-visible references, then confirm conditioning and starting latent reach the sampler through the selected recipe. Neither the map nor a successful run proves visual quality. |
+| Fantastic LoRA stack | Patched model on the sampling route | Check selected LoRAs and weights separately; LoRAs do not supply reference labels. |
+
+The panel shows visible file/channel bindings and RefMod copy and token estimates, and warns when a cited label changes source during the editor session. It does not compare file contents or detect prior-session rebinding. Scratch browser checks covered two stills reordered under a live citation, non-mutation on refresh, and saving and reopening the node. A synthetic CPU fixture covers repeated look copies and disabled picks; the real-media smoke test below covers the encoder-to-sampler route.
+
+### Real-media handoff check
+
+The same Builder outputs drove the CPU Reference Map and Text Encode. With a still, a clip and its paired soundtrack, a separate audio file and one voice RefMod, both maps returned the same five labels in the same order. Native H3 Text Encode produced conditioning; the scratch cut route passed it through disabled H3 Context to Basic Guider and its starting AV latent to the sampler. The sampler ran one step, then the video VAE decoded five preview frames. Exact prompt history, input hashes, output hashes, runtime logs and Brain resources are recorded in the [local evidence folder](../../.codex/artifacts/fantastic-mixed-handoff-20261121/).
+
+This establishes technical routing for the tested cut recipe, not audio output, per-reference influence, production role approval, active continuation, LoRA quality, or creative acceptance. Both maps share label-generation code. Use the runtime encoder and sampler evidence as a separate check, not the string match alone.
 
 ## What exists and what is missing
 

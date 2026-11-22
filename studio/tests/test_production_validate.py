@@ -30,6 +30,40 @@ class ProductionValidateTests(unittest.TestCase):
     def test_example_is_valid(self):
         self.assertEqual(pv.check(EXAMPLE), [])
 
+    def test_v2_preserves_ids_after_reorder_delete_and_scene_move(self):
+        doc = copy.deepcopy(EXAMPLE)
+        doc.update(schema_version=2, editorial={'version': 1, 'gap_before_frames': {}})
+        first = doc['scenes'][0]
+        second = {**copy.deepcopy(first), 'id': 'DEMO_S002', 'number': 1}
+        first['number'] = 2
+        doc['scenes'] = [second, first]
+        original = doc['shots'][0]
+        original.update(id='DEMO_S001_SH08', scene=second['id'])
+        doc['shots'].append({**copy.deepcopy(original), 'id': 'DEMO_S001_SH03', 'scene': first['id']})
+        doc['editorial']['gap_before_frames'][original['id']] = 12
+        self.assertEqual(pv.check(doc), [])
+
+    def test_v2_rejects_unknown_gap_targets_and_duplicate_scene_ids(self):
+        doc = copy.deepcopy(EXAMPLE)
+        doc.update(schema_version=2, editorial={'version': 1, 'gap_before_frames': {'DEMO_S001_SH99': 1}})
+        self.assertProblem(pv.check(doc), 'unknown shot')
+        doc['editorial']['gap_before_frames'] = {}
+        doc['scenes'].append({**copy.deepcopy(doc['scenes'][0]), 'number': 2})
+        self.assertProblem(pv.check(doc), 'duplicate scene')
+
+    def test_versioned_editorial_shape_is_explicit(self):
+        for version, editorial in ((1, {'version': 1, 'gap_before_frames': {}}),
+                                   (2, {'version': 1, 'gap_before_frames': {'DEMO_S001_SH01': -1}}),
+                                   (2, {'version': 1, 'gap_before_frames': {'DEMO_S001_SH01': 1.5}})):
+            doc = copy.deepcopy(EXAMPLE)
+            doc.update(schema_version=version, editorial=editorial)
+            self.assertTrue(pv.check(doc))
+        doc = copy.deepcopy(EXAMPLE)
+        doc['schema_version'] = 2
+        self.assertTrue(pv.check(doc))
+        doc['schema_version'] = 99
+        self.assertTrue(pv.check(doc))
+
     def test_partial_shot_lighting_is_valid_but_defaults_remain_complete(self):
         for lighting in ({'quality': 'soft'}, {'mood': 'tense'}):
             self.assertEqual(self.broken(lambda d: d['shots'][0].update(lighting=lighting)), [])

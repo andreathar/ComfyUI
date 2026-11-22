@@ -1,0 +1,30 @@
+{
+  "_storyboard_references_v1": {
+    "bindings": {
+      "70a58c11739abac6559eef10e00b921b7eeaa6d00d6ccc17fb20e2df166d6b15": {
+        "authorized_at": "2026-11-21T22:40:37.686897+00:00",
+        "authorized_by": "local-user",
+        "context": "9948214c7810c7cc6acc15f14b1d02c05779b54cfef7c7748beb5df32a69e298",
+        "entity": "SB3330-CHR-01",
+        "id": "a40f3518-8fb7-43bd-902a-ecb8ac261ef1",
+        "input_use_authorized": true,
+        "loader_path": "refs/refmod-ab-20261115/andre-front-from-video.jpg [input]",
+        "reviews": [],
+        "role": "identity",
+        "source_sha256": "4e8edc1d08c8d559021e049b368e73104f0e669d4e40dd557ea076d7fcfff40e"
+      }
+    },
+    "sources": {
+      "4e8edc1d08c8d559021e049b368e73104f0e669d4e40dd557ea076d7fcfff40e": {
+        "bytes": 248500,
+        "height": 1376,
+        "locators": [
+          "refs/refmod-ab-20261115/andre-front-from-video.jpg [input]"
+        ],
+        "sha256": "4e8edc1d08c8d559021e049b368e73104f0e669d4e40dd557ea076d7fcfff40e",
+        "width": 768
+      }
+    },
+    "version": 1
+  }
+}

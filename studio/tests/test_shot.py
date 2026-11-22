@@ -89,6 +89,28 @@ class ShotTests(unittest.TestCase):
             index = (outputs / "refs/argon-demo/index.jsonl").read_text().splitlines()
             self.assertEqual(json.loads(index[0])["image"], "refs/argon-demo/s01/010/" + image.name)
 
+    def test_monitored_reference_links_native_brain_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outputs = root / 'output'
+            image = outputs / 'refs/argon-demo/s01/010/still.png'
+            image.parent.mkdir(parents=True)
+            image.write_bytes(b'png')
+            brain = root / 'user/workflow_monitor/runs/pid/run.json'
+            brain.parent.mkdir(parents=True)
+            brain.write_text(json.dumps({'prompt_id': 'pid', 'status': 'succeeded', 'coverage': 'resources-only'}))
+            history = {'pid': {'status': {'status_str': 'success'}, 'outputs': {'10': {'images': [
+                {'filename': image.name, 'subfolder': 'refs/argon-demo/s01/010', 'type': 'output'}]}}}}
+            job = shot.resolve(self.spec(), PRESETS, Path('/unused'))
+            with (patch.object(shot, 'PROJECT', root), patch.object(shot, 'post', side_effect=[
+                    {'queue_running': [], 'queue_pending': []}, {'prompt_id': 'pid'}, history]) as post):
+                shot.render(job, PRESETS, 44, 'http://127.0.0.1:8188', outputs, brain=True)
+            graph = post.call_args_list[1].args[2]['prompt']
+            monitor, = [node for node in graph.values() if node['class_type'] == 'WorkflowMonitorBrain']
+            self.assertFalse(monitor['inputs']['analyze_when_finished'])
+            self.assertEqual(json.loads(image.with_suffix('.json').read_text())['brain_run'],
+                             'user/workflow_monitor/runs/pid/run.json')
+
 
 if __name__ == "__main__":
     unittest.main()

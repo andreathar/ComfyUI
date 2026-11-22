@@ -45,16 +45,56 @@ was added by this handoff.
 - The venv uses the already-installed uv-managed Python 3.13 interpreter; it
   does not use system packages. There is no `.python-version` override: pyenv
   owns bare Python shims and does not have this uv-managed version installed.
-- Use `uv pip install --python .venv/bin/python --torch-backend cu130 ...` for
-  dependency changes. Review the resolution before applying upgrades.
-- `requirements.txt` is upstream's dependency list. `requirements.lock.txt` in
-  this folder records the verified local environment; it is a version snapshot,
-  not a cross-platform or hash-verified supply-chain lock.
-- Do not run `uv sync`: this checkout declares its runtime in `requirements.txt`,
-  not a complete dependency list in `pyproject.toml`.
+- Use Antigravity's **Python Packages → Open Package Visualizer** for this
+  workspace. The dashboard reads `pyproject.toml` and the existing `.venv`.
+  The Linux x86-64 Python 3.13 resolution lives in `uv.lock`, including an
+  explicit cu130 index for Torch, torchvision and torchaudio.
+- **Tools → Migrate to uv → Automatic** applies the local lock with uv's
+  additive pip installer. It keeps installed custom-node packages and
+  checks their dependency compatibility. **Manual** opens the manifest.
+- **Install New**, single-package updates and version pins use the same
+  resolver. They record project additions in the `workspace` group and
+  reject changes to protected packages or incompatible dependencies.
+  Removing a workspace declaration leaves its installed copy available
+  to custom nodes. Bulk upgrades, unused-package cleanup and snapshot
+  restoration are disabled for this workspace.
+- The bridge is local to this checkout and the installed Visualizer
+  Community 3.3.2 bundle. Run
+  `.venv/bin/python .codex/install_package_visualizer_bridge.py` to reinstall
+  it, then use **Developer: Reload Window** in Antigravity. The installer
+  validates the extension bundle and saves the original alongside it.
+  Review extension upgrades before re-enabling write actions in a newer build.
+- Keep `requirements.txt`, `manager_requirements.txt`, and
+  `tests-unit/requirements.txt` for upstream workflows and tools.
+  A bare `uv sync` can remove custom-node packages. Use the command below
+  for a terminal equivalent of the Visualizer's Automatic action.
 - Keep the project venv out of pathman's host PATH. Activation is optional and
   temporary; explicit interpreter paths work in terminals, IDEs, and agents.
 - No Node installation/build is required to run the packaged ComfyUI frontend.
+
+```bash
+uv lock --check --python .venv/bin/python
+.venv/bin/python .codex/uv_workspace.py migrate
+uv pip check --python .venv/bin/python
+```
+
+### Review a package upgrade
+
+Use the project-local [ComfyUI Python Packages skill](../.agents/skills/comfyui-python-packages/SKILL.md).
+The review reports installed and locked versions, dependency owners, possible
+shared import names, and custom-node pin drift. Give it a package and an exact
+version to see which requirements allow or block the candidate.
+
+```bash
+.venv/bin/python .codex/package_review.py
+.venv/bin/python .codex/package_review.py numpy 2.5.5 --json
+```
+
+Add `--resolve` to try the exact candidate against a temporary copy of the uv
+project. Add `--offline` to use cached metadata only. The report checks the
+local declarations and installed environment. For workflow mapping, supply
+`--workflow FILE` and a recent `--object-info FILE` snapshot from this
+ComfyUI instance. The review does not install packages or execute workflows.
 
 ## Version the installed custom-node stack
 
@@ -90,9 +130,8 @@ stack is not an exact match for the committed lock. The initial lock records
 the current committed HEADs only, so the existing dirty work is intentionally
 reported as non-reproducible rather than captured or committed by this workflow.
 
-Keep `.codex/requirements.lock.txt` as the separate snapshot of Python package
-versions. It does not version custom-node Git repositories or replace their
-independent histories.
+The November 13 `.codex/requirements.lock.txt` is the recovery snapshot for
+the extended Python installation, including packages outside `uv.lock`.
 
 The maintained studio repositories use `andreathar` origins and the integration
 branch `studio/stabilization-20261113`. Original sources remain as `upstream`
@@ -121,13 +160,12 @@ extension's role in saved workflows, dependencies, monitoring and measured resou
 cost before proposing additions or removals. Keep component changes in their
 own repositories and preserve the parent lock's reproducibility checks.
 
-## Recreate the verified Python environment
+## Restore the November 13 Python snapshot
 
-The November 13 snapshot preserves the installed CUDA PyTorch, torchaudio,
-torchvision, Comfy Kitchen and aimdo builds. Transformers/Hub and associated
-packages were resolved together; all 498 installed distributions pass
-`uv pip check`. Do not restore the earlier Transformers 4.x snapshot over this
-environment or install incompatible optional applications into the shared venv.
+Use this historical recovery path in a fresh environment. It contains the
+CUDA PyTorch, torchaudio and torchvision builds and the custom-node package
+inventory from November 13. The current core dependency versions come from
+`uv.lock`.
 
 Run from this checkout after creating `.venv` with the documented Python version:
 
@@ -221,31 +259,14 @@ Model downloads still require an explicit choice.
 
 ## Install Python packages and missing nodes
 
-Pathman manages host executable paths. Use uv to install Python dependencies
-into this project's venv; no pathman change or global Python install is needed.
-The project-compatible Manager version comes from `manager_requirements.txt`:
-
-```bash
-uv pip install --python .venv/bin/python --torch-backend cu130 --constraint .codex/requirements.lock.txt --link-mode copy -r manager_requirements.txt torchaudio
-uv pip check --python .venv/bin/python
-```
-
-Manager's integrity check expects torch, torchvision and torchaudio. The CUDA
-torchaudio wheel was import/resample tested against this environment before
-installation; it does not replace the working PyTorch packages.
-
-Manager's `user/__manager/config.ini` sets `use_uv = true`. The launcher exports
-`UV_PYTHON` with the explicit project interpreter, `UV_TORCH_BACKEND=cu130`,
-and `UV_LINK_MODE=copy` for its dependency subprocesses. Manager also adds the
-venv bin directory to its own process PATH; this is temporary project scope,
-not a write to pathman's host configuration.
-
-After package installation, stop the existing ComfyUI process with Ctrl+C in
-its terminal and run `bash .codex/launch.sh` again. Refresh the browser, then
-use Node Manager's missing-node installation for the workflow's named packs.
-Manager installation alone does not install an unidentified workflow's packs.
-After custom-node changes, run the dependency check again and refresh the
-version snapshot only after the workflow passes.
+Manager's local `user/__manager/config.ini` uses `security_level = strong`,
+`allow_pip_install = False`, and `use_unified_resolver = False`. The catalogue remains available for
+identifying missing node packs. Manager install, update, fix and similar
+actions that can change packages are gated. Review those packs in their
+own repositories and use the Visualizer for supported package additions.
+For git or platform-specific wheels, review their sources and compatibility
+before adding them to the project manifest. Restart ComfyUI after changing
+packages when the server is idle and the restart is authorized.
 
 If Missing Nodes is empty, compare the workflow's issue with its actual node
 type before installing anything:

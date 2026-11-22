@@ -12,6 +12,14 @@ uv venv, native ComfyUI model directories and execution behavior, and a small
 Codex configuration with an explicit foreground launch command. Host PATH stays
 owned by pathman; user-level Codex/MCP settings remain inherited.
 
+## Python package management — 2026-11-22
+
+This workstation now uses the root uv manifest and lock for the ComfyUI
+runtime, Manager, and unit-test dependencies. The earlier install commands
+below record the historical setup. See [Python and tools](README.md#python-and-tools)
+for the current Antigravity Visualizer workflow and the additive uv command
+that preserves existing custom-node dependencies.
+
 ## Production follow-up — 2026-11-15
 
 The installation snapshots below are dated evidence. The

@@ -1,0 +1,122 @@
+{
+  "assets": {},
+  "bindings": {},
+  "manifest": {
+    "assets": "assets.json",
+    "bindings": "bindings.json",
+    "code": "SBA7D4",
+    "production": "production.json",
+    "proposal_digest": "de886bfa3c7b63cf33df958acbefc25d4dc07eb30298251fb1ca1bbdf4f7389c",
+    "reference_plan": "reference-plan.json",
+    "schema_version": 2,
+    "slug": "storyboard-acceptance-test-20261121",
+    "source": "story/script-v001.md",
+    "source_sha256": "41dc253e0b2f0d46c526f739773dfa577a05b2b24a4839c1dced76770d3c9313",
+    "title": "Storyboard acceptance test 20261121",
+    "transitions": "shot_transitions.json",
+    "version": 1
+  },
+  "production": {
+    "characters": [],
+    "editorial": {
+      "gap_before_frames": {},
+      "version": 1
+    },
+    "locations": [
+      {
+        "description": "Location details need review",
+        "id": "SBA7D4-LOC-01",
+        "kind": "INT",
+        "name": "Reading room"
+      }
+    ],
+    "project": {
+      "aspect": "16:9",
+      "code": "SBA7D4",
+      "fps": 24,
+      "source_text": "A folded letter waits on the table.\n\nAndré picks up the letter.",
+      "title": "Storyboard acceptance test 20261121"
+    },
+    "props": [],
+    "scenes": [
+      {
+        "characters": [],
+        "id": "SBA7D4_S001",
+        "location": "SBA7D4-LOC-01",
+        "number": 1,
+        "props": [],
+        "script_ref": {
+          "end": 63,
+          "start": 0
+        },
+        "slug": "Reading room",
+        "summary": "A folded letter waits on the table. André picks up the letter.",
+        "time": "day",
+        "wardrobe": {}
+      }
+    ],
+    "schema_version": 2,
+    "shots": [
+      {
+        "action": "A folded letter waits on the table.",
+        "angle": "eye-level",
+        "camera_move": {
+          "type": "static"
+        },
+        "characters": [],
+        "duration_s": 3,
+        "id": "SBA7D4_S001_SH01",
+        "lens": "35mm",
+        "location": "SBA7D4-LOC-01",
+        "props": [],
+        "purpose": "establishing",
+        "scene": "SBA7D4_S001",
+        "script_ref": {
+          "end": 35,
+          "start": 0
+        },
+        "shot_size": "wide",
+        "subject": "Reading room"
+      },
+      {
+        "action": "André picks up the letter.",
+        "angle": "eye-level",
+        "camera_move": {
+          "type": "static"
+        },
+        "characters": [],
+        "duration_s": 3,
+        "id": "SBA7D4_S001_SH02",
+        "lens": "35mm",
+        "location": "SBA7D4-LOC-01",
+        "props": [],
+        "purpose": "establishing",
+        "scene": "SBA7D4_S001",
+        "script_ref": {
+          "end": 63,
+          "start": 37
+        },
+        "shot_size": "wide",
+        "subject": "Reading room"
+      }
+    ],
+    "style_bible": {
+      "lens_default": "35mm",
+      "lighting_default": {
+        "key": "Unspecified",
+        "quality": "soft",
+        "time_of_day": "day"
+      },
+      "look": "Neutral draft",
+      "palette": [
+        "neutral"
+      ]
+    }
+  },
+  "reason": "Edit storyboard plan",
+  "revision": "67da798de6bac8d6c762c1e05b9122ea9eac5fb1436be307ca9efcf91affc4a6",
+  "transitions": {
+    "SBA7D4_S001_SH01": "cut",
+    "SBA7D4_S001_SH02": "cut"
+  }
+}

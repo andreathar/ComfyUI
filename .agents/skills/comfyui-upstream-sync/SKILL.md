@@ -31,8 +31,8 @@ git diff <local-branch>...<upstream-ref> -- requirements.txt manager_requirement
 git merge-tree --write-tree <local-branch> <upstream-ref>
 ```
 
-Also inspect indirect breakage: dependency pins versus
-`.codex/requirements.lock.txt` and the active venv; CLI flags used by
+Also inspect indirect breakage: upstream dependency inputs versus the local
+`pyproject.toml`, `uv.lock`, and active venv; CLI flags used by
 `.codex/launch.sh`; `comfy.*` imports in installed custom nodes; and any new
 network or feature-flag behavior against `AGENTS.md`. Report the findings and
 get approval before integrating upstream.
@@ -55,10 +55,10 @@ exist and be appropriate for this machine.
 
 After approval, merge the selected upstream ref into the explicitly selected
 local branch. Do not rebase a shared branch or install dependencies
-automatically. Review dependency changes first; use this checkout's documented
-`uv pip` workflow, CUDA backend and lock constraints where compatible. Do not
-run `uv sync`. Update `.codex/requirements.lock.txt` only after an approved
-resolution has been installed and verified.
+automatically. Use the [ComfyUI Python Packages skill](../comfyui-python-packages/SKILL.md)
+to assess and stage dependency changes, including constraints imposed by our
+custom-node forks. The workstation resolution is in `uv.lock`. The old
+`.codex/requirements.lock.txt` is a recovery snapshot.
 
 ## 4. Validate and publish
 

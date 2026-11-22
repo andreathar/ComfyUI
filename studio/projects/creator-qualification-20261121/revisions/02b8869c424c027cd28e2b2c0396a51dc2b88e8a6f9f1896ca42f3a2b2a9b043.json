@@ -1,0 +1,159 @@
+{
+  "assets": {},
+  "bindings": {},
+  "manifest": {
+    "assets": "assets.json",
+    "bindings": "bindings.json",
+    "code": "SB3330",
+    "production": "production.json",
+    "proposal_digest": "4909a641b4427812fdb7d1db7e5783c828e62434deb1b998fae8ce5f53ffd9e6",
+    "reference_plan": "reference-plan.json",
+    "schema_version": 2,
+    "slug": "creator-qualification-20261121",
+    "source": "story/script-v001.md",
+    "source_sha256": "14b48bde926ffc658f9c11f7db28785d48eca40c391447432aa4762e687541d8",
+    "title": "Creator qualification 20261121",
+    "transitions": "shot_transitions.json",
+    "version": 1
+  },
+  "production": {
+    "characters": [
+      {
+        "appearance": "Short black hair",
+        "id": "SB3330-CHR-01",
+        "name": "Ada",
+        "persona": {
+          "demeanor": "Unspecified",
+          "speech": "Unspecified",
+          "summary": "Unspecified"
+        },
+        "wardrobe": [
+          {
+            "description": "Navy coat",
+            "id": "W1"
+          }
+        ]
+      }
+    ],
+    "editorial": {
+      "gap_before_frames": {},
+      "version": 1
+    },
+    "locations": [
+      {
+        "description": "Interior workshop space with a table.",
+        "id": "SB3330-LOC-01",
+        "kind": "INT",
+        "name": "Workshop"
+      }
+    ],
+    "project": {
+      "aspect": "16:9",
+      "code": "SB3330",
+      "fps": 24,
+      "source_text": "INT. WORKSHOP - DAY. Ada has short black hair and wears a navy coat.\nAda lifts a blue envelope.\nAda places the envelope on the table.\n",
+      "title": "Creator qualification 20261121"
+    },
+    "props": [
+      {
+        "description": "Blue envelope",
+        "id": "SB3330-PRP-01",
+        "name": "Blue envelope"
+      }
+    ],
+    "scenes": [
+      {
+        "characters": [
+          "SB3330-CHR-01"
+        ],
+        "id": "SB3330_S001",
+        "location": "SB3330-LOC-01",
+        "number": 1,
+        "props": [
+          "SB3330-PRP-01"
+        ],
+        "script_ref": {
+          "end": 134,
+          "start": 0
+        },
+        "slug": "Workshop",
+        "summary": "Ada lifts the blue envelope. Ada places the envelope on the table.",
+        "time": "day",
+        "wardrobe": {
+          "SB3330-CHR-01": "W1"
+        }
+      }
+    ],
+    "schema_version": 2,
+    "shots": [
+      {
+        "action": "Ada lifts the blue envelope.",
+        "angle": "eye-level",
+        "camera_move": {
+          "type": "static"
+        },
+        "characters": [
+          "SB3330-CHR-01"
+        ],
+        "duration_s": 3,
+        "id": "SB3330_S001_SH01",
+        "lens": "35mm",
+        "location": "SB3330-LOC-01",
+        "props": [
+          "SB3330-PRP-01"
+        ],
+        "purpose": "medium",
+        "scene": "SB3330_S001",
+        "script_ref": {
+          "end": 95,
+          "start": 69
+        },
+        "shot_size": "medium",
+        "subject": "Ada"
+      },
+      {
+        "action": "Ada places the envelope on the table.",
+        "angle": "eye-level",
+        "camera_move": {
+          "type": "static"
+        },
+        "characters": [
+          "SB3330-CHR-01"
+        ],
+        "duration_s": 3,
+        "id": "SB3330_S001_SH02",
+        "lens": "35mm",
+        "location": "SB3330-LOC-01",
+        "props": [
+          "SB3330-PRP-01"
+        ],
+        "purpose": "medium",
+        "scene": "SB3330_S001",
+        "script_ref": {
+          "end": 133,
+          "start": 96
+        },
+        "shot_size": "medium",
+        "subject": "Ada"
+      }
+    ],
+    "style_bible": {
+      "lens_default": "35mm",
+      "lighting_default": {
+        "key": "Unspecified",
+        "quality": "soft",
+        "time_of_day": "day"
+      },
+      "look": "Neutral draft",
+      "palette": [
+        "neutral"
+      ]
+    }
+  },
+  "reason": "Bind a storyboard reference; visual review pending",
+  "revision": "02b8869c424c027cd28e2b2c0396a51dc2b88e8a6f9f1896ca42f3a2b2a9b043",
+  "transitions": {
+    "SB3330_S001_SH01": "cut",
+    "SB3330_S001_SH02": "cut"
+  }
+}

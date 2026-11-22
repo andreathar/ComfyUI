@@ -8,6 +8,54 @@ Workflow:
 
 Guide companion review: [`MASTER_MOVIE_STUDIO_REVIEW.md`](MASTER_MOVIE_STUDIO_REVIEW.md)
 
+## Start a storyboard draft
+
+After loading the updated frontend, use **Open storyboard…** on the Prompt
+Builder. Enter a title and story, then **Analyze story**. This queues local Qwen
+analysis separately from image/video work. Close and reopen the workspace to
+resume its status; **Cancel analysis** targets only that job. A lost response
+does not automatically repeat model work. Review **Job details** if recovery is
+needed.
+
+After completion choose **Review analyzed plan**, then **Create project**. The
+first version supports one silent scene of up to four shots and asks questions
+for unsupported stories. Newer text stays intact when an earlier analysis
+finishes. **Manual paragraph draft** remains available: provide a place and use
+**Review shot plan** to turn paragraphs into shots without a model request.
+
+The workspace preserves the original story in the project scaffold. Edit shot
+actions, seconds and camera choices, then **Save shot plan**. **Open project**
+reopens a saved project after refresh; **Reopen saved plan** recovers the latest
+saved version after an explicit warning about discarding unsaved edits. A stale
+save never overwrites a newer revision.
+
+**Prepare references** opens the project's reference bank. Choose an identity,
+outfit, place or prop, search the native media library, then preview an existing
+still. Confirm permission and choose **Use this image** to bind it to that role.
+Review it separately with **Keep reference**, **Wrong face**, **Wrong outfit**,
+**Characters mixed up** or **Reject**. The same source can serve different
+characters without sharing their outfits or approvals. Source changes and
+changed descriptions require a new binding or review; old decisions remain in
+revision history. This step preserves original files and generates no images.
+
+**Download shot list** exports saved frame timing and explicit missing-frame
+status. Start/end boxes are preparation placeholders. Reference generation,
+frame selection, pair approval and video submission are separate later steps.
+The workspace does not replace the selected Master shot package.
+
+## Local story-analysis prototype
+
+**Storyboard — Analyze story** is a separate queued output node. Supply a story,
+title and a project code of 2–8 uppercase letters or digits. Run it separately
+from image/video branches, with an optional enabled Brain monitor. The current
+route drafts one silent scene of up to four shots; unsupported stories can return
+questions. It preserves the source and saves a proposal under
+`user/studio_storyboard/jobs/<prompt_id>/`. It does not create or approve frames.
+
+The beginner workspace uses this same native node and an enabled Brain monitor.
+Review the proposal before project creation. Technical success does not establish
+creative acceptance.
+
 ## Save an edit for the selected shot
 
 The Master Prompt Builder has an explicit library binding to Shot Tag. Opening

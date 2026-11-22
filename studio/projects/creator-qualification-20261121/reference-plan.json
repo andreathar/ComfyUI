@@ -1,0 +1,39 @@
+[
+  {
+    "entity": "SB3330-LOC-01",
+    "role": "location",
+    "shots": [
+      "SB3330_S001_SH01",
+      "SB3330_S001_SH02"
+    ],
+    "status": "missing"
+  },
+  {
+    "entity": "SB3330-CHR-01",
+    "role": "identity",
+    "shots": [
+      "SB3330_S001_SH01",
+      "SB3330_S001_SH02"
+    ],
+    "status": "missing"
+  },
+  {
+    "entity": "SB3330-PRP-01",
+    "role": "prop",
+    "shots": [
+      "SB3330_S001_SH01",
+      "SB3330_S001_SH02"
+    ],
+    "status": "missing"
+  },
+  {
+    "entity": "SB3330-CHR-01",
+    "role": "wardrobe",
+    "shots": [
+      "SB3330_S001_SH01",
+      "SB3330_S001_SH02"
+    ],
+    "status": "missing",
+    "wardrobe": "W1"
+  }
+]

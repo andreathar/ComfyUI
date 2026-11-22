@@ -152,7 +152,9 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
             raise ValueError(f'{key}: missing asset or changed hash: {path}')
         if asset['kind'] not in ('picture', 'video', 'audio'):
             raise ValueError(f'{key}: unsupported reference kind')
-        expected_kind = {'identity': 'video', 'voice': 'audio', 'location': 'picture', 'wardrobe': 'picture', 'prop': 'picture', 'background': 'video', 'ambience': 'video'}.get(asset['role'])
+        allowed_kinds = {'identity': ('picture', 'video'), 'voice': ('audio',),
+                         'location': ('picture',), 'wardrobe': ('picture',), 'prop': ('picture',),
+                         'background': ('video',), 'ambience': ('video',)}.get(asset['role'], ())
         if mode == 'silent' and asset['role'] == 'voice':
             raise ValueError('silent shot cannot bind a voice reference')
         if asset['role'] in ('identity', 'wardrobe') and asset['owner'] not in shot['characters']:
@@ -161,9 +163,9 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
             raise ValueError(f"{key}: {asset['role']} owner does not match shot location")
         if asset['role'] == 'prop' and asset['owner'] not in shot.get('props', []):
             raise ValueError(f'{key}: prop owner is not declared in the shot')
-        if asset['kind'] != expected_kind or asset['selection']['kind'] != expected_kind:
+        if asset['kind'] not in allowed_kinds or asset['selection']['kind'] != asset['kind']:
             raise ValueError(f'{key}: unsupported role or selection kind')
-        if expected_kind == 'picture':
+        if asset['kind'] == 'picture':
             relative = Path(asset['path']).relative_to('input')
             filename = relative.as_posix() + ' [input]'
         else:

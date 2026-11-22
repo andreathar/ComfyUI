@@ -6,8 +6,19 @@
   "type": "object",
   "required": ["schema_version", "project", "style_bible", "characters", "locations", "scenes", "shots"],
   "additionalProperties": false,
+  "allOf": [
+    {"if": {"properties": {"schema_version": {"const": 1}}}, "then": {"not": {"required": ["editorial"]}}},
+    {"if": {"properties": {"schema_version": {"const": 2}}}, "then": {"required": ["editorial"]}}
+  ],
   "properties": {
-    "schema_version": { "const": 1 },
+    "schema_version": { "type": "integer", "enum": [1, 2] },
+    "editorial": {
+      "type": "object", "required": ["version", "gap_before_frames"], "additionalProperties": false,
+      "properties": {
+        "version": {"const": 1},
+        "gap_before_frames": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}
+      }
+    },
     "project": {
       "type": "object",
       "required": ["code", "title", "aspect", "fps", "source_text"],

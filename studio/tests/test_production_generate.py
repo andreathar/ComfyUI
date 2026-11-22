@@ -99,6 +99,12 @@ class GenerateTests(unittest.TestCase):
             self.assertIn(tag, message)
         self.assertIn("production document", pg.system_prompt())
 
+    def test_system_prompt_does_not_require_unspecified_face_details_for_a_draft(self):
+        prompt = pg.system_prompt()
+        self.assertIn('A brief supplied appearance is enough for a draft', prompt)
+        self.assertIn('Do not infer missing identity details', prompt)
+        self.assertIn('Ask only if the missing fact blocks a usable scaffold', prompt)
+
     def test_main_writes_valid_file_and_refuses_overwrite(self):
         with tempfile.TemporaryDirectory() as tmp:
             source, out = Path(tmp) / "d.txt", Path(tmp) / "p.json"

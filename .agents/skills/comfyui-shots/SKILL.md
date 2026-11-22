@@ -31,6 +31,10 @@ and model settings go in `studio/presets.json`, not in code.
    `.codex/launch.sh` only if it is not running.
 5. Render: `.venv/bin/python studio/shot.py <sheet> [--only <shot>]`. Look at
    the saved images before reporting, and give the user their paths.
+   For a monitored pilot, add `--brain` on the canonical local server. The
+   sidecar links the verified native `brain_run` (resources, not browser phase
+   timings). Before retrying after a client timeout, check the existing queue
+   and exact native history; the original render can still be running.
 6. Past renders: read `output/refs/<project>/index.jsonl`, or filter it by tag
    with `jq 'select(.tags | index("night"))'`.
 

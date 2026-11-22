@@ -26,6 +26,14 @@ local; stop ComfyUI and leave GPU headroom before invoking the worker. See the
 [local worker guide](LOCAL_ASSET_WORKER.md) for runtime requirements. Keep drafts
 small enough for the 16K context; an incomplete model reply never publishes JSON.
 
+For the compact bootstrap pilot (one silent scene, up to four shots), add
+`--outline --project-code STN --title 'Empty Platform'` to the command above.
+Qwen returns only a small outline; Studio retains the source bytes, resolves
+quoted shot excerpts, allocates IDs, and applies draft defaults before running
+the same validator. This makes one bounded local request. Unsupported stories,
+clarification requests and invalid replies do not publish a document. The
+ordinary command still handles full documents and revisions.
+
 The included project is `studio/projects/the-message`. Its short script was
 reconstructed from the two existing scene prompts, not recovered from an original
 screenplay. The original live prompt/editor configurations are in `baseline.json`.
@@ -66,6 +74,9 @@ and dialogue. `bindings.json` selects versioned assets, audio mode, seed, blocki
 and quality warnings. `assets.json` resolves those aliases to existing files,
 hashes, roles, owners, preprocessing and approval evidence. Never update a hash
 merely to suppress a mismatch: inspect and approve the changed asset first.
+An approved identity still is bound by the Media Loader as a `<Picture N>`;
+an identity video RefMod stays on the RefMod Stack. The identity reference
+does not replace the separate wardrobe, location or first-frame roles.
 The original media stays in place. `existing-media.json` records protected bytes
 and inherited review states; Scene 02 is still pending.
 

@@ -1,0 +1,365 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "one-scene",
+      "source_text": "INT. WORKSHOP - DAY. Ada has short black hair and wears a navy coat.\nAda lifts a blue envelope.\nAda places the envelope on the table.\n",
+      "expected_scene_count": 1,
+      "source_facts": [
+        {
+          "start": 69,
+          "end": 95,
+          "text": "Ada lifts a blue envelope."
+        },
+        {
+          "start": 96,
+          "end": 133,
+          "text": "Ada places the envelope on the table."
+        }
+      ],
+      "open_questions": [],
+      "current_compact_route": "supported",
+      "compact_outline": {
+        "place": {
+          "name": "Workshop",
+          "kind": "INT",
+          "time": "day",
+          "description": "Workshop with a wooden table"
+        },
+        "cast": [
+          {
+            "name": "Ada",
+            "appearance": "short black hair",
+            "wardrobe": "navy coat"
+          }
+        ],
+        "props": [
+          {
+            "name": "Envelope",
+            "description": "blue envelope"
+          }
+        ],
+        "shots": [
+          {
+            "excerpt": "Ada lifts a blue envelope.",
+            "action": "Ada lifts a blue envelope.",
+            "cast": [
+              0
+            ],
+            "props": [
+              0
+            ],
+            "size": "medium"
+          },
+          {
+            "excerpt": "Ada places the envelope on the table.",
+            "action": "Ada places the envelope on the table.",
+            "cast": [
+              0
+            ],
+            "props": [
+              0
+            ],
+            "size": "medium"
+          }
+        ]
+      },
+      "entities": [
+        {
+          "key": "ada",
+          "name": "Ada",
+          "aliases": [
+            "Ada"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "two-scene-prop-transfer",
+      "source_text": "INT. KITCHEN - DAY. Ivo wears a green jacket. Lia wears a yellow shirt.\nIvo hands the brass key to Lia.\n\nEXT. GARDEN - DAY. Lia still wears the yellow shirt.\nLia unlocks the garden gate with the brass key.\n",
+      "expected_scene_count": 2,
+      "source_facts": [
+        {
+          "start": 72,
+          "end": 103,
+          "text": "Ivo hands the brass key to Lia."
+        },
+        {
+          "start": 158,
+          "end": 205,
+          "text": "Lia unlocks the garden gate with the brass key."
+        }
+      ],
+      "open_questions": [
+        "The current compact route supports one scene only; preserve both scenes for the expanded planner."
+      ],
+      "current_compact_route": "needs_review",
+      "entities": [
+        {
+          "key": "ivo",
+          "name": "Ivo",
+          "aliases": [
+            "Ivo"
+          ]
+        },
+        {
+          "key": "lia",
+          "name": "Lia",
+          "aliases": [
+            "Lia"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dialogue-and-repeated-name",
+      "source_text": "INT. LIBRARY - DAY. Eva, the librarian, wears a grey vest. Eva, the visitor, wears a red scarf.\nEVA (LIBRARIAN): \"Leave it here.\"\nEVA (VISITOR): \"Here?\"\nThe librarian points to the desk.\n",
+      "expected_scene_count": 1,
+      "source_facts": [
+        {
+          "start": 96,
+          "end": 129,
+          "text": "EVA (LIBRARIAN): \"Leave it here.\""
+        },
+        {
+          "start": 130,
+          "end": 152,
+          "text": "EVA (VISITOR): \"Here?\""
+        },
+        {
+          "start": 153,
+          "end": 186,
+          "text": "The librarian points to the desk."
+        }
+      ],
+      "open_questions": [
+        "Preserve the two speakers as distinct characters despite the repeated name.",
+        "The current silent-scene route must not erase dialogue."
+      ],
+      "current_compact_route": "needs_review",
+      "entities": [
+        {
+          "key": "eva-librarian",
+          "name": "Eva",
+          "aliases": [
+            "EVA (LIBRARIAN)",
+            "the librarian",
+            "The librarian"
+          ]
+        },
+        {
+          "key": "eva-visitor",
+          "name": "Eva",
+          "aliases": [
+            "EVA (VISITOR)",
+            "the visitor"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unicode-and-repeated-phrase",
+      "source_text": "EXT. PRAÇA — DUSK. João tem cabelo curto e usa um casaco cinza. A placa diz “Paz 🕊️”.\nJoão levanta o lenço azul.\nJoão abaixa o lenço.\nJoão levanta o lenço azul.\n",
+      "expected_scene_count": 1,
+      "source_facts": [
+        {
+          "start": 86,
+          "end": 112,
+          "text": "João levanta o lenço azul."
+        },
+        {
+          "start": 113,
+          "end": 133,
+          "text": "João abaixa o lenço."
+        },
+        {
+          "start": 134,
+          "end": 160,
+          "text": "João levanta o lenço azul."
+        }
+      ],
+      "open_questions": [],
+      "current_compact_route": "supported",
+      "compact_outline": {
+        "place": {
+          "name": "Praça",
+          "kind": "EXT",
+          "time": "dusk",
+          "description": "Praça com placa “Paz 🕊️”"
+        },
+        "cast": [
+          {
+            "name": "João",
+            "appearance": "cabelo curto",
+            "wardrobe": "casaco cinza"
+          }
+        ],
+        "props": [
+          {
+            "name": "Lenço",
+            "description": "lenço azul"
+          }
+        ],
+        "shots": [
+          {
+            "excerpt": "João levanta o lenço azul.",
+            "action": "João levanta o lenço azul.",
+            "cast": [
+              0
+            ],
+            "props": [
+              0
+            ],
+            "size": "medium"
+          },
+          {
+            "excerpt": "João abaixa o lenço.",
+            "action": "João abaixa o lenço.",
+            "cast": [
+              0
+            ],
+            "props": [
+              0
+            ],
+            "size": "medium"
+          },
+          {
+            "excerpt": "João levanta o lenço azul.",
+            "action": "João levanta o lenço azul.",
+            "cast": [
+              0
+            ],
+            "props": [
+              0
+            ],
+            "size": "medium"
+          }
+        ]
+      },
+      "entities": [
+        {
+          "key": "joao",
+          "name": "João",
+          "aliases": [
+            "João"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "long-multi-scene-story",
+      "source_text": "Nilo has curly dark hair and wears a green raincoat throughout. The boat is made from one sheet of white paper.\n\nINT. BEDROOM - DAY.\nNilo folds a paper boat beside the window.\n\nINT. STAIRWELL - DAY.\nNilo carries the paper boat down the stairs.\n\nEXT. COURTYARD - DAY.\nNilo shields the paper boat from the rain.\n\nEXT. ARCADE - DAY.\nNilo waits beneath the arcade with the paper boat.\n\nINT. BAKERY - DAY.\nNilo sets the paper boat on the counter while buying bread.\n\nEXT. ALLEY - DAY.\nNilo carries the paper boat past the closed blue door.\n\nEXT. FOOTBRIDGE - DAY.\nNilo rests the paper boat on the bridge rail.\n\nEXT. RIVERSIDE - DAY.\nNilo takes the paper boat from the rail and approaches the water.\n\nINT. BOATHOUSE - DAY.\nNilo dries the paper boat beneath the boathouse roof.\n\nEXT. MEADOW - DAY.\nNilo holds the paper boat while crossing the wet grass.\n\nEXT. POND - DAY.\nNilo places the paper boat on the still pond.\n\nEXT. HILL - DAY.\nNilo watches the pond from the hill after leaving the paper boat behind.\n",
+      "expected_scene_count": 12,
+      "source_facts": [
+        {
+          "start": 133,
+          "end": 175,
+          "text": "Nilo folds a paper boat beside the window."
+        },
+        {
+          "start": 199,
+          "end": 243,
+          "text": "Nilo carries the paper boat down the stairs."
+        },
+        {
+          "start": 267,
+          "end": 309,
+          "text": "Nilo shields the paper boat from the rain."
+        },
+        {
+          "start": 330,
+          "end": 380,
+          "text": "Nilo waits beneath the arcade with the paper boat."
+        },
+        {
+          "start": 401,
+          "end": 460,
+          "text": "Nilo sets the paper boat on the counter while buying bread."
+        },
+        {
+          "start": 480,
+          "end": 534,
+          "text": "Nilo carries the paper boat past the closed blue door."
+        },
+        {
+          "start": 559,
+          "end": 604,
+          "text": "Nilo rests the paper boat on the bridge rail."
+        },
+        {
+          "start": 628,
+          "end": 693,
+          "text": "Nilo takes the paper boat from the rail and approaches the water."
+        },
+        {
+          "start": 717,
+          "end": 770,
+          "text": "Nilo dries the paper boat beneath the boathouse roof."
+        },
+        {
+          "start": 791,
+          "end": 846,
+          "text": "Nilo holds the paper boat while crossing the wet grass."
+        },
+        {
+          "start": 865,
+          "end": 910,
+          "text": "Nilo places the paper boat on the still pond."
+        },
+        {
+          "start": 929,
+          "end": 1001,
+          "text": "Nilo watches the pond from the hill after leaving the paper boat behind."
+        }
+      ],
+      "open_questions": [
+        "All twelve scene beats must survive chunking; the current four-shot/one-scene route cannot accept this whole story."
+      ],
+      "current_compact_route": "needs_review",
+      "entities": [
+        {
+          "key": "nilo",
+          "name": "Nilo",
+          "aliases": [
+            "Nilo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contradictory-casting",
+      "source_text": "INT. HALL - DAY. There is one character, Mara, with one unchanged outfit in this scene.\nMara wears a red coat.\nAt the same moment Mara wears a blue coat.\nMara opens the door.\n",
+      "expected_scene_count": 1,
+      "source_facts": [
+        {
+          "start": 17,
+          "end": 87,
+          "text": "There is one character, Mara, with one unchanged outfit in this scene."
+        },
+        {
+          "start": 88,
+          "end": 110,
+          "text": "Mara wears a red coat."
+        },
+        {
+          "start": 111,
+          "end": 153,
+          "text": "At the same moment Mara wears a blue coat."
+        }
+      ],
+      "open_questions": [
+        "Which coat should Mara wear? Do not invent a second Mara or a costume change to conceal the contradiction."
+      ],
+      "current_compact_route": "needs_review",
+      "entities": [
+        {
+          "key": "mara",
+          "name": "Mara",
+          "aliases": [
+            "Mara"
+          ]
+        }
+      ]
+    }
+  ]
+}

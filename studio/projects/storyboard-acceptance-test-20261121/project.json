@@ -1,0 +1,15 @@
+{
+  "assets": "assets.json",
+  "bindings": "bindings.json",
+  "code": "SBA7D4",
+  "production": "production.json",
+  "proposal_digest": "de886bfa3c7b63cf33df958acbefc25d4dc07eb30298251fb1ca1bbdf4f7389c",
+  "reference_plan": "reference-plan.json",
+  "schema_version": 2,
+  "slug": "storyboard-acceptance-test-20261121",
+  "source": "story/script-v001.md",
+  "source_sha256": "41dc253e0b2f0d46c526f739773dfa577a05b2b24a4839c1dced76770d3c9313",
+  "title": "Storyboard acceptance test 20261121",
+  "transitions": "shot_transitions.json",
+  "version": 1
+}

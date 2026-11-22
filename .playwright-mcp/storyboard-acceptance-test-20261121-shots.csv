@@ -1,0 +1,3 @@
+shot_id,scene_id,action,camera,requested_seconds,planned_seconds,start,end,duration_frames,gap_before_frames,fps,start_image,end_image,review_status
+SBA7D4_S001_SH01,SBA7D4_S001,The folded letter rests on the table.,static,1.02,1,0,24,24,0,24,,,missing_frames
+SBA7D4_S001_SH02,SBA7D4_S001,André picks up the letter.,static,4,4,24,120,96,0,24,,,missing_frames
