@@ -140,6 +140,18 @@ def test_changed_outfit_invalidates_only_its_own_reference_review(refs, setup):
         refs.review(root, changed['revision'], requirement['key'], binding_id, 'keep', 'local-user', roots)
 
 
+def test_moved_and_inaccessible_bound_image_is_reported(refs, setup):
+    root, roots, doc = setup
+    bound = bind(refs, setup)
+    key = row(refs, doc, 'identity')['key']
+    image = roots['input'] / 'face.png'
+    moved = roots['input'] / 'moved.png'
+    image.rename(moved)
+    assert next(r for r in refs.bank(bound, roots)['requirements'] if r['key'] == key)['status'] == 'source_unavailable'
+    image.symlink_to(moved)
+    assert next(r for r in refs.bank(bound, roots)['requirements'] if r['key'] == key)['status'] == 'source_unavailable'
+
+
 def test_stale_revision_and_late_review_cannot_replace_a_new_selection(refs, setup):
     root, roots, doc = setup
     initial = store.read_project(root)

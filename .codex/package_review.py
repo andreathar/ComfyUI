@@ -24,6 +24,15 @@ CUDA_STACK = {"torch", "torchvision", "torchaudio", "triton", "cuda-toolkit", "c
 BASELINE = "user/default/workflows/Balanced SD15 - RTX 3060.json"
 
 
+def active_node_paths(root):
+    directory = root / "custom_nodes"
+    if not directory.is_dir():
+        return []
+    return sorted(path for path in directory.iterdir()
+                  if path.is_dir() and not path.name.endswith(".disabled")
+                  and not path.name.startswith(".") and path.name != "__pycache__")
+
+
 def read_toml(path):
     return tomllib.loads(path.read_text())
 
@@ -168,11 +177,7 @@ def build_report(root, distributions_, name=None, version=None, *, reason=None, 
                 continue
             reverse[canonicalize_name(requirement.name)].append(("installed", consumer, "Requires-Dist", requirement))
 
-    node_dir = root / "custom_nodes"
-    nodes = sorted(path for path in node_dir.iterdir()
-                   if path.is_dir() and not path.name.endswith(".disabled")
-                   and not path.name.startswith(".") and path.name != "__pycache__") if node_dir.is_dir() else []
-    declarations = read_declarations(root, manifest, nodes, warnings)
+    declarations = read_declarations(root, manifest, active_node_paths(root), warnings)
     repositories, findings = check_custom_nodes(root, json.loads((root / LOCK_PATH).read_text()))
     overlaps = {module: providers for module, projects in (imports or {}).items()
                 if len(providers := sorted({canonicalize_name(project) for project in projects})) > 1}

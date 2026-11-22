@@ -157,6 +157,11 @@ def reconcile(path, history, output_root, suite_project, brain_root):
     with locked_take(path) as state:
         verify_inputs(path, state)
         record = history.get(state['prompt_id'])
+        archived = path / 'history.json'
+        if record is None and archived.is_file():
+            record = read_json(archived)
+            if record.get('status', {}).get('status_str') != 'success':
+                raise ValueError('Archived history does not attest a successful take')
         if record and record.get('status', {}).get('status_str') == 'error':
             event(state, 'failed')
             return state
@@ -166,7 +171,7 @@ def reconcile(path, history, output_root, suite_project, brain_root):
             event(state, 'failed')
             return state
         graph = read_json(path / 'prompt.json')
-        if prompt_digest(record['prompt'][2]) != prompt_digest(graph):
+        if record['prompt'][1] != state['prompt_id'] or prompt_digest(record['prompt'][2]) != prompt_digest(graph):
             raise ValueError('History does not match frozen inputs')
         files = [item for key in ('images', 'videos', 'gifs')
                  for item in record['outputs'].get('64', {}).get(key, [])

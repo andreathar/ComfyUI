@@ -144,6 +144,23 @@ def test_history_directory_sync_failure_keeps_canonical_document(project):
     assert saved['production']['shots'][0]['duration_s'] == 4
 
 
+def test_interruption_after_replace_keeps_the_project_and_previous_revision_readable(project):
+    initial = store.read_project(project)
+    sync = store.sync_directory
+
+    def stop_after_replace(path):
+        if path == project and store.read_project(project)['revision'] != initial['revision']:
+            raise OSError('simulated interruption after replace')
+        sync(path)
+
+    with patch.object(store, 'sync_directory', side_effect=stop_after_replace):
+        with pytest.raises(OSError, match='after replace'):
+            store.commit(project, initial['revision'], edit(initial), 'Interrupted edit')
+    assert store.read_project(project)['production']['shots'][0]['duration_s'] == 4
+    previous = project / 'revisions' / (initial['revision'] + '.json')
+    assert json.loads(previous.read_text())['production'] == EXAMPLE
+
+
 def test_project_and_file_symlinks_are_rejected(project, tmp_path):
     alias = tmp_path / 'alias'
     alias.symlink_to(project, target_is_directory=True)

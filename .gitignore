@@ -36,6 +36,7 @@ filtered-openapi.yaml
 !.codex/package_review.py
 !.codex/test_package_review.py
 !.codex/package_visualizer.cjs
+!.codex/test_package_visualizer.cjs
 !.codex/install_package_visualizer_bridge.py
 !.codex/STABILIZATION.md
 .github/

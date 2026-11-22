@@ -74,6 +74,38 @@ reference overrides. Existing preset libraries and draft text stay intact.
 
 ## Controlled take records
 
+Run the storage audit from the checkout root to inspect Storyboard projects,
+Master takes, Suite manifests, native asset paths and Brain coverage.
+
+```bash
+.venv/bin/python studio/storage_audit.py report
+```
+
+The report uses each store's existing records. It verifies archived take
+history against the frozen prompt and compares recorded media hashes with
+files on disk. It includes alternate project layouts, reference binding
+status and a dry-run retention inventory. Asset flag discrepancies are
+findings to investigate. The command applies no cleanup.
+
+To rehearse recovery, select a current Storyboard project with a bound
+reference and an approved take, then pass a new destination outside the
+production stores.
+
+```bash
+rehearsal=$(mktemp -d .codex/artifacts/studio-rehearsal.XXXXXX)
+.venv/bin/python studio/storage_audit.py rehearse \
+  --project creator-qualification-20261121 \
+  --take user/master_studio/takes/MSG_S001_SH05/tk001 \
+  --destination "$rehearsal/restore-test"
+```
+
+The destination contains the backup, restored files and a JSON record of the
+checks. The rehearsal maps absolute paths in existing take receipts onto the
+restored root without modifying the receipts. The asset database snapshot
+includes all metadata and the sample includes the selected media. The
+rehearsal checks both SQLite stores, rebuilds the Brain index and simulates
+an omitted output on the restored copy.
+
 `studio/master_take.py` prepares and reconciles a single Master take. It does
 not intercept the ordinary Run button or submit jobs automatically. Export the
 visible canvas and its compiled API prompt, then use:

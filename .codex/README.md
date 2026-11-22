@@ -51,10 +51,12 @@ was added by this handoff.
   explicit cu130 index for Torch, torchvision and torchaudio.
 - **Tools → Migrate to uv → Automatic** applies the local lock with uv's
   additive pip installer. It keeps installed custom-node packages and
-  checks their dependency compatibility. **Manual** opens the manifest.
+  can reinstall a missing locked package when the resulting environment
+  satisfies installed dependencies. **Manual** opens the manifest.
 - **Install New**, single-package updates and version pins use the same
   resolver. They record project additions in the `workspace` group and
-  reject changes to protected packages or incompatible dependencies.
+  reject changes to protected packages or incompatible installed and
+  custom-node requirements.
   Removing a workspace declaration leaves its installed copy available
   to custom nodes. Bulk upgrades, unused-package cleanup and snapshot
   restoration are disabled for this workspace.
@@ -77,6 +79,14 @@ uv lock --check --python .venv/bin/python
 .venv/bin/python .codex/uv_workspace.py migrate
 uv pip check --python .venv/bin/python
 ```
+
+| Visualizer feature | Use for this checkout |
+| --- | --- |
+| **Add Package**, **Pin**, single-package update | Apply a workspace change through uv. The Pin badge tracks the IDE hold. The accepted version is recorded in the manifest and lock. |
+| **Conflicts** | Read dependency errors from uv's check of the project interpreter. Review any proposed repair before changing packages. |
+| **Environment** | Inspect the full installed inventory from uv. Update hints reflect the latest managed-package scan. |
+| **Package List**, **Dependency Graph**, **Tools → Markdown / JSON** | See managed dependencies and available releases. For the full installed inventory and ownership, use the package review below. |
+| **Tools → Setup script / Setup README** | Open this runbook and use the workstation setup instructions. |
 
 ### Review a package upgrade
 

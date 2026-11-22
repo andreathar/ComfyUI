@@ -8,6 +8,22 @@ const { promisify } = require("node:util");
 const run = promisify(execFile);
 const normalize = (name) => name.toLowerCase().replace(/[-_.]+/g, "-");
 
+function parseUvConflicts(output) {
+  const conflicts = [];
+  for (const line of output.split("\n")) {
+    const match = /^The package `([^`]+)` requires `(([\w.-]+)[^`]*)`, but (?:`([^`]+)` is installed|it's not installed)$/.exec(line.trim());
+    if (!match) continue;
+    conflicts.push({
+      package: normalize(match[1]),
+      version: "",
+      requirement: match[2],
+      conflictingPackage: normalize(match[3]),
+      conflictingVersion: match[4] ?? "not installed",
+    });
+  }
+  return conflicts;
+}
+
 module.exports = function connectVisualizer(host, vscode, parseToml) {
   const folder = vscode.workspace.workspaceFolders?.[0]?.uri;
   if (!folder || folder.scheme !== "file" || !existsSync(folder.fsPath)) return;
@@ -48,9 +64,32 @@ module.exports = function connectVisualizer(host, vscode, parseToml) {
   scanner.resolveUvPath = async () => uv;
   scanner.resolvePythonPath = () => python;
   scanner.getActiveProjectRoot = () => root;
+  host.venvHealthChecker.getInstalledPackages = async () => {
+    const { stdout } = await run(uv, ["pip", "list", "--python", python, "--format", "json"],
+      { cwd: root, timeout: 15_000 });
+    return JSON.parse(stdout);
+  };
+  host.venvHealthChecker.getOutdatedPackages = async () => new Map(
+    host.lastCheckResults.filter(result => result.latestVersion && result.latestVersion !== "unknown")
+      .map(result => [normalize(result.packageName), result.latestVersion]),
+  );
+  scanner.checkConflicts = async () => {
+    try {
+      await run(uv, ["--system-certs", "pip", "check", "--python", python], { cwd: root, timeout: 30_000 });
+      return [];
+    } catch (error) {
+      const output = error.stderr ?? "";
+      const conflicts = parseUvConflicts(output);
+      const count = Number(/Found (\d+) incompatibilit/.exec(output)?.[1]);
+      if (error.code === 1 && conflicts.length && conflicts.length === count) return conflicts;
+      host.logger.warn(output || String(error));
+      vscode.window.showWarningMessage("ComfyUI could not display the full uv dependency check. See the Visualizer output.");
+      throw error;
+    }
+  };
 
   let busy = false;
-  async function apply(message, args) {
+  async function apply(message, args, onSuccess) {
     if (!vscode.workspace.isTrusted || !existsSync(script)) {
       vscode.window.showErrorMessage("ComfyUI uv actions require a trusted workspace with .codex/uv_workspace.py.");
       return;
@@ -66,7 +105,12 @@ module.exports = function connectVisualizer(host, vscode, parseToml) {
       );
       host.logger.info(`ComfyUI uv ${args.join(" ")} completed.\n${stdout}${stderr}`);
       vscode.window.showInformationMessage("ComfyUI uv completed. Package compatibility checks passed.");
-      await host.refreshVisualizer();
+      try {
+        if (onSuccess) await onSuccess();
+        else await host.refreshVisualizer();
+      } catch (error) {
+        host.logger.warn(`ComfyUI uv applied, Visualizer refresh failed. ${String(error)}`);
+      }
     } catch (error) {
       host.logger.error(error.stderr || String(error));
       host.logger.show();
@@ -77,10 +121,10 @@ module.exports = function connectVisualizer(host, vscode, parseToml) {
     }
   }
 
-  const set = (name, version) => {
+  const set = (name, version, onSuccess) => {
     if (!name) return;
     return apply(`Resolve and install ${name}${version ? `==${version}` : ""} using ComfyUI's uv lock?`,
-      version ? ["set", name, version] : ["set", name]);
+      version ? ["set", name, version] : ["set", name], onSuccess);
   };
   host.migrateToUv = (mode) => mode === "automatic"
     ? apply("Apply the ComfyUI uv lock to .venv? Existing node-pack packages are kept.", ["migrate"])
@@ -93,11 +137,14 @@ module.exports = function connectVisualizer(host, vscode, parseToml) {
     if (!candidate?.latestVersion) {
       return vscode.window.showWarningMessage(`Refresh the package list to find a version for ${name}.`);
     }
-    return set(name, candidate.latestVersion);
+    return set(name, candidate.latestVersion, async () => {
+      await host.visualizerHandler.clearPinMetadata(name);
+      await host.refreshVisualizer();
+    });
   };
   host.updateAllPackages = (names) => names.length === 1 ? host.updatePackage(names[0]) : showPolicy();
-  host.pinVersion = set;
-  host.pinPackageToVersion = set;
+  host.pinVersion = (name, version) => set(name, version, () => host.visualizerHandler.persistPin(name, version));
+  host.pinPackageToVersion = host.pinVersion;
   host.rollbackPackage = (name, version) => version ? set(name, version) : showPolicy();
   host.removeFromRequirements = (name) => apply(
     `Remove ${name} from the uv workspace group? Its installed copy will be kept for node packs.`,
@@ -116,5 +163,10 @@ module.exports = function connectVisualizer(host, vscode, parseToml) {
     host[action] = showPolicy;
   }
   host.snapshotHandler.restoreSnapshot = showPolicy;
+  host.utilityHandler.generateSetupScript = async () => {
+    const document = await vscode.workspace.openTextDocument(path.join(root, ".codex", "README.md"));
+    await vscode.window.showTextDocument(document, { viewColumn: vscode.ViewColumn.Beside });
+  };
   host.logger.info(`ComfyUI uv workspace bridge active for ${root}`);
 };
+module.exports.parseUvConflicts = parseUvConflicts;

@@ -201,9 +201,15 @@ class MasterTakeTests(unittest.TestCase):
             self.assertFalse(takes.read_json(take/'take.json')['review']['approved'])
             takes.review(take, {'action': 'pass'}, 'Human selected this take', True)
             with patch.object(takes, 'probe_video', return_value={'width': 832, 'height': 480, 'frames': 73, 'fps': 24, 'audio': False}):
-                repeated = takes.reconcile(take, {'run-1': record}, output, 'Film', root/'brain')
+                repeated = takes.reconcile(take, {}, output, 'Film', root/'brain')
             self.assertEqual(repeated['status'], 'approved')
             self.assertTrue(repeated['review']['approved'])
+            archived = take / 'history.json'
+            takes.write_json(archived, {'status': {'status_str': 'error'}})
+            with self.assertRaisesRegex(ValueError, 'Archived history'):
+                takes.reconcile(take, {}, output, 'Film', root/'brain')
+            self.assertEqual(takes.read_json(take/'take.json')['status'], 'approved')
+            takes.write_json(archived, record)
             video.write_bytes(b'replaced')
             with self.assertRaisesRegex(ValueError, 'changed'):
                 takes.review(take, {'action': 'pass'}, 'Cannot approve changed video', True)

@@ -1,7 +1,11 @@
 import json
 from importlib.metadata import distributions
+from types import SimpleNamespace
+
+import pytest
 
 import package_review
+import uv_workspace
 from package_review import build_report
 
 
@@ -68,3 +72,17 @@ def test_resolver_side_effect_is_checked_against_installed_only_consumer(tmp_pat
     assert candidate["decision"] == "blocked"
     assert [(row["consumer"], row["dependency"]) for row in candidate["blockers"]] == [("local-tool", "bridge")]
     assert lock.read_bytes() == before
+
+
+def test_migration_checks_missing_dependencies_against_the_projected_environment(tmp_path, monkeypatch):
+    monkeypatch.setattr(uv_workspace, "ROOT", tmp_path)
+    export = tmp_path / "pylock.toml"
+    export.write_text('[[packages]]\nname = "idna"\nversion = "3.19"\n')
+    fixture = SimpleNamespace(version="1.0", requires=["idna>=3,<4"])
+    installed = {"fixture-node": fixture}
+
+    uv_workspace.check_plan(export, installed, None, {})
+
+    fixture.requires.append("missing-fixture-dependency>=1")
+    with pytest.raises(ValueError, match="which the resulting environment would still lack"):
+        uv_workspace.check_plan(export, installed, None, {})
