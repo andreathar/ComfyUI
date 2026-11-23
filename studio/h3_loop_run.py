@@ -502,7 +502,12 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
     if not re.fullmatch(r'[A-Za-z0-9_-]+', run_name) or '..' in destination.parts or destination.is_symlink():
         raise ValueError('invalid replacement run_name or destination')
     destination = destination.resolve()
-    with _locked_run(base_run_path) as base_state, _locked_run(patch_run_path) as patch_state:
+    base_run_path, patch_run_path = Path(base_run_path).resolve(), Path(patch_run_path).resolve()
+    if base_run_path == patch_run_path:
+        raise ValueError('replacement requires different runs')
+    first_path, second_path = sorted((base_run_path, patch_run_path))
+    with _locked_run(first_path) as first_state, _locked_run(second_path) as second_state:
+        base_state, patch_state = (first_state, second_state) if first_path == base_run_path else (second_state, first_state)
         for label, st in (('base', base_state), ('patch', patch_state)):
             if st['status'] not in ('review_pending', 'approved') or st.get('partial') is not False or not st.get('output'):
                 raise ValueError(f'{label} run requires a complete technical-pass record')
@@ -557,12 +562,26 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
         total_frames = sum(s['frames'] for s in merged_shots)
         film_name = f'{run_name}.mp4'
         index_path = destination / 'index.json'
+        base_identity = {'run_name': base_state['bundle']['run_name'], 'prompt_id': base_state['prompt_id'], 'film_sha256': base_state['output']['sha256']}
+        replacement_identity = {
+            'shot_id': shot_id,
+            'patch_run_name': patch_state['bundle']['run_name'],
+            'patch_prompt_id': patch_state['prompt_id'],
+            'previous_revision': base_state['output']['manifest']['segments'][target_pos]['revision'],
+            'new_revision': patch_state['output']['manifest']['segments'][0]['revision'],
+        }
         if destination.exists():
             if index_path.is_file():
                 existing = film.read_json(index_path)
-                if existing.get('bundle_fingerprint') == merged_bundle['fingerprint']:
+                if (existing.get('bundle_fingerprint') == merged_bundle['fingerprint'] and
+                        existing.get('base_run') == base_identity and existing.get('replacement') == replacement_identity and
+                        existing.get('shots') == [entry for _, _, entry in expected_shots]):
                     film_dst = destination / film_name
                     if film_dst.is_file() and h3.file_hash(film_dst) == existing['delivery']['film_sha256']:
+                        for _, rel_shot, entry in expected_shots:
+                            shot_dst = destination / rel_shot
+                            if not shot_dst.is_file() or h3.file_hash(shot_dst) != entry['sha256']:
+                                raise ValueError(f'existing published shot hash mismatch: {rel_shot}')
                         return existing
             if any(destination.iterdir()):
                 raise ValueError('replacement destination already exists with different content')
@@ -588,7 +607,7 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
             'segments': merged_segments,
         }
         concat_tmp = destination / '.concat.txt.tmp'
-        concat_tmp.write_text(''.join(f"file '{(destination / rel).as_posix()}'\n" for _, rel, _ in expected_shots), encoding='utf-8')
+        concat_tmp.write_text(''.join(f"file '{rel}'\n" for _, rel, _ in expected_shots), encoding='utf-8')
         film_tmp = destination / f'.{film_name}.tmp.mp4'
         try:
             subprocess.run([
@@ -610,14 +629,8 @@ def assemble_replacement(base_run_path, patch_run_path, shot_id, run_name, desti
             'schema_version': 1,
             'run_name': run_name,
             'bundle_fingerprint': merged_bundle['fingerprint'],
-            'base_run': {'run_name': base_state['bundle']['run_name'], 'prompt_id': base_state['prompt_id'], 'film_sha256': base_state['output']['sha256']},
-            'replacement': {
-                'shot_id': shot_id,
-                'patch_run_name': patch_state['bundle']['run_name'],
-                'patch_prompt_id': patch_state['prompt_id'],
-                'previous_revision': base_state['output']['manifest']['segments'][target_pos]['revision'],
-                'new_revision': patch_state['output']['manifest']['segments'][0]['revision'],
-            },
+            'base_run': base_identity,
+            'replacement': replacement_identity,
             'technical_status': 'passed',
             'creative_status': 'review_pending',
             'delivery': {

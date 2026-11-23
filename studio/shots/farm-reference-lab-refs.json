@@ -1,0 +1,33 @@
+{
+  "project": "farm-reference-lab",
+  "scene": "refs",
+  "model": "z-image-turbo",
+  "look": "natural",
+  "tags": ["reference-test", "farm", "candidate", "2026-11-15"],
+  "shots": [
+    {
+      "shot": "clara-identity",
+      "aspect": "3x4",
+      "seeds": [151101],
+      "shot_size": "waist-up character reference portrait",
+      "camera": "eye-level camera straight on, single person, unobstructed face and shoulders",
+      "subject": "Clara, a fictional beautiful adult woman age 32, long golden blonde hair tucked behind her ears, clearly blue eyes, warm beautiful natural smile, realistic healthy skin with fine natural texture, wearing a plain muted terracotta linen long-sleeve shirt with collar and blue jeans, no hat, no jewelry",
+      "action": "standing relaxed facing the camera, both arms resting naturally by her sides, gentle closed-mouth smile, eyes open, face sharply focused",
+      "location": "plain neutral light gray studio background with no props or scenery, only one woman",
+      "lighting": "soft even daylight, natural skin color, clear catchlights in both eyes",
+      "lens": "85mm portrait lens, realistic proportions, no text, no collage"
+    },
+    {
+      "shot": "farm-courtyard",
+      "aspect": "16x9",
+      "seeds": [151102],
+      "shot_size": "wide location reference",
+      "camera": "eye-level 35mm view into a spacious open courtyard with clear empty foreground",
+      "subject": "a peaceful rural Brazilian farmhouse courtyard, whitewashed single-story farmhouse with red clay roof and shaded veranda in the left background, dark wooden barn in the right background, low wooden fence and green pasture with distant trees",
+      "action": "empty courtyard, no people, no animals, no vehicles, no furniture or foreground props",
+      "location": "firm pale earth courtyard with short grass at its edges, generous clear ground for two people to stand and face each other",
+      "lighting": "soft late-afternoon daylight from camera left, balanced exposure, natural warm colors, distinct architectural edges",
+      "lens": "35mm spherical lens, realistic architecture, no text"
+    }
+  ]
+}

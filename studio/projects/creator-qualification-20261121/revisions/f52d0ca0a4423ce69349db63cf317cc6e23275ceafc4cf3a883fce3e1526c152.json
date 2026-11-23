@@ -1,0 +1,297 @@
+{
+  "assets": {
+    "_storyboard_references_v1": {
+      "bindings": {
+        "0b69664ae84e8ca89d573fb83cb43592651a84ddedcdcdbf9b5db7a504704742": {
+          "authorized_at": "2026-11-23T04:11:42.461424+00:00",
+          "authorized_by": "local-user",
+          "context": "5ff2a5e2c40f3414decf3313e1b05083d242108230e5a1f32bb9c270f4d76a42",
+          "entity": "SB3330-LOC-01",
+          "id": "0583f5fd-28ee-49ab-86c4-e7ef88b81289",
+          "input_use_authorized": true,
+          "loader_path": "storyboard_qualification/references/workshop_candidate_00001_.png [output]",
+          "reviews": [
+            {
+              "at": "2026-11-23T04:49:08.897733+00:00",
+              "binding_id": "0583f5fd-28ee-49ab-86c4-e7ef88b81289",
+              "context": "5ff2a5e2c40f3414decf3313e1b05083d242108230e5a1f32bb9c270f4d76a42",
+              "decision": "keep",
+              "id": "9f69bf8f-eefb-4486-af9c-a632a8da5993",
+              "reviewer": "local-user",
+              "source_sha256": "974c828c72f7d27d4ffe0c15b37f5ac96292207db005fc0d95bce5cd04530256"
+            }
+          ],
+          "role": "location",
+          "source_sha256": "974c828c72f7d27d4ffe0c15b37f5ac96292207db005fc0d95bce5cd04530256"
+        },
+        "4e19ef98131b08fcee82e6862512318696b067ff701a8d4560f4cc09f9673c0e": {
+          "authorized_at": "2026-11-23T04:11:42.753503+00:00",
+          "authorized_by": "local-user",
+          "context": "5d3564b6354c2f8e491f00ea2076aea5d8ad9b184d59bc9b982ff60b8cbccc2f",
+          "entity": "SB3330-PRP-01",
+          "id": "b4e7c856-caf5-47cc-b972-643c6e76281b",
+          "input_use_authorized": true,
+          "loader_path": "storyboard_qualification/references/blue_envelope_candidate_00001_.png [output]",
+          "reviews": [],
+          "role": "prop",
+          "source_sha256": "ca06affd4d3a7dbdae95e970ba365a9b7cbe48cf287607bb4b3bc199e3e0795a"
+        },
+        "70a58c11739abac6559eef10e00b921b7eeaa6d00d6ccc17fb20e2df166d6b15": {
+          "authorized_at": "2026-11-21T22:40:37.686897+00:00",
+          "authorized_by": "local-user",
+          "context": "9948214c7810c7cc6acc15f14b1d02c05779b54cfef7c7748beb5df32a69e298",
+          "entity": "SB3330-CHR-01",
+          "id": "a40f3518-8fb7-43bd-902a-ecb8ac261ef1",
+          "input_use_authorized": true,
+          "loader_path": "refs/refmod-ab-20261115/andre-front-from-video.jpg [input]",
+          "reviews": [
+            {
+              "at": "2026-11-22T23:53:18.300739+00:00",
+              "binding_id": "a40f3518-8fb7-43bd-902a-ecb8ac261ef1",
+              "context": "9948214c7810c7cc6acc15f14b1d02c05779b54cfef7c7748beb5df32a69e298",
+              "decision": "keep",
+              "id": "ecb3e042-ca99-41d9-b5ed-70d0515d280a",
+              "reviewer": "Andre via Plannotator msg_01M81EN0WFX87AVB74P87QMSK7",
+              "source_sha256": "4e8edc1d08c8d559021e049b368e73104f0e669d4e40dd557ea076d7fcfff40e"
+            }
+          ],
+          "role": "identity",
+          "source_sha256": "4e8edc1d08c8d559021e049b368e73104f0e669d4e40dd557ea076d7fcfff40e"
+        },
+        "b43c190fe421c4cc4d21b39e9978792abe6ef092c74b0ccc7cef202932ef8350": {
+          "authorized_at": "2026-11-23T04:11:43.039359+00:00",
+          "authorized_by": "local-user",
+          "context": "8f9a23f20feb8445299a37c2a990e8f1297f1b6232af095c00388f66923a6739",
+          "entity": "SB3330-CHR-01",
+          "id": "9c63d9ee-9713-4b59-bd49-54a28fd02829",
+          "input_use_authorized": true,
+          "loader_path": "storyboard_qualification/references/navy_coat_candidate_00001_.png [output]",
+          "reviews": [],
+          "role": "wardrobe",
+          "source_sha256": "09218a2c50f502e3c815dbee2b29180ab76098858f38ed1917ec55504ccd6985",
+          "wardrobe": "W1"
+        }
+      },
+      "sources": {
+        "09218a2c50f502e3c815dbee2b29180ab76098858f38ed1917ec55504ccd6985": {
+          "bytes": 371348,
+          "height": 480,
+          "locators": [
+            "storyboard_qualification/references/navy_coat_candidate_00001_.png [output]"
+          ],
+          "sha256": "09218a2c50f502e3c815dbee2b29180ab76098858f38ed1917ec55504ccd6985",
+          "width": 832
+        },
+        "4e8edc1d08c8d559021e049b368e73104f0e669d4e40dd557ea076d7fcfff40e": {
+          "bytes": 248500,
+          "height": 1376,
+          "locators": [
+            "refs/refmod-ab-20261115/andre-front-from-video.jpg [input]"
+          ],
+          "sha256": "4e8edc1d08c8d559021e049b368e73104f0e669d4e40dd557ea076d7fcfff40e",
+          "width": 768
+        },
+        "974c828c72f7d27d4ffe0c15b37f5ac96292207db005fc0d95bce5cd04530256": {
+          "bytes": 660716,
+          "height": 480,
+          "locators": [
+            "storyboard_qualification/references/workshop_candidate_00001_.png [output]"
+          ],
+          "sha256": "974c828c72f7d27d4ffe0c15b37f5ac96292207db005fc0d95bce5cd04530256",
+          "width": 832
+        },
+        "ca06affd4d3a7dbdae95e970ba365a9b7cbe48cf287607bb4b3bc199e3e0795a": {
+          "bytes": 489507,
+          "height": 480,
+          "locators": [
+            "storyboard_qualification/references/blue_envelope_candidate_00001_.png [output]"
+          ],
+          "sha256": "ca06affd4d3a7dbdae95e970ba365a9b7cbe48cf287607bb4b3bc199e3e0795a",
+          "width": 832
+        }
+      },
+      "version": 1
+    }
+  },
+  "bindings": {},
+  "manifest": {
+    "assets": "assets.json",
+    "bindings": "bindings.json",
+    "code": "SB3330",
+    "production": "production.json",
+    "proposal_digest": "4909a641b4427812fdb7d1db7e5783c828e62434deb1b998fae8ce5f53ffd9e6",
+    "reference_plan": "reference-plan.json",
+    "schema_version": 2,
+    "slug": "creator-qualification-20261121",
+    "source": "story/script-v001.md",
+    "source_sha256": "14b48bde926ffc658f9c11f7db28785d48eca40c391447432aa4762e687541d8",
+    "title": "Creator qualification 20261121",
+    "transitions": "shot_transitions.json",
+    "version": 1
+  },
+  "production": {
+    "characters": [
+      {
+        "appearance": "Short black hair",
+        "id": "SB3330-CHR-01",
+        "name": "Ada",
+        "persona": {
+          "demeanor": "Unspecified",
+          "speech": "Unspecified",
+          "summary": "Unspecified"
+        },
+        "wardrobe": [
+          {
+            "description": "Navy coat",
+            "id": "W1"
+          }
+        ]
+      }
+    ],
+    "editorial": {
+      "gap_before_frames": {},
+      "version": 1
+    },
+    "locations": [
+      {
+        "description": "Interior workshop space with a table.",
+        "id": "SB3330-LOC-01",
+        "kind": "INT",
+        "name": "Workshop"
+      }
+    ],
+    "project": {
+      "aspect": "16:9",
+      "code": "SB3330",
+      "fps": 24,
+      "source_text": "INT. WORKSHOP - DAY. Ada has short black hair and wears a navy coat.\nAda lifts a blue envelope.\nAda places the envelope on the table.\n",
+      "title": "Creator qualification 20261121"
+    },
+    "props": [
+      {
+        "description": "Blue envelope",
+        "id": "SB3330-PRP-01",
+        "name": "Blue envelope"
+      }
+    ],
+    "scenes": [
+      {
+        "characters": [
+          "SB3330-CHR-01"
+        ],
+        "id": "SB3330_S001",
+        "location": "SB3330-LOC-01",
+        "number": 1,
+        "props": [
+          "SB3330-PRP-01"
+        ],
+        "script_ref": {
+          "end": 134,
+          "start": 0
+        },
+        "slug": "Workshop",
+        "summary": "Ada lifts the blue envelope. Ada places the envelope on the table.",
+        "time": "day",
+        "wardrobe": {
+          "SB3330-CHR-01": "W1"
+        }
+      }
+    ],
+    "schema_version": 2,
+    "shots": [
+      {
+        "action": "Ada lifts the blue envelope.",
+        "angle": "eye-level",
+        "camera_move": {
+          "type": "static"
+        },
+        "characters": [
+          "SB3330-CHR-01"
+        ],
+        "duration_s": 3,
+        "id": "SB3330_S001_SH01",
+        "lens": "35mm",
+        "location": "SB3330-LOC-01",
+        "props": [
+          "SB3330-PRP-01"
+        ],
+        "purpose": "medium",
+        "scene": "SB3330_S001",
+        "script_ref": {
+          "end": 95,
+          "start": 69
+        },
+        "shot_size": "medium",
+        "subject": "Ada"
+      },
+      {
+        "action": "Ada places the envelope on the table.",
+        "angle": "eye-level",
+        "camera_move": {
+          "type": "static"
+        },
+        "characters": [
+          "SB3330-CHR-01"
+        ],
+        "duration_s": 3,
+        "id": "SB3330_S001_SH02",
+        "lens": "35mm",
+        "location": "SB3330-LOC-01",
+        "props": [
+          "SB3330-PRP-01"
+        ],
+        "purpose": "medium",
+        "scene": "SB3330_S001",
+        "script_ref": {
+          "end": 133,
+          "start": 96
+        },
+        "shot_size": "medium",
+        "subject": "Ada"
+      }
+    ],
+    "style_bible": {
+      "lens_default": "35mm",
+      "lighting_default": {
+        "key": "Unspecified",
+        "quality": "soft",
+        "time_of_day": "day"
+      },
+      "look": "Neutral draft",
+      "palette": [
+        "neutral"
+      ]
+    }
+  },
+  "reason": "Review a storyboard reference",
+  "revision": "f52d0ca0a4423ce69349db63cf317cc6e23275ceafc4cf3a883fce3e1526c152",
+  "storyboard": {
+    "shots": {
+      "SB3330_S001_SH01": {
+        "end": {
+          "candidates": [],
+          "description": "Ada holds the blue envelope after lifting it."
+        },
+        "start": {
+          "candidates": [],
+          "description": "Ada and the blue envelope before the lift; the placement of the envelope and hand are unspecified."
+        }
+      },
+      "SB3330_S001_SH02": {
+        "end": {
+          "candidates": [],
+          "description": ""
+        },
+        "start": {
+          "candidates": [],
+          "description": ""
+        }
+      }
+    },
+    "version": 1
+  },
+  "transitions": {
+    "SB3330_S001_SH01": "cut",
+    "SB3330_S001_SH02": "cut"
+  }
+}

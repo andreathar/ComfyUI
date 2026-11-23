@@ -3,19 +3,23 @@
 
 import argparse
 import json
-import os
 from pathlib import Path
+from functools import partial
 import subprocess
 import sys
-import urllib.error
-import urllib.request
 
-import production_validate as pv
+if __package__:
+    from . import production_outline, production_validate as pv
+    from .asset_vision import MODEL as DEFAULT_MODEL, MODEL_HOME, check_comfyui, http, local_server, owns_listener
+else:
+    import production_outline
+    import production_validate as pv
+    from asset_vision import MODEL as DEFAULT_MODEL, MODEL_HOME, check_comfyui, http, local_server, owns_listener
 
 PROMPT = pv.SPEC / "generate-prompt.md"
 RULES = pv.SPEC / "production-rules.md"
 MAX_ROUNDS = 3
-DEFAULT_MODEL = "claude-sonnet-5-5"
+DEFAULT_ENGINE = Path.home() / '.hermes/tools/llamacpp-cuda-12144-linux-x64/llama-server'
 
 
 class GenerateError(Exception):
@@ -46,37 +50,55 @@ def extract_json(text):
         raise GenerateError(f"model reply is not valid JSON: {error}") from error
 
 
-def claude_cli(system, messages, model):
-    """Run on the Claude subscription through the claude CLI (no API key)."""
-    transcript = "\n\n".join(f"[{m['role']}]\n{m['content']}" for m in messages)
-    result = subprocess.run(["claude", "-p", "--model", model, "--append-system-prompt", system],
-                            input=transcript, capture_output=True, text=True, timeout=900)
-    if result.returncode:
-        raise GenerateError(f"claude CLI failed: {result.stderr.strip()[:500]}")
-    return result.stdout
-
-
-def anthropic_api(system, messages, model):
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        raise GenerateError("ANTHROPIC_API_KEY is not set")
-    body = json.dumps({"model": model, "max_tokens": 16000, "system": system, "messages": messages}).encode()
-    request = urllib.request.Request("https://api.anthropic.com/v1/messages", body, {
-        "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01"})
+def local_completion(port, key, pid, system, messages, model, *, max_tokens=4096, timeout=1800):
+    check_comfyui()
+    if not owns_listener(pid, port):
+        raise GenerateError('The isolated model no longer owns its listener')
+    reply = http(port, '/v1/chat/completions', key, {
+        'model': model, 'messages': [{'role': 'system', 'content': system}, *messages],
+        'response_format': {'type': 'json_object'}, 'temperature': 0, 'max_tokens': max_tokens,
+        'chat_template_kwargs': {'enable_thinking': False},
+    }, timeout=timeout)
+    if reply.get('model') != model:
+        raise GenerateError('Unexpected local model')
     try:
-        with urllib.request.urlopen(request, timeout=600) as response:
-            return "".join(b.get("text", "") for b in json.load(response)["content"])
-    except urllib.error.HTTPError as error:
-        raise GenerateError(f"Anthropic API error {error.code}: {error.read().decode()[:500]}") from error
+        choice = reply['choices'][0]
+        content = choice['message']['content']
+        if choice['finish_reason'] != 'stop' or not isinstance(content, str) or not content.strip():
+            raise GenerateError('Incomplete local reply; use a smaller script or revision')
+    except (KeyError, IndexError, TypeError) as error:
+        raise GenerateError('Invalid local completion response') from error
+    return content
 
 
-BACKENDS = {"claude-cli": claude_cli, "api": anthropic_api}
+def generate_outline(source, backend, *, code, title, style_bible='', model=DEFAULT_MODEL):
+    message = json.dumps({'story': source, 'brief': style_bible}, ensure_ascii=False)
+    reply = backend(production_outline.SYSTEM, [{'role': 'user', 'content': message}], model)
+    try:
+        return production_outline.expand(json.loads(reply), source, code, title)
+    except ValueError as error:
+        return {'problems': [str(error)]}
 
 
-def generate(dictation, backend, model=DEFAULT_MODEL, style_bible="", existing=""):
+def generate(dictation, backend, model=DEFAULT_MODEL, style_bible="", existing="", revised_script=None):
     """Return {"document": ...} when valid, or {"questions": [...]} / {"problems": [...]} otherwise."""
+    source = dictation
+    if existing:
+        try:
+            source = json.loads(existing)["project"]["source_text"]
+            if not isinstance(source, str):
+                raise TypeError
+        except (ValueError, KeyError, TypeError) as error:
+            raise GenerateError("Existing production has no valid project.source_text") from error
+    if revised_script is not None:
+        if not existing:
+            raise GenerateError("A revised script requires an existing production")
+        source = revised_script
     system = system_prompt()
-    messages = [{"role": "user", "content": user_message(dictation, style_bible, existing)}]
+    message = user_message(dictation, style_bible, existing)
+    if revised_script is not None:
+        message += f"\n<revised_script>\n{revised_script}\n</revised_script>"
+    messages = [{"role": "user", "content": message}]
     problems = []
     for _ in range(MAX_ROUNDS + 1):
         reply = backend(system, messages, model)
@@ -89,8 +111,8 @@ def generate(dictation, backend, model=DEFAULT_MODEL, style_bible="", existing="
                 return {"questions": doc["questions"]}
             problems = pv.check(doc)
             if not problems:
-                if doc["project"]["source_text"] != dictation:
-                    problems = ["project.source_text must be the dictation, unchanged"]
+                if doc["project"]["source_text"] != source:
+                    problems = ["project.source_text must match the authorized full script, unchanged"]
                 else:
                     return {"document": doc}
         messages += [{"role": "assistant", "content": reply},
@@ -103,19 +125,38 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dictation", type=Path, help="Text file with the dictated script")
     parser.add_argument("--out", type=Path, required=True, help="Where to write the production JSON")
-    parser.add_argument("--backend", choices=sorted(BACKENDS), default="claude-cli")
-    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument('--engine', type=Path, default=DEFAULT_ENGINE, help='Hermes-installed CUDA llama-server executable')
+    parser.add_argument('--log', type=Path, required=True, help='New local llama-server log path')
     parser.add_argument("--style", type=Path, help="Project style bible / settings text file")
     parser.add_argument("--existing", type=Path, help="Current production JSON to revise")
+    parser.add_argument("--revised-script", type=Path, help="Complete replacement source text for a revision")
+    parser.add_argument('--outline', action='store_true', help='Compact draft mode for a single silent scene')
+    parser.add_argument('--project-code', help='Project code for --outline')
+    parser.add_argument('--title', help='Project title for --outline')
     args = parser.parse_args(argv)
+    if args.revised_script and not args.existing:
+        parser.error("--revised-script requires --existing")
+    if args.outline and (args.existing or not args.project_code or not args.title):
+        parser.error('--outline requires --project-code and --title, without --existing')
+    if not args.outline and (args.project_code or args.title):
+        parser.error('--project-code and --title require --outline')
     if args.out.exists():
         print(f"Refusing to overwrite {args.out}", file=sys.stderr)
         return 2
-    result = generate(args.dictation.read_text(), BACKENDS[args.backend], args.model,
-                      args.style.read_text() if args.style else "",
-                      args.existing.read_text() if args.existing else "")
+    dictation = args.dictation.read_bytes().decode('utf-8') if args.outline else args.dictation.read_text()
+    style = args.style.read_text() if args.style else ''
+    existing = args.existing.read_text() if args.existing else ''
+    revised = args.revised_script.read_text() if args.revised_script else None
+    with args.log.open('x') as log, local_server(args.engine, MODEL_HOME / f'{DEFAULT_MODEL}.gguf', None, log) as (port, key, pid):
+        backend = partial(local_completion, port, key, pid)
+        if args.outline:
+            result = generate_outline(dictation, partial(backend, max_tokens=768, timeout=360),
+                                      code=args.project_code, title=args.title, style_bible=style)
+        else:
+            result = generate(dictation, backend, style_bible=style, existing=existing, revised_script=revised)
     if "document" in result:
-        args.out.write_text(json.dumps(result["document"], indent=2) + "\n")
+        with args.out.open('x') as stream:
+            stream.write(json.dumps(result['document'], indent=2) + '\n')
         print(f"valid: wrote {args.out}")
         return 0
     key = "questions" if "questions" in result else "problems"
@@ -128,6 +169,6 @@ def main(argv=None):
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (GenerateError, OSError) as error:
+    except (GenerateError, OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
         print(f"Generate error: {error}", file=sys.stderr)
         raise SystemExit(1)

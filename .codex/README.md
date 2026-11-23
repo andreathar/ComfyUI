@@ -4,6 +4,25 @@ This folder holds Codex configuration and workstation-specific operations. The
 root `AGENTS.md` remains the authority for upstream engineering rules. Start
 with [SETUP_PLAN.md](SETUP_PLAN.md) for decisions, outstanding work, and evidence.
 
+See [BRAIN_ANALYSIS.md](BRAIN_ANALYSIS.md) for on-demand SQLite snapshots, evidence reports and human experiment decisions.
+See [FARM_REFERENCE_LAB.md](FARM_REFERENCE_LAB.md) for the verified two-character
+reference test, take provenance checks, browser loading pitfall and advisor gaps.
+
+## Integrated stack and visible browser
+
+Read [AGENT_TOOLING.md](AGENT_TOOLING.md) before graph investigation or CodeRabbit
+review: it defines repository coverage checks, the working graph access path,
+review scope, evidence gates and tool-specific limits.
+See [RUN_PROVENANCE.md](RUN_PROVENANCE.md) for new-run component/settings capture,
+its validation evidence and completed live activation.
+See [BRAIN_ANALYSIS.md](BRAIN_ANALYSIS.md) for additive report-quality metadata and
+the measured SQLite analysis-index recommendation.
+
+Read [STACK_OWNERSHIP.md](STACK_OWNERSHIP.md) for component responsibilities,
+including native DynamicVRAM and LC123 global hooks that saved-node counts miss.
+Use [BROWSER_ACCESS.md](BROWSER_ACCESS.md) for the shared visible Playwright CLI
+session, existing MCP configuration, and host-specific verification limits.
+
 ## Argon Studio reference frames
 
 The local Argon checkout now includes a manual reference-frame handoff:
@@ -26,16 +45,159 @@ was added by this handoff.
 - The venv uses the already-installed uv-managed Python 3.13 interpreter; it
   does not use system packages. There is no `.python-version` override: pyenv
   owns bare Python shims and does not have this uv-managed version installed.
-- Use `uv pip install --python .venv/bin/python --torch-backend cu130 ...` for
-  dependency changes. Review the resolution before applying upgrades.
-- `requirements.txt` is upstream's dependency list. `requirements.lock.txt` in
-  this folder records the verified local environment; it is a version snapshot,
-  not a cross-platform or hash-verified supply-chain lock.
-- Do not run `uv sync`: this checkout declares its runtime in `requirements.txt`,
-  not a complete dependency list in `pyproject.toml`.
+- Use Antigravity's **Python Packages → Open Package Visualizer** for this
+  workspace. The dashboard reads `pyproject.toml` and the existing `.venv`.
+  The Linux x86-64 Python 3.13 resolution lives in `uv.lock`, including an
+  explicit cu130 index for Torch, torchvision and torchaudio.
+- **Tools → Migrate to uv → Automatic** applies the local lock with uv's
+  additive pip installer. It keeps installed custom-node packages and
+  can reinstall a missing locked package when the resulting environment
+  satisfies installed dependencies. **Manual** opens the manifest.
+- **Install New**, single-package updates and version pins use the same
+  resolver. They record project additions in the `workspace` group and
+  reject changes to protected packages or incompatible installed and
+  custom-node requirements.
+  Removing a workspace declaration leaves its installed copy available
+  to custom nodes. Bulk upgrades, unused-package cleanup and snapshot
+  restoration are disabled for this workspace.
+- The bridge is local to this checkout and the installed Visualizer
+  Community 3.3.2 bundle. Run
+  `.venv/bin/python .codex/install_package_visualizer_bridge.py` to reinstall
+  it, then use **Developer: Reload Window** in Antigravity. The installer
+  validates the extension bundle and saves the original alongside it.
+  Review extension upgrades before re-enabling write actions in a newer build.
+- Keep `requirements.txt`, `manager_requirements.txt`, and
+  `tests-unit/requirements.txt` for upstream workflows and tools.
+  A bare `uv sync` can remove custom-node packages. Use the command below
+  for a terminal equivalent of the Visualizer's Automatic action.
 - Keep the project venv out of pathman's host PATH. Activation is optional and
   temporary; explicit interpreter paths work in terminals, IDEs, and agents.
 - No Node installation/build is required to run the packaged ComfyUI frontend.
+
+```bash
+uv lock --check --python .venv/bin/python
+.venv/bin/python .codex/uv_workspace.py migrate
+uv pip check --python .venv/bin/python
+```
+
+| Visualizer feature | Use for this checkout |
+| --- | --- |
+| **Add Package**, **Pin**, single-package update | Apply a workspace change through uv. The Pin badge tracks the IDE hold. The accepted version is recorded in the manifest and lock. |
+| **Conflicts** | Read dependency errors from uv's check of the project interpreter. Review any proposed repair before changing packages. |
+| **Environment** | Inspect the full installed inventory from uv. Update hints reflect the latest managed-package scan. |
+| **Package List**, **Dependency Graph**, **Tools → Markdown / JSON** | See managed dependencies and available releases. For the full installed inventory and ownership, use the package review below. |
+| **Tools → Setup script / Setup README** | Open this runbook and use the workstation setup instructions. |
+
+### Review a package upgrade
+
+Use the project-local [ComfyUI Python Packages skill](../.agents/skills/comfyui-python-packages/SKILL.md).
+The review reports installed and locked versions, dependency owners, possible
+shared import names, and custom-node pin drift. Give it a package and an exact
+version to see which requirements allow or block the candidate.
+
+```bash
+.venv/bin/python .codex/package_review.py
+.venv/bin/python .codex/package_review.py numpy 2.5.5 --json
+```
+
+Add `--resolve` to try the exact candidate against a temporary copy of the uv
+project. Add `--offline` to use cached metadata only. The report checks the
+local declarations and installed environment. For workflow mapping, supply
+`--workflow FILE` and a recent `--object-info FILE` snapshot from this
+ComfyUI instance. The review does not install packages or execute workflows.
+
+## Version the installed custom-node stack
+
+Each custom-node Git repository keeps its own branches, commits and release
+history; the ComfyUI root does not absorb plugin history. For maintained
+plugins, publish SemVer tags from that plugin repository. The tracked
+`.codex/custom_nodes.lock.json` records the committed HEAD, configured origin,
+canonical repository path and active install paths for each distinct Git root.
+Its `install_sources` map records each installed path's resolved source
+directory relative to that Git root, distinguishing multiple node packs in a
+shared checkout.
+Symlinked install paths that share a repository are listed together; unrelated
+worktrees are not included unless an active `custom_nodes/` entry points to
+them. The lock pins independent Git checkouts. The checker also rejects copied node
+packs with no tracked entry point and reports dirty parent-owned node packs.
+
+Make and commit plugin changes in the plugin repository first. After committing,
+update that repository's lock entry to its new HEAD (and release tag when
+applicable), origin and install paths. Do not treat the lock as a snapshot of
+uncommitted files: the checker reports tracked and untracked changes, missing
+or extra active repositories, path/origin mismatches and HEAD drift. An absent
+origin is reported and is never repaired automatically.
+
+Run the check from the ComfyUI root:
+
+```bash
+.venv/bin/python .codex/check_custom_nodes.py
+```
+
+The checker uses only Python's standard library and local Git metadata. It does
+not fetch, install, or modify repositories; a non-zero result means the current
+stack is not an exact match for the committed lock. The initial lock records
+the current committed HEADs only, so the existing dirty work is intentionally
+reported as non-reproducible rather than captured or committed by this workflow.
+
+The November 13 `.codex/requirements.lock.txt` is the recovery snapshot for
+the extended Python installation, including packages outside `uv.lock`.
+
+The maintained studio repositories use `andreathar` origins and the integration
+branch `studio/stabilization-20261113`. Original sources remain as `upstream`
+remotes. Project Suite, PromptBuilder and Dynamic are GitHub forks. Context Loop
+is a private standalone repository preserving its upstream history: GitHub puts
+it and Project Suite in the same fork network and allows only one fork per
+account. Workflow Monitor Brain is also private; access to these repositories
+requires authentication. The lock pins commits, not the upstream default branch.
+
+To change a maintained plugin, work in its own checkout, run its focused tests,
+commit and push its maintained branch, then update and commit its lock entry in
+ComfyUI. Verify the pushed SHA before updating the lock. Do not use a parent
+commit or a Manager update as a substitute for committing plugin changes.
+All 14 active custom-node repositories are pinned, including the formerly
+copied packs. Swarm nodes use a clean detached worktree at the pinned revision;
+the separate Swarm application's unfinished work remains untouched. Spark's
+installed registry distribution is preserved under its repository's
+`studio-package/`; the install link points there, not to the upstream root.
+See `STABILIZATION.md` for validation and remaining acceptance limits.
+
+LC Vision was intentionally removed by the user; its lock entries were removed
+on November 14. Do not restore it from the historical stabilization inventory.
+The production goal is to consolidate the required extensions into an integrated,
+highly monitored workflow that uses this PC's resources efficiently. Assess an
+extension's role in saved workflows, dependencies, monitoring and measured resource
+cost before proposing additions or removals. Keep component changes in their
+own repositories and preserve the parent lock's reproducibility checks.
+
+## Restore the November 13 Python snapshot
+
+Use this historical recovery path in a fresh environment. It contains the
+CUDA PyTorch, torchaudio and torchvision builds and the custom-node package
+inventory from November 13. The current core dependency versions come from
+`uv.lock`.
+
+Run from this checkout after creating `.venv` with the documented Python version:
+
+```bash
+.venv/bin/python .codex/restore_runtime_wheel.py
+uv pip install --python .venv/bin/python --torch-backend cu130 --link-mode copy -r .codex/requirements.lock.txt
+uv pip check --python .venv/bin/python
+.venv/bin/python .codex/check_custom_nodes.py
+```
+
+The explicit wheel helper downloads only the pinned Spark software release,
+verifies archive and wheel SHA-256 values, and restores the matching local
+wheel. It never downloads models. The llama.cpp wheel uses its original
+publisher's immutable release URL and verified digest instead of a vanished
+temporary path. Runtime snapshots are platform-specific, not portable locks.
+
+Unused incompatible MoviePy, Qwen-TTS, Decord, NuVu and the overlapping ONNX GPU
+distribution were removed after their package files were archived. CPU ONNX
+Runtime supplies the required shared module. The stale Realtime installation
+and unused vulnerable PyPDF2 were also archived and removed. Use separate
+environments if those optional applications are needed again. Recovery files
+are under ignored `.codex/artifacts/stabilization-followup/`.
 
 ## Local references
 
@@ -74,8 +236,8 @@ the script are passed to ComfyUI, for example `bash .codex/launch.sh --cache-non
 when memory pressure makes recomputation preferable to caching.
 
 The setup session left a background instance running. Its PID, cwd and log are
-recorded in `.codex/artifacts/server-process.json`; the log is
-`.codex/artifacts/comfyui-current.log`. Before stopping that instance, verify
+recorded in `.codex/artifacts/server-process.json`; use its `log` field for the
+current log. Before stopping that instance, verify
 its live PID/cwd/command against the record and confirm the queue is empty,
 then send SIGINT only to that process. Do not launch a duplicate on 8188.
 
@@ -90,7 +252,8 @@ the default; use `--cache-none` separately if recomputation is acceptable.
 The launcher registers native local and partner API nodes so imported API
 templates do not falsely appear to need an unknown node pack. Registration
 does not execute an API workflow; partner calls require account access and
-credits. Run only the local SD 1.5 baseline when testing local generation.
+credits. Use the local SD 1.5 baseline for a basic installation smoke test;
+other production tests use their specifically authorized local workflow.
 Pass `--disable-partner-nodes` explicitly to hide API nodes if desired, but
 expect their templates to report missing nodes. Do not add `--offline` when
 browsing the registry: its CSP blocks the external search provider. For fully
@@ -106,31 +269,14 @@ Model downloads still require an explicit choice.
 
 ## Install Python packages and missing nodes
 
-Pathman manages host executable paths. Use uv to install Python dependencies
-into this project's venv; no pathman change or global Python install is needed.
-The project-compatible Manager version comes from `manager_requirements.txt`:
-
-```bash
-uv pip install --python .venv/bin/python --torch-backend cu130 --constraint .codex/requirements.lock.txt --link-mode copy -r manager_requirements.txt torchaudio
-uv pip check --python .venv/bin/python
-```
-
-Manager's integrity check expects torch, torchvision and torchaudio. The CUDA
-torchaudio wheel was import/resample tested against this environment before
-installation; it does not replace the working PyTorch packages.
-
-Manager's `user/__manager/config.ini` sets `use_uv = true`. The launcher exports
-`UV_PYTHON` with the explicit project interpreter, `UV_TORCH_BACKEND=cu130`,
-and `UV_LINK_MODE=copy` for its dependency subprocesses. Manager also adds the
-venv bin directory to its own process PATH; this is temporary project scope,
-not a write to pathman's host configuration.
-
-After package installation, stop the existing ComfyUI process with Ctrl+C in
-its terminal and run `bash .codex/launch.sh` again. Refresh the browser, then
-use Node Manager's missing-node installation for the workflow's named packs.
-Manager installation alone does not install an unidentified workflow's packs.
-After custom-node changes, run the dependency check again and refresh the
-version snapshot only after the workflow passes.
+Manager's local `user/__manager/config.ini` uses `security_level = strong`,
+`allow_pip_install = False`, and `use_unified_resolver = False`. The catalogue remains available for
+identifying missing node packs. Manager install, update, fix and similar
+actions that can change packages are gated. Review those packs in their
+own repositories and use the Visualizer for supported package additions.
+For git or platform-specific wheels, review their sources and compatibility
+before adding them to the project manifest. Restart ComfyUI after changing
+packages when the server is idle and the restart is authorized.
 
 If Missing Nodes is empty, compare the workflow's issue with its actual node
 type before installing anything:
@@ -193,10 +339,10 @@ standard checkpoint loader and needs no custom node packs.
 
 The user approved this 2,132,696,762-byte checkpoint. Its pinned source revision,
 SHA-256 and license are in `.codex/artifacts/model-manifest.json`. The original
-Z-Image workflow is saved separately as **Z-Image Turbo - original pending
-models**; its missing model files were not downloaded. Its selected
-`pixel_space` VAE should also be replaced with the model's documented VAE before
-attempting that workflow.
+Z-Image workflow was saved separately as **Z-Image Turbo - original pending
+models** during setup. That title is historical: installed Z-Image weights were
+used successfully for the November 15 farm references. This does not validate
+the old workflow's `pixel_space` VAE choice; the farm stills use `ae.safetensors`.
 
 Four native GPU runs completed: cold **14.19 s**, warm **8.13 / 7.65 / 6.59 s**.
 These timings apply only to this workflow and the observed busy machine.
@@ -224,11 +370,13 @@ artifact choice, resource budget and generation test.
 
 ### Download models to the configured model folder
 
-This checkout is on `/mnt/data`, but `models/` links to
-`/home/athar/ComfyUI-models` on the system filesystem. Downloads follow that
-existing model folder; no weights are moved. The catalogue's required mount is
-`/`, matching the actual destination. Check free space there before large
-model downloads; free space on `/mnt/data` is not available to this folder.
+As verified on 2026-11-22, `models/` resolves through
+`/home/athar/ComfyUI-models` to `/mnt/data/ComfyUI-models` on the `/mnt/data`
+mount. With the user's approval, the catalogue's mount was corrected from `/`
+to `/mnt/data`; the Q4-only Klein profile now passes the storage check and its
+existing model file verifies against the pinned SHA-256. No model was moved or
+downloaded. Recheck the mount before later acquisitions; do not bypass the
+guard or infer storage speed from a folder name.
 
 The standalone downloader uses `.codex/models.json` to map each selected model
 set to exact native filenames and categories. From the project root:
@@ -247,9 +395,10 @@ set to exact native filenames and categories. From the project root:
 .venv/bin/python .codex/model_download.py verify sd15
 ```
 
-For the deferred Z-Image set, `plan z-image-turbo` shows all three destinations.
-When that model set is explicitly selected for use, the corresponding
-`download z-image-turbo` command downloads its 19.27 GiB (20.69 GB) set:
+The Z-Image set was initially deferred and is now installed. Once storage policy
+is reconciled, `plan z-image-turbo` checks its three destinations without a
+download. Any newly requested acquisition still requires authorization; the
+catalogue describes a 19.27 GiB (20.69 GB) set:
 
 | Artifact | Native destination under `models/` |
 | --- | --- |

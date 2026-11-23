@@ -1,5 +1,12 @@
 # Tested workflows on this PC — 2026-11-09
 
+> Live availability check, 2026-11-16: the Klein GGUF weights remain on disk, but
+> `UnetLoaderGGUF` is absent from `/object_info`; the existing worker job is
+> rejected before generation. The historical Klein results below are not current
+> readiness evidence. Qwen Image 2.1 still lacks the named 8B encoder in the live
+> loader choices. See [the kitchen first-frame test](artifacts/kitchen-first-frame-20261116/REPORT.md)
+> for the preserved rejection and the existing H3 composition fallback.
+
 **November 10 organization:** the four daily image workflows now live under **01 - Images** and the LC123 utility under **04 - Utilities** in the ComfyUI workflow browser. The changed Z-Image pilot is in **90 - Lab and Older Workflows** pending renewed safety review. See [the current ComfyUI workspace map](../reports/COMFYUI_WORKSPACE.md). Production stays inside ComfyUI; older pilot measurements below remain historical evidence.
 
 Start with **PC Test 02 - FLUX2 Klein Q8 512** for the best subject match observed in these tests. Edit its Prompt node, keep 512×512 / batch 1 / 4 steps, and Run. Change the fixed seed for another variation. Use **PC Test 01 - SD15 512** for faster drafts.

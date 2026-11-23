@@ -1,0 +1,15 @@
+{
+  "assets": "assets.json",
+  "bindings": "bindings.json",
+  "code": "SB3330",
+  "production": "production.json",
+  "proposal_digest": "4909a641b4427812fdb7d1db7e5783c828e62434deb1b998fae8ce5f53ffd9e6",
+  "reference_plan": "reference-plan.json",
+  "schema_version": 2,
+  "slug": "creator-qualification-20261121",
+  "source": "story/script-v001.md",
+  "source_sha256": "14b48bde926ffc658f9c11f7db28785d48eca40c391447432aa4762e687541d8",
+  "title": "Creator qualification 20261121",
+  "transitions": "shot_transitions.json",
+  "version": 1
+}

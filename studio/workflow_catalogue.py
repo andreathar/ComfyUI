@@ -272,7 +272,7 @@ def candidates(path, output, issues):
         dirs[:] = kept
         for name in sorted(files):
             child = Path(directory) / name
-            if not child.resolve().is_relative_to(output.resolve()) and child.suffix.lower() in {".json", ".png"} | UNSUPPORTED:
+            if child.is_file() and not child.resolve().is_relative_to(output.resolve()) and child.suffix.lower() in {".json", ".png"} | UNSUPPORTED:
                 yield child
 
 
@@ -304,13 +304,15 @@ def scan(root, output, schemas=None):
                         source["status"] = "uninspected_png_pillow_unavailable"
                         continue
                     with Image.open(path) as image:
+                        if image.format != 'PNG':
+                            raise ValueError('Expected PNG content for workflow metadata')
                         metadata = dict(image.text)
                     values = []
                     for key in ("workflow", "prompt"):
                         if key in metadata:
                             try:
                                 values.append(("png/" + key, json.loads(metadata[key])))
-                            except (ValueError, TypeError) as exc:
+                            except (ValueError, TypeError, RecursionError) as exc:
                                 source["payloads"].append({"pointer": "png/" + key, "status": "parse_error", "error": str(exc)})
                     if not values and not source["payloads"]:
                         source["status"] = "png_without_workflow_metadata"
@@ -336,7 +338,7 @@ def scan(root, output, schemas=None):
                         workflows[workflow_id]["aliases"].append(alias)
                         source["payloads"].append({"pointer": location, "status": "graph", "workflow_id": workflow_id, "format": kind})
                 source["status"] = "inspected"
-            except (OSError, ValueError, TypeError, SyntaxError) + PNG_ERRORS as exc:
+            except (OSError, ValueError, TypeError, SyntaxError, RecursionError) + PNG_ERRORS as exc:
                 source["status"] = "parse_or_read_error"
                 source["error"] = str(exc)
     rows = sorted(workflows.values(), key=lambda w: w["id"])
@@ -495,7 +497,7 @@ def _write_report(report, output, write_text):
     write_csv(output / "workflow-matrix.csv", ["id", "title", "format", "families", "extensions", "task", "models", "blockers", "unknowns", "variant", "test_status", "sources"], matrix, write_text)
     write_csv(output / "model-references.csv", ["workflow_id", "scope", "node_id", "node_type", "field", "reference", "basis", "availability", "loader_compatibility"], models, write_text)
     write_csv(output / "blockers" / "workflows.csv", ["workflow_id", "kind", "detail"], blockers, write_text)
-    write_text(output / "tests" / "README.md", "# Tests\n\nThe scanner creates no test copies and executes no workflows. Separately reviewed PC pilot copies, when present, are in `pilots/`; constructed extension capability API tests are in `utilities/`. See `../START_HERE.md` for current coverage and caveats. Scanner unit tests: `python -m unittest discover -s studio -p 'test_workflow_catalogue.py' -v`.\n")
+    write_text(output / "tests" / "README.md", "# Tests\n\nThe scanner creates no test copies and executes no workflows. Separately reviewed PC pilot copies, when present, are in `pilots/`; constructed extension capability API tests are in `utilities/`. See `../START_HERE.md` for current coverage and caveats. Scanner unit tests: `PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p 'test_workflow_catalogue.py' -v`.\n")
     write_text(output / "results" / "README.md", "# Results\n\nInventory is not runtime evidence. The scanner performs no queue/history requests or generation tests. Separately executed pilot evidence, when present: [PILOTS.md](PILOTS.md), [pilots.json](pilots.json), [UTILITIES.md](UTILITIES.md) and [utilities.json](utilities.json). See `../START_HERE.md` for overall progress. Cached outputs and historical reports are not certification.\n")
     write_text(output / "blockers" / "README.md", "# Blockers and unknowns\n\n[workflows.csv](workflows.csv) separates observed schema gaps from unverified requirements. A missing localhost schema is not proof that an extension is absent. Muted/bypassed nodes, frontend virtual nodes and native subgraph IDs are not reported as missing backend types. All nodes, including inactive nodes and unused subgraph definitions, remain in the reference map. File-level exclusions, errors, unsupported media and traversal gaps are in `../workflows.json` (`sources`, `traversal_issues`). No model existence, loader compatibility, safety or hardware qualification is implied.\n")
     families = sorted({r["family"] for r in report["roots"]})
@@ -542,7 +544,7 @@ Schema reconciliation: `{json.dumps(report.get('schema_snapshot', {}), sort_keys
 ## Regenerate
 
 ```sh
-.venv/bin/python -m unittest discover -s studio -p 'test_workflow_catalogue.py' -v
+PYTHONPATH=studio .venv/bin/python -m unittest discover -s studio/tests -p 'test_workflow_catalogue.py' -v
 .venv/bin/python studio/workflow_catalogue.py
 # Optional read-only local schema snapshot (failure leaves availability unknown):
 .venv/bin/python studio/workflow_catalogue.py --port 8188

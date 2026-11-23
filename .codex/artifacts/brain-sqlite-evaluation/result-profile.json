@@ -1,0 +1,90 @@
+{
+  "disposable": true,
+  "stream_one_run_at_a_time": true,
+  "sqlite_version": "3.53.1",
+  "source_load_seconds": 4.1100065573118627e-07,
+  "sqlite_import_seconds": 0.9016981950007903,
+  "source_bytes": 25193996,
+  "database_bytes": 38789120,
+  "process_peak_rss_mib": 69.09765625,
+  "proc_memory_mib": {
+    "start": {
+      "VmRSS": 17.078125,
+      "VmHWM": 17.078125
+    },
+    "loaded": {
+      "VmRSS": 17.1484375,
+      "VmHWM": 17.1484375
+    },
+    "imported": {
+      "VmRSS": 38.1640625,
+      "VmHWM": 69.09765625
+    },
+    "queried": {
+      "VmRSS": 47.51953125,
+      "VmHWM": 69.09765625
+    }
+  },
+  "counts": {
+    "runs": 38,
+    "events": 5525,
+    "samples": 9932,
+    "device_samples": 9932,
+    "components": 15,
+    "issues": 354
+  },
+  "probes": {
+    "state_counts": {
+      "median_ms": 0.00949400055105798,
+      "max_ms": 0.22466399968834594,
+      "repeats": 15,
+      "json_scan": {
+        "median_ms": 6.138604001534986,
+        "max_ms": 6.561160000273958,
+        "repeats": 15
+      }
+    },
+    "coverage_gaps": {
+      "median_ms": 0.030170000172802247,
+      "max_ms": 0.10607200056256261,
+      "repeats": 15
+    },
+    "temperature_peaks": {
+      "median_ms": 1.3756699991063215,
+      "max_ms": 1.5831820001039887,
+      "repeats": 15
+    },
+    "source_revisions": {
+      "median_ms": 0.022481000996776856,
+      "max_ms": 0.08736500058148522,
+      "repeats": 15
+    }
+  },
+  "quality_gap_run_counts": {
+    "dirty_or_unknown_source": 1,
+    "event_coverage": 9,
+    "input_package_missing": 36,
+    "model_identity_unverified": 38,
+    "output_decode_unverified": 5,
+    "output_identity_missing": 33,
+    "prompt_review_missing": 37,
+    "resource_samples_missing": 15,
+    "runtime_settings_missing": 34,
+    "source_provenance_missing": 37,
+    "thermal_causality_unavailable": 38,
+    "unresolved_inputs": 35,
+    "visual_review_missing": 34
+  },
+  "read_only_write_blocked": true,
+  "large_seed_json_extract_type": "float",
+  "large_seed_text_roundtrip_exact": true,
+  "source_hashes_unchanged": true,
+  "integrity_check": "ok",
+  "model_packet_bytes": 7736,
+  "limitations": [
+    "Warm-cache local measurement, not production-load performance.",
+    "Stream import time includes source reading and report construction; non-stream import excludes those.",
+    "State-count JSON scan and SQL match; derived quality-query speed excludes derivation cost.",
+    "No incremental sync, watcher, live write, production integration or model inference."
+  ]
+}

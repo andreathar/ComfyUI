@@ -1,0 +1,13 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "isolated": true,
+    "launchOptions": {
+      "executablePath": "/home/athar/.local/opt/google-chrome-stable/current/opt/google/chrome/chrome",
+      "headless": false
+    },
+    "contextOptions": {
+      "viewport": null
+    }
+  }
+}

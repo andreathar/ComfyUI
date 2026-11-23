@@ -1,4 +1,6 @@
-# Master Movie Studio — read-only review
+# Master Movie Studio — historical review before F1–F5 corrections
+
+For current operation, see the [Master Movie Studio guide](MASTER_MOVIE_STUDIO_GUIDE.md).
 
 Reviewed the live **The Message - Master Movie Studio** canvas on 2026-11-12, workflow UUID `69ea8e35-eba4-4358-bfe3-63f80fabaa9b`. Root graph identity: `graph:02c49004-b9e2-4485-acfd-b6a3b22a698b`.
 

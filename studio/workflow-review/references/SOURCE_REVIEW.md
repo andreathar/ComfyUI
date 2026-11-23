@@ -19,7 +19,7 @@ Implementation references:
 - VHS GIF branch: `custom_nodes/comfyui-videohelpersuite/videohelpersuite/nodes.py:406–446`.
 - LC math and previews: `custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py:2065–2083`, `custom_nodes/ComfyUI_LC123_nodes/lc_image_tools.py:44–65`.
 
-Source hashes used by the first test batch are in each receipt and `studio/review_utilities.py`. They attest to disk files only. Four iTools files are newer than the live server process; further execution is refused until process/source consistency can be established. Existing iTools outcomes remain backend observations with uncertain loaded-source identity. No live-bytecode attestation is available.
+Source hashes used by the first test batch are in each receipt and `studio/review_utilities.py`. They attest to disk files only. At the first batch, four iTools files were newer than that server process, so further execution was refused. This is historical evidence; see `../START_HERE.md` for the subsequently authorized restart and revalidation. Check current process/source consistency before each new execution. Existing iTools outcomes remain backend observations with uncertain loaded-source identity. No live-bytecode attestation is available.
 
 ## Do not blindly queue
 

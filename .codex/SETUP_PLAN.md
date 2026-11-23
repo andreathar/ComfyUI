@@ -12,6 +12,36 @@ uv venv, native ComfyUI model directories and execution behavior, and a small
 Codex configuration with an explicit foreground launch command. Host PATH stays
 owned by pathman; user-level Codex/MCP settings remain inherited.
 
+## Python package management — 2026-11-22
+
+This workstation now uses the root uv manifest and lock for the ComfyUI
+runtime, Manager, and unit-test dependencies. The earlier install commands
+below record the historical setup. See [Python and tools](README.md#python-and-tools)
+for the current Antigravity Visualizer workflow and the additive uv command
+that preserves existing custom-node dependencies.
+
+## Production follow-up — 2026-11-15
+
+The installation snapshots below are dated evidence. The
+[farm reference lab](FARM_REFERENCE_LAB.md) now verifies local Z-Image reference
+creation, a two-character H3 shot, exact take/Suite/Brain reconciliation and
+complete playback in the shared visible browser. The older browser-unavailable
+and Z-Image-uninstalled notes do not describe this later test.
+
+The farm used existing weights and the restored runtime; it did not replace the
+SD15 baseline or establish a speed/model improvement. GPU peak was 90°C with
+thermal slowdown observed separately. Recheck resources and queue before reuse.
+The downloader's required mount still disagrees with the resolved model store;
+see [README.md](README.md) before any future authorized acquisition.
+
+Brain/SQLite recorded the visual findings and delivered them to the local model,
+but its advice ignored the production questions. Pending work is to connect
+existing take/decode/reference-token receipts into qualification and check that
+recommendations address visual findings. Generic Master project selection is
+also not implemented; the farm used a separately frozen package. No database
+replacement, further render, hardware tuning or model change follows from this
+documentation update.
+
 ## Verified starting point — 2026-10-24
 
 | Item | Evidence and implication |
@@ -387,3 +417,15 @@ Evidence: `.codex/artifacts/claude-node-before.json`, `claude-node-after.json`,
 `claude-node-before.png`, `claude-node-repaired.png`, and
 `manager-after-node-repair.png`. The process record identifies the replacement
 instance. The previous launcher and log are retained under artifacts.
+
+
+## Studio stabilization update — 2026-11-13
+
+The older installation snapshots above are historical. Current recovery and
+validation are documented in `README.md` and `STABILIZATION.md`. The updated
+Python snapshot passes dependency checking (498 distributions); all 15 active
+custom-node repositories match the integration lock. The existing CUDA stack
+was retained, and the original SD15 model completed a fresh live smoke run.
+The unused incompatible optional packages were archived before removal.
+Browser interaction remains unverified because the browser access host is
+unavailable; two upstream medium advisories have no published fixed version.

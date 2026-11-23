@@ -1,0 +1,1165 @@
+- generic [ref=e1]:
+  - main [ref=e9]:
+    - generic [ref=e11]:
+      - text: .. .. ..
+      - generic:
+        - generic [ref=e13]:
+          - tablist [ref=e16]:
+            - tab "Unsaved Workflow" [ref=e18] [cursor=pointer]
+            - tab "The Message - Master Movie Studio" [ref=e1551] [cursor=pointer]
+            - tab "The Message - Visual Shot Authoring" [selected] [ref=e7123] [cursor=pointer]
+          - button "Create a new blank workflow" [ref=e22] [cursor=pointer]:
+            - generic [ref=e23]: 
+          - button "Login" [ref=e25] [cursor=pointer]
+        - generic:
+          - generic:
+            - navigation [ref=e28]:
+              - generic [ref=e29]:
+                - generic [ref=e30]:
+                  - button "Menu" [ref=e31] [cursor=pointer]
+                  - button "Job History" [ref=e34] [cursor=pointer]
+                  - button "Assets (a)" [ref=e38] [cursor=pointer]
+                  - button "Node Library (n)" [ref=e42] [cursor=pointer]
+                  - button "Model Library (m)" [ref=e46] [cursor=pointer]
+                  - button "Workflows (w)" [ref=e50] [cursor=pointer]
+                  - button "Apps" [ref=e54] [cursor=pointer]
+                  - button "ComfyUI Agent Panel — your agent session's window into this graph" [ref=e58] [cursor=pointer]:
+                    - generic [ref=e59]: 
+                  - button "Templates" [ref=e63] [cursor=pointer]
+                - generic [ref=e67]:
+                  - button "Help Center" [ref=e68] [cursor=pointer]:
+                    - generic [ref=e69]: 
+                  - button "Toggle Bottom Panel" [ref=e72] [cursor=pointer]
+                  - button "Keyboard Shortcuts (Ctrl + Shift + k)" [ref=e76] [cursor=pointer]
+                  - button "Settings (Ctrl + ,)" [ref=e80] [cursor=pointer]
+            - generic:
+              - generic:
+                - complementary "Sidebar" [ref=e6551]:
+                  - generic [ref=e6553]:
+                    - generic [ref=e6554]:
+                      - generic [ref=e6555]:
+                        - generic "Workflows" [ref=e6557]
+                        - generic [ref=e6558]:
+                          - button "Refresh" [ref=e6560] [cursor=pointer]
+                          - button "Close sidebar" [ref=e6562] [cursor=pointer]
+                      - combobox "Search" [ref=e6568]
+                    - generic [ref=e6571]:
+                      - generic [ref=e6572]:
+                        - generic [ref=e6573]: Browse
+                        - separator [ref=e6574]
+                      - tree [ref=e6575]:
+                        - treeitem "06 - Learning Production" [expanded] [level=1] [ref=e6576] [cursor=pointer]:
+                          - button [aria-hidden] [ref=e6577]
+                          - generic [ref=e6579]:
+                            - generic [ref=e6580]: 
+                            - generic [ref=e6584]:
+                              - generic [ref=e6585]: 06 - Learning Production
+                              - generic [ref=e6587]: "28"
+                        - treeitem "The Message - Andre Action Camera Tests - Brain v2 Recovery" [level=2] [ref=e6758] [cursor=pointer]:
+                          - generic [ref=e6760]:
+                            - generic [ref=e6761]: 
+                            - generic [ref=e6764]:
+                              - generic [ref=e6765]: The Message - Andre Action Camera Tests - Brain v2 Recovery
+                              - button "Bookmark" [ref=e6769]:
+                                - generic [ref=e6770]: 
+                        - treeitem "The Message - Andre Action Camera Tests" [level=2] [ref=e6771] [cursor=pointer]:
+                          - generic [ref=e6773]:
+                            - generic [ref=e6774]: 
+                            - generic [ref=e6777]:
+                              - generic [ref=e6778]: The Message - Andre Action Camera Tests
+                              - button "Bookmark" [ref=e6782]:
+                                - generic [ref=e6783]: 
+                        - treeitem "The Message - Andre Character Example 56f" [level=2] [ref=e6784] [cursor=pointer]:
+                          - generic [ref=e6786]:
+                            - generic [ref=e6787]: 
+                            - generic [ref=e6790]:
+                              - generic [ref=e6791]: The Message - Andre Character Example 56f
+                              - button "Bookmark" [ref=e6795]:
+                                - generic [ref=e6796]: 
+                        - treeitem "The Message - Andre Complex Motion Tests" [level=2] [ref=e6797] [cursor=pointer]:
+                          - generic [ref=e6799]:
+                            - generic [ref=e6800]: 
+                            - generic [ref=e6803]:
+                              - generic [ref=e6804]: The Message - Andre Complex Motion Tests
+                              - button "Bookmark" [ref=e6808]:
+                                - generic [ref=e6809]: 
+                        - treeitem "The Message - Automated Draft" [level=2] [ref=e6810] [cursor=pointer]:
+                          - generic [ref=e6812]:
+                            - generic [ref=e6813]: 
+                            - generic [ref=e6816]:
+                              - generic [ref=e6817]: The Message - Automated Draft
+                              - button "Bookmark" [ref=e6821]:
+                                - generic [ref=e6822]: 
+                        - treeitem "The Message - Automated Draft.json.metadata" [level=2] [ref=e6823] [cursor=pointer]:
+                          - generic [ref=e6825]:
+                            - generic [ref=e6826]: 
+                            - generic [ref=e6829]:
+                              - generic [ref=e6830]: The Message - Automated Draft.json.metadata
+                              - button "Bookmark" [ref=e6834]:
+                                - generic [ref=e6835]: 
+                        - treeitem "The Message - Brain Evidence CPU Smoke" [level=2] [ref=e6836] [cursor=pointer]:
+                          - generic [ref=e6838]:
+                            - generic [ref=e6839]: 
+                            - generic [ref=e6842]:
+                              - generic [ref=e6843]: The Message - Brain Evidence CPU Smoke
+                              - button "Bookmark" [ref=e6847]:
+                                - generic [ref=e6848]: 
+                        - treeitem "The Message - Camera Reference Tests - Brain v2 Recovery" [level=2] [ref=e6849] [cursor=pointer]:
+                          - generic [ref=e6851]:
+                            - generic [ref=e6852]: 
+                            - generic [ref=e6855]:
+                              - generic [ref=e6856]: The Message - Camera Reference Tests - Brain v2 Recovery
+                              - button "Bookmark" [ref=e6860]:
+                                - generic [ref=e6861]: 
+                        - treeitem "The Message - Camera Reference Tests" [level=2] [ref=e6862] [cursor=pointer]:
+                          - generic [ref=e6864]:
+                            - generic [ref=e6865]: 
+                            - generic [ref=e6868]:
+                              - generic [ref=e6869]: The Message - Camera Reference Tests
+                              - button "Bookmark" [ref=e6873]:
+                                - generic [ref=e6874]: 
+                        - treeitem "The Message - Holistic Production Workbench" [level=2] [ref=e6875] [cursor=pointer]:
+                          - generic [ref=e6877]:
+                            - generic [ref=e6878]: 
+                            - generic [ref=e6881]:
+                              - generic [ref=e6882]: The Message - Holistic Production Workbench
+                              - button "Bookmark" [ref=e6886]:
+                                - generic [ref=e6887]: 
+                        - treeitem "The Message - Master Movie Studio" [level=2] [ref=e6888] [cursor=pointer]:
+                          - generic [ref=e6890]:
+                            - generic [ref=e6891]: 
+                            - generic [ref=e6894]:
+                              - generic [ref=e6895]: The Message - Master Movie Studio
+                              - button "Bookmark" [ref=e6899]:
+                                - generic [ref=e6900]: 
+                        - treeitem "The Message - Reference Preparation" [level=2] [ref=e6901] [cursor=pointer]:
+                          - generic [ref=e6903]:
+                            - generic [ref=e6904]: 
+                            - generic [ref=e6907]:
+                              - generic [ref=e6908]: The Message - Reference Preparation
+                              - button "Bookmark" [ref=e6912]:
+                                - generic [ref=e6913]: 
+                        - treeitem "The Message - Reference Preparation.json.metadata" [level=2] [ref=e6914] [cursor=pointer]:
+                          - generic [ref=e6916]:
+                            - generic [ref=e6917]: 
+                            - generic [ref=e6920]:
+                              - generic [ref=e6921]: The Message - Reference Preparation.json.metadata
+                              - button "Bookmark" [ref=e6925]:
+                                - generic [ref=e6926]: 
+                        - treeitem "The Message - Shot 03 Insert 73f - Monitored" [level=2] [ref=e6927] [cursor=pointer]:
+                          - generic [ref=e6929]:
+                            - generic [ref=e6930]: 
+                            - generic [ref=e6933]:
+                              - generic [ref=e6934]: The Message - Shot 03 Insert 73f - Monitored
+                              - button "Bookmark" [ref=e6938]:
+                                - generic [ref=e6939]: 
+                        - treeitem "The Message - Shot 03 Insert 73f - Monitored.json.metadata" [level=2] [ref=e6940] [cursor=pointer]:
+                          - generic [ref=e6942]:
+                            - generic [ref=e6943]: 
+                            - generic [ref=e6946]:
+                              - generic [ref=e6947]: The Message - Shot 03 Insert 73f - Monitored.json.metadata
+                              - button "Bookmark" [ref=e6951]:
+                                - generic [ref=e6952]: 
+                        - treeitem "The Message - Shot 04 Reaction 73f - Monitored" [level=2] [ref=e6953] [cursor=pointer]:
+                          - generic [ref=e6955]:
+                            - generic [ref=e6956]: 
+                            - generic [ref=e6959]:
+                              - generic [ref=e6960]: The Message - Shot 04 Reaction 73f - Monitored
+                              - button "Bookmark" [ref=e6964]:
+                                - generic [ref=e6965]: 
+                        - treeitem "The Message - Shot 04 Reaction 73f - Monitored.json.metadata" [level=2] [ref=e6966] [cursor=pointer]:
+                          - generic [ref=e6968]:
+                            - generic [ref=e6969]: 
+                            - generic [ref=e6972]:
+                              - generic [ref=e6973]: The Message - Shot 04 Reaction 73f - Monitored.json.metadata
+                              - button "Bookmark" [ref=e6977]:
+                                - generic [ref=e6978]: 
+                        - treeitem "The Message - Shot Template" [level=2] [ref=e6979] [cursor=pointer]:
+                          - generic [ref=e6981]:
+                            - generic [ref=e6982]: 
+                            - generic [ref=e6985]:
+                              - generic [ref=e6986]: The Message - Shot Template
+                              - button "Bookmark" [ref=e6990]:
+                                - generic [ref=e6991]: 
+                        - treeitem "The Message - Shot Template.json.metadata" [level=2] [ref=e6992] [cursor=pointer]:
+                          - generic [ref=e6994]:
+                            - generic [ref=e6995]: 
+                            - generic [ref=e6998]:
+                              - generic [ref=e6999]: The Message - Shot Template.json.metadata
+                              - button "Bookmark" [ref=e7003]:
+                                - generic [ref=e7004]: 
+                        - treeitem "The Message - Silent Film Production" [level=2] [ref=e7005] [cursor=pointer]:
+                          - generic [ref=e7007]:
+                            - generic [ref=e7008]: 
+                            - generic [ref=e7011]:
+                              - generic [ref=e7012]: The Message - Silent Film Production
+                              - button "Bookmark" [ref=e7016]:
+                                - generic [ref=e7017]: 
+                        - treeitem "The Message - Silent Film Production.json.metadata" [level=2] [ref=e7018] [cursor=pointer]:
+                          - generic [ref=e7020]:
+                            - generic [ref=e7021]: 
+                            - generic [ref=e7024]:
+                              - generic [ref=e7025]: The Message - Silent Film Production.json.metadata
+                              - button "Bookmark" [ref=e7029]:
+                                - generic [ref=e7030]: 
+                        - treeitem "The Message - Stress Pilot 56f - Monitor draft" [level=2] [ref=e7031] [cursor=pointer]:
+                          - generic [ref=e7033]:
+                            - generic [ref=e7034]: 
+                            - generic [ref=e7037]:
+                              - generic [ref=e7038]: The Message - Stress Pilot 56f - Monitor draft
+                              - button "Bookmark" [ref=e7042]:
+                                - generic [ref=e7043]: 
+                        - treeitem "The Message - Stress Pilot 56f - Monitor draft.json.metadata" [level=2] [ref=e7044] [cursor=pointer]:
+                          - generic [ref=e7046]:
+                            - generic [ref=e7047]: 
+                            - generic [ref=e7050]:
+                              - generic [ref=e7051]: The Message - Stress Pilot 56f - Monitor draft.json.metadata
+                              - button "Bookmark" [ref=e7055]:
+                                - generic [ref=e7056]: 
+                        - treeitem "The Message - Stress Pilot 56f" [level=2] [ref=e7057] [cursor=pointer]:
+                          - generic [ref=e7059]:
+                            - generic [ref=e7060]: 
+                            - generic [ref=e7063]:
+                              - generic [ref=e7064]: The Message - Stress Pilot 56f
+                              - button "Bookmark" [ref=e7068]:
+                                - generic [ref=e7069]: 
+                        - treeitem "The Message - Stress Pilot 56f.json.metadata" [level=2] [ref=e7070] [cursor=pointer]:
+                          - generic [ref=e7072]:
+                            - generic [ref=e7073]: 
+                            - generic [ref=e7076]:
+                              - generic [ref=e7077]: The Message - Stress Pilot 56f.json.metadata
+                              - button "Bookmark" [ref=e7081]:
+                                - generic [ref=e7082]: 
+                        - treeitem "The Message - Stress Pilot 73f - Monitored" [level=2] [ref=e7083] [cursor=pointer]:
+                          - generic [ref=e7085]:
+                            - generic [ref=e7086]: 
+                            - generic [ref=e7089]:
+                              - generic [ref=e7090]: The Message - Stress Pilot 73f - Monitored
+                              - button "Bookmark" [ref=e7094]:
+                                - generic [ref=e7095]: 
+                        - treeitem "The Message - Stress Pilot 73f - Monitored.json.metadata" [level=2] [ref=e7096] [cursor=pointer]:
+                          - generic [ref=e7098]:
+                            - generic [ref=e7099]: 
+                            - generic [ref=e7102]:
+                              - generic [ref=e7103]: The Message - Stress Pilot 73f - Monitored.json.metadata
+                              - button "Bookmark" [ref=e7107]:
+                                - generic [ref=e7108]: 
+                        - treeitem "The Message - Visual Shot Authoring" [active] [level=2] [selected] [ref=e7109] [cursor=pointer]:
+                          - generic [ref=e7111]:
+                            - generic [ref=e7112]: 
+                            - generic [ref=e7115]:
+                              - generic [ref=e7116]: The Message - Visual Shot Authoring
+                              - button "Bookmark" [ref=e7120]:
+                                - generic [ref=e7121]: 
+                        - treeitem "Balanced SD15 - RTX 3060" [level=1] [ref=e6588] [cursor=pointer]:
+                          - generic [ref=e6590]:
+                            - generic [ref=e6591]: 
+                            - generic [ref=e6594]:
+                              - generic [ref=e6595]: Balanced SD15 - RTX 3060
+                              - button "Bookmark" [ref=e6599]:
+                                - generic [ref=e6600]: 
+                        - treeitem "Farm Benchmark v001 - 01_ref_12steps" [level=1] [ref=e6601] [cursor=pointer]:
+                          - generic [ref=e6603]:
+                            - generic [ref=e6604]: 
+                            - generic [ref=e6607]:
+                              - generic [ref=e6608]: Farm Benchmark v001 - 01_ref_12steps
+                              - button "Bookmark" [ref=e6612]:
+                                - generic [ref=e6613]: 
+                        - treeitem "Farm Benchmark v001 - 02_ref_20steps_cache" [level=1] [ref=e6614] [cursor=pointer]:
+                          - generic [ref=e6616]:
+                            - generic [ref=e6617]: 
+                            - generic [ref=e6620]:
+                              - generic [ref=e6621]: Farm Benchmark v001 - 02_ref_20steps_cache
+                              - button "Bookmark" [ref=e6625]:
+                                - generic [ref=e6626]: 
+                        - treeitem "Farm Benchmark v001 - 03_fl_20steps" [level=1] [ref=e6627] [cursor=pointer]:
+                          - generic [ref=e6629]:
+                            - generic [ref=e6630]: 
+                            - generic [ref=e6633]:
+                              - generic [ref=e6634]: Farm Benchmark v001 - 03_fl_20steps
+                              - button "Bookmark" [ref=e6638]:
+                                - generic [ref=e6639]: 
+                        - treeitem "Farm Benchmark v001 - 04_fl_turbo_8steps" [level=1] [ref=e6640] [cursor=pointer]:
+                          - generic [ref=e6642]:
+                            - generic [ref=e6643]: 
+                            - generic [ref=e6646]:
+                              - generic [ref=e6647]: Farm Benchmark v001 - 04_fl_turbo_8steps
+                              - button "Bookmark" [ref=e6651]:
+                                - generic [ref=e6652]: 
+                        - treeitem "Farm Confirmation v002 - 01_ref_12steps" [level=1] [ref=e6653] [cursor=pointer]:
+                          - generic [ref=e6655]:
+                            - generic [ref=e6656]: 
+                            - generic [ref=e6659]:
+                              - generic [ref=e6660]: Farm Confirmation v002 - 01_ref_12steps
+                              - button "Bookmark" [ref=e6664]:
+                                - generic [ref=e6665]: 
+                        - treeitem "Farm Confirmation v002 - 02_fl_turbo_8steps" [level=1] [ref=e6666] [cursor=pointer]:
+                          - generic [ref=e6668]:
+                            - generic [ref=e6669]: 
+                            - generic [ref=e6672]:
+                              - generic [ref=e6673]: Farm Confirmation v002 - 02_fl_turbo_8steps
+                              - button "Bookmark" [ref=e6677]:
+                                - generic [ref=e6678]: 
+                        - treeitem "Farm Reference Lab - two characters" [level=1] [ref=e6679] [cursor=pointer]:
+                          - generic [ref=e6681]:
+                            - generic [ref=e6682]: 
+                            - generic [ref=e6685]:
+                              - generic [ref=e6686]: Farm Reference Lab - two characters
+                              - button "Bookmark" [ref=e6690]:
+                                - generic [ref=e6691]: 
+                        - treeitem "H3_Face_Refine_Auto_Select" [level=1] [ref=e6692] [cursor=pointer]:
+                          - generic [ref=e6694]:
+                            - generic [ref=e6695]: 
+                            - generic [ref=e6698]:
+                              - generic [ref=e6699]: H3_Face_Refine_Auto_Select
+                              - button "Bookmark" [ref=e6703]:
+                                - generic [ref=e6704]: 
+                        - treeitem "H3_Face_Refine_Auto_Select.json.metadata" [level=1] [ref=e6705] [cursor=pointer]:
+                          - generic [ref=e6707]:
+                            - generic [ref=e6708]: 
+                            - generic [ref=e6711]:
+                              - generic [ref=e6712]: H3_Face_Refine_Auto_Select.json.metadata
+                              - button "Bookmark" [ref=e6716]:
+                                - generic [ref=e6717]: 
+                        - treeitem "Untitled 2026-11-11 06-27-26" [level=1] [ref=e6718] [cursor=pointer]:
+                          - generic [ref=e6720]:
+                            - generic [ref=e6721]: 
+                            - generic [ref=e6724]:
+                              - generic [ref=e6725]: Untitled 2026-11-11 06-27-26
+                              - button "Bookmark" [ref=e6729]:
+                                - generic [ref=e6730]: 
+                        - treeitem "video_minimax_h3_i2v" [level=1] [ref=e6731] [cursor=pointer]:
+                          - generic [ref=e6733]:
+                            - generic [ref=e6734]: 
+                            - generic [ref=e6737]:
+                              - generic [ref=e6738]: video_minimax_h3_i2v
+                              - button "Bookmark" [ref=e6742]:
+                                - generic [ref=e6743]: 
+                        - treeitem "video_minimax_h3_i2v.json.metadata" [level=1] [ref=e6744] [cursor=pointer]:
+                          - generic [ref=e6746]:
+                            - generic [ref=e6747]: 
+                            - generic [ref=e6750]:
+                              - generic [ref=e6751]: video_minimax_h3_i2v.json.metadata
+                              - button "Bookmark" [ref=e6755]:
+                                - generic [ref=e6756]: 
+                - separator [ref=e6757]
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - group "Workflow actions" [ref=e84]:
+                              - generic [ref=e85]:
+                                - button "Enter app mode" [ref=e87] [cursor=pointer]:
+                                  - generic: App
+                                - button "Graph mode, workflow actions" [ref=e91] [cursor=pointer]:
+                                  - generic [ref=e93]: Graph
+                            - text: 
+                        - generic [ref=e96]:
+                          - generic [ref=e97]:
+                            - button "Align" [ref=e101] [cursor=pointer]:
+                              - img "Align"
+                            - generic [ref=e104]:
+                              - generic [ref=e105]: .. .. ..
+                              - generic [ref=e108]:
+                                - generic "Batch Count" [ref=e109]:
+                                  - generic [ref=e110]:
+                                    - textbox "Batch Count" [ref=e111]: "1"
+                                    - generic [ref=e112]:
+                                      - button "Increment" [ref=e113] [cursor=pointer]
+                                      - button "Decrement" [disabled]
+                                - button "Run" [ref=e114] [cursor=pointer]
+                                - button "Run options" [ref=e116] [cursor=pointer]
+                              - button "Cancel current run" [disabled]
+                              - button "0 active View active jobs (right-click to clear queue)" [ref=e117] [cursor=pointer]:
+                                - generic [ref=e118]: 0 active
+                                - generic [ref=e119]: View active jobs (right-click to clear queue)
+                            - button "Extensions" [ref=e120] [cursor=pointer]
+                            - button "Deploy to Comfy API" [ref=e122] [cursor=pointer]
+                            - button "Toggle properties panel" [ref=e125] [cursor=pointer]
+                          - status
+                  - generic:
+                    - generic:
+                      - toolbar "Canvas Toolbar" [ref=e127]:
+                        - button "Canvas Mode" [ref=e128] [cursor=pointer]
+                        - button "Fit View (.)" [ref=e134] [cursor=pointer]
+                        - button "Zoom Controls" [ref=e136] [cursor=pointer]:
+                          - generic [ref=e137]: 55%
+                        - button "Hide Minimap (ALT + SHIFT + M)" [ref=e141] [cursor=pointer]
+                        - button "Hide Links" [ref=e143] [cursor=pointer]
+                      - 'generic "Minimap. Highlighted nodes: 0" [ref=e146]':
+                        - button "Settings" [ref=e147] [cursor=pointer]
+                        - button "Close" [ref=e149] [cursor=pointer]
+                        - separator [ref=e151]
+                    - text: 
+      - generic:
+        - generic [ref=e7127]:
+          - generic [ref=e7128]:
+            - generic [ref=e7132]:
+              - button [ref=e7134] [cursor=pointer]
+              - generic [ref=e7136]: Visual Shot Authoring · 6 GB RTX 3060 + Fantastic Prompt Builder
+            - generic "text" [ref=e7146]:
+              - heading "Visual Shot Authoring (832×480 · 24 fps · 73 frames · 6 GB GPU)" [level=2] [ref=e7147]
+              - list [ref=e7148]:
+                - listitem [ref=e7149]:
+                  - strong [ref=e7150]: Pick references
+                  - text: in
+                  - code [ref=e7151]: Node 7
+                  - text: (RefMod Stack) and
+                  - code [ref=e7152]: Node 21
+                  - text: (Media Loader) — or load a preset from
+                  - code [ref=e7153]: The Message · Silent Proof v004
+                  - text: .
+                - listitem [ref=e7154]:
+                  - strong [ref=e7155]:
+                    - text: Click
+                    - code [ref=e7156]: Edit prompt…
+                    - text: "on"
+                    - code [ref=e7157]: Node 8
+                    - text: (
+                    - code [ref=e7158]: Fantastic H3 Prompt Builder
+                    - text: )
+                  - text: ": all 6 shots from the proof are pre-saved in the Prompt Library under"
+                  - strong [ref=e7159]:
+                    - code [ref=e7160]: The Message · Silent Proof v004
+                  - text: . Edit subject definitions, retention markers, camera/action, soundscape, and music visually, then click
+                  - strong [ref=e7161]: Save
+                  - text: .
+                - listitem [ref=e7162]:
+                  - strong [ref=e7163]:
+                    - text: Verify
+                    - code [ref=e7164]: <Picture n>
+                    - text: /
+                    - code [ref=e7165]: <Video n>
+                    - text: numbering on CPU
+                  - text: by running only
+                  - code [ref=e7166]: Node 11
+                  - text: (
+                  - code [ref=e7167]: Reference map • no model needed
+                  - text: ).
+                - listitem [ref=e7168]:
+                  - strong [ref=e7169]: Render single shot
+                  - text: ":"
+                  - code [ref=e7170]: sa_solver
+                  - text: ","
+                  - code [ref=e7171]: beta
+                  - text: ","
+                  - code [ref=e7172]: "20"
+                  - text: steps,
+                  - code [ref=e7173]: 832×480
+                  - text: ","
+                  - code [ref=e7174]: "73"
+                  - text: frames (
+                  - code [ref=e7175]: 3.04s
+                  - text: ), silent
+                  - code [ref=e7176]: CreateVideo -> SaveVideo
+                  - text: ", with passive"
+                  - strong [ref=e7177]:
+                    - code [ref=e7178]: WorkflowMonitorBrain
+                    - text: (
+                    - code [ref=e7179]: Node 44
+                    - text: )
+                  - text: enabled.
+          - button "Resize from bottom-right corner" [ref=e7180]
+          - button "Resize from top-right corner" [ref=e7183]
+          - button "Resize from bottom-left corner" [ref=e7186]
+          - button "Resize from top-left corner" [ref=e7189]
+        - generic [ref=e7192]:
+          - generic [ref=e7193]:
+            - generic [ref=e7197]:
+              - button [ref=e7199] [cursor=pointer]
+              - generic [ref=e7201]: Reference diffusion • local REF2VA
+            - generic [ref=e7204]:
+              - generic [ref=e7205]: MODEL
+              - generic [ref=e7220]:
+                - generic [ref=e7221]: unet_name
+                - generic [ref=e7225]:
+                  - combobox "unet_name" [ref=e7226] [cursor=pointer]:
+                    - generic [ref=e7227]: minimax_h3_ref2va_pruned_int8_convrot.safetensors
+                  - button [aria-hidden] [ref=e7228] [cursor=pointer]
+          - button "Show advanced inputs" [ref=e7231] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e7234]
+          - button "Resize from top-right corner" [ref=e7237]
+          - button "Resize from bottom-left corner" [ref=e7240]
+          - button "Resize from top-left corner" [ref=e7243]
+        - generic [ref=e7246]:
+          - generic [ref=e7247]:
+            - generic [ref=e7251]:
+              - button [ref=e7253] [cursor=pointer]
+              - generic [ref=e7255]: Video / audio flow shifts
+            - generic [ref=e7258]:
+              - generic [ref=e7259]:
+                - generic [ref=e7260]: model
+                - generic [ref=e7267]: MODEL
+              - generic [ref=e7273]:
+                - generic [ref=e7281]:
+                  - generic [ref=e7282]: shift_video
+                  - generic "shift_video" [ref=e7285]:
+                    - button "Decrement" [ref=e7286] [cursor=pointer]
+                    - spinbutton [ref=e7289]: "12.00"
+                    - button "Increment" [ref=e7291] [cursor=pointer]
+                - generic [ref=e7300]:
+                  - generic [ref=e7301]: shift_audio
+                  - generic "shift_audio" [ref=e7304]:
+                    - button "Decrement" [ref=e7305] [cursor=pointer]
+                    - spinbutton [ref=e7308]: "3.00"
+                    - button "Increment" [ref=e7310] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e7312]
+          - button "Resize from top-right corner" [ref=e7315]
+          - button "Resize from bottom-left corner" [ref=e7318]
+          - button "Resize from top-left corner" [ref=e7321]
+        - generic [ref=e7324]:
+          - generic [ref=e7325]:
+            - generic [ref=e7329]:
+              - button [ref=e7331] [cursor=pointer]
+              - generic [ref=e7333]: H3 text encoder • local NVFP4
+            - generic [ref=e7336]:
+              - generic [ref=e7337]: CLIP
+              - generic [ref=e7344]:
+                - generic [ref=e7352]:
+                  - generic [ref=e7353]: clip_name
+                  - generic [ref=e7357]:
+                    - combobox "clip_name" [ref=e7358] [cursor=pointer]:
+                      - generic [ref=e7359]: qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors
+                    - button [aria-hidden] [ref=e7360] [cursor=pointer]
+                - generic [ref=e7369]:
+                  - generic [ref=e7370]: type
+                  - generic [ref=e7374]:
+                    - combobox "type" [ref=e7375] [cursor=pointer]:
+                      - generic [ref=e7376]: minimax
+                    - button [aria-hidden] [ref=e7377] [cursor=pointer]
+          - button "Show advanced inputs" [ref=e7380] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e7383]
+          - button "Resize from top-right corner" [ref=e7386]
+          - button "Resize from bottom-left corner" [ref=e7389]
+          - button "Resize from top-left corner" [ref=e7392]
+        - generic [ref=e7395]:
+          - generic [ref=e7396]:
+            - generic [ref=e7400]:
+              - button [ref=e7402] [cursor=pointer]
+              - generic [ref=e7404]: H3 video VAE
+            - generic [ref=e7407]:
+              - generic [ref=e7408]: VAE
+              - generic [ref=e7423]:
+                - generic [ref=e7424]: vae_name
+                - generic [ref=e7428]:
+                  - combobox "vae_name" [ref=e7429] [cursor=pointer]:
+                    - generic [ref=e7430]: minimax_h3_video_vae_int8_convrot.safetensors
+                  - button [aria-hidden] [ref=e7431] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e7433]
+          - button "Resize from top-right corner" [ref=e7436]
+          - button "Resize from bottom-left corner" [ref=e7439]
+          - button "Resize from top-left corner" [ref=e7442]
+        - generic [ref=e7445]:
+          - generic [ref=e7446]:
+            - generic [ref=e7450]:
+              - button [ref=e7452] [cursor=pointer]
+              - generic [ref=e7454]: Asset variables · identity / background / voice
+            - generic [ref=e7457]:
+              - generic [ref=e7458]:
+                - generic [ref=e7459]: mods
+                - generic [ref=e7467]:
+                  - generic [ref=e7468]: mods
+                  - generic [ref=e7473]: labels
+              - generic [ref=e7484]:
+                - generic [ref=e7485]:
+                  - button "Browse library…" [ref=e7486] [cursor=pointer]
+                  - button "Create…" [ref=e7487] [cursor=pointer]
+                  - button "Refresh" [ref=e7488] [cursor=pointer]
+                  - generic "RefMods in this node's slots" [ref=e7489]: 1 / 12
+                  - generic "Reference tokens this node adds, copies included" [ref=e7490]: 7,224 tok
+                  - button "⤡ Size" [ref=e7492] [cursor=pointer]
+                  - button "More settings" [ref=e7493] [cursor=pointer]: ⋯
+                - generic [ref=e7494]:
+                  - generic [ref=e7495]: preset
+                  - button "no presets saved ▾" [ref=e7497] [cursor=pointer]
+                  - button "Save" [ref=e7498] [cursor=pointer]
+                  - button "Delete" [ref=e7499] [cursor=pointer]
+                - generic [ref=e7500]:
+                  - generic [ref=e7501]:
+                    - generic [ref=e7502]:
+                      - button "⠇" [ref=e7503]
+                      - button "VID" [ref=e7504] [cursor=pointer]
+                      - button "andre-identity-video-v1 refmod_-Andre_Athar-video_visual" [ref=e7505] [cursor=pointer]:
+                        - generic [ref=e7506]: andre-identity-video-v1
+                        - generic "refmod_-Andre_Athar-video_visual" [ref=e7507]
+                      - generic "On" [ref=e7508] [cursor=pointer]:
+                        - checkbox [checked] [ref=e7509]
+                      - button "Options for andre-identity-video-v1, RefMod 1 of 1" [ref=e7511] [cursor=pointer]:
+                        - generic [ref=e7512]: 1/1
+                        - generic [ref=e7513]: ⋯
+                      - button "×" [ref=e7514] [cursor=pointer]
+                    - generic [ref=e7515]:
+                      - generic [ref=e7516]: VID
+                      - generic "1.00 · 1 entry · 7,224 tok" [ref=e7517]: <Video 1>
+                      - generic [ref=e7518]:
+                        - 'slider "Weight: up to 1 is strength, above 1 adds copies" [ref=e7519] [cursor=pointer]': "1"
+                        - 'spinbutton "Weight: up to 1 is strength, above 1 adds copies" [ref=e7520]': "1.00"
+                  - button "refmod 2" [ref=e7521] [cursor=pointer]
+                  - button "refmod 3" [ref=e7522] [cursor=pointer]
+                  - button "refmod 4" [ref=e7523] [cursor=pointer]
+                  - button "refmod 5" [ref=e7524] [cursor=pointer]
+                  - button "refmod 6" [ref=e7525] [cursor=pointer]
+                  - button "refmod 7" [ref=e7526] [cursor=pointer]
+                  - button "refmod 8" [ref=e7527] [cursor=pointer]
+                  - button "refmod 9" [ref=e7528] [cursor=pointer]
+                  - button "refmod 10" [ref=e7529] [cursor=pointer]
+                  - button "refmod 11" [ref=e7530] [cursor=pointer]
+                  - button "refmod 12" [ref=e7531] [cursor=pointer]
+                - generic [ref=e7533]:
+                  - generic [ref=e7534]: Labels Text Encode will assign
+                  - generic [ref=e7535]: <Video 1> andre-identity-video-v1
+              - generic [ref=e7537]: Fantastic-MiniMaxH3-PromptBuilder
+          - button "Resize from bottom-right corner" [ref=e7540]
+          - button "Resize from top-right corner" [ref=e7543]
+          - button "Resize from bottom-left corner" [ref=e7546]
+          - button "Resize from top-left corner" [ref=e7549]
+        - generic [ref=e7552]:
+          - generic [ref=e7553]:
+            - generic [ref=e7557]:
+              - button [ref=e7559] [cursor=pointer]
+              - generic [ref=e7561]: Stack labels
+            - generic [ref=e7564]:
+              - generic [ref=e7565]:
+                - generic [ref=e7566]: source
+                - generic [ref=e7573]: STRING
+              - generic [ref=e7579]:
+                - textbox "preview_text" [ref=e7585]
+                - generic [ref=e7590]:
+                  - generic [ref=e7591]: preview_mode
+                  - group [ref=e7594]:
+                    - button "Plain text" [pressed] [ref=e7595] [cursor=pointer]
+                    - button "Markdown" [ref=e7596] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e7597]
+          - button "Resize from top-right corner" [ref=e7600]
+          - button "Resize from bottom-left corner" [ref=e7603]
+          - button "Resize from top-left corner" [ref=e7606]
+        - generic [ref=e7609]:
+          - generic [ref=e7610]:
+            - generic [ref=e7614]:
+              - button [ref=e7616] [cursor=pointer]
+              - generic [ref=e7618]: Asset variables · primary angle / wardrobe
+            - generic [ref=e7621]:
+              - generic [ref=e7622]: references
+              - generic [ref=e7629]:
+                - button "Open loader…" [ref=e7635] [cursor=pointer]
+                - button "+ Native-output splitter" [ref=e7641] [cursor=pointer]
+                - generic [ref=e7647]:
+                  - generic [ref=e7648]:
+                    - button "Load files…" [ref=e7649] [cursor=pointer]
+                    - generic "Ctrl+V pastes pictures, clips and audio from the clipboard while this loader is selected or open" [ref=e7650]: or drop or paste files
+                    - button "⤡ Size" [ref=e7652] [cursor=pointer]
+                    - button "Unload media" [ref=e7653] [cursor=pointer]
+                    - button "Clean up…" [ref=e7654] [cursor=pointer]
+                    - button "⚙" [ref=e7656] [cursor=pointer]
+                    - generic [ref=e7657]: 2 / 12
+                    - generic "Audio clips in play, including split video soundtracks" [ref=e7658]: ♪ 0/3
+                  - generic [ref=e7659]:
+                    - generic [ref=e7660]: preset
+                    - button "no presets saved ▾" [ref=e7662] [cursor=pointer]
+                    - button "Save" [ref=e7663] [cursor=pointer]
+                    - button "Delete" [ref=e7664] [cursor=pointer]
+                  - generic [ref=e7666]:
+                    - generic [ref=e7667]:
+                      - generic [ref=e7668]:
+                        - text: pictures
+                        - generic [ref=e7669]: 2/9
+                      - generic [ref=e7670]:
+                        - generic [ref=e7671]:
+                          - img "Gemini_Generated_Image (2).jpeg 1376×768 — 1.79:1, closest preset 16:9 (Widescreen, 0.8% off)" [ref=e7672]
+                          - generic: 1376×768 · ≈16:9
+                          - generic [ref=e7673]:
+                            - generic "Switch off — kept here but not sent to the model" [ref=e7674] [cursor=pointer]: ◉
+                            - generic [ref=e7675]: Picture 1
+                            - generic "Crop or mirror this picture" [ref=e7676] [cursor=pointer]: ▣
+                            - generic "Drag to reorder" [ref=e7677]: ☰
+                            - generic "Remove" [ref=e7678] [cursor=pointer]: ✕
+                        - generic [ref=e7679]:
+                          - img "cafe-take04-candidate-v1.png 126×126 — 1:1 (Square)" [ref=e7680]
+                          - generic: 126×126 · 1:1
+                          - generic [ref=e7681]:
+                            - generic "Switch off — kept here but not sent to the model" [ref=e7682] [cursor=pointer]: ◉
+                            - generic [ref=e7683]: Picture 2
+                            - generic "Crop or mirror this picture" [ref=e7684] [cursor=pointer]: ▣
+                            - generic "Drag to reorder" [ref=e7685]: ☰
+                            - generic "Remove" [ref=e7686] [cursor=pointer]: ✕
+                        - generic "Empty picture slot 3 — click to browse or drop a file" [ref=e7687] [cursor=pointer]: picture 3
+                        - generic "Empty picture slot 4 — click to browse or drop a file" [ref=e7689] [cursor=pointer]: picture 4
+                        - generic "Empty picture slot 5 — click to browse or drop a file" [ref=e7691] [cursor=pointer]: picture 5
+                        - generic "Empty picture slot 6 — click to browse or drop a file" [ref=e7693] [cursor=pointer]: picture 6
+                        - generic "Empty picture slot 7 — click to browse or drop a file" [ref=e7695] [cursor=pointer]: picture 7
+                        - generic "Empty picture slot 8 — click to browse or drop a file" [ref=e7697] [cursor=pointer]: picture 8
+                        - generic "Empty picture slot 9 — click to browse or drop a file" [ref=e7699] [cursor=pointer]: picture 9
+                    - generic [ref=e7701]:
+                      - generic [ref=e7702]:
+                        - text: videos
+                        - button "?" [ref=e7703] [cursor=pointer]
+                        - generic [ref=e7704]: 0/3
+                      - generic [ref=e7705]:
+                        - generic "Empty video slot 1 — click to browse or drop a file" [ref=e7706] [cursor=pointer]: video 1
+                        - generic "Empty video slot 2 — click to browse or drop a file" [ref=e7708] [cursor=pointer]: video 2
+                        - generic "Empty video slot 3 — click to browse or drop a file" [ref=e7710] [cursor=pointer]: video 3
+                      - generic [ref=e7712]:
+                        - text: standalone audio
+                        - generic [ref=e7713]: 0/3
+                      - generic [ref=e7714]:
+                        - generic "Empty audio slot 1 — click to browse or drop a file" [ref=e7715] [cursor=pointer]: audio 1
+                        - generic "Empty audio slot 2 — click to browse or drop a file" [ref=e7717] [cursor=pointer]: audio 2
+                        - generic "Empty audio slot 3 — click to browse or drop a file" [ref=e7719] [cursor=pointer]: audio 3
+                  - generic [ref=e7722]:
+                    - generic [ref=e7723]: tag order sent to the model
+                    - generic [ref=e7724]: Picture 1 · Picture 2
+              - generic [ref=e7725]: Fantastic-MiniMaxH3-PromptBuilder
+          - button "Resize from bottom-right corner" [ref=e7728]
+          - button "Resize from top-right corner" [ref=e7731]
+          - button "Resize from bottom-left corner" [ref=e7734]
+          - button "Resize from top-left corner" [ref=e7737]
+        - generic [ref=e7740]:
+          - generic [ref=e7741]:
+            - generic [ref=e7745]:
+              - button [ref=e7747] [cursor=pointer]
+              - generic [ref=e7749]: Compiled prompt · framing / action / continuity
+            - generic [ref=e7752]:
+              - generic [ref=e7753]:
+                - generic [ref=e7754]:
+                  - generic [ref=e7755]: references
+                  - generic [ref=e7762]: mods
+                  - generic [ref=e7769]: picture_1
+                  - generic [ref=e7776]: picture_2
+                  - generic [ref=e7783]: picture_3
+                  - generic [ref=e7790]: picture_4
+                  - generic [ref=e7797]: picture_5
+                  - generic [ref=e7804]: picture_6
+                  - generic [ref=e7811]: picture_7
+                  - generic [ref=e7818]: picture_8
+                  - generic [ref=e7825]: picture_9
+                  - generic [ref=e7832]: video_1
+                  - generic [ref=e7839]: video_2
+                  - generic [ref=e7846]: video_3
+                  - generic [ref=e7853]: video_audio_1
+                  - generic [ref=e7860]: video_audio_2
+                  - generic [ref=e7867]: video_audio_3
+                  - generic [ref=e7874]: audio_1
+                  - generic [ref=e7881]: audio_2
+                  - generic [ref=e7888]: audio_3
+                - generic [ref=e7895]:
+                  - generic [ref=e7896]: prompt
+                  - generic [ref=e7901]: picture_1
+                  - generic [ref=e7906]: picture_2
+                  - generic [ref=e7911]: picture_3
+                  - generic [ref=e7916]: picture_4
+                  - generic [ref=e7921]: picture_5
+                  - generic [ref=e7926]: picture_6
+                  - generic [ref=e7931]: picture_7
+                  - generic [ref=e7936]: picture_8
+                  - generic [ref=e7941]: picture_9
+                  - generic [ref=e7946]: video_1
+                  - generic [ref=e7951]: video_2
+                  - generic [ref=e7956]: video_3
+                  - generic [ref=e7961]: video_audio_1
+                  - generic [ref=e7966]: video_audio_2
+                  - generic [ref=e7971]: video_audio_3
+                  - generic [ref=e7976]: audio_1
+                  - generic [ref=e7981]: audio_2
+                  - generic [ref=e7986]: audio_3
+                  - generic [ref=e7991]: references
+                  - generic [ref=e7996]: mods
+              - generic [ref=e8001]:
+                - button "Edit prompt…" [ref=e8007] [cursor=pointer]
+                - button "+ Media loader" [ref=e8013] [cursor=pointer]
+                - button "+ RefMods" [ref=e8019] [cursor=pointer]
+                - generic "Open the prompt editor" [ref=e8025] [cursor=pointer]: Full-reference • 3 refssubject_definitions:…
+              - generic [ref=e8026]: Fantastic-MiniMaxH3-PromptBuilder
+          - button "Resize from bottom-right corner" [ref=e8029]
+          - button "Resize from top-right corner" [ref=e8032]
+          - button "Resize from bottom-left corner" [ref=e8035]
+          - button "Resize from top-left corner" [ref=e8038]
+        - generic [ref=e8041]:
+          - generic [ref=e8042]:
+            - generic [ref=e8046]:
+              - button [ref=e8048] [cursor=pointer]
+              - generic [ref=e8050]: 4 · Encode prompt + RefMods + media
+            - generic [ref=e8053]:
+              - generic [ref=e8054]:
+                - generic [ref=e8055]:
+                  - generic [ref=e8056]: clip
+                  - generic [ref=e8062]: mods
+                  - generic [ref=e8069]: references
+                  - generic [ref=e8076]: vae
+                  - generic [ref=e8083]: audio_vae
+                - generic [ref=e8090]:
+                  - generic [ref=e8091]: conditioning
+                  - generic [ref=e8096]: reference_map
+                  - generic [ref=e8101]: latent
+              - generic [ref=e8106]:
+                - generic "prompt" [ref=e8110]
+                - generic [ref=e8123]:
+                  - generic [ref=e8124]: width
+                  - generic "width" [ref=e8127]:
+                    - button "Decrement" [ref=e8128] [cursor=pointer]
+                    - spinbutton [ref=e8131]: "832"
+                    - button "Increment" [ref=e8133] [cursor=pointer]
+                - generic [ref=e8142]:
+                  - generic [ref=e8143]: height
+                  - generic "height" [ref=e8146]:
+                    - button "Decrement" [ref=e8147] [cursor=pointer]
+                    - spinbutton [ref=e8150]: "480"
+                    - button "Increment" [ref=e8152] [cursor=pointer]
+                - generic [ref=e8161]:
+                  - generic [ref=e8162]: length
+                  - generic "length" [ref=e8165]:
+                    - button "Decrement" [ref=e8166] [cursor=pointer]
+                    - spinbutton [ref=e8169]: "73"
+                    - button "Increment" [ref=e8171] [cursor=pointer]
+                - generic [ref=e8180]:
+                  - generic [ref=e8181]: ref_image_size
+                  - generic [ref=e8185]:
+                    - combobox "ref_image_size" [ref=e8186] [cursor=pointer]:
+                      - generic [ref=e8187]: match
+                    - button [aria-hidden] [ref=e8188] [cursor=pointer]
+                - generic [ref=e8197]:
+                  - generic [ref=e8198]: reference_fps
+                  - generic "reference_fps" [ref=e8201]:
+                    - button "Decrement" [ref=e8202] [cursor=pointer]
+                    - spinbutton [ref=e8205]: "24.0"
+                    - button "Increment" [ref=e8207] [cursor=pointer]
+                - generic [ref=e8216]:
+                  - generic [ref=e8217]: max_total_tokens
+                  - generic "max_total_tokens" [ref=e8220]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=e8222]: "0"
+                    - button "Increment" [ref=e8224] [cursor=pointer]
+                - generic [ref=e8233]:
+                  - generic [ref=e8234]: voice_description_at_label
+                  - switch "voice_description_at_label" [ref=e8238] [cursor=pointer]
+                - generic [ref=e8246]:
+                  - generic [ref=e8247]: stack_pictures
+                  - generic [ref=e8251]:
+                    - combobox "stack_pictures" [ref=e8252] [cursor=pointer]:
+                      - generic [ref=e8253]: up to N
+                    - button [aria-hidden] [ref=e8254] [cursor=pointer]
+                - generic [ref=e8263]:
+                  - generic [ref=e8264]: stack_pictures_n
+                  - generic "stack_pictures_n" [ref=e8267]:
+                    - button "Decrement" [ref=e8268] [cursor=pointer]
+                    - spinbutton [ref=e8271]: "4"
+                    - button "Increment" [ref=e8273] [cursor=pointer]
+                - generic [ref=e8280]:
+                  - generic "Media from the references input comes first, then the RefMods from mods" [ref=e8281] [cursor=pointer]:
+                    - generic [ref=e8282]: ▾
+                    - generic [ref=e8283]: References, in model order
+                    - button "▦ Thumbnails…" [ref=e8284]
+                  - generic [ref=e8285]:
+                    - generic [ref=e8286]: Media
+                    - generic [ref=e8287]:
+                      - generic [ref=e8288]: "1"
+                      - generic [ref=e8289]: <Picture 1>
+                      - generic "Gemini_Generated_Image (2).jpeg" [ref=e8290]
+                    - generic [ref=e8291]:
+                      - generic [ref=e8292]: "2"
+                      - generic [ref=e8293]: <Picture 2>
+                      - generic "cafe-take04-candidate-v1.png" [ref=e8294]
+                    - generic [ref=e8295]: RefMods
+                    - generic [ref=e8296]:
+                      - generic [ref=e8297]: "3"
+                      - generic [ref=e8298]: <Video 1>
+                      - generic "andre-identity-video-v1" [ref=e8299]
+              - generic [ref=e8300]: Fantastic-MiniMaxH3-PromptBuilder
+          - button "Resize from bottom-right corner" [ref=e8303]
+          - button "Resize from top-right corner" [ref=e8306]
+          - button "Resize from bottom-left corner" [ref=e8309]
+          - button "Resize from top-left corner" [ref=e8312]
+        - generic [ref=e8315]:
+          - generic [ref=e8316]:
+            - generic [ref=e8320]:
+              - button [ref=e8322] [cursor=pointer]
+              - generic [ref=e8324]: Reference map • no model needed
+            - generic [ref=e8327]:
+              - generic [ref=e8328]:
+                - generic [ref=e8329]:
+                  - generic [ref=e8330]: mods
+                  - generic [ref=e8337]: references
+                - generic [ref=e8344]: reference_map
+              - generic [ref=e8356]:
+                - generic [ref=e8357]:
+                  - generic [ref=e8358]: Updates as you edit the graph
+                  - button "⧉ Copy" [ref=e8359] [cursor=pointer]
+                - textbox [ref=e8360]: <Picture 1> = picture 1 (media) <Picture 2> = picture 2 (media) <Video 1> = andre-identity-video-v1
+              - generic [ref=e8361]: Fantastic-MiniMaxH3-PromptBuilder
+          - button "Resize from bottom-right corner" [ref=e8364]
+          - button "Resize from top-right corner" [ref=e8367]
+          - button "Resize from bottom-left corner" [ref=e8370]
+          - button "Resize from top-left corner" [ref=e8373]
+        - generic [ref=e8376]:
+          - generic [ref=e8377]:
+            - generic [ref=e8381]:
+              - button [ref=e8383] [cursor=pointer]
+              - generic [ref=e8385]: Reference labels before model encoding
+            - generic [ref=e8388]:
+              - generic [ref=e8389]:
+                - generic [ref=e8390]: source
+                - generic [ref=e8397]: STRING
+              - generic [ref=e8403]:
+                - textbox "preview_text" [ref=e8409]
+                - generic [ref=e8414]:
+                  - generic [ref=e8415]: preview_mode
+                  - group [ref=e8418]:
+                    - button "Plain text" [pressed] [ref=e8419] [cursor=pointer]
+                    - button "Markdown" [ref=e8420] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e8421]
+          - button "Resize from top-right corner" [ref=e8424]
+          - button "Resize from bottom-left corner" [ref=e8427]
+          - button "Resize from top-left corner" [ref=e8430]
+        - generic [ref=e8433]:
+          - generic [ref=e8434]:
+            - generic [ref=e8438]:
+              - button [ref=e8440] [cursor=pointer]
+              - generic [ref=e8442]: Basic Guider
+            - generic [ref=e8446]:
+              - generic [ref=e8447]:
+                - generic [ref=e8448]: model
+                - generic [ref=e8454]: conditioning
+              - generic [ref=e8460]: GUIDER
+          - button "Resize from bottom-right corner" [ref=e8466]
+          - button "Resize from top-right corner" [ref=e8469]
+          - button "Resize from bottom-left corner" [ref=e8472]
+          - button "Resize from top-left corner" [ref=e8475]
+        - generic [ref=e8478]:
+          - generic [ref=e8479]:
+            - generic [ref=e8483]:
+              - button [ref=e8485] [cursor=pointer]
+              - generic [ref=e8487]: KSamplerSelect
+            - generic [ref=e8490]:
+              - generic [ref=e8491]: SAMPLER
+              - generic [ref=e8506]:
+                - generic [ref=e8507]: sampler_name
+                - generic [ref=e8511]:
+                  - combobox "sampler_name" [ref=e8512] [cursor=pointer]:
+                    - generic [ref=e8513]: sa_solver
+                  - button [aria-hidden] [ref=e8514] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e8516]
+          - button "Resize from top-right corner" [ref=e8519]
+          - button "Resize from bottom-left corner" [ref=e8522]
+          - button "Resize from top-left corner" [ref=e8525]
+        - generic [ref=e8528]:
+          - generic [ref=e8529]:
+            - generic [ref=e8533]:
+              - button [ref=e8535] [cursor=pointer]
+              - generic [ref=e8537]: 5 · Sampling schedule • base model
+            - generic [ref=e8540]:
+              - generic [ref=e8541]:
+                - generic [ref=e8542]: model
+                - generic [ref=e8549]: SIGMAS
+              - generic [ref=e8555]:
+                - generic [ref=e8563]:
+                  - generic [ref=e8564]: scheduler
+                  - generic [ref=e8568]:
+                    - combobox "scheduler" [ref=e8569] [cursor=pointer]:
+                      - generic [ref=e8570]: beta
+                    - button [aria-hidden] [ref=e8571] [cursor=pointer]
+                - generic [ref=e8580]:
+                  - generic [ref=e8581]: steps
+                  - generic "steps" [ref=e8584]:
+                    - button "Decrement" [ref=e8585] [cursor=pointer]
+                    - spinbutton [ref=e8588]: "20"
+                    - button "Increment" [ref=e8590] [cursor=pointer]
+                - generic [ref=e8599]:
+                  - generic [ref=e8600]: denoise
+                  - generic "denoise" [ref=e8603]:
+                    - button "Decrement" [ref=e8604] [cursor=pointer]
+                    - spinbutton [ref=e8607]: "1.00"
+                    - button "Increment" [disabled]
+          - button "Resize from bottom-right corner" [ref=e8609]
+          - button "Resize from top-right corner" [ref=e8612]
+          - button "Resize from bottom-left corner" [ref=e8615]
+          - button "Resize from top-left corner" [ref=e8618]
+        - generic [ref=e8621]:
+          - generic [ref=e8622]:
+            - generic [ref=e8626]:
+              - button [ref=e8628] [cursor=pointer]
+              - generic [ref=e8630]: Shot seed
+            - generic [ref=e8633]:
+              - generic [ref=e8634]: NOISE
+              - generic [ref=e8650]:
+                - generic [ref=e8651]: noise_seed
+                - generic "noise_seed" [ref=e8654]:
+                  - button "Decrement" [ref=e8655] [cursor=pointer]
+                  - spinbutton [ref=e8658]: "11005"
+                  - button "Fixed Value" [ref=e8660] [cursor=pointer]
+                  - button "Increment" [ref=e8662] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e8664]
+          - button "Resize from top-right corner" [ref=e8667]
+          - button "Resize from bottom-left corner" [ref=e8670]
+          - button "Resize from top-left corner" [ref=e8673]
+        - generic [ref=e8676]:
+          - generic [ref=e8677]:
+            - generic [ref=e8681]:
+              - button [ref=e8683] [cursor=pointer]
+              - generic [ref=e8685]: 6 · Sample audiovisual latent
+            - generic [ref=e8689]:
+              - generic [ref=e8690]:
+                - generic [ref=e8691]: noise
+                - generic [ref=e8697]: guider
+                - generic [ref=e8703]: sampler
+                - generic [ref=e8709]: sigmas
+                - generic [ref=e8715]: latent_image
+              - generic [ref=e8721]:
+                - generic [ref=e8722]: output
+                - generic [ref=e8727]: denoised_output
+          - button "Resize from bottom-right corner" [ref=e8732]
+          - button "Resize from top-right corner" [ref=e8735]
+          - button "Resize from bottom-left corner" [ref=e8738]
+          - button "Resize from top-left corner" [ref=e8741]
+        - generic [ref=e8744]:
+          - generic [ref=e8745]:
+            - generic [ref=e8749]:
+              - button [ref=e8751] [cursor=pointer]
+              - generic [ref=e8753]: 7 · Decode video
+            - generic [ref=e8757]:
+              - generic [ref=e8758]:
+                - generic [ref=e8759]: samples
+                - generic [ref=e8765]: vae
+              - generic [ref=e8771]: IMAGE
+          - button "Resize from bottom-right corner" [ref=e8777]
+          - button "Resize from top-right corner" [ref=e8780]
+          - button "Resize from bottom-left corner" [ref=e8783]
+          - button "Resize from top-left corner" [ref=e8786]
+        - generic [ref=e8789]:
+          - generic [ref=e8790]:
+            - generic [ref=e8794]:
+              - button [ref=e8796] [cursor=pointer]
+              - generic [ref=e8798]: 8 · Create silent 24 fps video
+            - generic [ref=e8801]:
+              - generic [ref=e8802]:
+                - generic [ref=e8803]:
+                  - generic [ref=e8804]: images
+                  - generic [ref=e8810]: audio
+                - generic [ref=e8817]: VIDEO
+              - generic [ref=e8823]:
+                - generic [ref=e8831]:
+                  - generic [ref=e8832]: fps
+                  - generic "fps" [ref=e8835]:
+                    - button "Decrement" [ref=e8836] [cursor=pointer]
+                    - spinbutton [ref=e8839]: "24"
+                    - button "Increment" [ref=e8841] [cursor=pointer]
+                - generic [ref=e8850]:
+                  - generic [ref=e8851]: bit_depth
+                  - generic [ref=e8855]:
+                    - combobox "bit_depth" [ref=e8856] [cursor=pointer]:
+                      - generic [ref=e8857]: auto
+                    - button [aria-hidden] [ref=e8858] [cursor=pointer]
+                - generic [ref=e8867]:
+                  - generic [ref=e8868]: color_space
+                  - generic [ref=e8872]:
+                    - combobox "color_space" [ref=e8873] [cursor=pointer]:
+                      - generic [ref=e8874]: sRGB
+                    - button [aria-hidden] [ref=e8875] [cursor=pointer]
+                - generic [ref=e8884]:
+                  - generic [ref=e8885]: chroma_subsampling
+                  - generic [ref=e8889]:
+                    - combobox "chroma_subsampling" [ref=e8890] [cursor=pointer]:
+                      - generic [ref=e8891]: auto
+                    - button [aria-hidden] [ref=e8892] [cursor=pointer]
+          - button "Show advanced inputs" [ref=e8895] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e8898]
+          - button "Resize from top-right corner" [ref=e8901]
+          - button "Resize from bottom-left corner" [ref=e8904]
+          - button "Resize from top-left corner" [ref=e8907]
+        - generic [ref=e8910]:
+          - generic [ref=e8911]:
+            - generic [ref=e8915]:
+              - button [ref=e8917] [cursor=pointer]
+              - generic [ref=e8919]: Project / shot / take output
+            - generic [ref=e8922]:
+              - generic [ref=e8923]:
+                - generic [ref=e8924]: video
+                - generic [ref=e8931]: video
+              - generic [ref=e8937]:
+                - generic [ref=e8945]:
+                  - generic [ref=e8946]: filename_prefix
+                  - textbox "filename_prefix" [ref=e8950]: The_Message/authoring/shot_preview
+                - generic [ref=e8958]:
+                  - generic [ref=e8959]: format
+                  - generic [ref=e8963]:
+                    - combobox "format" [ref=e8964] [cursor=pointer]:
+                      - generic [ref=e8965]: auto
+                    - button [aria-hidden] [ref=e8966] [cursor=pointer]
+                - generic [ref=e8975]:
+                  - generic [ref=e8976]: codec
+                  - generic [ref=e8980]:
+                    - combobox "codec" [ref=e8981] [cursor=pointer]:
+                      - generic [ref=e8982]: auto
+                    - button [aria-hidden] [ref=e8983] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e8985]
+          - button "Resize from top-right corner" [ref=e8988]
+          - button "Resize from bottom-left corner" [ref=e8991]
+          - button "Resize from top-left corner" [ref=e8994]
+        - generic [ref=e8997]:
+          - generic [ref=e8998]:
+            - generic [ref=e9002]:
+              - button [ref=e9004] [cursor=pointer]
+              - generic [ref=e9006]: Workflow Monitor Brain · passive recorder
+            - generic [ref=e9009]:
+              - generic [ref=e9010]:
+                - generic [ref=e9018]:
+                  - generic [ref=e9019]: enabled
+                  - switch "enabled" [checked] [ref=e9023] [cursor=pointer]
+                - generic [ref=e9031]:
+                  - generic [ref=e9032]: run_label
+                  - textbox "run_label" [ref=e9036]: The Message - Visual Shot Authoring (832x480)
+                - generic [ref=e9044]:
+                  - generic [ref=e9045]: sample_interval
+                  - generic [ref=e9049]:
+                    - combobox "sample_interval" [ref=e9050] [cursor=pointer]:
+                      - generic [ref=e9051]: "2"
+                    - button [aria-hidden] [ref=e9052] [cursor=pointer]
+                - generic [ref=e9061]:
+                  - generic [ref=e9062]: phase_overrides
+                  - textbox "phase_overrides" [ref=e9066]: "{}"
+                - generic [ref=e9074]:
+                  - generic [ref=e9075]: analyze_when_finished
+                  - switch "analyze_when_finished" [ref=e9079] [cursor=pointer]
+                - generic [ref=e9085]:
+                  - strong [ref=e9086]: Ready to observe
+                  - paragraph [ref=e9087]: Run this workflow to record its phases and existing Comfy Dynamic readings.
+                  - generic [ref=e9088]: Local recording · no wires needed
+                  - button "Open report" [ref=e9089] [cursor=pointer]
+              - generic [ref=e9090]: Workflow-Monitor-Brain
+          - button "Resize from bottom-right corner" [ref=e9093]
+          - button "Resize from top-right corner" [ref=e9096]
+          - button "Resize from bottom-left corner" [ref=e9099]
+          - button "Resize from top-left corner" [ref=e9102]
+    - generic [ref=e845]:
+      - status "Notification"
+      - alert "Notification" [ref=e4686]:
+        - paragraph [ref=e4687]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+        - paragraph [ref=e4688]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+    - alert [aria-hidden] [ref=e4689]: Notification
+    - alert [aria-hidden] [ref=e4690]: Notification
+    - region "Notifications (F8)":
+      - list:
+        - listitem [ref=e4692]:
+          - generic [ref=e4693]:
+            - generic [ref=e4695]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+            - button "Close" [ref=e4696] [cursor=pointer]
+        - listitem [ref=e4698]:
+          - generic [ref=e4699]:
+            - generic [ref=e4701]: "Invalid workflow against zod schema: Validation error: Invalid GUID at \"id\""
+            - button "Close" [ref=e4702] [cursor=pointer]
+    - generic:
+      - generic:
+        - status [ref=e846]
+        - status [ref=e847]
+        - status [ref=e848]
+    - text: 
+  - generic [ref=e850]:
+    - generic [ref=e855]: Control Panel
+    - generic [ref=e857]:
+      - button "?" [ref=e858] [cursor=pointer]
+      - button "Click-through is OFF. Click to let mouse events pass through the panel" [ref=e859] [cursor=pointer]
+      - button "❚❚" [ref=e864] [cursor=pointer]
+      - button "↺" [ref=e865] [cursor=pointer]
+      - button "↗" [ref=e866] [cursor=pointer]
+      - 'button "Vertical maximize: fill page height" [ref=e867] [cursor=pointer]'
+      - button "+" [ref=e1185] [cursor=pointer]

@@ -1,0 +1,30 @@
+{
+  "prompt": {
+    "1": {
+      "class_type": "DynamicScriptNode",
+      "inputs": {
+        "input_ports_count": 0,
+        "output_ports_count": 0,
+        "module_count": 0,
+        "module_name_prefix": "provenance_smoke",
+        "use_module_cache": false,
+        "clear_module_cache": false,
+        "remove_import_restrictions": false,
+        "lazy_execution": false,
+        "code": "import time\ntime.sleep(5)\n"
+      },
+      "_meta": {
+        "title": "CPU-only provenance timing probe"
+      }
+    },
+    "2": {
+      "class_type": "WorkflowMonitorBrain",
+      "inputs": {
+        "enabled": true,
+        "run_label": "Provenance activation - CPU-only smoke",
+        "sample_interval": "1",
+        "phase_overrides": "{}"
+      }
+    }
+  }
+}

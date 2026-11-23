@@ -1,0 +1,22 @@
+subject_definitions:
+<Subject 1> is Andre, the adult man whose facial identity comes from <Video 1>. Preserve his short brown hair, face and light stubble; dress him in a plain navy cotton shirt and dark trousers. Their name is Andre.
+<Subject 2> is Clara, the adult woman shown in <Picture 2>, with blonde hair pulled back from her face, blue eyes, a warm smile, a terracotta collared linen shirt and blue jeans. Their name is Clara.
+<Subject 3> is the rural farmhouse courtyard shown in <Picture 1>, with a white farmhouse and red clay roof at left, a wooden barn at right, pale earth and green pasture.
+
+summary:
+[reference generation] Andre and Clara stand facing slightly toward each other in <Subject 3>. They turn their gaze toward each other, and Clara smiles warmly, while the camera slowly pushes in with small amplitude, keeping both faces visible.
+
+retention_analysis:
+<Subject 1> (appears in [Shot 1]): partially_preserved - Use <Video 1> for Andre facial identity only. Replace its clothing, background, pose and action with this shot. Do not copy its camera movement or sound.
+<Subject 2> (appears in [Shot 1]): partially_preserved - Retain Clara face, blonde hairstyle, blue eyes and terracotta shirt from <Picture 2>. Replace the neutral studio background and forward-facing portrait pose with the farm and action below.
+<Subject 3> (appears in [Shot 1]): partially_preserved - Retain the architecture, materials, daylight and open courtyard from <Picture 1>. Add only Andre and Clara at the specified positions; the image supplies the environment, not an exact first frame.
+
+detailed_description:
+Naturalistic live-action photography with realistic skin texture and soft contrast. Soft late-afternoon daylight illuminates both faces from camera left.
+[Shot 1] A continuous eye-level medium two-shot with a 50mm lens frames two adults from the waist up in <Subject 3>. Clara, <Subject 2>, stands at screen left in her terracotta linen shirt; Andre, <Subject 1>, stands at screen right in his navy cotton shirt. They stand one arm length apart with separate silhouettes. Their bodies are angled slightly inward, leaving both faces visible in three-quarter view. The farmhouse remains behind Clara and the barn remains behind Andre. At the start, both look just past each other with relaxed closed lips. During the first half of the shot, Andre turns his eyes and chin slightly toward Clara while Clara turns her gaze toward Andre. Clara then forms a warm natural smile and holds it through the end; Andre maintains a relaxed attentive expression with closed lips. Their bodies remain in place, arms relaxed at their sides, without touching, handling objects or walking. The camera pushes forward with small amplitude at slow speed throughout, moving from waist-up framing to a slightly tighter two-shot. Both faces remain fully visible with space above their heads and between their shoulders; neither character crosses or leaves the frame. Preserve facial identity and clothing on their respective characters throughout the movement. The background changes perspective subtly as the camera moves, with stable straight building edges. One uninterrupted shot, no cut, no pan, no orbit, no dialogue, no additional people, no text or logos.
+
+overall_soundscape:
+No speech, music or sound effects.
+
+non_diegetic_music:
+N/A

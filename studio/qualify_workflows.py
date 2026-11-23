@@ -9,6 +9,7 @@ import stat
 from pathlib import Path
 import re
 import uuid
+from urllib.parse import quote
 
 import yaml
 
@@ -24,7 +25,7 @@ def model_roots(root):
     config = root / "extra_model_paths.yaml"
     if config.exists():
         for entry in (yaml.safe_load(config.read_text()) or {}).values():
-            base = Path(entry.get("base_path", root)).expanduser()
+            base = Path(os.path.expandvars(str(entry.get("base_path", root)))).expanduser()
             if not base.is_absolute():
                 base = root / base
             for key, values in entry.items():
@@ -40,20 +41,31 @@ def inventory(roots):
         if not root.exists():
             errors.append({"path": str(root), "error": "configured model path absent"})
             continue
-        # Resolve category symlinks explicitly; rglob does not traverse symlink directories.
+        # Resolve model categories and follow nested shared weight directories.
         paths = [root.resolve()]
         if root.name == "models":
             paths = [child.resolve() for child in root.iterdir() if child.is_dir()]
         for directory in paths:
             try:
-                for path in directory.rglob("*"):
-                    if path.suffix.lower() not in MODEL_SUFFIXES or not path.is_file():
+                visited = set()
+                for base, directories, names in os.walk(directory, followlinks=True,
+                        onerror=lambda exc: errors.append({"path": str(exc.filename), "error": str(exc)})):
+                    resolved = Path(base).resolve()
+                    if resolved in visited:
+                        directories[:] = []
                         continue
-                    actual = path.resolve()
-                    record = files.setdefault(str(actual), {"path": str(actual), "filename": path.name,
-                                                           "bytes": actual.stat().st_size, "search_roots": []})
-                    if str(root) not in record["search_roots"]:
-                        record["search_roots"].append(str(root))
+                    visited.add(resolved)
+                    for name in names:
+                        path = Path(base) / name
+                        if path.suffix.lower() not in MODEL_SUFFIXES or not path.is_file():
+                            continue
+                        actual = path.resolve()
+                        record = files.setdefault(str(actual), {"path": str(actual), "filename": path.name,
+                            "filenames": [], "bytes": actual.stat().st_size, "search_roots": []})
+                        if path.name not in record["filenames"]:
+                            record["filenames"].append(path.name)
+                        if str(root) not in record["search_roots"]:
+                            record["search_roots"].append(str(root))
             except OSError as exc:
                 errors.append({"path": str(directory), "error": str(exc)})
     return sorted(files.values(), key=lambda value: value["path"]), errors
@@ -78,7 +90,8 @@ def family(workflow):
 def qualify(workflow, files):
     by_name = {}
     for item in files:
-        by_name.setdefault(item["filename"], []).append(item)
+        for name in item.get("filenames", [item["filename"]]):
+            by_name.setdefault(name, []).append(item)
     references = []
     for ref in workflow["model_references"]:
         name = Path(ref["reference"].replace("\\", "/")).name
@@ -137,7 +150,8 @@ def main():
     refs = CATALOGUE / "references"
     write_text(refs / "qualification.json", json.dumps({"model_files": files, "model_scan_errors": errors,
         "workflows": qualified}, indent=2) + "\n")
-    write_csv(refs / "models.csv", [{**item, "search_roots": " | ".join(item["search_roots"])} for item in files],
+    write_csv(refs / "models.csv", [{"path": item["path"], "filename": item["filename"], "bytes": item["bytes"],
+                                   "search_roots": " | ".join(item["search_roots"])} for item in files],
               ["path", "filename", "bytes", "search_roots"])
     write_csv(refs / "test-queue.csv", [{"id": item["workflow_id"], "title": item["title"],
         "family_estimate": item["family_estimate"], "disposition": item["disposition"],
@@ -150,8 +164,10 @@ def main():
         if not aliases:
             lines.append("No graph payload found in inspected JSON/PNG sources. See inventory exclusions/gaps.")
         for workflow, alias in aliases:
+            source = Path(alias["absolute"])
+            link = quote(os.path.relpath(source, refs), safe='/') if source.is_relative_to(ROOT) else source.as_uri()
             lines.append("- `" + workflow["id"] + "` — [" + alias["relative"].replace("]", "\\]") + "](" +
-                         Path(alias["absolute"]).as_uri() + ") — `" + alias["pointer"] + "`")
+                         link + ") — `" + alias["pointer"] + "`")
         lines.append("")
     write_text(refs / "extensions.md", "\n".join(lines) + "\n")
     print(f"{len(files)} physical model paths, {len(qualified)} workflow dispositions, {len(errors)} model scan gaps")

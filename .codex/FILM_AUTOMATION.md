@@ -21,7 +21,7 @@ restarted.
 - Prepared records: `.codex/artifacts/the-message-production/MSG_S001_SH01/tk003`
   and `MSG_S002_SH01/tk003`. Earlier unsubmitted tk002 proposals are superseded.
 
-Use [the operating guide](../studio/FILM_AUTOMATION.md). Check the project with:
+Use [the operating guide](../studio/docs/FILM_AUTOMATION.md). Check the project with:
 
 ```bash
 .venv/bin/python studio/film.py check studio/projects/the-message

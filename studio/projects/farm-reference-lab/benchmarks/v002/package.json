@@ -1,0 +1,111 @@
+{
+  "project": "FARM",
+  "output_project": "Farm_Reference_Lab",
+  "shot_id": "FARM_S001_SH02",
+  "prompt_name": "Farm confirmation - delayed shared gaze - locked camera",
+  "seed": 151104,
+  "transition": "cut",
+  "builder_state": {
+    "version": 1,
+    "mode": "REF",
+    "off": {},
+    "duration": 3,
+    "p2Shot": 1,
+    "lastShot": 1,
+    "imd": "",
+    "soundscape": "",
+    "music": "N/A",
+    "ref": {
+      "subjectDefs": [
+        {
+          "text": "<Subject 1> is Andre, the adult man whose facial identity comes from <Video 1>. Preserve his short brown hair, face and light stubble; dress him in a plain navy cotton shirt and dark trousers.",
+          "name": "Andre"
+        },
+        {
+          "text": "<Subject 2> is Clara, the adult woman shown in <Picture 2>, with blonde hair pulled back from her face, blue eyes, a warm smile, a terracotta collared linen shirt and blue jeans.",
+          "name": "Clara"
+        },
+        {
+          "text": "<Subject 3> is the rural farmhouse courtyard shown in <Picture 1>, with a white farmhouse and red clay roof at left, a wooden barn at right, pale earth and green pasture."
+        }
+      ],
+      "summaryTypes": [
+        "reference generation"
+      ],
+      "summaryText": "Clara first turns her gaze toward a point off-screen camera-left; Andre then follows her gaze after a short delay. Both hold that same gaze direction while the camera stays completely locked off.",
+      "retention": [
+        {
+          "label": "<Subject 1>",
+          "context": "appears in [Shot 1]",
+          "marker": "partially_preserved",
+          "note": "Use <Video 1> for Andre facial identity only. Replace its clothing, background, pose and action with this shot. Do not copy its camera movement or sound."
+        },
+        {
+          "label": "<Subject 2>",
+          "context": "appears in [Shot 1]",
+          "marker": "partially_preserved",
+          "note": "Retain Clara face, blonde hairstyle, blue eyes and terracotta shirt from <Picture 2>. Replace the neutral studio background and forward-facing portrait pose with the farm and action below."
+        },
+        {
+          "label": "<Subject 3>",
+          "context": "appears in [Shot 1]",
+          "marker": "partially_preserved",
+          "note": "Retain the architecture, materials, daylight and open courtyard from <Picture 1>. Add only Andre and Clara at the specified positions; the image supplies the environment, not an exact first frame."
+        }
+      ],
+      "styleLine": "Naturalistic live-action photography with realistic skin texture and soft contrast. Soft late-afternoon daylight illuminates both faces from camera left.",
+      "detail": "[Shot 1] A continuous eye-level medium two-shot with a 50mm lens frames two adults from the waist up in <Subject 3>. Clara, <Subject 2>, stands at screen left in her terracotta linen shirt; Andre, <Subject 1>, stands at screen right in his navy cotton shirt. Their shoulders and silhouettes remain separate and both faces stay fully visible. The white farmhouse remains behind Clara and the wooden barn behind Andre. Begin with both faces directed approximately toward the camera, relaxed and with natural slight smiles. In the first second, Clara turns only her eyes and chin slightly toward a fixed point just off-screen camera-left at eye level. Andre initially keeps his gaze forward. After Clara completes this small turn, Andre turns his eyes and chin toward that same off-screen point. During the final second, both hold this shared camera-left gaze with relaxed expressions. The head turns are small, at most about 30 degrees, retaining visible three-quarter faces. They do not look at each other. Their bodies remain in place, arms relaxed, without walking, touching or handling objects. The camera is mounted on a locked tripod throughout: constant position, constant focal length and fixed framing, with no push-in, zoom, pan, tilt or orbit. Keep the apparent size and screen positions of both people and the farmhouse and barn constant. Preserve each character's face, hairstyle and clothing. One uninterrupted shot, no cut, no dialogue, no additional people, no text or logos.",
+      "soundscape": "No speech, music or sound effects.",
+      "music": "N/A"
+    }
+  },
+  "prompt_text": "subject_definitions:\n<Subject 1> is Andre, the adult man whose facial identity comes from <Video 1>. Preserve his short brown hair, face and light stubble; dress him in a plain navy cotton shirt and dark trousers. Their name is Andre.\n<Subject 2> is Clara, the adult woman shown in <Picture 2>, with blonde hair pulled back from her face, blue eyes, a warm smile, a terracotta collared linen shirt and blue jeans. Their name is Clara.\n<Subject 3> is the rural farmhouse courtyard shown in <Picture 1>, with a white farmhouse and red clay roof at left, a wooden barn at right, pale earth and green pasture.\n\nsummary:\n[reference generation] Clara first turns her gaze toward a point off-screen camera-left; Andre then follows her gaze after a short delay. Both hold that same gaze direction while the camera stays completely locked off.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): partially_preserved - Use <Video 1> for Andre facial identity only. Replace its clothing, background, pose and action with this shot. Do not copy its camera movement or sound.\n<Subject 2> (appears in [Shot 1]): partially_preserved - Retain Clara face, blonde hairstyle, blue eyes and terracotta shirt from <Picture 2>. Replace the neutral studio background and forward-facing portrait pose with the farm and action below.\n<Subject 3> (appears in [Shot 1]): partially_preserved - Retain the architecture, materials, daylight and open courtyard from <Picture 1>. Add only Andre and Clara at the specified positions; the image supplies the environment, not an exact first frame.\n\ndetailed_description:\nNaturalistic live-action photography with realistic skin texture and soft contrast. Soft late-afternoon daylight illuminates both faces from camera left.\n[Shot 1] A continuous eye-level medium two-shot with a 50mm lens frames two adults from the waist up in <Subject 3>. Clara, <Subject 2>, stands at screen left in her terracotta linen shirt; Andre, <Subject 1>, stands at screen right in his navy cotton shirt. Their shoulders and silhouettes remain separate and both faces stay fully visible. The white farmhouse remains behind Clara and the wooden barn behind Andre. Begin with both faces directed approximately toward the camera, relaxed and with natural slight smiles. In the first second, Clara turns only her eyes and chin slightly toward a fixed point just off-screen camera-left at eye level. Andre initially keeps his gaze forward. After Clara completes this small turn, Andre turns his eyes and chin toward that same off-screen point. During the final second, both hold this shared camera-left gaze with relaxed expressions. The head turns are small, at most about 30 degrees, retaining visible three-quarter faces. They do not look at each other. Their bodies remain in place, arms relaxed, without walking, touching or handling objects. The camera is mounted on a locked tripod throughout: constant position, constant focal length and fixed framing, with no push-in, zoom, pan, tilt or orbit. Keep the apparent size and screen positions of both people and the farmhouse and barn constant. Preserve each character's face, hairstyle and clothing. One uninterrupted shot, no cut, no dialogue, no additional people, no text or logos.\n\noverall_soundscape:\nNo speech, music or sound effects.\n\nnon_diegetic_music:\nN/A",
+  "stack_state": {
+    "picks": [
+      {
+        "uid": 1,
+        "name": "refmod_-Andre_Athar-video_visual",
+        "label": "andre-identity-video-v1",
+        "on": true,
+        "preview": null,
+        "visual": {
+          "file": "refmod_-Andre_Athar-video_visual",
+          "kind": "video",
+          "tokens": 7224,
+          "mode": "weight",
+          "w": 1,
+          "s": 1,
+          "c": 1,
+          "embedded_audio_ignored": false
+        }
+      }
+    ],
+    "budget": 0
+  },
+  "media_state": [
+    {
+      "kind": "picture",
+      "file": "refs/farm-reference-lab/farm-v002.png [input]",
+      "name": "farm-v002.png",
+      "width": 1344,
+      "height": 768,
+      "duration": null,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "farm-ref-1",
+      "enabled": true
+    },
+    {
+      "kind": "picture",
+      "file": "refs/farm-reference-lab/clara-v001.png [input]",
+      "name": "clara-v001.png",
+      "width": 864,
+      "height": 1152,
+      "duration": null,
+      "has_audio": false,
+      "audio_mode": "off",
+      "uid": "farm-ref-2",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "characters": [
+    {
+      "appearance": "Short black hair",
+      "id": "SBR1-CHR-01",
+      "name": "Ada",
+      "persona": {
+        "demeanor": "Unspecified",
+        "speech": "Unspecified",
+        "summary": "Unspecified"
+      },
+      "wardrobe": [
+        {
+          "description": "Navy coat",
+          "id": "W1"
+        }
+      ]
+    }
+  ],
+  "editorial": {
+    "gap_before_frames": {},
+    "version": 1
+  },
+  "locations": [
+    {
+      "description": "Interior workshop space with a table.",
+      "id": "SBR1-LOC-01",
+      "kind": "INT",
+      "name": "Workshop"
+    }
+  ],
+  "project": {
+    "aspect": "16:9",
+    "code": "SBR1",
+    "fps": 24,
+    "source_text": "INT. WORKSHOP - DAY. Ada has short black hair and wears a navy coat.\nAda lifts a blue envelope.\nAda places the envelope on the table.\n",
+    "title": "Story runtime qualification"
+  },
+  "props": [
+    {
+      "description": "Blue envelope",
+      "id": "SBR1-PRP-01",
+      "name": "Blue envelope"
+    }
+  ],
+  "scenes": [
+    {
+      "characters": [
+        "SBR1-CHR-01"
+      ],
+      "id": "SBR1_S001",
+      "location": "SBR1-LOC-01",
+      "number": 1,
+      "props": [
+        "SBR1-PRP-01"
+      ],
+      "script_ref": {
+        "end": 134,
+        "start": 0
+      },
+      "slug": "Workshop",
+      "summary": "Ada lifts the blue envelope. Ada places the envelope on the table.",
+      "time": "day",
+      "wardrobe": {
+        "SBR1-CHR-01": "W1"
+      }
+    }
+  ],
+  "schema_version": 2,
+  "shots": [
+    {
+      "action": "Ada lifts the blue envelope.",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "characters": [
+        "SBR1-CHR-01"
+      ],
+      "duration_s": 3,
+      "id": "SBR1_S001_SH01",
+      "lens": "35mm",
+      "location": "SBR1-LOC-01",
+      "props": [
+        "SBR1-PRP-01"
+      ],
+      "purpose": "medium",
+      "scene": "SBR1_S001",
+      "script_ref": {
+        "end": 95,
+        "start": 69
+      },
+      "shot_size": "medium",
+      "subject": "Ada"
+    },
+    {
+      "action": "Ada places the envelope on the table.",
+      "angle": "eye-level",
+      "camera_move": {
+        "type": "static"
+      },
+      "characters": [
+        "SBR1-CHR-01"
+      ],
+      "duration_s": 3,
+      "id": "SBR1_S001_SH02",
+      "lens": "35mm",
+      "location": "SBR1-LOC-01",
+      "props": [
+        "SBR1-PRP-01"
+      ],
+      "purpose": "medium",
+      "scene": "SBR1_S001",
+      "script_ref": {
+        "end": 133,
+        "start": 96
+      },
+      "shot_size": "medium",
+      "subject": "Ada"
+    }
+  ],
+  "style_bible": {
+    "lens_default": "35mm",
+    "lighting_default": {
+      "key": "Unspecified",
+      "quality": "soft",
+      "time_of_day": "day"
+    },
+    "look": "Neutral draft",
+    "palette": [
+      "neutral"
+    ]
+  }
+}

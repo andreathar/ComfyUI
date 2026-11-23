@@ -15,16 +15,26 @@ and model settings go in `studio/presets.json`, not in code.
    Slugs only for `project`, `scene`, `shot`. Write concrete prompt fields
    (subject, action, location, lighting, lens); reuse a named look when one fits.
 2. Reference images go under `input/refs/<project>/`. Copy the user's file there;
-   never point `reference` outside `input/`.
+   never point `reference` outside `input/`. `shot.py` requires an existing
+   `studio/templates/<family>-i2i.json` for reference shots. Current reference
+   templates are available for SD 1.5 and Z-Image; `flux2-i2i.json` is absent, so
+   do not use FLUX.2 references with `shot.py`. For FLUX.2 reference conditioning,
+   use the separate `studio/worker.py` `comfy-klein` job workflow (up to three
+   refs) and follow its job contract instead.
 3. Dry run and show the user the prompts and output names:
    `.venv/bin/python studio/shot.py <sheet> --dry-run`.
-4. Before rendering, check the server answers on 127.0.0.1:8188 and memory is
-   free (`free -m`, `nvidia-smi`). Z-Image Turbo needs roughly 12 GB of free
-   RAM plus swap headroom; if RAM is short, say so and ask the user to close
-   apps, or render with `"model": "sd15"`. Start the server with
+4. Before rendering, check the server answers on 127.0.0.1:8188, inspect the
+   current queue, and check available memory (`free -m`, `nvidia-smi`). Do not
+   duplicate or interrupt queued work; ask before submitting while another job
+   is active. If resources are insufficient, explain that and offer a smaller
+   supported model such as `"model": "sd15"`. Start the server with
    `.codex/launch.sh` only if it is not running.
 5. Render: `.venv/bin/python studio/shot.py <sheet> [--only <shot>]`. Look at
    the saved images before reporting, and give the user their paths.
+   For a monitored pilot, add `--brain` on the canonical local server. The
+   sidecar links the verified native `brain_run` (resources, not browser phase
+   timings). Before retrying after a client timeout, check the existing queue
+   and exact native history; the original render can still be running.
 6. Past renders: read `output/refs/<project>/index.jsonl`, or filter it by tag
    with `jq 'select(.tags | index("night"))'`.
 

@@ -1,0 +1,20 @@
+[
+  {
+    "path": "/mnt/data/Projects_SSD/ComfyUI/input/refs/farm-reference-lab/farm-v002.png",
+    "sha256": "972ce7a39ec9013f228143fa13e2439769cbfd238531584ce409431d6d7f4b82",
+    "source": "/mnt/data/Projects_SSD/ComfyUI/output/refs/farm-reference-lab/refs/farm-courtyard-clean/refs-farm-courtyard-clean_z-image-turbo_16x9_s151102_00001_.png",
+    "width": 1344,
+    "height": 768,
+    "kind": "picture",
+    "status": "test_candidate"
+  },
+  {
+    "path": "/mnt/data/Projects_SSD/ComfyUI/input/refs/farm-reference-lab/clara-v001.png",
+    "sha256": "c2b67eeacbcaf6928cc7239f045ed9005b02edac3460683a04393545c42af02d",
+    "source": "/mnt/data/Projects_SSD/ComfyUI/output/refs/farm-reference-lab/refs/clara-identity/refs-clara-identity_z-image-turbo_3x4_s151101_00001_.png",
+    "width": 864,
+    "height": 1152,
+    "kind": "picture",
+    "status": "test_candidate"
+  }
+]

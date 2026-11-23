@@ -1,5 +1,17 @@
 """Master Movie Studio frame / transition planning (CPU-pure)."""
 
+SETTINGS_REPORT_CODE = '''import json
+summary = json.dumps({'schema': 'workflow-monitor.runtime.v1', 'kind': 'settings', 'summary': summary,
+                     'values': {'width': int(width), 'height': int(height), 'raw_frames': int(raw),
+                                'delivered_frames': int(delivered), 'fps': int(round(fps_f)), 'steps': int(steps),
+                                'shift_video': float(shift_video), 'shift_audio': float(shift_audio),
+                                'transition': mode, 'continuing': bool(continuing)}}, ensure_ascii=False, indent=2)
+'''
+
+
+def with_runtime_report(code):
+    return code.replace('outputs[:] =', SETTINGS_REPORT_CODE + '\noutputs[:] =', 1)
+
 CONTEXT_LENGTH = 22
 
 
@@ -35,17 +47,3 @@ def plan_frames(duration_s, fps, transition="cut", chain_active=False, context_l
         "delivered_s": delivered / fps_f,
         "raw_s": raw / fps_f,
     }
-
-
-def format_summary(project_name, shot_tag, width, height, plan, steps, shift_video, shift_audio, transition="cut"):
-    mode = "continue" if plan["continuing"] else "cut"
-    return (
-        f"Project: {project_name} · Shot: {shot_tag} · Transition: {transition} ({mode})\n"
-        f"Canvas: {width}×{height} (16:9 multiple-of-32) · "
-        f"raw {plan['raw_frames']}f / delivered {plan['delivered_frames']}f "
-        f"({plan['delivered_s']:.3f}s @ {plan['fps']:g} fps)"
-        + (f" · trim {plan['trim_frames']}" if plan["trim_frames"] else "")
-        + "\n"
-        f"Schedule: {int(steps)} steps · sa_solver / beta · "
-        f"shifts {float(shift_video):g}/{float(shift_audio):g} · CK int8 attention"
-    )

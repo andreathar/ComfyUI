@@ -88,7 +88,7 @@ current server and the monitor attached. This fixes the true current number; the
 
 ### Phase 1 — Restore the qualified launch (no quality change)
 
-- Stop the bare server; start through `.codex/launch.sh` only. Make whatever launcher
+- Immediately before any authorized restart, read the live `/queue` and coordinate an idle window with its users. Wait for running and pending work to finish; never stop active renders. Then stop the bare server and start through `.codex/launch.sh` only. Make whatever launcher
   agents use (Copilot detached shell, comfyui-mcp broker) call that script.
 - Remove the duplicated `PYTORCH_CUDA_ALLOC_CONF` value from the launching environment.
 - Expected: ~10–12% faster sampler, no swap, ~12 GB free RAM during renders (R1→R2).
@@ -234,7 +234,7 @@ These ranges were pre-measurement estimates; see "Measured results" for actual n
 
 ## Decisions for the owner
 
-1. Approve the Phase 1 restart (stops whatever is using the current server).
+1. Approve the Phase 1 restart, subject to a fresh queue check and a coordinated idle window.
 2. Approve `sudo nvidia-smi` power/clock changes and the cooling setup for Phase 2.
 3. Accept or reject the int8 attention output in Phase 3.
 4. Restore the stage pack from Trash or reimplement it in Project Suite (Phase 4).

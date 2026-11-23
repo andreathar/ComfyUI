@@ -1,0 +1,452 @@
+- generic [active] [ref=f3e1]:
+  - main [ref=f3e9]:
+    - generic [ref=f3e11]:
+      - text: .. .. ..
+      - generic:
+        - generic [ref=f3e13]:
+          - tablist [ref=f3e16]:
+            - tab "Unsaved Workflow" [selected] [ref=f3e18] [cursor=pointer]
+          - button "Create a new blank workflow" [ref=f3e22] [cursor=pointer]:
+            - generic [ref=f3e23]: 
+          - button "Login" [ref=f3e25] [cursor=pointer]
+        - generic:
+          - generic:
+            - navigation [ref=f3e28]:
+              - generic [ref=f3e29]:
+                - generic [ref=f3e30]:
+                  - button "Menu" [ref=f3e31] [cursor=pointer]
+                  - button "Job History" [ref=f3e34] [cursor=pointer]
+                  - button "Assets (a)" [ref=f3e38] [cursor=pointer]
+                  - button "Node Library (n)" [ref=f3e42] [cursor=pointer]
+                  - button "Model Library (m)" [ref=f3e46] [cursor=pointer]
+                  - button "Workflows (w)" [ref=f3e50] [cursor=pointer]
+                  - button "Apps" [ref=f3e54] [cursor=pointer]
+                  - button "ComfyUI Agent Panel — your agent session's window into this graph" [ref=f3e58] [cursor=pointer]:
+                    - generic [ref=f3e59]: 
+                  - button "Templates" [ref=f3e63] [cursor=pointer]
+                - generic [ref=f3e67]:
+                  - button "Help Center" [ref=f3e68] [cursor=pointer]:
+                    - generic [ref=f3e69]: 
+                  - button "Toggle Bottom Panel" [ref=f3e72] [cursor=pointer]
+                  - button "Keyboard Shortcuts (Ctrl + Shift + k)" [ref=f3e76] [cursor=pointer]
+                  - button "Settings (Ctrl + ,)" [ref=f3e80] [cursor=pointer]
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - group "Workflow actions" [ref=f3e84]:
+                              - generic [ref=f3e85]:
+                                - button "Enter app mode" [ref=f3e87] [cursor=pointer]:
+                                  - generic: App
+                                - button "Graph mode, workflow actions" [ref=f3e91] [cursor=pointer]:
+                                  - generic [ref=f3e93]: Graph
+                            - text: 
+                        - generic [ref=f3e96]:
+                          - generic [ref=f3e97]:
+                            - button "Align" [ref=f3e101] [cursor=pointer]:
+                              - img "Align"
+                            - generic [ref=f3e104]:
+                              - generic [ref=f3e105]: .. .. ..
+                              - generic [ref=f3e108]:
+                                - generic "Batch Count" [ref=f3e109]:
+                                  - generic [ref=f3e110]:
+                                    - textbox "Batch Count" [ref=f3e111]: "1"
+                                    - generic [ref=f3e112]:
+                                      - button "Increment" [ref=f3e113] [cursor=pointer]
+                                      - button "Decrement" [disabled]
+                                - button "Run" [ref=f3e114] [cursor=pointer]
+                                - button "Run options" [ref=f3e116] [cursor=pointer]
+                              - button "Cancel current run" [disabled]
+                              - button "0 active View active jobs (right-click to clear queue)" [ref=f3e117] [cursor=pointer]:
+                                - generic [ref=f3e118]: 0 active
+                                - generic [ref=f3e119]: View active jobs (right-click to clear queue)
+                            - button "Extensions" [ref=f3e120] [cursor=pointer]
+                            - button "Deploy to Comfy API" [ref=f3e122] [cursor=pointer]
+                            - button "Toggle properties panel" [ref=f3e125] [cursor=pointer]
+                          - status
+                  - generic:
+                    - generic:
+                      - toolbar "Canvas Toolbar" [ref=f3e127]:
+                        - button "Canvas Mode" [ref=f3e128] [cursor=pointer]
+                        - button "Fit View (.)" [ref=f3e134] [cursor=pointer]
+                        - button "Zoom Controls" [ref=f3e136] [cursor=pointer]:
+                          - generic [ref=f3e137]: 90%
+                        - button "Hide Minimap (ALT + SHIFT + M)" [ref=f3e141] [cursor=pointer]
+                        - button "Hide Links" [ref=f3e143] [cursor=pointer]
+                      - 'generic "Minimap. Highlighted nodes: 0" [ref=f3e146]':
+                        - button "Settings" [ref=f3e147] [cursor=pointer]
+                        - button "Close" [ref=f3e149] [cursor=pointer]
+                        - separator [ref=f3e151]
+                    - text: 
+      - generic:
+        - generic [ref=f3e154]:
+          - generic [ref=f3e155]:
+            - generic [ref=f3e159]:
+              - button [ref=f3e161] [cursor=pointer]
+              - generic [ref=f3e163]: Save Image
+            - generic [ref=f3e166]:
+              - generic [ref=f3e167]:
+                - generic [ref=f3e168]: images
+                - generic [ref=f3e175]: images
+              - generic [ref=f3e189]:
+                - generic [ref=f3e190]: filename_prefix
+                - textbox "filename_prefix" [ref=f3e194]: ComfyUI
+          - button "Resize from bottom-right corner" [ref=f3e195]
+          - button "Resize from top-right corner" [ref=f3e198]
+          - button "Resize from bottom-left corner" [ref=f3e201]
+          - button "Resize from top-left corner" [ref=f3e204]
+        - generic [ref=f3e207]:
+          - generic [ref=f3e208]:
+            - generic [ref=f3e212]:
+              - button [ref=f3e214] [cursor=pointer]
+              - generic [ref=f3e216]: Load CLIP
+            - generic [ref=f3e219]:
+              - generic [ref=f3e220]: CLIP
+              - generic [ref=f3e227]:
+                - generic [ref=f3e235]:
+                  - generic [ref=f3e236]: clip_name
+                  - generic [ref=f3e240]:
+                    - combobox "clip_name" [ref=f3e241] [cursor=pointer]:
+                      - generic [ref=f3e242]: qwen_3_4b.safetensors
+                    - button [aria-hidden] [ref=f3e243] [cursor=pointer]
+                - generic [ref=f3e252]:
+                  - generic [ref=f3e253]: type
+                  - generic [ref=f3e257]:
+                    - combobox "type" [ref=f3e258] [cursor=pointer]:
+                      - generic [ref=f3e259]: lumina2
+                    - button [aria-hidden] [ref=f3e260] [cursor=pointer]
+          - button "Show advanced inputs" [ref=f3e263] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=f3e266]
+          - button "Resize from top-right corner" [ref=f3e269]
+          - button "Resize from bottom-left corner" [ref=f3e272]
+          - button "Resize from top-left corner" [ref=f3e275]
+        - generic [ref=f3e278]:
+          - generic [ref=f3e279]:
+            - generic [ref=f3e283]:
+              - button [ref=f3e285] [cursor=pointer]
+              - generic [ref=f3e287]: Load VAE
+            - generic [ref=f3e290]:
+              - generic [ref=f3e291]: VAE
+              - generic [ref=f3e306]:
+                - generic [ref=f3e307]: vae_name
+                - generic [ref=f3e311]:
+                  - combobox "vae_name" [ref=f3e312] [cursor=pointer]:
+                    - generic [ref=f3e313]: ae.safetensors
+                  - button [aria-hidden] [ref=f3e314] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=f3e316]
+          - button "Resize from top-right corner" [ref=f3e319]
+          - button "Resize from bottom-left corner" [ref=f3e322]
+          - button "Resize from top-left corner" [ref=f3e325]
+        - generic [ref=f3e328]:
+          - generic [ref=f3e329]:
+            - generic [ref=f3e333]:
+              - button [ref=f3e335] [cursor=pointer]
+              - generic [ref=f3e337]: VAE Decode
+            - generic [ref=f3e341]:
+              - generic [ref=f3e342]:
+                - generic [ref=f3e343]: samples
+                - generic [ref=f3e349]: vae
+              - generic [ref=f3e355]: IMAGE
+          - button "Resize from bottom-right corner" [ref=f3e361]
+          - button "Resize from top-right corner" [ref=f3e364]
+          - button "Resize from bottom-left corner" [ref=f3e367]
+          - button "Resize from top-left corner" [ref=f3e370]
+        - generic [ref=f3e373]:
+          - generic [ref=f3e374]:
+            - generic [ref=f3e378]:
+              - button [ref=f3e380] [cursor=pointer]
+              - generic [ref=f3e382]: Load Diffusion Model
+            - generic [ref=f3e385]:
+              - generic [ref=f3e386]: MODEL
+              - generic [ref=f3e401]:
+                - generic [ref=f3e402]: unet_name
+                - generic [ref=f3e406]:
+                  - combobox "unet_name" [ref=f3e407] [cursor=pointer]:
+                    - generic [ref=f3e408]: z_image_turbo_bf16.safetensors
+                  - button [aria-hidden] [ref=f3e409] [cursor=pointer]
+          - button "Show advanced inputs" [ref=f3e412] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=f3e415]
+          - button "Resize from top-right corner" [ref=f3e418]
+          - button "Resize from bottom-left corner" [ref=f3e421]
+          - button "Resize from top-left corner" [ref=f3e424]
+        - generic [ref=f3e427]:
+          - generic [ref=f3e428]:
+            - generic [ref=f3e432]:
+              - button [ref=f3e434] [cursor=pointer]
+              - generic [ref=f3e436]: CLIP Text Encode (Prompt)
+            - generic [ref=f3e439]:
+              - generic [ref=f3e440]:
+                - generic [ref=f3e441]: clip
+                - generic [ref=f3e448]: CONDITIONING
+              - generic [ref=f3e462]:
+                - generic: text
+                - textbox "text" [ref=f3e463]:
+                  - /placeholder: ""
+                  - text: anime RPG game style, cute anime girl with gigantic fennec ears and a big fluffy fox tail with long wavy blonde hair and large blue eyes blonde colored eyelashes wearing a pink sweater a large oversized gold trimmed black winter coat and a long blue maxi skirt and a red scarf, she is sitting beside a campfire in the wilderness at night playing guitar with a milky way galaxy sky
+          - button "Resize from bottom-right corner" [ref=f3e464]
+          - button "Resize from top-right corner" [ref=f3e467]
+          - button "Resize from bottom-left corner" [ref=f3e470]
+          - button "Resize from top-left corner" [ref=f3e473]
+        - generic [ref=f3e476]:
+          - generic [ref=f3e477]:
+            - generic [ref=f3e481]:
+              - button [ref=f3e483] [cursor=pointer]
+              - generic [ref=f3e485]: EmptySD3LatentImage
+            - generic [ref=f3e488]:
+              - generic [ref=f3e489]: LATENT
+              - generic [ref=f3e496]:
+                - generic [ref=f3e504]:
+                  - generic [ref=f3e505]: width
+                  - generic "width" [ref=f3e508]:
+                    - button "Decrement" [ref=f3e509] [cursor=pointer]
+                    - spinbutton [ref=f3e512]: "1024"
+                    - button "Increment" [ref=f3e514] [cursor=pointer]
+                - generic [ref=f3e523]:
+                  - generic [ref=f3e524]: height
+                  - generic "height" [ref=f3e527]:
+                    - button "Decrement" [ref=f3e528] [cursor=pointer]
+                    - spinbutton [ref=f3e531]: "1024"
+                    - button "Increment" [ref=f3e533] [cursor=pointer]
+                - generic [ref=f3e542]:
+                  - generic [ref=f3e543]: batch_size
+                  - generic "batch_size" [ref=f3e546]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=f3e548]: "1"
+                    - button "Increment" [ref=f3e550] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=f3e552]
+          - button "Resize from top-right corner" [ref=f3e555]
+          - button "Resize from bottom-left corner" [ref=f3e558]
+          - button "Resize from top-left corner" [ref=f3e561]
+        - generic [ref=f3e564]:
+          - generic [ref=f3e565]:
+            - generic [ref=f3e569]:
+              - button [ref=f3e571] [cursor=pointer]
+              - generic [ref=f3e573]: ModelSamplingAuraFlow
+            - generic [ref=f3e576]:
+              - generic [ref=f3e577]:
+                - generic [ref=f3e578]: model
+                - generic [ref=f3e585]: MODEL
+              - generic [ref=f3e599]:
+                - generic [ref=f3e600]: shift
+                - generic "shift" [ref=f3e603]:
+                  - button "Decrement" [ref=f3e604] [cursor=pointer]
+                  - spinbutton [ref=f3e607]: "3.00"
+                  - button "Increment" [ref=f3e609] [cursor=pointer]
+          - button "Show advanced inputs" [ref=f3e612] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=f3e615]
+          - button "Resize from top-right corner" [ref=f3e618]
+          - button "Resize from bottom-left corner" [ref=f3e621]
+          - button "Resize from top-left corner" [ref=f3e624]
+        - generic [ref=f3e627]:
+          - generic [ref=f3e628]:
+            - generic [ref=f3e632]:
+              - button [ref=f3e634] [cursor=pointer]
+              - generic [ref=f3e636]: KSampler
+            - generic [ref=f3e639]:
+              - generic [ref=f3e640]:
+                - generic [ref=f3e641]:
+                  - generic [ref=f3e642]: model
+                  - generic [ref=f3e648]: positive
+                  - generic [ref=f3e654]: negative
+                  - generic [ref=f3e660]: latent_image
+                - generic [ref=f3e666]: LATENT
+              - generic [ref=f3e672]:
+                - generic [ref=f3e681]:
+                  - generic [ref=f3e682]: seed
+                  - generic "seed" [ref=f3e685]:
+                    - button "Decrement" [ref=f3e686] [cursor=pointer]
+                    - spinbutton [ref=f3e689]: "42"
+                    - button "Fixed Value" [ref=f3e691] [cursor=pointer]
+                    - button "Increment" [ref=f3e693] [cursor=pointer]
+                - generic [ref=f3e702]:
+                  - generic [ref=f3e703]: steps
+                  - generic "steps" [ref=f3e706]:
+                    - button "Decrement" [ref=f3e707] [cursor=pointer]
+                    - spinbutton [ref=f3e710]: "8"
+                    - button "Increment" [ref=f3e712] [cursor=pointer]
+                - generic [ref=f3e721]:
+                  - generic [ref=f3e722]: cfg
+                  - generic "cfg" [ref=f3e725]:
+                    - button "Decrement" [ref=f3e726] [cursor=pointer]
+                    - spinbutton [ref=f3e729]: "1.0"
+                    - button "Increment" [ref=f3e731] [cursor=pointer]
+                - generic [ref=f3e740]:
+                  - generic [ref=f3e741]: sampler_name
+                  - generic [ref=f3e745]:
+                    - combobox "sampler_name" [ref=f3e746] [cursor=pointer]:
+                      - generic [ref=f3e747]: res_multistep
+                    - button [aria-hidden] [ref=f3e748] [cursor=pointer]
+                - generic [ref=f3e757]:
+                  - generic [ref=f3e758]: scheduler
+                  - generic [ref=f3e762]:
+                    - combobox "scheduler" [ref=f3e763] [cursor=pointer]:
+                      - generic [ref=f3e764]: simple
+                    - button [aria-hidden] [ref=f3e765] [cursor=pointer]
+                - generic [ref=f3e774]:
+                  - generic [ref=f3e775]: denoise
+                  - generic "denoise" [ref=f3e778]:
+                    - button "Decrement" [ref=f3e779] [cursor=pointer]
+                    - spinbutton [ref=f3e782]: "1.00"
+                    - button "Increment" [disabled]
+          - button "Resize from bottom-right corner" [ref=f3e784]
+          - button "Resize from top-right corner" [ref=f3e787]
+          - button "Resize from bottom-left corner" [ref=f3e790]
+          - button "Resize from top-left corner" [ref=f3e793]
+        - generic [ref=f3e796]:
+          - generic [ref=f3e797]:
+            - generic [ref=f3e801]:
+              - button [ref=f3e803] [cursor=pointer]
+              - generic [ref=f3e805]: CLIP Text Encode (Prompt)
+            - generic [ref=f3e808]:
+              - generic [ref=f3e809]:
+                - generic [ref=f3e810]: clip
+                - generic [ref=f3e817]: CONDITIONING
+              - generic [ref=f3e831]:
+                - generic: text
+                - textbox "text" [ref=f3e832]:
+                  - /placeholder: ""
+                  - text: low quality, bad anatomy, extra digits, missing digits, extra limbs, missing limbs
+          - button "Resize from bottom-right corner" [ref=f3e833]
+          - button "Resize from top-right corner" [ref=f3e836]
+          - button "Resize from bottom-left corner" [ref=f3e839]
+          - button "Resize from top-left corner" [ref=f3e842]
+    - generic [ref=f3e845]:
+      - status "Notification"
+      - alert "Notification"
+    - generic:
+      - generic:
+        - status [ref=f3e846]
+        - status [ref=f3e847]
+        - status [ref=f3e848]
+    - text: 
+  - generic [ref=f3e849]:
+    - generic [ref=f3e850]:
+      - generic [ref=f3e854]: Control Panel
+      - generic [ref=f3e855]: comfy_dynamic
+      - 'generic "High temperature: CPU 91 C" [ref=f3e856]'
+      - generic [ref=f3e857]:
+        - button "?" [ref=f3e858] [cursor=pointer]
+        - button "Click-through is OFF. Click to let mouse events pass through the panel" [ref=f3e859] [cursor=pointer]
+        - button "❚❚" [ref=f3e864] [cursor=pointer]
+        - button "↺" [ref=f3e865] [cursor=pointer]
+        - button "↗" [ref=f3e866] [cursor=pointer]
+        - 'button "Vertical maximize: fill page height" [ref=f3e867] [cursor=pointer]'
+        - button "–" [ref=f3e870] [cursor=pointer]
+    - generic [ref=f3e871]:
+      - generic [ref=f3e872]:
+        - generic "CPU utilization - - logical cores" [ref=f3e873]:
+          - generic [ref=f3e874]: CPU
+          - generic [ref=f3e875]: 21.7%
+          - generic [ref=f3e876]: 16 threads
+        - generic "System RAM usage - used / total, proc = ComfyUI process RSS" [ref=f3e879]:
+          - generic [ref=f3e880]: RAM
+          - generic [ref=f3e881]: 54%
+          - generic [ref=f3e882]: 16.8 GB / 31.1 GB · proc 1.53 GB
+        - generic "GPU utilization (NVIDIA NVML) -" [ref=f3e885]:
+          - generic [ref=f3e886]: GPU
+          - generic [ref=f3e887]: 0%
+          - generic [ref=f3e888]: "cuda:0 NVIDIA GeForce RTX 3060 Laptop GPU : cudaMallocAsync"
+        - generic "Primary GPU VRAM usage - used / total" [ref=f3e890]:
+          - generic [ref=f3e891]: VRAM
+          - generic [ref=f3e892]: 4.5%
+          - generic [ref=f3e893]: 261 MB / 5.67 GB
+        - generic "CPU temperature (100 C = 100%). Windows needs LibreHardwareMonitor running" [ref=f3e896]:
+          - generic [ref=f3e897]: CPU C
+          - generic [ref=f3e898]: "91"
+          - generic [ref=f3e899]: C
+        - generic "GPU temperature (100 C = 100%, NVIDIA NVML)" [ref=f3e902]:
+          - generic [ref=f3e903]: GPU C
+          - generic [ref=f3e904]: "59"
+          - generic [ref=f3e905]: C
+      - generic [ref=f3e910]:
+        - generic [ref=f3e911]: CPU
+        - generic [ref=f3e913]: RAM
+        - generic [ref=f3e915]: GPU
+        - generic [ref=f3e917]: VRAM
+        - generic [ref=f3e919]: CPU C
+        - generic [ref=f3e921]: GPU C
+      - generic [ref=f3e923]:
+        - button "Free RAM" [ref=f3e924] [cursor=pointer]
+        - button "Free VRAM" [ref=f3e925] [cursor=pointer]
+        - generic "Also trim working sets of all other processes (may affect running programs)" [ref=f3e926] [cursor=pointer]:
+          - checkbox "All processes" [ref=f3e927]
+          - generic [ref=f3e928]: All processes
+        - generic [ref=f3e929]:
+          - combobox [ref=f3e930] [cursor=pointer]:
+            - option "Quick links" [selected]
+            - option "ComfyUI"
+            - option "ComfyUI Docs"
+            - option "ComfyUI Registry"
+            - option "Comfy-Org (HF)"
+            - option "Hugging Face"
+            - option "Civitai"
+            - option "Civitai (red)"
+            - option "CivArchive"
+            - option "OpenModelDB"
+            - option "comfyui_dynamic (GitHub)"
+          - combobox [ref=f3e931] [cursor=pointer]:
+            - option "Local dirs" [selected]
+      - generic [ref=f3e932]:
+        - generic [ref=f3e933]:
+          - generic [ref=f3e934] [cursor=pointer]:
+            - generic [ref=f3e935]: ▼
+            - generic [ref=f3e936]: Loaded models (0)
+            - button "Unload ALL loaded models" [ref=f3e937]
+          - generic [ref=f3e942]: No loaded models
+        - generic [ref=f3e945] [cursor=pointer]:
+          - generic [ref=f3e946]: ▼
+          - generic [ref=f3e947]: Unloaded models (0)
+          - button "Clear unloaded records" [ref=f3e948]
+    - generic "Status messages" [ref=f3e953]
+    - generic [ref=f3e954]:
+      - combobox "UI language" [ref=f3e956] [cursor=pointer]:
+        - option "EN" [selected]
+        - option "中文"
+      - slider "Panel opacity (30-100%)" [ref=f3e958] [cursor=pointer]: "80"
+      - generic "Refresh rate (0-10 Hz, 0 = paused)" [ref=f3e959]:
+        - generic [ref=f3e960]:
+          - button "-" [ref=f3e961] [cursor=pointer]
+          - button "+" [ref=f3e962] [cursor=pointer]
+        - spinbutton [ref=f3e963]: "2"
+        - generic [ref=f3e964]: Hz
+      - generic "Mouse position" [ref=f3e967]: (323, 838)
+      - generic "Panel position" [ref=f3e969]: (64, 390)
+      - generic "Panel size" [ref=f3e971]: 400x600
+  - dialog "Storyboard" [ref=f3e973]:
+    - banner [ref=f3e974]:
+      - heading "Storyboard" [level=1] [ref=f3e975]
+      - button "Close" [ref=f3e976] [cursor=pointer]
+    - paragraph [ref=f3e977]: Write a story, review the shot plan, then prepare its frames.
+    - generic [ref=f3e978]:
+      - generic [ref=f3e979]:
+        - generic [ref=f3e980]: Open project
+        - combobox "Open project" [ref=f3e981]:
+          - option "Choose a saved project" [selected]
+      - button "New story" [ref=f3e982] [cursor=pointer]
+    - status [ref=f3e983]: Review the draft choices. No images have been generated.
+    - generic [ref=f3e984]:
+      - generic [ref=f3e985]:
+        - generic [ref=f3e986]:
+          - generic [ref=f3e987]: Movie title
+          - textbox "Movie title" [ref=f3e988]: Storyboard acceptance test 20261121
+        - paragraph [ref=f3e989]: "Draft mode: each paragraph becomes a shot, up to four shots in one scene."
+        - generic [ref=f3e990]:
+          - generic [ref=f3e991]: Your story
+          - textbox "Your story" [ref=f3e992]: A folded letter waits on the table. André picks up the letter.
+        - generic [ref=f3e993]:
+          - generic [ref=f3e994]: Place
+          - textbox "Place" [ref=f3e995]: Reading room
+        - button "Review shot plan" [ref=f3e996] [cursor=pointer]
+      - generic [ref=f3e997]:
+        - heading "Review before creating the project" [level=2] [ref=f3e998]
+        - paragraph [ref=f3e999]: Each paragraph is a draft shot in one scene; story interpretation has not run.
+        - paragraph [ref=f3e1000]: Interior, daytime, wide framing and three-second timing are editable starting choices.
+        - paragraph [ref=f3e1001]: Characters, outfits, props, geography and endpoint images need review.
+        - list [ref=f3e1002]:
+          - listitem [ref=f3e1003]: A folded letter waits on the table.
+          - listitem [ref=f3e1004]: André picks up the letter.
+        - button "Create project" [ref=f3e1005] [cursor=pointer]

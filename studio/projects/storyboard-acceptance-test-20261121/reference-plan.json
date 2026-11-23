@@ -1,0 +1,11 @@
+[
+  {
+    "entity": "SBA7D4-LOC-01",
+    "role": "location",
+    "shots": [
+      "SBA7D4_S001_SH01",
+      "SBA7D4_S001_SH02"
+    ],
+    "status": "missing"
+  }
+]

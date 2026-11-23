@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "store": "/home/athar/.cache/codebase-memory-mcp",
+  "cli": "/home/athar/.local/bin/codebase-memory-mcp",
+  "source_lock": ".codex/custom_nodes.lock.json",
+  "verification_artifact": ".codex/artifacts/graph-rollout/owner-verification.json",
+  "owners": [
+    {
+      "owner": ".",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI",
+      "project": "mnt-data-Projects_SSD-ComfyUI",
+      "installed_paths": []
+    },
+    {
+      "owner": ".codex/repos/agent-panel",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/.codex/repos/agent-panel",
+      "project": "mnt-data-Projects_SSD-ComfyUI-.codex-repos-agent-panel",
+      "installed_paths": [
+        "custom_nodes/comfyui-agent-panel"
+      ]
+    },
+    {
+      "owner": ".codex/repos/fantastic-loras",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/.codex/repos/fantastic-loras",
+      "project": "mnt-data-Projects_SSD-ComfyUI-.codex-repos-fantastic-loras",
+      "installed_paths": [
+        "custom_nodes/comfyui-fantastic-loras"
+      ]
+    },
+    {
+      "owner": ".codex/repos/spark-h3",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/.codex/repos/spark-h3",
+      "project": "mnt-data-Projects_SSD-ComfyUI-.codex-repos-spark-h3",
+      "installed_paths": [
+        "custom_nodes/comfyui-spark-h3"
+      ]
+    },
+    {
+      "owner": ".codex/worktrees/swarm-nodes",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/.codex/worktrees/swarm-nodes",
+      "project": "mnt-data-Projects_SSD-ComfyUI-.codex-worktrees-swarm-nodes",
+      "installed_paths": [
+        "custom_nodes/SwarmComfyCommon",
+        "custom_nodes/SwarmComfyExtra"
+      ]
+    },
+    {
+      "owner": ".codex/worktrees/workflow-monitor-brain",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/.codex/worktrees/workflow-monitor-brain",
+      "project": "mnt-data-Projects_SSD-ComfyUI-.codex-worktrees-workflow-monitor-brain",
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
+      ]
+    },
+    {
+      "owner": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder"
+      ]
+    },
+    {
+      "owner": "custom_nodes/ComfyUI-H3-NativeAudioLock",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/ComfyUI-H3-NativeAudioLock",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-ComfyUI-H3-NativeAudioLock",
+      "installed_paths": [
+        "custom_nodes/ComfyUI-H3-NativeAudioLock"
+      ]
+    },
+    {
+      "owner": "custom_nodes/ComfyUI-H3-Project-Suite",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/ComfyUI-H3-Project-Suite",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-ComfyUI-H3-Project-Suite",
+      "installed_paths": [
+        "custom_nodes/ComfyUI-H3-Project-Suite"
+      ]
+    },
+    {
+      "owner": "custom_nodes/ComfyUI_LC123_nodes",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/ComfyUI_LC123_nodes",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-ComfyUI_LC123_nodes",
+      "installed_paths": [
+        "custom_nodes/ComfyUI_LC123_nodes"
+      ]
+    },
+    {
+      "owner": "custom_nodes/comfyui-manager",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-manager",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui-manager",
+      "installed_paths": [
+        "custom_nodes/comfyui-manager"
+      ]
+    },
+    {
+      "owner": "custom_nodes/comfyui-minimaxh3-contex-loop",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-minimaxh3-contex-loop",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui-minimaxh3-contex-loop",
+      "installed_paths": [
+        "custom_nodes/comfyui-minimaxh3-contex-loop"
+      ]
+    },
+    {
+      "owner": "custom_nodes/comfyui-websocket-reconnect-fix",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui-websocket-reconnect-fix",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui-websocket-reconnect-fix",
+      "installed_paths": [
+        "custom_nodes/comfyui-websocket-reconnect-fix"
+      ]
+    },
+    {
+      "owner": "custom_nodes/comfyui_dynamic",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/comfyui_dynamic",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-comfyui_dynamic",
+      "installed_paths": [
+        "custom_nodes/comfyui_dynamic"
+      ]
+    },
+    {
+      "owner": "custom_nodes/hermes-nodes",
+      "canonical_root": "/mnt/data/Projects_SSD/ComfyUI/custom_nodes/hermes-nodes",
+      "project": "mnt-data-Projects_SSD-ComfyUI-custom_nodes-hermes-nodes",
+      "installed_paths": [
+        "custom_nodes/hermes-nodes"
+      ]
+    }
+  ]
+}

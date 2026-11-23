@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "install_sources": {
+    "custom_nodes/comfyui-agent-panel": ".",
+    "custom_nodes/comfyui-fantastic-loras": ".",
+    "custom_nodes/comfyui-spark-h3": "studio-package",
+    "custom_nodes/SwarmComfyCommon": "src/BuiltinExtensions/ComfyUIBackend/ExtraNodes/SwarmComfyCommon",
+    "custom_nodes/SwarmComfyExtra": "src/BuiltinExtensions/ComfyUIBackend/ExtraNodes/SwarmComfyExtra",
+    "custom_nodes/ComfyUI-Workflow-Monitor-Brain": ".",
+    "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder": ".",
+    "custom_nodes/ComfyUI-H3-NativeAudioLock": ".",
+    "custom_nodes/ComfyUI-H3-Project-Suite": ".",
+    "custom_nodes/ComfyUI_LC123_nodes": ".",
+    "custom_nodes/comfyui-manager": ".",
+    "custom_nodes/comfyui-minimaxh3-contex-loop": ".",
+    "custom_nodes/comfyui-websocket-reconnect-fix": ".",
+    "custom_nodes/comfyui_dynamic": ".",
+    "custom_nodes/hermes-nodes": "."
+  },
+  "repositories": [
+    {
+      "path": ".codex/repos/agent-panel",
+      "origin": "https://github.com/andreathar/comfyui-mcp-panel.git",
+      "head": "cbadda173d3dd9e75ec53da395bb18e85de00f40",
+      "tag": "v0.15.184",
+      "installed_paths": [
+        "custom_nodes/comfyui-agent-panel"
+      ]
+    },
+    {
+      "path": ".codex/repos/fantastic-loras",
+      "origin": "https://github.com/andreathar/comfyui_fantastic-loras.git",
+      "head": "c0acd42f597ad20b900bc3fe4243aeec4eed2951",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-fantastic-loras"
+      ]
+    },
+    {
+      "path": ".codex/repos/spark-h3",
+      "origin": "https://github.com/andreathar/Spark-H3.git",
+      "head": "ad528128d4740851d0c10136d476cf8cb403f81d",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-spark-h3"
+      ]
+    },
+    {
+      "path": ".codex/worktrees/swarm-nodes",
+      "origin": "https://github.com/mcmonkeyprojects/SwarmUI",
+      "head": "d347f3061ce9aa19e0d3950e5189415022de6659",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/SwarmComfyCommon",
+        "custom_nodes/SwarmComfyExtra"
+      ]
+    },
+    {
+      "path": ".codex/worktrees/workflow-monitor-brain",
+      "origin": "https://github.com/andreathar/ComfyUI-Workflow-Monitor-Brain.git",
+      "head": "ef71c2054f0df0a7d9249d8597b550ae3aacd8e8",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Workflow-Monitor-Brain"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder",
+      "origin": "https://github.com/andreathar/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder.git",
+      "head": "a4c07bac5173b8d27b463dc2082e9cba98c09fcb",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-Fantastic-MiniMaxH3-PromptBuilder"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI-H3-NativeAudioLock",
+      "origin": "https://github.com/andreathar/ComfyUI-H3-NativeAudioLock.git",
+      "head": "6dbf2dd11ebf8774d840527eaa962cd599b3a779",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-H3-NativeAudioLock"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI-H3-Project-Suite",
+      "origin": "https://github.com/andreathar/ComfyUI-H3-Project-Suite.git",
+      "head": "e8584fd0dcbe07f430bba956dc79fd823f5c8d01",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI-H3-Project-Suite"
+      ]
+    },
+    {
+      "path": "custom_nodes/ComfyUI_LC123_nodes",
+      "origin": "https://github.com/lonecatone23/ComfyUI_LC123_nodes.git",
+      "head": "4358590c88bf4788f0e1d24f39f1f2e4b493970b",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/ComfyUI_LC123_nodes"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui-manager",
+      "origin": "https://github.com/andreathar/ComfyUI-Manager.git",
+      "head": "78db9bb759683df12265de04fc8b1d041e7f10e0",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-manager"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui-minimaxh3-contex-loop",
+      "origin": "https://github.com/andreathar/ComfyUI-MiniMaxH3-Context-Loop.git",
+      "head": "9b63462dc5af5800a74c0b5dde90ea20704ee641",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-minimaxh3-contex-loop"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui-websocket-reconnect-fix",
+      "origin": "https://github.com/D3voz/comfyui-websocket-reconnect-fix.git",
+      "head": "12b5fdf38e8bdbf8a560b9196561244bf65621f4",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui-websocket-reconnect-fix"
+      ]
+    },
+    {
+      "path": "custom_nodes/comfyui_dynamic",
+      "origin": "https://github.com/andreathar/comfyui_dynamic.git",
+      "head": "21802e54f4364a679888e154d24985b96aaae26d",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/comfyui_dynamic"
+      ]
+    },
+    {
+      "path": "custom_nodes/hermes-nodes",
+      "origin": "https://github.com/Lannister34/ComfyUI-HermesNodes",
+      "head": "950306092d7f8017b985d0ca7d91beddb6642c9d",
+      "tag": null,
+      "installed_paths": [
+        "custom_nodes/hermes-nodes"
+      ]
+    }
+  ]
+}

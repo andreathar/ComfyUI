@@ -1,0 +1,15 @@
+{
+  "assets": "assets.json",
+  "bindings": "bindings.json",
+  "code": "SBR1",
+  "production": "production.json",
+  "proposal_digest": "b4249c44e868a6617b08e105d53621b35821e2e3734cb30fc62a86ba5d805d19",
+  "reference_plan": "reference-plan.json",
+  "schema_version": 2,
+  "slug": "storyboard-qwen-qualification-20261121",
+  "source": "story/script-v001.md",
+  "source_sha256": "14b48bde926ffc658f9c11f7db28785d48eca40c391447432aa4762e687541d8",
+  "title": "Story runtime qualification",
+  "transitions": "shot_transitions.json",
+  "version": 1
+}

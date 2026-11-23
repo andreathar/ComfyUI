@@ -17,6 +17,7 @@ WriteSession = None
 _DEPENDENCIES = ("sqlalchemy", "alembic", "blake3")
 
 try:
+    import blake3  # noqa: F401 — verify the hard dependency is importable at startup
     from alembic import command
     from alembic.config import Config
     from alembic.runtime.migration import MigrationContext
@@ -27,9 +28,8 @@ try:
     from sqlalchemy.orm import sessionmaker
     from sqlalchemy.pool import StaticPool
 
-    from app.database.models import Base
     import app.assets.database.models  # noqa: F401 — register models with Base.metadata
-    import blake3  # noqa: F401 — verify the hard dependency is importable at startup
+    from app.database.models import Base
 
     _DB_AVAILABLE = True
 except ImportError:

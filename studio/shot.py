@@ -76,15 +76,49 @@ def post(server, path, data=None):
         raise ValueError(f"ComfyUI rejected the workflow: {error.read().decode()[:2000]}") from error
 
 
-def render(job, presets, seed, server, output_dir):
+def brain_receipt(prompt_id):
+    if not re.fullmatch(r'[a-zA-Z0-9-]+', prompt_id):
+        raise ValueError('Invalid prompt ID for Brain receipt')
+    path = Path('user/workflow_monitor/runs') / prompt_id / 'run.json'
+    deadline = time.monotonic() + 10
+    while time.monotonic() < deadline:
+        if (PROJECT / path).is_file():
+            run = json.loads((PROJECT / path).read_text())
+            if run.get('prompt_id') == prompt_id and run.get('status') == 'succeeded':
+                return path.as_posix()
+        time.sleep(0.25)
+    raise ValueError(f'Reference rendered, but no successful Brain receipt for {prompt_id}; inspect history before retrying')
+
+
+def render(job, presets, seed, server, output_dir, *, brain=False):
     graph = fill(load_template(job["template"]), {**job, "seed": seed, "output": output_prefix(job, presets, seed)})
+    if brain:
+        if server != 'http://127.0.0.1:8188':
+            raise ValueError('Brain receipts require this checkout’s local ComfyUI server')
+        if not isinstance(graph, dict):
+            raise ValueError('Reference template is not a prompt graph')
+        monitor_id = str(max(int(node_id) for node_id in graph) + 1)
+        graph[monitor_id] = {'class_type': 'WorkflowMonitorBrain', 'inputs': {
+            'enabled': True, 'run_label': f"reference:{job['project']}/{job['scene']}/{job['shot']}",
+            'sample_interval': '2', 'phase_overrides': '{}', 'analyze_when_finished': False,
+        }}
+        queue = post(server, '/queue')
+        if queue['queue_running'] or queue['queue_pending']:
+            raise ValueError('ComfyUI queue is occupied; reference was not submitted')
     started = time.time()
     # A client_id keeps ComfyUI from treating this as a headless deploy-to-cloud install.
     prompt_id = post(server, "/prompt", {"prompt": graph, "client_id": str(uuid.uuid4())})["prompt_id"]
+    if brain:
+        print(f'  queued: {prompt_id}', flush=True)
+    return collect_reference(job, seed, server, output_dir, prompt_id, started, brain=brain)
+
+
+def collect_reference(job, seed, server, output_dir, prompt_id, started, *, brain=False):
     while (entry := post(server, f"/history/{prompt_id}").get(prompt_id)) is None:
         time.sleep(1)
     if entry["status"]["status_str"] != "success":
         raise ValueError(f"Render failed: {json.dumps(entry['status'].get('messages', []))[:2000]}")
+    receipt = brain_receipt(prompt_id) if brain else None
     seconds = round(time.time() - started, 2)
     catalogue = json.loads(CATALOGUE.read_text())
     model_files = {key: {k: catalogue["models"][key][k] for k in ("filename", "sha256", "license")}
@@ -100,6 +134,8 @@ def render(job, presets, seed, server, output_dir):
             "model_files": model_files, "prompt_id": prompt_id, "seconds": seconds,
             "created": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         }
+        if receipt:
+            record['brain_run'] = receipt
         image.with_suffix(".json").write_text(json.dumps(record, indent=2) + "\n")
         with (output_dir / "refs" / job["project"] / "index.jsonl").open("a") as index:
             index.write(json.dumps(record) + "\n")
@@ -111,6 +147,7 @@ def main(argv=None):
     parser.add_argument("specs", nargs="+", type=Path, help="Shot or sheet JSON files")
     parser.add_argument("--only", help="Render only this shot id")
     parser.add_argument("--dry-run", action="store_true", help="Print prompts and output names without rendering")
+    parser.add_argument("--brain", action="store_true", help="Record and verify a Brain run for each reference render")
     parser.add_argument("--server", default="http://127.0.0.1:8188")
     args = parser.parse_args(argv)
     presets = json.loads((STUDIO / "presets.json").read_text())
@@ -124,7 +161,7 @@ def main(argv=None):
             if args.dry_run:
                 print(f"  output: output/{output_prefix(job, presets, seed)}_00001_.png")
                 continue
-            for image in render(job, presets, seed, args.server, PROJECT / "output"):
+            for image in render(job, presets, seed, args.server, PROJECT / "output", brain=args.brain):
                 print(f"  saved: {image}")
     return 0
 

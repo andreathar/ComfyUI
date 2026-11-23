@@ -450,6 +450,17 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 
 ## Learned User Preferences
 
+- Reference tests must establish reusable model-specific preparation practices;
+  use `studio/docs/REFERENCE_STRATEGY.md`. Stop once the strategy question is
+  answered. Do not drift into repeated per-shot gesture, expression or pixel-level
+  tuning unless the user explicitly asks to finish that shot.
+
+- For production work, read `.codex/README.md` and the Master Studio guide in
+  `studio/docs/MASTER_MOVIE_STUDIO_GUIDE.md`; keep dated machine measurements,
+  runtime details and experiment evidence in `.codex`, not in agent rules.
+- When no script exists, evaluate explicit reference, action, expression and
+  camera targets. Do not invent story meaning or treat a feature test as
+  narrative acceptance. Reuse existing nodes and change one variable per comparison.
 - Start or restart ComfyUI only through `.codex/launch.sh` (127.0.0.1:8188). A server started from another shell loses its `--reserve-vram 1.0`, `--disable-pinned-memory`, `--use-ck-attention`, `--enable-assets`, and preview flags.
 - Run long media work (trimming, importing, encoding) as queued ComfyUI prompts with progress and cancel, not as hidden background processes or private thread pools.
 - Check `/queue` before submitting a GPU job or restarting ComfyUI so active renders are never interrupted or duplicated; report technical and resource measurements separately from visual-quality review (a technical pass is not creative approval).
@@ -466,6 +477,25 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 - On H3, `--use-ck-attention` (Comfy Kitchen int8) is about 20% faster than PyTorch attention with matching frames and on par with SageAttention. Sampler time is driven by reference tokens (a RefMod can outweigh the video itself), not model alternation; `max_total_tokens` only rejects oversized bundles and does not shrink them.
 - A Hermes llama-server router can hold about 5 GB of VRAM and respawns its model on demand; check `nvidia-smi` before rendering or benchmarking.
 - Never decode long videos into image batches; use seek-based `VideoFromFile` trimming and saving so memory stays flat.
-- Studio automation lives in `studio/` (`film.py`, `h3_*.py`, canonical unit tests in `studio/test_*.py`, project specs in `studio/projects/`, plans in `studio/plans/`); on 6 GB VRAM, recursive Context Loop graphs require `MiniMaxH3ChainLoopEnd` `between_scene_cleanup` set to `unload_models` or `fresh_scene` so DynamicVRAM buffers release between shots.
-- `custom_nodes/ComfyUI-Workflow-Monitor-Brain` provides the unconnected `WorkflowMonitorBrain` output node (`/workflow_monitor/runs` under `user/default/workflow_monitor/runs/`); keep it enabled in the compiled prompt even when targeting specific outputs, and submit through a connected ComfyUI browser session when per-node phase timing is needed (headless API submissions record resources only).
+- Studio automation lives in `studio/` (`film.py`, `h3_*.py`, `master_take.py`, tests in `studio/tests/` and `studio/test_*.py`, project specs in `studio/projects/`, plans in `studio/plans/`); on 6 GB VRAM, recursive Context Loop graphs require `MiniMaxH3ChainLoopEnd` `between_scene_cleanup` set to `unload_models` or `fresh_scene` so DynamicVRAM buffers release between shots.
+- `custom_nodes/ComfyUI-Workflow-Monitor-Brain` provides the unconnected `WorkflowMonitorBrain` output node (`/workflow_monitor/runs` under `user/workflow_monitor/runs/`); keep it enabled in the compiled prompt even when targeting specific outputs, and submit through a connected ComfyUI browser session when per-node phase timing is needed (headless API submissions record resources only).
 - The codebase-memory graph misses calls made through instance attributes such as `self.prompt_queue.x`; confirm callers with a text search.
+
+## Production evidence rules
+
+- Inspect generated references before video submission; preserve rejected images,
+  seeds and prompt changes. Name each reference's role (identity, wardrobe,
+  environment or exact frame) and verify the encoder's actual binding.
+- A workflow tab title is not proof of the active canvas. Compare compiled node
+  types and input values with the frozen take before submitting through the browser.
+- Keep project/scene/shot/take identities explicit. Reconcile successful native
+  history, actual media dependencies, output hashes, decode, Suite files and Brain
+  run before reviewing. Recheck frozen inputs and output hashes at review time.
+- Attribute visual findings to their reviewer and output hash. A text-only local
+  model has not watched the clip; inspect its saved `model_view` and recommendations
+  separately. Existing citations and valid JSON do not prove useful reasoning.
+- Preserve automatic analysis snapshots. Wait for active analysis to finish before
+  adding review data, then rebuild SQLite and make a new report when needed. Never
+  convert advisor suggestions or technical checks into human creative approval.
+- Read `.codex/FARM_REFERENCE_LAB.md` for the verified example and remaining gaps;
+  use `.codex/BRAIN_ANALYSIS.md` for recording and reporting procedures.

@@ -11,7 +11,8 @@ import json
 import urllib.request
 from pathlib import Path
 
-from master_studio_package import live_resolver_code, resolve_shot_package
+from master_studio_package import PROMPT_FILES, live_resolver_code, resolve_shot_package
+from master_studio_compiler import with_runtime_report
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "user/default/workflows/06 - Learning Production/The Message - Master Movie Studio.json"
@@ -403,7 +404,7 @@ subgraph_5 = make_subgraph(
 VARS_CODE = """project_name, shot_tag, width, height, duration_s, fps, steps, shift_video, shift_audio, transition, chain_active = inputs
 width = max(32, round(int(width) / 32) * 32)
 height = max(32, round(int(height) / 32) * 32)
-fps_f = float(fps)
+fps_f = float(round(float(fps)))
 req = max(5, round(float(duration_s) * fps_f))
 ctx = 22
 continuing = str(transition).strip().lower() == "continue" and bool(chain_active)
@@ -418,11 +419,12 @@ else:
 mode = "continue" if continuing else "cut"
 summary = (
     f"Project: {project_name} · Shot: {shot_tag} · Transition: {transition} ({mode})\\n"
-    f"Canvas: {width}×{height} (16:9 multiple-of-32) · "
+    f"Canvas: {width}×{height} · "
     f"raw {raw}f / delivered {delivered}f ({delivered / fps_f:.3f}s @ {fps_f:g} fps)"
     + (f" · trim {trim}" if trim else "")
     + "\\n"
-    f"Schedule: {int(steps)} steps · sa_solver / beta · shifts {float(shift_video):g}/{float(shift_audio):g} · CK int8 attention"
+    f"Sampling controls: {int(steps)} steps · shifts {float(shift_video):g}/{float(shift_audio):g}\\n"
+    "Sampler / scheduler / attention: not observed by controls."
 )
 outputs[:] = [
     str(project_name), str(shot_tag), int(width), int(height), int(raw), int(round(fps_f)),
@@ -430,6 +432,7 @@ outputs[:] = [
 ]
 """
 
+VARS_CODE = with_runtime_report(VARS_CODE)
 PKG_CODE = live_resolver_code()
 
 guide = """## The Message · Master Movie Studio (RTX 3060 6 GB)
@@ -524,6 +527,8 @@ n28 = build_std_node(28, "PreviewAny", [480, -220], [360, 120], {}, title="Resol
 
 n21 = build_std_node(21, "MiniMaxH3MediaLoader", [80, 100], [360, 220], {"media_state": media_state}, title="Fantastic H3 Media Loader (from package)")
 n22 = build_std_node(22, "MiniMaxH3PromptBuilder", [480, 100], [420, 360], {"prompt_text": prompt_text, "builder_state": builder_state}, title="Fantastic H3 Prompt Builder (from package)")
+n22['properties']['prompt_library_source'] = {
+    'selector_node': 11, 'entries': {key: Path(value).stem for key, value in PROMPT_FILES.items()}}
 n23 = build_std_node(23, "MiniMaxH3RefModStack", [80, 360], [360, 220], {"stack_state": stack_state}, title="Fantastic H3 RefMod Stack (from package)")
 n24 = build_std_node(24, "MiniMaxH3FantasticReferenceMap", [480, 500], [360, 120], {}, title="Fantastic H3 Reference Map (CPU)")
 n25 = build_std_node(25, "PreviewAny", [480, 660], [360, 180], {}, title="Reference Map Preview")

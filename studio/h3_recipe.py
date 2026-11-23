@@ -9,7 +9,10 @@ import re
 
 import yaml
 
-import production_validate
+if __package__:
+    from . import production_validate
+else:
+    import production_validate
 
 
 DIAGNOSTIC = {
@@ -46,10 +49,10 @@ def model_folders(root, category):
         for key, value in group.items():
             if {'unet': 'diffusion_models', 'clip': 'text_encoders'}.get(key, key) != category:
                 continue
-            for folder in value.splitlines():
-                if not folder.strip():
+            for folder in value.split('\n'):
+                if not folder:
                     continue
-                path = Path(os.path.normpath(base / folder.strip()))
+                path = Path(os.path.normpath(base / folder))
                 if path in paths:
                     if not group.get('is_default'):
                         continue
@@ -74,7 +77,7 @@ def file_hash(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
-def asset_path(root, asset):
+def asset_path(root, asset, *, input_root=None):
     path = Path(asset['path'])
     if path.is_absolute() or '..' in path.parts:
         raise ValueError('asset path must be relative to the configured workspace')
@@ -82,6 +85,8 @@ def asset_path(root, asset):
         relative = path.relative_to('models/refmods')
         folders = model_folders(root, 'refmods')
         return next((p / relative for p in folders if (p / relative).is_file()), folders[0] / relative)
+    if input_root is not None and path.parts[0] == 'input':
+        return Path(input_root) / path.relative_to('input')
     return Path(root) / path
 
 
@@ -111,7 +116,7 @@ def prompt_timing_warnings(state, duration):
             if int(minutes) * 60 + float(seconds) >= duration]
 
 
-def compile_shot(doc, shot_id, binding, assets, recipe, root):
+def compile_shot(doc, shot_id, binding, assets, recipe, root, *, input_root=None):
     problems = production_validate.check(doc)
     if problems:
         raise ValueError('\n'.join(problems))
@@ -147,12 +152,14 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
     for key, asset in selected:
         if asset.get('input_use_authorized', asset.get('approved')) is not True:
             raise ValueError(f'{key}: asset is not approved')
-        path = asset_path(root, asset)
+        path = asset_path(root, asset, input_root=input_root)
         if not path.is_file() or file_hash(path) != asset['sha256']:
             raise ValueError(f'{key}: missing asset or changed hash: {path}')
         if asset['kind'] not in ('picture', 'video', 'audio'):
             raise ValueError(f'{key}: unsupported reference kind')
-        expected_kind = {'identity': 'video', 'voice': 'audio', 'location': 'picture', 'wardrobe': 'picture', 'prop': 'picture', 'background': 'video', 'ambience': 'video'}.get(asset['role'])
+        allowed_kinds = {'identity': ('picture', 'video'), 'voice': ('audio',),
+                         'location': ('picture',), 'wardrobe': ('picture',), 'prop': ('picture',),
+                         'background': ('video',), 'ambience': ('video',)}.get(asset['role'], ())
         if mode == 'silent' and asset['role'] == 'voice':
             raise ValueError('silent shot cannot bind a voice reference')
         if asset['role'] in ('identity', 'wardrobe') and asset['owner'] not in shot['characters']:
@@ -161,9 +168,9 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
             raise ValueError(f"{key}: {asset['role']} owner does not match shot location")
         if asset['role'] == 'prop' and asset['owner'] not in shot.get('props', []):
             raise ValueError(f'{key}: prop owner is not declared in the shot')
-        if asset['kind'] != expected_kind or asset['selection']['kind'] != expected_kind:
+        if asset['kind'] not in allowed_kinds or asset['selection']['kind'] != asset['kind']:
             raise ValueError(f'{key}: unsupported role or selection kind')
-        if expected_kind == 'picture':
+        if asset['kind'] == 'picture':
             relative = Path(asset['path']).relative_to('input')
             filename = relative.as_posix() + ' [input]'
         else:
@@ -264,7 +271,7 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
         delivery = line.get('delivery', 'naturally and clearly')
         channel = 'in off-screen voiceover, with lips closed' if mode == 'generated_voiceover' else 'on screen, with synchronized speech'
         dialogue.append(f"{characters[cid]['name']} ({speakers[cid]}) says once {channel}, {delivery}: <d>[{doc['project'].get('language', 'en')}] {line['line']}</d>")
-    lighting = shot.get('lighting', scene.get('lighting', doc['style_bible']['lighting_default']))
+    lighting = {**scene.get('lighting', doc['style_bible']['lighting_default']), **shot.get('lighting', {})}
     move = shot['camera_move']
     layout_description = {
         'composition': f'Environment: {environment}, primary camera layout from {location}.',

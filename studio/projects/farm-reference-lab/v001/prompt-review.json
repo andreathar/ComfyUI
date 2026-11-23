@@ -1,0 +1,25 @@
+{
+  "rules_version": "h3-prompt-review-v1",
+  "guide": "https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/VIDEO_PROMPT_WRITING_GUIDE_ref_en.md",
+  "profile": "h3-ref2va",
+  "profile_basis": "configured workflow profile; loaded model identity unverified",
+  "prompt_sha256": "91cd20d51863ddee4d9e6316b01b06f41fd55aa529f2b02f57674076b1727e90",
+  "state_sha256": "6f928f314d0647902d95b182474d92fab97ec0a8ccd777a267d62b42a068f0a7",
+  "package_revision": null,
+  "resolved_seed": 151103,
+  "state_parity": "matched",
+  "reference_coverage": "provided map",
+  "reference_labels": [
+    "<Picture 1>",
+    "<Picture 2>",
+    "<Video 1>"
+  ],
+  "cited_labels": [
+    "<Picture 1>",
+    "<Picture 2>",
+    "<Video 1>"
+  ],
+  "findings": [],
+  "blocks_generation": false,
+  "review_sha256": "53a28f790211404273918269ead7d9118b3984f38bf8a27f7262540b10f7e5e8"
+}

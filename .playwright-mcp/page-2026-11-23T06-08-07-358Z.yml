@@ -1,0 +1,954 @@
+- generic [ref=e1]:
+  - main [ref=e342]:
+    - generic [ref=e344]:
+      - text: .. .. ..
+      - generic:
+        - generic [ref=e346]:
+          - tablist [ref=e349]:
+            - tab "Unsaved Workflow" [selected] [ref=e351] [cursor=pointer]
+          - button "Create a new blank workflow" [ref=e355] [cursor=pointer]:
+            - generic [ref=e356]: 
+          - button "Login" [ref=e358] [cursor=pointer]
+        - generic:
+          - generic:
+            - navigation [ref=e361]:
+              - generic [ref=e362]:
+                - generic [ref=e363]:
+                  - button "Menu" [ref=e364] [cursor=pointer]
+                  - button "Job History" [ref=e367] [cursor=pointer]
+                  - button "Assets (a)" [ref=e371] [cursor=pointer]
+                  - button "Node Library (n)" [ref=e375] [cursor=pointer]
+                  - button "Model Library (m)" [ref=e379] [cursor=pointer]
+                  - button "Workflows (w)" [ref=e383] [cursor=pointer]
+                  - button "Apps" [ref=e387] [cursor=pointer]
+                  - button "ComfyUI Agent Panel — your agent session's window into this graph" [ref=e391] [cursor=pointer]:
+                    - generic [ref=e392]: 
+                  - button "Templates" [ref=e396] [cursor=pointer]
+                - generic [ref=e400]:
+                  - button "Help Center" [ref=e401] [cursor=pointer]:
+                    - generic [ref=e402]: 
+                  - button "Toggle Bottom Panel" [ref=e405] [cursor=pointer]
+                  - button "Keyboard Shortcuts (Ctrl + Shift + k)" [ref=e409] [cursor=pointer]
+                  - button "Settings (Ctrl + ,)" [ref=e413] [cursor=pointer]
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - group "Workflow actions" [ref=e417]:
+                              - generic [ref=e418]:
+                                - button "Enter app mode" [ref=e420] [cursor=pointer]:
+                                  - generic: App
+                                - button "Graph mode, workflow actions" [ref=e424] [cursor=pointer]:
+                                  - generic [ref=e426]: Graph
+                            - text: 
+                        - generic [ref=e429]:
+                          - generic [ref=e430]:
+                            - button "Align" [ref=e434] [cursor=pointer]:
+                              - img "Align"
+                            - generic [ref=e437]:
+                              - generic [ref=e438]: .. .. ..
+                              - generic [ref=e441]:
+                                - generic "Batch Count" [ref=e442]:
+                                  - generic [ref=e443]:
+                                    - textbox "Batch Count" [ref=e444]: "1"
+                                    - generic [ref=e445]:
+                                      - button "Increment" [ref=e446] [cursor=pointer]
+                                      - button "Decrement" [disabled]
+                                - button "Run" [ref=e447] [cursor=pointer]
+                                - button "Run options" [ref=e449] [cursor=pointer]
+                              - button "Cancel current run" [disabled]
+                              - button "0 active View active jobs (right-click to clear queue)" [ref=e450] [cursor=pointer]:
+                                - generic [ref=e451]: 0 active
+                                - generic [ref=e452]: View active jobs (right-click to clear queue)
+                            - button "Extensions" [ref=e453] [cursor=pointer]
+                            - button "Run on Comfy Cloud" [ref=e455] [cursor=pointer]
+                            - button "Toggle properties panel" [ref=e458] [cursor=pointer]
+                          - status
+                  - generic:
+                    - toolbar "Canvas Toolbar" [ref=e460]:
+                      - button "Canvas Mode" [ref=e461] [cursor=pointer]
+                      - button "Fit View (.)" [ref=e467] [cursor=pointer]
+                      - button "Zoom Controls" [ref=e469] [cursor=pointer]:
+                        - generic [ref=e470]: 90%
+                      - button "Show Minimap (ALT + SHIFT + M)" [ref=e474] [cursor=pointer]
+                      - button "Hide Links" [ref=e476] [cursor=pointer]
+                    - text: 
+      - generic:
+        - generic [ref=e479]:
+          - generic [ref=e480]:
+            - generic [ref=e484]:
+              - button [ref=e486] [cursor=pointer]
+              - generic [ref=e488]: Save Image
+            - generic [ref=e491]:
+              - generic [ref=e492]:
+                - generic [ref=e493]: images
+                - generic [ref=e500]: images
+              - generic [ref=e514]:
+                - generic [ref=e515]: filename_prefix
+                - textbox "filename_prefix" [ref=e519]: ComfyUI
+          - button "Resize from bottom-right corner" [ref=e520]
+          - button "Resize from top-right corner" [ref=e523]
+          - button "Resize from bottom-left corner" [ref=e526]
+          - button "Resize from top-left corner" [ref=e529]
+        - generic [ref=e532]:
+          - generic [ref=e533]:
+            - generic [ref=e537]:
+              - button [ref=e539] [cursor=pointer]
+              - generic [ref=e541]: Load CLIP
+            - generic [ref=e544]:
+              - generic [ref=e545]: CLIP
+              - generic [ref=e552]:
+                - generic [ref=e560]:
+                  - generic [ref=e561]: clip_name
+                  - generic [ref=e565]:
+                    - combobox "clip_name" [ref=e566] [cursor=pointer]:
+                      - generic [ref=e567]: qwen_3_4b.safetensors
+                    - button [aria-hidden] [ref=e568] [cursor=pointer]
+                - generic [ref=e577]:
+                  - generic [ref=e578]: type
+                  - generic [ref=e582]:
+                    - combobox "type" [ref=e583] [cursor=pointer]:
+                      - generic [ref=e584]: lumina2
+                    - button [aria-hidden] [ref=e585] [cursor=pointer]
+          - button "Show advanced inputs" [ref=e588] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e591]
+          - button "Resize from top-right corner" [ref=e594]
+          - button "Resize from bottom-left corner" [ref=e597]
+          - button "Resize from top-left corner" [ref=e600]
+        - generic [ref=e603]:
+          - generic [ref=e604]:
+            - generic [ref=e608]:
+              - button [ref=e610] [cursor=pointer]
+              - generic [ref=e612]: Load VAE
+            - generic [ref=e615]:
+              - generic [ref=e616]: VAE
+              - generic [ref=e631]:
+                - generic [ref=e632]: vae_name
+                - generic [ref=e636]:
+                  - combobox "vae_name" [ref=e637] [cursor=pointer]:
+                    - generic [ref=e638]: ae.safetensors
+                  - button [aria-hidden] [ref=e639] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e641]
+          - button "Resize from top-right corner" [ref=e644]
+          - button "Resize from bottom-left corner" [ref=e647]
+          - button "Resize from top-left corner" [ref=e650]
+        - generic [ref=e653]:
+          - generic [ref=e654]:
+            - generic [ref=e658]:
+              - button [ref=e660] [cursor=pointer]
+              - generic [ref=e662]: VAE Decode
+            - generic [ref=e666]:
+              - generic [ref=e667]:
+                - generic [ref=e668]: samples
+                - generic [ref=e674]: vae
+              - generic [ref=e680]: IMAGE
+          - button "Resize from bottom-right corner" [ref=e686]
+          - button "Resize from top-right corner" [ref=e689]
+          - button "Resize from bottom-left corner" [ref=e692]
+          - button "Resize from top-left corner" [ref=e695]
+        - generic [ref=e698]:
+          - generic [ref=e699]:
+            - generic [ref=e703]:
+              - button [ref=e705] [cursor=pointer]
+              - generic [ref=e707]: Load Diffusion Model
+            - generic [ref=e710]:
+              - generic [ref=e711]: MODEL
+              - generic [ref=e726]:
+                - generic [ref=e727]: unet_name
+                - generic [ref=e731]:
+                  - combobox "unet_name" [ref=e732] [cursor=pointer]:
+                    - generic [ref=e733]: z_image_turbo_bf16.safetensors
+                  - button [aria-hidden] [ref=e734] [cursor=pointer]
+          - button "Show advanced inputs" [ref=e737] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e740]
+          - button "Resize from top-right corner" [ref=e743]
+          - button "Resize from bottom-left corner" [ref=e746]
+          - button "Resize from top-left corner" [ref=e749]
+        - generic [ref=e752]:
+          - generic [ref=e753]:
+            - generic [ref=e757]:
+              - button [ref=e759] [cursor=pointer]
+              - generic [ref=e761]: CLIP Text Encode (Prompt)
+            - generic [ref=e764]:
+              - generic [ref=e765]:
+                - generic [ref=e766]: clip
+                - generic [ref=e773]: CONDITIONING
+              - generic [ref=e787]:
+                - generic: text
+                - textbox "text" [ref=e788]:
+                  - /placeholder: ""
+                  - text: anime RPG game style, cute anime girl with gigantic fennec ears and a big fluffy fox tail with long wavy blonde hair and large blue eyes blonde colored eyelashes wearing a pink sweater a large oversized gold trimmed black winter coat and a long blue maxi skirt and a red scarf, she is sitting beside a campfire in the wilderness at night playing guitar with a milky way galaxy sky
+          - button "Resize from bottom-right corner" [ref=e789]
+          - button "Resize from top-right corner" [ref=e792]
+          - button "Resize from bottom-left corner" [ref=e795]
+          - button "Resize from top-left corner" [ref=e798]
+        - generic [ref=e801]:
+          - generic [ref=e802]:
+            - generic [ref=e806]:
+              - button [ref=e808] [cursor=pointer]
+              - generic [ref=e810]: EmptySD3LatentImage
+            - generic [ref=e813]:
+              - generic [ref=e814]: LATENT
+              - generic [ref=e821]:
+                - generic [ref=e829]:
+                  - generic [ref=e830]: width
+                  - generic "width" [ref=e833]:
+                    - button "Decrement" [ref=e834] [cursor=pointer]
+                    - spinbutton [ref=e837]: "1024"
+                    - button "Increment" [ref=e839] [cursor=pointer]
+                - generic [ref=e848]:
+                  - generic [ref=e849]: height
+                  - generic "height" [ref=e852]:
+                    - button "Decrement" [ref=e853] [cursor=pointer]
+                    - spinbutton [ref=e856]: "1024"
+                    - button "Increment" [ref=e858] [cursor=pointer]
+                - generic [ref=e867]:
+                  - generic [ref=e868]: batch_size
+                  - generic "batch_size" [ref=e871]:
+                    - button "Decrement" [disabled]
+                    - spinbutton [ref=e873]: "1"
+                    - button "Increment" [ref=e875] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e877]
+          - button "Resize from top-right corner" [ref=e880]
+          - button "Resize from bottom-left corner" [ref=e883]
+          - button "Resize from top-left corner" [ref=e886]
+        - generic [ref=e889]:
+          - generic [ref=e890]:
+            - generic [ref=e894]:
+              - button [ref=e896] [cursor=pointer]
+              - generic [ref=e898]: ModelSamplingAuraFlow
+            - generic [ref=e901]:
+              - generic [ref=e902]:
+                - generic [ref=e903]: model
+                - generic [ref=e910]: MODEL
+              - generic [ref=e924]:
+                - generic [ref=e925]: shift
+                - generic "shift" [ref=e928]:
+                  - button "Decrement" [ref=e929] [cursor=pointer]
+                  - spinbutton [ref=e932]: "3.00"
+                  - button "Increment" [ref=e934] [cursor=pointer]
+          - button "Show advanced inputs" [ref=e937] [cursor=pointer]
+          - button "Resize from bottom-right corner" [ref=e940]
+          - button "Resize from top-right corner" [ref=e943]
+          - button "Resize from bottom-left corner" [ref=e946]
+          - button "Resize from top-left corner" [ref=e949]
+        - generic [ref=e952]:
+          - generic [ref=e953]:
+            - generic [ref=e957]:
+              - button [ref=e959] [cursor=pointer]
+              - generic [ref=e961]: KSampler
+            - generic [ref=e964]:
+              - generic [ref=e965]:
+                - generic [ref=e966]:
+                  - generic [ref=e967]: model
+                  - generic [ref=e973]: positive
+                  - generic [ref=e979]: negative
+                  - generic [ref=e985]: latent_image
+                - generic [ref=e991]: LATENT
+              - generic [ref=e997]:
+                - generic [ref=e1006]:
+                  - generic [ref=e1007]: seed
+                  - generic "seed" [ref=e1010]:
+                    - button "Decrement" [ref=e1011] [cursor=pointer]
+                    - spinbutton [ref=e1014]: "42"
+                    - button "Fixed Value" [ref=e1016] [cursor=pointer]
+                    - button "Increment" [ref=e1018] [cursor=pointer]
+                - generic [ref=e1027]:
+                  - generic [ref=e1028]: steps
+                  - generic "steps" [ref=e1031]:
+                    - button "Decrement" [ref=e1032] [cursor=pointer]
+                    - spinbutton [ref=e1035]: "8"
+                    - button "Increment" [ref=e1037] [cursor=pointer]
+                - generic [ref=e1046]:
+                  - generic [ref=e1047]: cfg
+                  - generic "cfg" [ref=e1050]:
+                    - button "Decrement" [ref=e1051] [cursor=pointer]
+                    - spinbutton [ref=e1054]: "1.0"
+                    - button "Increment" [ref=e1056] [cursor=pointer]
+                - generic [ref=e1065]:
+                  - generic [ref=e1066]: sampler_name
+                  - generic [ref=e1070]:
+                    - combobox "sampler_name" [ref=e1071] [cursor=pointer]:
+                      - generic [ref=e1072]: res_multistep
+                    - button [aria-hidden] [ref=e1073] [cursor=pointer]
+                - generic [ref=e1082]:
+                  - generic [ref=e1083]: scheduler
+                  - generic [ref=e1087]:
+                    - combobox "scheduler" [ref=e1088] [cursor=pointer]:
+                      - generic [ref=e1089]: simple
+                    - button [aria-hidden] [ref=e1090] [cursor=pointer]
+                - generic [ref=e1099]:
+                  - generic [ref=e1100]: denoise
+                  - generic "denoise" [ref=e1103]:
+                    - button "Decrement" [ref=e1104] [cursor=pointer]
+                    - spinbutton [ref=e1107]: "1.00"
+                    - button "Increment" [disabled]
+          - button "Resize from bottom-right corner" [ref=e1109]
+          - button "Resize from top-right corner" [ref=e1112]
+          - button "Resize from bottom-left corner" [ref=e1115]
+          - button "Resize from top-left corner" [ref=e1118]
+        - generic [ref=e1121]:
+          - generic [ref=e1122]:
+            - generic [ref=e1126]:
+              - button [ref=e1128] [cursor=pointer]
+              - generic [ref=e1130]: CLIP Text Encode (Prompt)
+            - generic [ref=e1133]:
+              - generic [ref=e1134]:
+                - generic [ref=e1135]: clip
+                - generic [ref=e1142]: CONDITIONING
+              - generic [ref=e1156]:
+                - generic: text
+                - textbox "text" [ref=e1157]:
+                  - /placeholder: ""
+                  - text: low quality, bad anatomy, extra digits, missing digits, extra limbs, missing limbs
+          - button "Resize from bottom-right corner" [ref=e1158]
+          - button "Resize from top-right corner" [ref=e1161]
+          - button "Resize from bottom-left corner" [ref=e1164]
+          - button "Resize from top-left corner" [ref=e1167]
+    - generic [ref=e1170]:
+      - status "Notification"
+      - alert "Notification"
+    - generic:
+      - generic:
+        - status [ref=e1171]
+        - status [ref=e1172]
+        - status [ref=e1173]
+    - text: 
+  - generic [ref=e1174]:
+    - generic [ref=e1175]:
+      - generic [ref=e1180]: Control Panel
+      - generic [ref=e1181]: comfy_dynamic
+      - generic [ref=e1182]:
+        - button "?" [ref=e1183] [cursor=pointer]
+        - button "Click-through is OFF. Click to let mouse events pass through the panel" [ref=e1184] [cursor=pointer]
+        - button "❚❚" [ref=e1189] [cursor=pointer]
+        - button "↺" [ref=e1190] [cursor=pointer]
+        - button "↗" [ref=e1191] [cursor=pointer]
+        - 'button "Vertical maximize: fill page height" [ref=e1192] [cursor=pointer]'
+        - button "–" [ref=e1195] [cursor=pointer]
+    - generic [ref=e1196]:
+      - generic [ref=e1197]:
+        - generic "CPU utilization - - logical cores" [ref=e1198]:
+          - generic [ref=e1199]: CPU
+          - generic [ref=e1200]: 35.2%
+          - generic [ref=e1201]: 16 threads
+        - generic "System RAM usage - used / total, proc = ComfyUI process RSS" [ref=e1204]:
+          - generic [ref=e1205]: RAM
+          - generic [ref=e1206]: 54.7%
+          - generic [ref=e1207]: 17.0 GB / 31.1 GB · proc 3.01 GB
+        - generic "GPU utilization (NVIDIA NVML) -" [ref=e1210]:
+          - generic [ref=e1211]: GPU
+          - generic [ref=e1212]: 36%
+          - generic [ref=e1213]: "cuda:0 NVIDIA GeForce RTX 3060 Laptop GPU : cudaMallocAsync"
+        - generic "Primary GPU VRAM usage - used / total" [ref=e1216]:
+          - generic [ref=e1217]: VRAM
+          - generic [ref=e1218]: 75.1%
+          - generic [ref=e1219]: 4.26 GB / 5.67 GB
+        - generic "CPU temperature (100 C = 100%). Windows needs LibreHardwareMonitor running" [ref=e1222]:
+          - generic [ref=e1223]: CPU C
+          - generic [ref=e1224]: "90"
+          - generic [ref=e1225]: C
+        - generic "GPU temperature (100 C = 100%, NVIDIA NVML)" [ref=e1228]:
+          - generic [ref=e1229]: GPU C
+          - generic [ref=e1230]: "58"
+          - generic [ref=e1231]: C
+      - generic [ref=e1236]:
+        - generic [ref=e1237]: CPU
+        - generic [ref=e1239]: RAM
+        - generic [ref=e1241]: GPU
+        - generic [ref=e1243]: VRAM
+        - generic [ref=e1245]: CPU C
+        - generic [ref=e1247]: GPU C
+      - generic [ref=e1249]:
+        - button "Free RAM" [ref=e1250] [cursor=pointer]
+        - button "Free VRAM" [ref=e1251] [cursor=pointer]
+        - generic "Also trim working sets of all other processes (may affect running programs)" [ref=e1252] [cursor=pointer]:
+          - checkbox "All processes" [ref=e1253]
+          - generic [ref=e1254]: All processes
+        - generic [ref=e1255]:
+          - combobox [ref=e1256] [cursor=pointer]:
+            - option "Quick links" [selected]
+            - option "ComfyUI"
+            - option "ComfyUI Docs"
+            - option "ComfyUI Registry"
+            - option "Comfy-Org (HF)"
+            - option "Hugging Face"
+            - option "Civitai"
+            - option "Civitai (red)"
+            - option "CivArchive"
+            - option "OpenModelDB"
+            - option "comfyui_dynamic (GitHub)"
+          - combobox [ref=e1257] [cursor=pointer]:
+            - option "Local dirs" [selected]
+      - generic [ref=e1258]:
+        - generic [ref=e1259]:
+          - generic [ref=e1260] [cursor=pointer]:
+            - generic [ref=e1261]: ▼
+            - generic [ref=e1262]: Loaded models (2)
+            - button "Unload ALL loaded models" [ref=e1263]
+          - generic [ref=e1268]:
+            - generic [ref=e1269]:
+              - generic [ref=e1270]:
+                - generic [ref=e1271]: Mixed
+                - generic "AutoencoderKL" [ref=e1272]
+                - generic [ref=e1273]: flux2-vae.safetensors
+                - generic [ref=e1274]: 321 MB
+              - generic [ref=e1278]:
+                - generic [ref=e1279]: unknown · cuda:0 · VRAM 160 MB / 321 MB (50%) · idle
+                - generic [ref=e1280]: 01:58:18.950
+                - generic [ref=e1281]:
+                  - button "Copy full details" [ref=e1282] [cursor=pointer]
+                  - button "Locate the file in file manager" [ref=e1286] [cursor=pointer]
+                  - button "Unload this model from RAM/VRAM (unavailable while busy)" [ref=e1290] [cursor=pointer]
+            - generic [ref=e1295]:
+              - generic [ref=e1296]:
+                - generic [ref=e1297]: VRAM
+                - generic "Flux2" [ref=e1298]
+                - generic [ref=e1299]: flux-2-klein-4b-fp8.safetensors
+                - generic [ref=e1300]: 3.79 GB
+              - generic [ref=e1303]:
+                - generic [ref=e1304]: bfloat16 · cuda:0 · VRAM 3.81 GB (101%) · idle
+                - generic [ref=e1305]: 01:58:29.214
+                - generic [ref=e1306]:
+                  - button "Copy full details" [ref=e1307] [cursor=pointer]
+                  - button "Locate the file in file manager" [ref=e1311] [cursor=pointer]
+                  - button "Unload this model from RAM/VRAM (unavailable while busy)" [ref=e1315] [cursor=pointer]
+        - generic [ref=e1321] [cursor=pointer]:
+          - generic [ref=e1322]: ▼
+          - generic [ref=e1323]: Unloaded models (1)
+          - button "Clear unloaded records" [ref=e1324]
+    - generic "Status messages" [ref=e1329]
+    - generic [ref=e1330]:
+      - combobox "UI language" [ref=e1332] [cursor=pointer]:
+        - option "EN" [selected]
+        - option "中文"
+      - slider "Panel opacity (30-100%)" [ref=e1334] [cursor=pointer]: "80"
+      - generic "Refresh rate (0-10 Hz, 0 = paused)" [ref=e1335]:
+        - generic [ref=e1336]:
+          - button "-" [ref=e1337] [cursor=pointer]
+          - button "+" [ref=e1338] [cursor=pointer]
+        - spinbutton [ref=e1339]: "2"
+        - generic [ref=e1340]: Hz
+      - generic "Mouse position" [ref=e1343]: (0, 0)
+      - generic "Panel position" [ref=e1345]: (64, 8)
+      - generic "Panel size" [ref=e1347]: 400x477
+  - dialog "Workflow Monitor Brain report" [ref=e9]:
+    - banner [ref=e10]:
+      - heading "Workflow Monitor Brain" [level=2] [ref=e11]
+      - button "Close" [active] [ref=e12] [cursor=pointer]
+    - status [ref=e13]: succeeded · capture complete · 13 samples · 0.0 MiB stored
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: Recorded run
+        - combobox "Recorded run" [ref=e17]:
+          - option "storyboard-pilot-ada-gorgeous-reference · succeeded · 11/23/2026, 2:15:47 AM" [selected]
+          - option "storyboard-pilot-ada-identity-reference · succeeded · 11/23/2026, 2:10:36 AM"
+          - option "storyboard-pilot-gender-cue-comparison · succeeded · 11/23/2026, 2:06:51 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/23/2026, 1:58:18 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/23/2026, 1:54:40 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/23/2026, 1:50:38 AM"
+          - option "storyboard-pilot-navy-coat-reference · succeeded · 11/23/2026, 1:11:06 AM"
+          - option "storyboard-pilot-blue-envelope-reference · succeeded · 11/23/2026, 1:09:49 AM"
+          - option "storyboard-pilot-workshop-reference · succeeded · 11/23/2026, 1:08:08 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/22/2026, 11:32:58 PM"
+          - option "storyboard-klein-fp8-identity-qualification · succeeded · 11/22/2026, 11:31:56 PM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/22/2026, 11:29:59 PM"
+          - option "storyboard-klein-fp8-identity-qualification · succeeded · 11/22/2026, 10:33:37 PM"
+          - option "story-aa670b25-9e91-4543-b6e4-ce1263fd2917 · interrupted · 11/21/2026, 5:25:20 PM"
+          - option "story-361efeb5-8c52-41e7-9f6c-d8e777913aae · succeeded · 11/21/2026, 5:20:54 PM"
+          - option "storyboard-runtime-qualification-20261121 · succeeded · 11/21/2026, 3:48:14 PM"
+          - option "storyboard-runtime-qualification-20261121 · succeeded · 11/21/2026, 2:39:59 PM"
+          - option "reference:empty-platform-operator/s001/prop · succeeded · 11/21/2026, 11:35:53 AM"
+          - option "reference:empty-platform-operator/s001/wardrobe · succeeded · 11/21/2026, 11:34:54 AM"
+          - option "reference:empty-platform-operator/s001/identity · succeeded · 11/21/2026, 11:33:59 AM"
+          - option "reference:empty-platform-operator/s001/location · succeeded · 11/21/2026, 11:32:45 AM"
+          - option "DEMO_S001_SH02 · succeeded · 11/21/2026, 9:00:10 AM"
+          - option "DEMO_S001_SH01 · succeeded · 11/21/2026, 8:53:29 AM"
+          - option "reference:rainy-street-smoke/s001/identity-wardrobe · succeeded · 11/21/2026, 8:42:51 AM"
+          - option "reference:rainy-street-smoke/s001/location · succeeded · 11/21/2026, 8:39:45 AM"
+          - option "h3-mixed-handoff-smoke · succeeded · 11/21/2026, 8:03:20 AM"
+          - option "KITCHEN_SH03_low_lift_prompt_v2 · succeeded · 11/16/2026, 1:41:01 AM"
+          - option "KITCHEN_SH03_firstframe_lift · succeeded · 11/16/2026, 12:33:07 AM"
+          - option "KITCHEN_static_composition · succeeded · 11/16/2026, 12:29:47 AM"
+          - option "KITCHEN_SH01_mug_prompt_v2 · succeeded · 11/15/2026, 11:48:21 PM"
+          - option "KITCHEN_SH01_mug_lift_single_identity · succeeded · 11/15/2026, 8:53:32 PM"
+          - option "REFAB_B_single_image · succeeded · 11/15/2026, 6:03:47 PM"
+          - option "REFAB_A_video · succeeded · 11/15/2026, 6:03:34 PM"
+          - option "FARM_S001_SH02_tk002_02_fl_turbo_8steps · succeeded · 11/15/2026, 3:04:24 PM"
+          - option "FARM_S001_SH02_tk001_01_ref_12steps · succeeded · 11/15/2026, 3:04:19 PM"
+          - option "FARM_BENCH_v001_04_fl_turbo_8steps · succeeded · 11/15/2026, 5:07:38 AM"
+          - option "FARM_BENCH_v001_03_fl_20steps · succeeded · 11/15/2026, 5:07:34 AM"
+          - option "FARM_BENCH_v001_02_ref_20steps_cache · succeeded · 11/15/2026, 5:07:31 AM"
+          - option "FARM_BENCH_v001_04_fl_turbo_8steps · unknown · 11/15/2026, 5:06:57 AM"
+          - option "FARM_BENCH_v001_03_fl_20steps · unknown · 11/15/2026, 5:06:54 AM"
+          - option "FARM_BENCH_v001_02_ref_20steps_cache · unknown · 11/15/2026, 5:06:47 AM"
+          - option "FARM_BENCH_v001_01_ref_12steps · succeeded · 11/15/2026, 5:06:42 AM"
+          - option "FARM_S001_SH01 · succeeded · 11/15/2026, 3:04:20 AM"
+          - option "MSG_S001_SH04 · succeeded · 11/15/2026, 2:07:33 AM"
+          - option "MSG_S001_SH06 · succeeded · 11/15/2026, 1:46:00 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/15/2026, 1:14:20 AM"
+          - option "BRAIN_AUTO_CPU_SMOKE · succeeded · 11/14/2026, 11:59:11 PM"
+          - option "MSG_S001_SH05 · succeeded · 11/14/2026, 11:19:10 PM"
+          - option "Provenance activation - CPU-only smoke · succeeded · 11/14/2026, 9:29:35 PM"
+          - option "MSG_S001_SH05 · unknown-after-restart · 11/14/2026, 12:00:57 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/13/2026, 11:38:02 PM"
+          - option "stabilization-sd15 · succeeded · 11/13/2026, 10:28:06 PM"
+          - option "andre-turn-sit-arc-v1 · succeeded · 11/13/2026, 3:34:17 AM"
+          - option "brain-v2-final-cpu-smoke · succeeded · 11/13/2026, 3:31:29 AM"
+          - option "andre-walk-track-v1 · succeeded · 11/13/2026, 3:06:01 AM"
+          - option "brain-v2-cpu-smoke · succeeded · 11/13/2026, 3:03:11 AM"
+          - option "andre-sit-wide-24mm-v3 · succeeded · 11/13/2026, 2:05:57 AM"
+          - option "andre-sit-lateral-openfloor-v2 · succeeded · 11/13/2026, 1:48:23 AM"
+          - option "andre-stand-pullback-v1 · succeeded · 11/13/2026, 1:33:00 AM"
+          - option "master-studio-static-plate-integration-SH03 · succeeded · 11/13/2026, 1:16:43 AM"
+          - option "camera-reference-CAM_PLATE_HOLD-no-sampling · succeeded · 11/13/2026, 1:11:35 AM"
+          - option "camera-reference-CAM_STATIC_ANCHOR · succeeded · 11/13/2026, 12:59:01 AM"
+          - option "camera-reference-CAM_DOLLY-3f360b9f · succeeded · 11/13/2026, 12:44:56 AM"
+          - option "camera-reference-CAM_STATIC-bf8f9263 · succeeded · 11/13/2026, 12:35:53 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/13/2026, 12:03:23 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/12/2026, 11:42:17 PM"
+          - option "master-f1f5-continue-sh03 · succeeded · 11/12/2026, 7:58:16 PM"
+          - option "master-f1f5-cut-sh03 · succeeded · 11/12/2026, 7:45:19 PM"
+          - option "master-studio · succeeded · 11/12/2026, 7:11:24 PM"
+          - option "master-studio · succeeded · 11/12/2026, 7:10:43 PM"
+          - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:26:22 PM"
+          - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:17:04 PM"
+          - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:37:48 PM"
+          - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:37:14 PM"
+          - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:36:53 PM"
+          - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:36:21 PM"
+          - option "T10.05 - fresh 2-shot smoke repeatability · succeeded · 11/12/2026, 2:30:15 PM"
+          - option "T10.02 - targeted safe interruption test · interrupted · 11/12/2026, 2:27:26 PM"
+          - option "T10.03 - resume at scene 2 (verify_resume_history=True) · succeeded · 11/12/2026, 2:21:57 PM"
+          - option "T10.01 - scene 1 only (partial) · succeeded · 11/12/2026, 2:17:59 PM"
+          - option "Shot 03 - 73f tabletop-only insert replacement · succeeded · 11/12/2026, 2:06:44 PM"
+          - option "The Message - Silent Proof v003 - 6 shots - no background-v2 · succeeded · 11/12/2026, 12:35:42 AM"
+          - option "Shot 04 - 73f reaction - cafe-reaction-v2 - hands in lap · succeeded · 11/12/2026, 12:13:03 AM"
+          - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM"
+          - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+          - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+      - generic [ref=e18]:
+        - generic [ref=e19]: Compare with baseline
+        - combobox "Compare with baseline" [ref=e20]:
+          - option "Choose a baseline…"
+          - option "storyboard-pilot-ada-gorgeous-reference · succeeded · 11/23/2026, 2:15:47 AM"
+          - option "storyboard-pilot-ada-identity-reference · succeeded · 11/23/2026, 2:10:36 AM" [selected]
+          - option "storyboard-pilot-gender-cue-comparison · succeeded · 11/23/2026, 2:06:51 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/23/2026, 1:58:18 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/23/2026, 1:54:40 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/23/2026, 1:50:38 AM"
+          - option "storyboard-pilot-navy-coat-reference · succeeded · 11/23/2026, 1:11:06 AM"
+          - option "storyboard-pilot-blue-envelope-reference · succeeded · 11/23/2026, 1:09:49 AM"
+          - option "storyboard-pilot-workshop-reference · succeeded · 11/23/2026, 1:08:08 AM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/22/2026, 11:32:58 PM"
+          - option "storyboard-klein-fp8-identity-qualification · succeeded · 11/22/2026, 11:31:56 PM"
+          - option "storyboard:SB3330_S001_SH01:start · succeeded · 11/22/2026, 11:29:59 PM"
+          - option "storyboard-klein-fp8-identity-qualification · succeeded · 11/22/2026, 10:33:37 PM"
+          - option "story-aa670b25-9e91-4543-b6e4-ce1263fd2917 · interrupted · 11/21/2026, 5:25:20 PM"
+          - option "story-361efeb5-8c52-41e7-9f6c-d8e777913aae · succeeded · 11/21/2026, 5:20:54 PM"
+          - option "storyboard-runtime-qualification-20261121 · succeeded · 11/21/2026, 3:48:14 PM"
+          - option "storyboard-runtime-qualification-20261121 · succeeded · 11/21/2026, 2:39:59 PM"
+          - option "reference:empty-platform-operator/s001/prop · succeeded · 11/21/2026, 11:35:53 AM"
+          - option "reference:empty-platform-operator/s001/wardrobe · succeeded · 11/21/2026, 11:34:54 AM"
+          - option "reference:empty-platform-operator/s001/identity · succeeded · 11/21/2026, 11:33:59 AM"
+          - option "reference:empty-platform-operator/s001/location · succeeded · 11/21/2026, 11:32:45 AM"
+          - option "DEMO_S001_SH02 · succeeded · 11/21/2026, 9:00:10 AM"
+          - option "DEMO_S001_SH01 · succeeded · 11/21/2026, 8:53:29 AM"
+          - option "reference:rainy-street-smoke/s001/identity-wardrobe · succeeded · 11/21/2026, 8:42:51 AM"
+          - option "reference:rainy-street-smoke/s001/location · succeeded · 11/21/2026, 8:39:45 AM"
+          - option "h3-mixed-handoff-smoke · succeeded · 11/21/2026, 8:03:20 AM"
+          - option "KITCHEN_SH03_low_lift_prompt_v2 · succeeded · 11/16/2026, 1:41:01 AM"
+          - option "KITCHEN_SH03_firstframe_lift · succeeded · 11/16/2026, 12:33:07 AM"
+          - option "KITCHEN_static_composition · succeeded · 11/16/2026, 12:29:47 AM"
+          - option "KITCHEN_SH01_mug_prompt_v2 · succeeded · 11/15/2026, 11:48:21 PM"
+          - option "KITCHEN_SH01_mug_lift_single_identity · succeeded · 11/15/2026, 8:53:32 PM"
+          - option "REFAB_B_single_image · succeeded · 11/15/2026, 6:03:47 PM"
+          - option "REFAB_A_video · succeeded · 11/15/2026, 6:03:34 PM"
+          - option "FARM_S001_SH02_tk002_02_fl_turbo_8steps · succeeded · 11/15/2026, 3:04:24 PM"
+          - option "FARM_S001_SH02_tk001_01_ref_12steps · succeeded · 11/15/2026, 3:04:19 PM"
+          - option "FARM_BENCH_v001_04_fl_turbo_8steps · succeeded · 11/15/2026, 5:07:38 AM"
+          - option "FARM_BENCH_v001_03_fl_20steps · succeeded · 11/15/2026, 5:07:34 AM"
+          - option "FARM_BENCH_v001_02_ref_20steps_cache · succeeded · 11/15/2026, 5:07:31 AM"
+          - option "FARM_BENCH_v001_04_fl_turbo_8steps · unknown · 11/15/2026, 5:06:57 AM"
+          - option "FARM_BENCH_v001_03_fl_20steps · unknown · 11/15/2026, 5:06:54 AM"
+          - option "FARM_BENCH_v001_02_ref_20steps_cache · unknown · 11/15/2026, 5:06:47 AM"
+          - option "FARM_BENCH_v001_01_ref_12steps · succeeded · 11/15/2026, 5:06:42 AM"
+          - option "FARM_S001_SH01 · succeeded · 11/15/2026, 3:04:20 AM"
+          - option "MSG_S001_SH04 · succeeded · 11/15/2026, 2:07:33 AM"
+          - option "MSG_S001_SH06 · succeeded · 11/15/2026, 1:46:00 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/15/2026, 1:14:20 AM"
+          - option "BRAIN_AUTO_CPU_SMOKE · succeeded · 11/14/2026, 11:59:11 PM"
+          - option "MSG_S001_SH05 · succeeded · 11/14/2026, 11:19:10 PM"
+          - option "Provenance activation - CPU-only smoke · succeeded · 11/14/2026, 9:29:35 PM"
+          - option "MSG_S001_SH05 · unknown-after-restart · 11/14/2026, 12:00:57 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/13/2026, 11:38:02 PM"
+          - option "stabilization-sd15 · succeeded · 11/13/2026, 10:28:06 PM"
+          - option "andre-turn-sit-arc-v1 · succeeded · 11/13/2026, 3:34:17 AM"
+          - option "brain-v2-final-cpu-smoke · succeeded · 11/13/2026, 3:31:29 AM"
+          - option "andre-walk-track-v1 · succeeded · 11/13/2026, 3:06:01 AM"
+          - option "brain-v2-cpu-smoke · succeeded · 11/13/2026, 3:03:11 AM"
+          - option "andre-sit-wide-24mm-v3 · succeeded · 11/13/2026, 2:05:57 AM"
+          - option "andre-sit-lateral-openfloor-v2 · succeeded · 11/13/2026, 1:48:23 AM"
+          - option "andre-stand-pullback-v1 · succeeded · 11/13/2026, 1:33:00 AM"
+          - option "master-studio-static-plate-integration-SH03 · succeeded · 11/13/2026, 1:16:43 AM"
+          - option "camera-reference-CAM_PLATE_HOLD-no-sampling · succeeded · 11/13/2026, 1:11:35 AM"
+          - option "camera-reference-CAM_STATIC_ANCHOR · succeeded · 11/13/2026, 12:59:01 AM"
+          - option "camera-reference-CAM_DOLLY-3f360b9f · succeeded · 11/13/2026, 12:44:56 AM"
+          - option "camera-reference-CAM_STATIC-bf8f9263 · succeeded · 11/13/2026, 12:35:53 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/13/2026, 12:03:23 AM"
+          - option "MSG_S001_SH05 · succeeded · 11/12/2026, 11:42:17 PM"
+          - option "master-f1f5-continue-sh03 · succeeded · 11/12/2026, 7:58:16 PM"
+          - option "master-f1f5-cut-sh03 · succeeded · 11/12/2026, 7:45:19 PM"
+          - option "master-studio · succeeded · 11/12/2026, 7:11:24 PM"
+          - option "master-studio · succeeded · 11/12/2026, 7:10:43 PM"
+          - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:26:22 PM"
+          - option "Andre character example · 56f · RefMod identity · succeeded · 11/12/2026, 6:17:04 PM"
+          - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:37:48 PM"
+          - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:37:14 PM"
+          - option "The Message · Holistic Workbench v001 · failed · 11/12/2026, 5:36:53 PM"
+          - option "The Message · Holistic Workbench v001 · succeeded · 11/12/2026, 5:36:21 PM"
+          - option "T10.05 - fresh 2-shot smoke repeatability · succeeded · 11/12/2026, 2:30:15 PM"
+          - option "T10.02 - targeted safe interruption test · interrupted · 11/12/2026, 2:27:26 PM"
+          - option "T10.03 - resume at scene 2 (verify_resume_history=True) · succeeded · 11/12/2026, 2:21:57 PM"
+          - option "T10.01 - scene 1 only (partial) · succeeded · 11/12/2026, 2:17:59 PM"
+          - option "Shot 03 - 73f tabletop-only insert replacement · succeeded · 11/12/2026, 2:06:44 PM"
+          - option "The Message - Silent Proof v003 - 6 shots - no background-v2 · succeeded · 11/12/2026, 12:35:42 AM"
+          - option "Shot 04 - 73f reaction - cafe-reaction-v2 - hands in lap · succeeded · 11/12/2026, 12:13:03 AM"
+          - option "24e3f380 · succeeded · 11/11/2026, 11:55:32 PM"
+          - option "Shot 05 - 73f - no background-v2 - hands in lap · succeeded · 11/11/2026, 11:35:36 PM"
+          - option "65b1f32a · succeeded · 11/11/2026, 10:44:55 PM"
+      - generic [ref=e21]:
+        - generic [ref=e22]: Experiment ID
+        - textbox "Experiment ID" [ref=e23]
+      - generic [ref=e24]:
+        - generic [ref=e25]: Changed parameter
+        - textbox "Changed parameter" [ref=e26]
+      - generic [ref=e27]:
+        - generic [ref=e28]: Expected effect
+        - textbox "Expected effect" [ref=e29]
+      - button "Refresh" [ref=e30] [cursor=pointer]
+      - button "Compare runs" [ref=e31] [cursor=pointer]
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - heading "storyboard-pilot-ada-gorgeous-reference" [level=3] [ref=e34]
+        - paragraph [ref=e35]: e58a4290-7062-4683-98af-7f5811a368d7 · 11/23/2026, 2:15:47 AM
+        - paragraph [ref=e36]: "Latest readings: CPU 56.3% · RAM 49% · process 3093.4 MiB · GPU 100% · CPU 81 °C · GPU 83 °C"
+        - paragraph [ref=e37]: Conditioning / encoding has the largest observed phase time (19.1 s). Compare one controlled change with the same seed, references and cache policy.
+        - paragraph [ref=e38]: Linked settings remain unresolved unless explicit runtime metadata provides them.
+        - generic [ref=e39]:
+          - link "Export benchmark" [ref=e40] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/e58a4290-7062-4683-98af-7f5811a368d7/benchmark
+          - link "Export summary" [ref=e41] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/e58a4290-7062-4683-98af-7f5811a368d7/run
+          - link "Export events" [ref=e42] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/e58a4290-7062-4683-98af-7f5811a368d7/events
+          - link "Export samples" [ref=e43] [cursor=pointer]:
+            - /url: /api/workflow_monitor/export/e58a4290-7062-4683-98af-7f5811a368d7/samples
+          - button "Delete this recording…" [ref=e44] [cursor=pointer]
+      - generic [ref=e45]:
+        - heading "Benchmark evidence" [level=3] [ref=e46]
+        - paragraph [ref=e47]: Capture and reproducibility are separate. 17 linked inputs remain unresolved.
+        - region "Evidence · Coverage" [ref=e48]:
+          - table [ref=e49]:
+            - rowgroup [ref=e50]:
+              - row [ref=e51]:
+                - columnheader "Evidence" [ref=e52]
+                - columnheader "Coverage" [ref=e53]
+            - rowgroup [ref=e54]:
+              - row [ref=e55]:
+                - cell "events" [ref=e56]
+                - cell "complete" [ref=e57]
+              - row [ref=e58]:
+                - cell "resources" [ref=e59]
+                - cell "sampled" [ref=e60]
+              - row [ref=e61]:
+                - cell "resolved inputs" [ref=e62]
+                - cell "incomplete" [ref=e63]
+              - row [ref=e64]:
+                - cell "runtime settings" [ref=e65]
+                - cell "unavailable" [ref=e66]
+              - row [ref=e67]:
+                - cell "input package" [ref=e68]
+                - cell "unavailable" [ref=e69]
+              - row [ref=e70]:
+                - cell "prompt review" [ref=e71]
+                - cell "unavailable" [ref=e72]
+              - row [ref=e73]:
+                - cell "artifact identity" [ref=e74]
+                - cell "unverified" [ref=e75]
+              - row [ref=e76]:
+                - cell "outputs" [ref=e77]
+                - cell "hashed at completion; decode unverified" [ref=e78]
+              - row [ref=e79]:
+                - cell "creative review" [ref=e80]
+                - cell "unrecorded" [ref=e81]
+        - paragraph [ref=e82]: Capture completeness does not establish reproducibility or creative acceptance.
+        - paragraph [ref=e83]: Loaded model content identity remains unverified; runtime package/reference hashes are output attestations.
+        - paragraph [ref=e84]: Output hashes identify files at collection time; declared media metadata is not full-decode validation.
+        - paragraph [ref=e85]: Submitted visual findings are separate from human production acceptance.
+        - paragraph [ref=e86]: Step times cover observed adjacent progress values only; merged or missing steps are not invented.
+        - paragraph [ref=e87]: Times are host observations; GPU resources include other applications and peaks are sampled.
+      - generic [ref=e88]:
+        - heading "Saved output identity" [level=3] [ref=e89]
+        - paragraph [ref=e90]: Hashes were collected once after completion. A file hash and declared metadata do not prove full decode or visual quality.
+        - region "File · Size · SHA256 · Declared media metadata" [ref=e91]:
+          - table [ref=e92]:
+            - rowgroup [ref=e93]:
+              - row [ref=e94]:
+                - columnheader "File" [ref=e95]
+                - columnheader "Size" [ref=e96]
+                - columnheader "SHA256" [ref=e97]
+                - columnheader "Declared media metadata" [ref=e98]
+            - rowgroup [ref=e99]:
+              - row [ref=e100]:
+                - cell "storyboard_qualification/references/ada_gorgeous_candidate_00001_.png" [ref=e101]
+                - cell "0.6 MiB" [ref=e102]
+                - cell "3b731b853cf29f557ace122b5185c53a709ca3e8ec08198b2029ae59a74bdf7a" [ref=e103]
+                - 'cell "{\"width\":528,\"height\":960}" [ref=e104]'
+      - generic [ref=e105]:
+        - heading "Recorded sampler steps" [level=3] [ref=e106]
+        - paragraph [ref=e107]: Each row is one sampler occurrence. Times use adjacent observed steps only; missing steps stay missing. These are host progress times.
+        - region "Node · Steps observed / expected · Coverage · Median / step · Range / step · Duplicate points" [ref=e108]:
+          - table [ref=e109]:
+            - rowgroup [ref=e110]:
+              - row [ref=e111]:
+                - columnheader "Node" [ref=e112]
+                - columnheader "Steps observed / expected" [ref=e113]
+                - columnheader "Coverage" [ref=e114]
+                - columnheader "Median / step" [ref=e115]
+                - columnheader "Range / step" [ref=e116]
+                - columnheader "Duplicate points" [ref=e117]
+            - rowgroup [ref=e118]:
+              - row [ref=e119]:
+                - cell "#133:64" [ref=e120]
+                - cell "3 / 4" [ref=e121]
+                - cell "partial" [ref=e122]
+                - cell "0.98 s" [ref=e123]
+                - cell "0.59 s – 1.11 s" [ref=e124]
+                - cell "1" [ref=e125]
+      - generic [ref=e126]:
+        - heading "Observed phase time" [level=3] [ref=e127]
+        - paragraph [ref=e128]: Overlapping occurrences are combined within each phase; phases may overlap each other. These are host intervals, not GPU kernel timings.
+        - region "Phase · Wall time" [ref=e129]:
+          - table [ref=e130]:
+            - rowgroup [ref=e131]:
+              - row [ref=e132]:
+                - columnheader "Phase" [ref=e133]
+                - columnheader "Wall time" [ref=e134]
+            - rowgroup [ref=e135]:
+              - row [ref=e136]:
+                - cell "Conditioning / encoding" [ref=e137]
+                - cell "19.08 s" [ref=e138]
+              - row [ref=e139]:
+                - cell "Sampling" [ref=e140]
+                - cell "6.26 s" [ref=e141]
+              - row [ref=e142]:
+                - cell "Decoding" [ref=e143]
+                - cell "0.66 s" [ref=e144]
+              - row [ref=e145]:
+                - cell "Unknown / custom" [ref=e146]
+                - cell "0.00 s" [ref=e147]
+      - generic [ref=e148]:
+        - heading "Resource history" [level=3] [ref=e149]
+        - generic [ref=e150]:
+          - generic [ref=e151]: Measurement
+          - combobox "Measurement" [ref=e152]:
+            - option "Host CPU %" [selected]
+            - option "Host RAM %"
+            - option "GPU utilization % · all applications"
+            - option "VRAM MiB · model-management counter"
+            - option "VRAM MiB · NVIDIA device total"
+            - option "ComfyUI process RSS MiB"
+            - option "CPU temperature °C"
+            - option "GPU temperature °C"
+        - img "Host CPU % across recorded samples. Missing samples are gaps." [ref=e154]:
+          - generic [ref=e155]: "0"
+          - generic [ref=e156]: "50"
+          - generic [ref=e157]: "100"
+          - generic [ref=e159]: Host CPU % · 25.2 s observed · requested cadence 2 s · sampled peaks
+        - paragraph [ref=e160]: Showing the latest 13 samples. Gaps stay visible. Device-wide GPU readings include other applications.
+      - generic [ref=e161]:
+        - heading "Latest observed model residency" [level=3] [ref=e162]
+        - region "Model · Dtype · Location · Observed resident / size" [ref=e163]:
+          - table [ref=e164]:
+            - rowgroup [ref=e165]:
+              - row [ref=e166]:
+                - columnheader "Model" [ref=e167]
+                - columnheader "Dtype" [ref=e168]
+                - columnheader "Location" [ref=e169]
+                - columnheader "Observed resident / size" [ref=e170]
+            - rowgroup [ref=e171]:
+              - row [ref=e172]:
+                - cell "flux-2-klein-4b-fp8.safetensors" [ref=e173]
+                - cell "bfloat16" [ref=e174]
+                - cell "vram" [ref=e175]
+                - cell "3904.1 MiB / 3882.1 MiB" [ref=e176]
+              - row [ref=e177]:
+                - cell "flux2-vae.safetensors" [ref=e178]
+                - cell "unknown" [ref=e179]
+                - cell "partial" [ref=e180]
+                - cell "0.2 MiB / 320.6 MiB" [ref=e181]
+        - paragraph [ref=e182]: "Unloaded models last observed by Comfy Dynamic: qwen_3_4b.safetensors"
+      - generic [ref=e183]:
+        - heading "Node occurrences" [level=3] [ref=e184]
+        - paragraph [ref=e185]: Latest 6 of 6 observed occurrences · 8 cached nodes. Unobserved nodes are not assumed cached.
+        - region "Node · Phase · Scene · Duration" [ref=e186]:
+          - table [ref=e187]:
+            - rowgroup [ref=e188]:
+              - row [ref=e189]:
+                - columnheader "Node" [ref=e190]
+                - columnheader "Phase" [ref=e191]
+                - columnheader "Scene" [ref=e192]
+                - columnheader "Duration" [ref=e193]
+            - rowgroup [ref=e194]:
+              - row [ref=e195]:
+                - cell [ref=e196]:
+                  - button "#137 · PrimitiveStringMultiline" [ref=e197] [cursor=pointer]
+                - cell "Unknown / custom" [ref=e198]
+                - cell "Unassigned" [ref=e199]
+                - cell "0.00 s" [ref=e200]
+              - row [ref=e201]:
+                - cell [ref=e202]:
+                  - button "#133:74 · CLIPTextEncode" [ref=e203] [cursor=pointer]
+                - cell "Conditioning / encoding" [ref=e204]
+                - cell "Unassigned" [ref=e205]
+                - cell "19.08 s" [ref=e206]
+              - row [ref=e207]:
+                - cell [ref=e208]:
+                  - button "#133:82 · ConditioningZeroOut" [ref=e209] [cursor=pointer]
+                - cell "Unknown / custom" [ref=e210]
+                - cell "Unassigned" [ref=e211]
+                - cell "0.00 s" [ref=e212]
+              - row [ref=e213]:
+                - cell [ref=e214]:
+                  - button "#133:63 · CFGGuider" [ref=e215] [cursor=pointer]
+                - cell "Unknown / custom" [ref=e216]
+                - cell "Unassigned" [ref=e217]
+                - cell "0.00 s" [ref=e218]
+              - row [ref=e219]:
+                - cell [ref=e220]:
+                  - button "#133:64 · SamplerCustomAdvanced" [ref=e221] [cursor=pointer]
+                - cell "Sampling" [ref=e222]
+                - cell "Unassigned" [ref=e223]
+                - cell "6.26 s" [ref=e224]
+              - row [ref=e225]:
+                - cell [ref=e226]:
+                  - button "#133:65 · VAEDecode" [ref=e227] [cursor=pointer]
+                - cell "Decoding" [ref=e228]
+                - cell "Unassigned" [ref=e229]
+                - cell "0.66 s" [ref=e230]
+      - generic [ref=e231]:
+        - heading "Captured settings and provenance" [level=3] [ref=e232]
+        - region "Node / input · Configured value" [ref=e233]:
+          - table [ref=e234]:
+            - rowgroup [ref=e235]:
+              - row [ref=e236]:
+                - columnheader "Node / input" [ref=e237]
+                - columnheader "Configured value" [ref=e238]
+            - rowgroup [ref=e239]:
+              - row [ref=e240]:
+                - cell "#135 · images" [ref=e241]
+                - 'cell "Linked from #133:65 · output 0" [ref=e242]'
+              - row [ref=e243]:
+                - cell "#137 · value" [ref=e244]
+                - cell "Digest fbabedb0f4f3" [ref=e245]
+              - row [ref=e246]:
+                - cell "#138 · value" [ref=e247]
+                - cell "45" [ref=e248]
+              - row [ref=e249]:
+                - cell "#133:61 · sampler_name" [ref=e250]
+                - cell "euler" [ref=e251]
+              - row [ref=e252]:
+                - cell "#133:70 · unet_name" [ref=e253]
+                - cell "flux-2-klein-4b-fp8.safetensors" [ref=e254]
+              - row [ref=e255]:
+                - cell "#133:70 · weight_dtype" [ref=e256]
+                - cell "default" [ref=e257]
+              - row [ref=e258]:
+                - cell "#133:71 · clip_name" [ref=e259]
+                - cell "qwen_3_4b.safetensors" [ref=e260]
+              - row [ref=e261]:
+                - cell "#133:71 · type" [ref=e262]
+                - cell "flux2" [ref=e263]
+              - row [ref=e264]:
+                - cell "#133:71 · device" [ref=e265]
+                - cell "default" [ref=e266]
+              - row [ref=e267]:
+                - cell "#133:72 · vae_name" [ref=e268]
+                - cell "flux2-vae.safetensors" [ref=e269]
+              - row [ref=e270]:
+                - cell "#133:66 · width" [ref=e271]
+                - cell "528" [ref=e272]
+              - row [ref=e273]:
+                - cell "#133:66 · height" [ref=e274]
+                - cell "960" [ref=e275]
+              - row [ref=e276]:
+                - cell "#133:80 · image" [ref=e277]
+                - 'cell "Linked from #134 · output 0" [ref=e278]'
+              - row [ref=e279]:
+                - cell "#133:62 · steps" [ref=e280]
+                - cell "4" [ref=e281]
+              - row [ref=e282]:
+                - cell "#133:62 · width" [ref=e283]
+                - cell "528" [ref=e284]
+              - row [ref=e285]:
+                - cell "#133:62 · height" [ref=e286]
+                - cell "960" [ref=e287]
+              - row [ref=e288]:
+                - cell "#133:74 · text" [ref=e289]
+                - 'cell "Linked from #137 · output 0" [ref=e290]'
+              - row [ref=e291]:
+                - cell "#133:74 · clip" [ref=e292]
+                - 'cell "Linked from #133:71 · output 0" [ref=e293]'
+              - row [ref=e294]:
+                - cell "#133:82 · conditioning" [ref=e295]
+                - 'cell "Linked from #133:74 · output 0" [ref=e296]'
+              - row [ref=e297]:
+                - cell "#133:99 · image" [ref=e298]
+                - 'cell "Linked from #133:80 · output 0" [ref=e299]'
+              - row [ref=e300]:
+                - cell "#133:122 · pixels" [ref=e301]
+                - 'cell "Linked from #133:80 · output 0" [ref=e302]'
+              - row [ref=e303]:
+                - cell "#133:122 · vae" [ref=e304]
+                - 'cell "Linked from #133:72 · output 0" [ref=e305]'
+              - row [ref=e306]:
+                - cell "#133:64 · noise" [ref=e307]
+                - 'cell "Linked from #133:73 · output 0" [ref=e308]'
+              - row [ref=e309]:
+                - cell "#133:64 · guider" [ref=e310]
+                - 'cell "Linked from #133:63 · output 0" [ref=e311]'
+              - row [ref=e312]:
+                - cell "#133:64 · sampler" [ref=e313]
+                - 'cell "Linked from #133:61 · output 0" [ref=e314]'
+              - row [ref=e315]:
+                - cell "#133:64 · sigmas" [ref=e316]
+                - 'cell "Linked from #133:62 · output 0" [ref=e317]'
+              - row [ref=e318]:
+                - cell "#133:64 · latent_image" [ref=e319]
+                - 'cell "Linked from #133:66 · output 0" [ref=e320]'
+              - row [ref=e321]:
+                - cell "#133:65 · samples" [ref=e322]
+                - 'cell "Linked from #133:64 · output 0" [ref=e323]'
+              - row [ref=e324]:
+                - cell "#133:65 · vae" [ref=e325]
+                - 'cell "Linked from #133:72 · output 0" [ref=e326]'
+              - row [ref=e327]:
+                - cell "#133:73 · noise_seed" [ref=e328]
+                - 'cell "Linked from #138 · output 0" [ref=e329]'
+              - row [ref=e330]:
+                - cell "#133:63 · cfg" [ref=e331]
+                - cell "1" [ref=e332]
+              - row [ref=e333]:
+                - cell "#133:63 · model" [ref=e334]
+                - 'cell "Linked from #133:70 · output 0" [ref=e335]'
+              - row [ref=e336]:
+                - cell "#133:63 · positive" [ref=e337]
+                - 'cell "Linked from #133:74 · output 0" [ref=e338]'
+              - row [ref=e339]:
+                - cell "#133:63 · negative" [ref=e340]
+                - 'cell "Linked from #133:82 · output 0" [ref=e341]'
