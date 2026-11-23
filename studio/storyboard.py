@@ -42,6 +42,39 @@ def empty(document):
         for shot in document['shots']}}
 
 
+def targets(document, stored=None):
+    result = copy.deepcopy(stored) if stored is not None else {'version': 1, 'shots': {}}
+    if not isinstance(result, dict) or set(result) != {'version', 'shots'} or result['version'] != 1 or not isinstance(result['shots'], dict):
+        raise ValueError('Unsupported storyboard targets')
+    for shot_id, pair in result['shots'].items():
+        if not isinstance(shot_id, str) or not isinstance(pair, dict) or set(pair) != {'start', 'end'}:
+            raise ValueError('Invalid storyboard target')
+        for target in pair.values():
+            if (not isinstance(target, dict) or set(target) != {'description', 'candidates'}
+                    or not isinstance(target['description'], str) or not isinstance(target['candidates'], list)):
+                raise ValueError('Invalid storyboard endpoint')
+    for shot_id, pair in empty(document)['shots'].items():
+        result['shots'].setdefault(shot_id, pair)
+    return result
+
+
+def validate_target_edit(document, previous, updated):
+    old = targets(document, previous)
+    new = targets(document, updated)
+    if new != updated or not set(old['shots']).issubset(new['shots']):
+        raise ValueError('Keep existing storyboard targets')
+    current = {shot['id'] for shot in document['shots']}
+    if any(shot_id not in current and shot_id not in old['shots'] for shot_id in new['shots']):
+        raise ValueError('Storyboard target does not belong to this project')
+    for shot_id, pair in old['shots'].items():
+        if shot_id not in current and new['shots'][shot_id] != pair:
+            raise ValueError('Archived shot targets cannot be edited')
+        for endpoint in ('start', 'end'):
+            if pair[endpoint]['candidates'] != new['shots'][shot_id][endpoint]['candidates']:
+                raise ValueError('Candidate changes require a separate review')
+    return new
+
+
 def timeline(document):
     validate(document)
     fps = document['project']['fps']

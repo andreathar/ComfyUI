@@ -130,6 +130,36 @@ class E2EPipelineTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'differs from prepared recipe'):
             h3_graph.verify(graph, compiled, 'test/video')
 
+    def test_prompt_media_and_refmods_reach_their_h3_consumers(self):
+        compiled = self._compile()
+        graph = h3_graph.compile_graph(compiled, 'test/video')
+        builder = graph['8']['inputs']
+        encoder = graph['9']['inputs']
+        self.assertEqual(builder['prompt_text'], compiled['prompt_text'])
+        self.assertEqual(json.loads(builder['builder_state']), compiled['builder_state'])
+        self.assertEqual(json.loads(graph['21']['inputs']['media_state']), compiled['media_state'])
+        self.assertEqual(json.loads(graph['7']['inputs']['stack_state']), compiled['stack_state'])
+        self.assertEqual((builder['references'], builder['mods']), (['21', 0], ['7', 0]))
+        self.assertEqual((encoder['prompt'], encoder['references'], encoder['mods']),
+                         (['8', 0], ['8', 19], ['8', 20]))
+        take = film.prepare(self.root / 'contract-takes', compiled, 'take001')
+        edits = {(row['node_id'], row['widget']): row['value']
+                 for row in json.loads((take / 'panel-edits.json').read_text())}
+        self.assertEqual(json.loads(edits[(8, 'builder_state')]), compiled['builder_state'])
+        self.assertEqual(json.loads(edits[(21, 'media_state')]), compiled['media_state'])
+        self.assertEqual(json.loads(edits[(7, 'stack_state')]), compiled['stack_state'])
+        self.assertEqual(edits[(15, 'noise_seed')], compiled['seed'])
+
+        for node, field, value in [('8', 'prompt_text', 'other shot'),
+                                   ('21', 'media_state', '[]'),
+                                   ('7', 'stack_state', '{"picks": [], "budget": 0}'),
+                                   ('9', 'references', ['21', 0])]:
+            with self.subTest(node=node, field=field):
+                changed = copy.deepcopy(graph)
+                changed[node]['inputs'][field] = value
+                with self.assertRaisesRegex(ValueError, 'differs from prepared recipe'):
+                    h3_graph.verify(changed, compiled, 'test/video')
+
     def test_prepare_rejects_duplicate_attempt(self):
         """Verify film.prepare() fails when the take directory already exists."""
         compiled = self._compile()

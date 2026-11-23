@@ -24,7 +24,9 @@ finishes. **Manual paragraph draft** remains available: provide a place and use
 **Review shot plan** to turn paragraphs into shots without a model request.
 
 The workspace preserves the original story in the project scaffold. Edit shot
-actions, seconds and camera choices, then **Save shot plan**. **Open project**
+actions, seconds, camera choices and character appearance, then **Save shot
+and descriptions**. Changing a character's appearance can require selecting
+and reviewing its references again. **Open project**
 reopens a saved project after refresh; **Reopen saved plan** recovers the latest
 saved version after an explicit warning about discarding unsaved edits. A stale
 save never overwrites a newer revision.
@@ -38,10 +40,33 @@ characters without sharing their outfits or approvals. Source changes and
 changed descriptions require a new binding or review; old decisions remain in
 revision history. This step preserves original files and generates no images.
 
+For each shot, save the start/end descriptions, choose **Prepare start frame**
+and select reviewed references. **Review start prompt** shows the scene,
+character words, action and ordered references, followed by the full Klein
+prompt. Check that character descriptions agree with their identity references;
+the reminder does not detect every conflict or guarantee likeness. Generate a
+candidate, inspect it, then keep or reject it. **Use on timeline** selects a
+kept candidate. Preparing the end frame uses a kept start as a reference.
+
 **Download shot list** exports saved frame timing and explicit missing-frame
-status. Start/end boxes are preparation placeholders. Reference generation,
-frame selection, pair approval and video submission are separate later steps.
-The workspace does not replace the selected Master shot package.
+status. Candidate images are local drafts; reference generation, complete
+pair approval and video submission are separate steps. The workspace does not
+replace the selected Master shot package.
+
+## Integration check before extending a workflow
+
+Use the selected project and shot as the shared source for prompt-builder
+state, media and RefMod bindings, seed, timing and output namespace. Verify the
+actual inputs and links consumed by the Builder, Reference Map, encoder, sampler
+and Project Hub; matching labels alone are not enough. Keep model-specific prompt
+and reference formats at their model boundary. A still draft does not by itself
+establish a Master Studio handoff.
+
+Run `.venv/bin/python -m pytest studio/tests/test_e2e_pipeline.py studio/tests/test_master_take.py -q`
+when changing these connections. These checks cover the existing H3 graph and
+Master take contracts; a new project's handoff still needs its own two-project
+isolation test and a live, non-rendering canvas check. The project-aware resolver
+work is described in [Production bootstrap](../plans/production-bootstrap.md).
 
 ## Local story-analysis prototype
 

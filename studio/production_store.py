@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import tempfile
 
-from . import production_validate
+from . import production_validate, storyboard
 from .production_bootstrap import json_bytes
 
 REFERENCE_BANK = '_storyboard_references_v1'
@@ -58,9 +58,14 @@ def read_project(project_root):
         if name != default:
             raise ValueError(f'Unsupported project {key} path')
         state[key] = json.loads(read_bytes(root, name))
+    target_path = contained(root, 'storyboard.json')
+    if target_path.exists() or target_path.is_symlink():
+        state['storyboard'] = json.loads(read_bytes(root, 'storyboard.json'))
     problems = production_validate.check(state['production'])
     if problems:
         raise ValueError('\n'.join(problems))
+    if 'storyboard' in state:
+        storyboard.targets(state['production'], state['storyboard'])
     project = state['production']['project']
     source = read_bytes(root, manifest['source'])
     if (manifest['code'] != project['code'] or source != project['source_text'].encode()
@@ -72,7 +77,16 @@ def read_project(project_root):
 
 def commit(project_root, expected_revision, changes, reason):
     """Save one owned document; asset edits are confined to the storyboard reference bank."""
-    if not isinstance(changes, dict) or set(changes) not in ({'production'}, {'assets'}):
+    return _commit(project_root, expected_revision, changes, reason)
+
+
+def select_storyboard_candidate(project_root, expected_revision, shot, endpoint, candidate):
+    return _commit(project_root, expected_revision, {'storyboard': None}, 'Select storyboard frame',
+                   selection=(shot, endpoint, candidate))
+
+
+def _commit(project_root, expected_revision, changes, reason, *, selection=None):
+    if not isinstance(changes, dict) or set(changes) not in ({'production'}, {'assets'}, {'storyboard'}):
         raise ValueError('Save one canonical document at a time')
     key = next(iter(changes))
     if not isinstance(reason, str) or not reason.strip():
@@ -86,6 +100,15 @@ def commit(project_root, expected_revision, changes, reason):
         if before['revision'] != expected_revision:
             raise RevisionConflict('The project changed; reload it before saving')
         document = json.loads(json_bytes(changes[key]))
+        if selection is not None:
+            shot, endpoint, candidate = selection
+            if (endpoint not in ('start', 'end') or not any(row['id'] == shot for row in before['production']['shots'])
+                    or not isinstance(candidate, dict) or set(candidate) != {'job', 'review', 'sha256'}):
+                raise ValueError('Invalid storyboard frame selection')
+            document = storyboard.targets(before['production'], before.get('storyboard'))
+            if document['shots'][shot][endpoint]['candidates'][-1:] == [candidate]:
+                return before
+            document['shots'][shot][endpoint]['candidates'].append(candidate)
         if key == 'production':
             problems = production_validate.check(document)
             if problems:
@@ -93,11 +116,14 @@ def commit(project_root, expected_revision, changes, reason):
             original = before['production']['project']
             if any(document['project'][field] != original[field] for field in ('code', 'source_text')):
                 raise ValueError('Story replacement and project identity require a separate reviewed change')
+        elif key == 'storyboard':
+            if selection is None:
+                document = storyboard.validate_target_edit(before['production'], before.get('storyboard'), document)
         elif (not isinstance(document, dict) or REFERENCE_BANK not in document
               or {k: v for k, v in document.items() if k != REFERENCE_BANK}
               != {k: v for k, v in before['assets'].items() if k != REFERENCE_BANK}):
             raise ValueError('Existing assets must stay intact; edit only the storyboard reference bank')
-        if document == before[key]:
+        if document == before.get(key, storyboard.empty(before['production']) if key == 'storyboard' else None):
             return before
         history = contained(root, 'revisions')
         history.mkdir(exist_ok=True)

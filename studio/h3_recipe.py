@@ -9,7 +9,10 @@ import re
 
 import yaml
 
-import production_validate
+if __package__:
+    from . import production_validate
+else:
+    import production_validate
 
 
 DIAGNOSTIC = {
@@ -74,7 +77,7 @@ def file_hash(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
-def asset_path(root, asset):
+def asset_path(root, asset, *, input_root=None):
     path = Path(asset['path'])
     if path.is_absolute() or '..' in path.parts:
         raise ValueError('asset path must be relative to the configured workspace')
@@ -82,6 +85,8 @@ def asset_path(root, asset):
         relative = path.relative_to('models/refmods')
         folders = model_folders(root, 'refmods')
         return next((p / relative for p in folders if (p / relative).is_file()), folders[0] / relative)
+    if input_root is not None and path.parts[0] == 'input':
+        return Path(input_root) / path.relative_to('input')
     return Path(root) / path
 
 
@@ -111,7 +116,7 @@ def prompt_timing_warnings(state, duration):
             if int(minutes) * 60 + float(seconds) >= duration]
 
 
-def compile_shot(doc, shot_id, binding, assets, recipe, root):
+def compile_shot(doc, shot_id, binding, assets, recipe, root, *, input_root=None):
     problems = production_validate.check(doc)
     if problems:
         raise ValueError('\n'.join(problems))
@@ -147,7 +152,7 @@ def compile_shot(doc, shot_id, binding, assets, recipe, root):
     for key, asset in selected:
         if asset.get('input_use_authorized', asset.get('approved')) is not True:
             raise ValueError(f'{key}: asset is not approved')
-        path = asset_path(root, asset)
+        path = asset_path(root, asset, input_root=input_root)
         if not path.is_file() or file_hash(path) != asset['sha256']:
             raise ValueError(f'{key}: missing asset or changed hash: {path}')
         if asset['kind'] not in ('picture', 'video', 'audio'):

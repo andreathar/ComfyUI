@@ -370,12 +370,13 @@ artifact choice, resource budget and generation test.
 
 ### Download models to the configured model folder
 
-As verified on 2026-11-15, `models/` resolves through
-`/home/athar/ComfyUI-models` to `/mnt/data/ComfyUI-models`. The catalogue still
-declares mount `/`; the farm session's read-only downloader plan failed its
-mount-policy check. Existing verified weights were used without downloading.
-Reconcile the catalogue with the actual mount before a future authorized
-download; do not bypass the check or infer storage speed from a folder name.
+As verified on 2026-11-22, `models/` resolves through
+`/home/athar/ComfyUI-models` to `/mnt/data/ComfyUI-models` on the `/mnt/data`
+mount. With the user's approval, the catalogue's mount was corrected from `/`
+to `/mnt/data`; the Q4-only Klein profile now passes the storage check and its
+existing model file verifies against the pinned SHA-256. No model was moved or
+downloaded. Recheck the mount before later acquisitions; do not bypass the
+guard or infer storage speed from a folder name.
 
 The standalone downloader uses `.codex/models.json` to map each selected model
 set to exact native filenames and categories. From the project root:

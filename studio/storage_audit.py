@@ -96,7 +96,7 @@ def project_rows(root):
                            creation_job={'status': 'ambiguous' if len(matches) > 1 else
                                          'content_match' if matches else 'unlinked', 'candidates': matches},
                            references=[
-                               {'key': need['key'], 'status': need['status'],
+                               {'key': need['key'], 'role': need['role'], 'shots': need['shots'], 'status': need['status'],
                                 **({'loader_path': need['binding']['loader_path'],
                                     'sha256': need['binding']['source_sha256']} if 'binding' in need else {})}
                                for need in bank['requirements']

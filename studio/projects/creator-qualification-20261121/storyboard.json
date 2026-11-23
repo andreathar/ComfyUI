@@ -1,0 +1,25 @@
+{
+  "shots": {
+    "SB3330_S001_SH01": {
+      "end": {
+        "candidates": [],
+        "description": "Ada holds the blue envelope after lifting it."
+      },
+      "start": {
+        "candidates": [],
+        "description": "Ada and the blue envelope before the lift; the placement of the envelope and hand are unspecified."
+      }
+    },
+    "SB3330_S001_SH02": {
+      "end": {
+        "candidates": [],
+        "description": "The blue envelope is on the table after Ada places it there."
+      },
+      "start": {
+        "candidates": [],
+        "description": "Ada holds the blue envelope after lifting it."
+      }
+    }
+  },
+  "version": 1
+}

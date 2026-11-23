@@ -5,8 +5,14 @@ import inspect
 import uuid
 from pathlib import Path
 
-from h3_recipe import render_prompt
-from prompt_review import GUIDE, RULES_VERSION, review_digest, review_prompt
+if __package__:
+    from . import h3_recipe, production_store
+    from .h3_recipe import render_prompt
+    from .prompt_review import GUIDE, RULES_VERSION, review_digest, review_prompt
+else:
+    import h3_recipe
+    from h3_recipe import render_prompt
+    from prompt_review import GUIDE, RULES_VERSION, review_digest, review_prompt
 
 ROOT = Path(__file__).resolve().parent.parent
 PROJECT = ROOT / "studio/projects/the-message/silent-proof-v001"
@@ -40,8 +46,12 @@ def load_transitions():
     return default_transitions()
 
 
-def resolve_shot_package(shot_id):
+def resolve_shot_package(shot_id, *, project_root=None, workspace=None, recipe=None):
     shot_id = str(shot_id).strip()
+    if project_root is not None:
+        return resolve_project_shot_package(project_root, shot_id, workspace, recipe)
+    if workspace is not None or recipe is not None:
+        raise ValueError('Select a project before choosing its workspace or recipe')
     if shot_id not in PROMPT_FILES:
         raise ValueError(f"unknown shot package: {shot_id}")
     bindings = json.loads((PROJECT / "bindings.json").read_text(encoding="utf-8"))
@@ -66,6 +76,52 @@ def resolve_shot_package(shot_id):
         "transition": transition,
         "prompt_name": prompt.get("name") or PROMPT_FILES[shot_id],
     }
+
+
+def resolve_project_shot_package(project_root, shot_id, workspace, recipe):
+    if __package__:
+        store = production_store
+    else:
+        from studio import production_store as store
+    if workspace is None or recipe is None:
+        raise ValueError('Choose a workspace and H3 recipe for this project')
+    state = store.read_project(project_root)
+    return compile_project_shot_package(project_root, state, shot_id, workspace, recipe, state['bindings'].get(shot_id), state['assets'])
+
+
+def compile_project_shot_package(project_root, state, shot_id, workspace, recipe, binding, assets, *, input_root=None):
+    if __package__:
+        store = production_store
+    else:
+        from studio import production_store as store
+    if not any(shot['id'] == shot_id for shot in state['production']['shots']):
+        raise ValueError(f'unknown project shot: {shot_id}')
+    if not isinstance(binding, dict) or not isinstance(binding.get('assets'), list):
+        raise ValueError(f'{shot_id}: select a shot binding and references first')
+    if type(binding.get('seed')) is not int or not 0 <= binding['seed'] < 2**64:
+        raise ValueError(f'{shot_id}: select an explicit seed')
+    if state['transitions'].get(shot_id) not in ('cut', 'continue'):
+        raise ValueError(f'{shot_id}: select a cut or continue transition')
+    root = Path(workspace)
+    for key in binding['assets']:
+        asset = assets.get(key)
+        if not isinstance(asset, dict):
+            raise ValueError(f'{shot_id}: missing bound asset {key}')
+        path = h3_recipe.asset_path(root, asset, input_root=input_root).resolve()
+        roots = (h3_recipe.model_folders(root, 'refmods') if asset.get('kind') in ('video', 'audio')
+                 else [Path(input_root) if input_root is not None else root / 'input'])
+        if not any(path.is_relative_to(folder.resolve()) for folder in roots):
+            raise ValueError(f'{key}: asset is outside the configured media roots')
+    compiled = h3_recipe.compile_shot(state['production'], shot_id, binding, assets, recipe, root, input_root=input_root)
+    if store.read_project(project_root)['revision'] != state['revision']:
+        raise ValueError('The project changed while preparing this shot; reopen it')
+    return {key: compiled[key] for key in ('shot_id', 'prompt_text', 'builder_state', 'media_state', 'stack_state', 'seed')} | {
+        'transition': state['transitions'][shot_id], 'prompt_name': shot_id,
+        'project': state['manifest']['slug'], 'project_code': state['manifest']['code'],
+        'project_root': str(store.project_path(project_root)),
+        'project_revision': state['revision'], 'prompt_status': 'draft_uncommitted',
+        'width': compiled['recipe']['width'], 'height': compiled['recipe']['height'],
+        'fps': compiled['recipe']['fps'], 'duration_s': compiled['shot']['duration_s']}
 
 
 def package_table():

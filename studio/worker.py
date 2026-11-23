@@ -14,7 +14,10 @@ import uuid
 
 from PIL import Image
 
-import shot
+if __package__:
+    from . import shot
+else:
+    import shot
 
 TARGETS = {
     "comfy-zimage": ("keyframe variations entity", "z-image-turbo", "z-image-t2i"),
@@ -98,6 +101,8 @@ def add_references(graph, names, megapixels):
     guider = graph["60"]["inputs"]
     for i, name in enumerate(names):
         base = 10 + i * 10
+        while any(str(base + offset) in graph for offset in range(5)):
+            base += 10
         graph[str(base)] = {"class_type": "LoadImage", "inputs": {"image": name}}
         graph[str(base + 1)] = {"class_type": "ImageScaleToTotalPixels", "inputs": {
             "image": [str(base), 0], "upscale_method": "lanczos", "megapixels": megapixels, "resolution_steps": 1}}

@@ -62,7 +62,7 @@ def comparison(packet, objective, history):
         if evidence is not None:
             timing[run_id] = evidence
         seconds = (evidence['succeeded_ms'] - evidence['started_ms']) / 1000 if evidence else None
-        rows.append({'run_id': run['run_id'], 'execution_seconds': seconds,
+        rows.append({'run_id': run['run_id'], 'brain_status': report.get('status') or 'unknown', 'execution_seconds': seconds,
                      'admitted_seconds': report.get('admitted_wall_seconds'),
                      'sampling_seconds': report.get('phase_seconds', {}).get('Sampling'),
                      'phase_seconds': report.get('phase_seconds', {}),
@@ -76,14 +76,14 @@ def comparison(packet, objective, history):
         value = row['execution_seconds']
         row['execution_difference_percent'] = (value / baseline - 1) * 100 if baseline and value is not None else None
     return {'objective': objective, 'rows': rows, 'history_sha256': sha(history), 'native_timing': timing,
-            'basis': 'Native execution timestamps matched to successful indexed generations; observed differences, not causal speedups. Missing is not zero.',
+            'basis': 'Brain status is the recorded outcome, not independent native verification. Native execution timestamps match successful indexed generations; observed differences are not causal speedups. Missing is not zero.',
             'parameter_differences': [d for d in packet['differences'] if any(d['field'].startswith('/' + k) for k in ('configured_models', 'resolved_primitive_inputs', 'runtime_settings', 'runtime_evidence', 'cached_nodes'))],
             'visual_reviews': {r['run_id']: r['report'].get('visual_reviews', {}) for r in packet['runs']}}
 
 
 def chart(data):
     fig, axes = plt.subplots(2, 2, figsize=(12, 7), layout='constrained')
-    labels = [r.get('label', r['run_id'][:8]) for r in data['rows']]
+    labels = [f"{r.get('label', r['run_id'][:8])}\n({r['brain_status']})" for r in data['rows']]
     for ax, key, title in zip(axes.flat, ['execution_seconds', 'sampling_seconds', 'vram_peak_gib', 'ram_peak_gib'],
                              ['Execution (seconds; excludes queue)', 'Sampling (seconds)', 'GPU memory peak (GiB)', 'System RAM peak (GiB)']):
         for i, row in enumerate(data['rows']):
@@ -157,10 +157,10 @@ def main():
         writer.writeheader()
         writer.writerows(data['rows'])
         lines = ['# Production comparison', '', args.objective, '', data['basis'], '',
-                 '| Recipe | Execution s | Difference % | Sampling s | VRAM GiB | RAM GiB | GPU peak °C |',
-                 '|---|---:|---:|---:|---:|---:|---:|']
+                 '| Recipe | Brain status | Execution s | Difference % | Sampling s | VRAM GiB | RAM GiB | GPU peak °C |',
+                 '|---|---|---:|---:|---:|---:|---:|---:|']
         for row in data['rows']:
-            values = [row.get('label', row['run_id'][:8])] + [row[k] for k in
+            values = [row.get('label', row['run_id'][:8]), row['brain_status']] + [row[k] for k in
                       ('execution_seconds', 'execution_difference_percent', 'sampling_seconds', 'vram_peak_gib', 'ram_peak_gib', 'gpu_peak_c')]
             lines.append('| ' + ' | '.join('Unavailable' if v is None else f'{v:.2f}' if isinstance(v, float) else str(v).replace('|', '/') for v in values) + ' |')
         lines += ['', '![Measured costs](comparison.svg)', '', '![Phase costs](phases.svg)', '',

@@ -44,3 +44,20 @@ class ComparisonTests(unittest.TestCase):
         self.assertIn('Unavailable', chart(data))
         with self.assertRaises(ValueError):
             comparison(packet, ' ', {})
+
+    def test_recorded_outcome_stays_visible_when_native_success_is_unverified(self):
+        history = self.history()
+        succeeded = self.report(history)
+        failed = {**succeeded, 'status': 'failed', 'peaks': {'cuda:0.nvml_used': 2**30}}
+        packet = {'runs': [
+            {'run_id': 'a', 'resources': {}, 'report': succeeded},
+            {'run_id': 'b', 'resources': {}, 'report': failed},
+            {'run_id': 'c', 'resources': {}, 'report': {**succeeded, 'status': 'unknown'}},
+        ], 'differences': []}
+        data = comparison(packet, 'Compare resource use', history)
+        rows = data['rows']
+        self.assertEqual([row['brain_status'] for row in rows], ['succeeded', 'failed', 'unknown'])
+        self.assertEqual(rows[1]['vram_peak_gib'], 1)
+        self.assertIsNone(rows[1]['execution_seconds'])
+        self.assertIsNone(rows[2]['execution_seconds'])
+        self.assertIn('(failed)', chart(data))
